@@ -1,0 +1,218 @@
+23:22:58: Creating resource group General
+23:22:58: Creating resource group Internal
+23:22:58: Creating resource group Autodetect
+23:22:58: SceneManagerFactory for type 'DefaultSceneManager' registered.
+23:22:58: Registering ResourceManager for type Material
+23:22:58: Registering ResourceManager for type Mesh
+23:22:58: Registering ResourceManager for type Skeleton
+23:22:58: MovableObjectFactory for type 'ParticleSystem' registered.
+23:22:58: OverlayElementFactory for type Panel registered.
+23:22:58: OverlayElementFactory for type BorderPanel registered.
+23:22:58: OverlayElementFactory for type TextArea registered.
+23:22:58: Registering ResourceManager for type Font
+23:22:58: ArchiveFactory for archive type FileSystem registered.
+23:22:58: ArchiveFactory for archive type Zip registered.
+23:22:58: FreeImage version: 3.9.1
+23:22:58: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+23:22:58: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi
+23:22:58: DDS codec registering
+23:22:58: Registering ResourceManager for type HighLevelGpuProgram
+23:22:58: Registering ResourceManager for type Compositor
+23:22:58: MovableObjectFactory for type 'Entity' registered.
+23:22:58: MovableObjectFactory for type 'Light' registered.
+23:22:58: MovableObjectFactory for type 'BillboardSet' registered.
+23:22:58: MovableObjectFactory for type 'ManualObject' registered.
+23:22:58: MovableObjectFactory for type 'BillboardChain' registered.
+23:22:58: MovableObjectFactory for type 'RibbonTrail' registered.
+23:22:58: Loading library RenderSystem_GL
+23:22:58: Installing plugin: GL RenderSystem
+23:22:58: OpenGL Rendering Subsystem created.
+23:22:58: Plugin successfully installed
+23:22:58: Loading library Plugin_ParticleFX
+23:22:58: Installing plugin: ParticleFX
+23:22:58: Particle Emitter Type 'Point' registered
+23:22:58: Particle Emitter Type 'Box' registered
+23:22:58: Particle Emitter Type 'Ellipsoid' registered
+23:22:58: Particle Emitter Type 'Cylinder' registered
+23:22:58: Particle Emitter Type 'Ring' registered
+23:22:58: Particle Emitter Type 'HollowEllipsoid' registered
+23:22:58: Particle Affector Type 'LinearForce' registered
+23:22:58: Particle Affector Type 'ColourFader' registered
+23:22:58: Particle Affector Type 'ColourFader2' registered
+23:22:58: Particle Affector Type 'ColourImage' registered
+23:22:58: Particle Affector Type 'ColourInterpolator' registered
+23:22:58: Particle Affector Type 'Scaler' registered
+23:22:58: Particle Affector Type 'Rotator' registered
+23:22:58: Particle Affector Type 'DirectionRandomiser' registered
+23:22:58: Particle Affector Type 'DeflectorPlane' registered
+23:22:58: Plugin successfully installed
+23:22:58: Loading library Plugin_BSPSceneManager
+23:22:58: Installing plugin: BSP Scene Manager
+23:22:58: Plugin successfully installed
+23:22:58: Loading library Plugin_OctreeSceneManager
+23:22:58: Installing plugin: Octree & Terrain Scene Manager
+23:22:58: Plugin successfully installed
+23:22:58: Loading library Plugin_CgProgramManager
+23:22:58: Installing plugin: Cg Program Manager
+23:22:58: Plugin successfully installed
+23:22:58: *-*-* OGRE Initialising
+23:22:58: *-*-* Version 1.4.0RC2 (Eihort)
+23:22:58: Creating resource group Bootstrap
+23:22:58: Added resource location '/Users/rti/Development/CoABlaster/coablaster/trunk/bin/CoABlaster.app/../../data/OgreCore.zip' of type 'Zip' to resource group 'Bootstrap'
+23:22:58: Added resource location '/Users/rti/Development/CoABlaster/coablaster/trunk/bin/CoABlaster.app/../../data' of type 'FileSystem' to resource group 'General'
+23:22:58: CPU Identifier & Features
+23:22:58: -------------------------
+23:22:58:  *   CPU ID: GenuineIntel: Intel(R) Core(TM)2 CPU         T7200  @ 2.00GHz
+23:22:58:  *      SSE: yes
+23:22:58:  *     SSE2: yes
+23:22:58:  *     SSE3: yes
+23:22:58:  *      MMX: yes
+23:22:58:  *   MMXEXT: yes
+23:22:58:  *    3DNOW: no
+23:22:58:  * 3DNOWEXT: no
+23:22:58:  *     CMOV: yes
+23:22:58:  *      TSC: yes
+23:22:58:  *      FPU: yes
+23:22:58:  *      PRO: yes
+23:22:58:  *       HT: no
+23:22:58: -------------------------
+23:22:58: *******************************************
+***    Starting OSX OpenGL Subsystem    ***
+*******************************************
+23:22:58: GLRenderSystem::createRenderWindow "OGRE Render Window", 800x600 windowed  miscParams: FSAA=0 title=OGRE Render Window 
+23:22:58: Creating a Carbon Compatible Render System
+23:22:58: GL_VERSION = 1.2 APPLE-1.4.56
+23:22:58: GL_VENDOR = Intel Inc.
+23:22:58: GL_RENDERER = Intel GMA 950 OpenGL Engine
+23:22:58: GL_EXTENSIONS = GL_ARB_transpose_matrix GL_ARB_vertex_program GL_ARB_vertex_blend GL_ARB_window_pos GL_ARB_shader_objects GL_ARB_vertex_shader GL_EXT_multi_draw_arrays GL_EXT_clip_volume_hint GL_EXT_rescale_normal GL_EXT_draw_range_elements GL_EXT_fog_coord GL_EXT_gpu_program_parameters GL_APPLE_client_storage GL_APPLE_specular_vector GL_APPLE_transform_hint GL_APPLE_packed_pixels GL_APPLE_fence GL_APPLE_vertex_array_object GL_APPLE_vertex_program_evaluators GL_APPLE_element_array GL_APPLE_flush_render GL_NV_texgen_reflection GL_NV_light_max_exponent GL_IBM_rasterpos_clip GL_SGIS_generate_mipmap GL_ARB_shading_language_100 GL_ARB_texture_border_clamp GL_ARB_multitexture GL_ARB_texture_env_add GL_ARB_texture_cube_map GL_ARB_texture_env_dot3 GL_ARB_texture_env_combine GL_ARB_texture_compression GL_ARB_texture_mirrored_repeat GL_ARB_shadow GL_ARB_depth_texture GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_point_sprite GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ARB_pixel_buffer_object GL_EXT_framebuffer_object GL_EXT_texture_rectangle GL_ARB_texture_rectangle GL_EXT_texture_env_add GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_texture_lod_bias GL_EXT_abgr GL_EXT_bgra GL_EXT_stencil_wrap GL_EXT_texture_filter_anisotropic GL_EXT_separate_specular_color GL_EXT_secondary_color GL_EXT_blend_func_separate GL_EXT_shadow_funcs GL_EXT_stencil_two_side GL_EXT_texture_compression_s3tc GL_EXT_texture_compression_dxt1 GL_EXT_blend_equation_separate GL_EXT_packed_depth_stencil GL_APPLE_flush_buffer_range GL_APPLE_ycbcr_422 GL_APPLE_texture_range GL_APPLE_pixel_buffer GL_NV_blend_square GL_ATI_texture_env_combine3 GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod 
+23:22:58: ***************************
+23:22:58: *** GL Renderer Started ***
+23:22:58: ***************************
+23:22:58: Registering ResourceManager for type GpuProgram
+23:22:58: GLSL support detected
+23:22:58: GL: Using PBuffers for rendering to textures
+23:22:58: RenderSystem capabilities
+23:22:58: -------------------------
+23:22:58:  * Hardware generation of mipmaps: yes
+23:22:58:  * Texture blending: yes
+23:22:58:  * Anisotropic texture filtering: yes
+23:22:58:  * Dot product texture operation: yes
+23:22:58:  * Cube mapping: yes
+23:22:58:  * Hardware stencil buffer: yes
+23:22:58:    - Stencil depth: 8
+23:22:58:    - Two sided stencil support: yes
+23:22:58:    - Wrap stencil values: yes
+23:22:58:  * Hardware vertex / index buffers: yes
+23:22:58:  * Vertex programs: yes
+23:22:58:    - Max vertex program version: arbvp1
+23:22:58:  * Fragment programs: yes
+23:22:58:    - Max fragment program version: arbfp1
+23:22:58:  * Texture Compression: yes
+23:22:58:    - DXT: yes
+23:22:58:    - VTC: no
+23:22:58:  * Scissor Rectangle: yes
+23:22:58:  * Hardware Occlusion Query: no
+23:22:58:  * User clip planes: yes
+23:22:58:  * VET_UBYTE4 vertex element type: yes
+23:22:58:  * Infinite far plane projection: yes
+23:22:58:  * Hardware render-to-texture: yes
+23:22:58:  * Floating point textures: no
+23:22:58:  * Non-power-of-two textures: yes
+23:22:58:  * Volume textures: yes
+23:22:58:  * Multiple Render Targets: 1
+23:22:58:  * Point Sprites: yes
+23:22:58:  * Extended point parameters: no
+23:22:58:  * Max Point Size: 64
+23:22:58:  * Vertex texture fetch: no
+23:22:58: Registering ResourceManager for type Texture
+23:22:58: ResourceBackgroundQueue - threading disabled
+23:22:58: Particle Renderer Type 'billboard' registered
+23:22:58: SceneManagerFactory for type 'OctreeSceneManager' registered.
+23:22:58: SceneManagerFactory for type 'TerrainSceneManager' registered.
+23:22:58: SceneManagerFactory for type 'BspSceneManager' registered.
+23:22:58: Registering ResourceManager for type BspLevel
+23:22:58: Creating viewport on target 'OGRE Render Window', rendering from camera 'cam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+23:22:58: Viewport for camera 'cam', actual dimensions L: 0 T: 0 W: 800 H: 600
+23:22:58: Parsing scripts for resource group Autodetect
+23:22:58: Finished parsing scripts for resource group Autodetect
+23:22:58: Parsing scripts for resource group Bootstrap
+23:22:58: Parsing script OgreCore.material
+23:22:58: Parsing script OgreProfiler.material
+23:22:58: Parsing script Ogre.fontdef
+23:22:58: Parsing script OgreDebugPanel.overlay
+23:22:58: Texture: New_Ogre_Border_Center.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
+23:22:58: Texture: New_Ogre_Border.png: Loading 1 faces(PF_A8R8G8B8,256x256x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x256x1.
+23:22:58: Texture: New_Ogre_Border_Break.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+23:22:58: Font BlueHighwayusing texture size 512x512
+23:22:58: Info: Freetype returned null for character 127 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 128 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 129 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 130 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 131 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 132 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 133 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 134 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 135 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 136 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 137 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 138 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 139 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 140 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 141 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 142 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 143 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 144 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 145 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 146 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 147 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 148 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 149 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 150 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 151 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 152 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 153 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 154 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 155 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 156 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 157 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 158 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 159 in font BlueHighway
+23:22:58: Info: Freetype returned null for character 160 in font BlueHighway
+23:22:58: Texture: BlueHighwayTexture: Loading 1 faces(PF_BYTE_LA,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x512x1.
+23:22:58: Texture: ogretext.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
+23:22:58: Parsing script OgreLoadingPanel.overlay
+23:22:58: Finished parsing scripts for resource group Bootstrap
+23:22:58: Parsing scripts for resource group General
+23:22:58: Parsing script ninja.material
+23:22:58: Finished parsing scripts for resource group General
+23:22:58: Parsing scripts for resource group Internal
+23:22:58: Finished parsing scripts for resource group Internal
+23:23:00: Unregistering ResourceManager for type BspLevel
+23:23:00: *-*-* OGRE Shutdown
+23:23:00: Unregistering ResourceManager for type Compositor
+23:23:00: Unregistering ResourceManager for type Font
+23:23:00: Unregistering ResourceManager for type Skeleton
+23:23:00: Unregistering ResourceManager for type Mesh
+23:23:00: Unregistering ResourceManager for type HighLevelGpuProgram
+23:23:00: Uninstalling plugin: Cg Program Manager
+23:23:00: Plugin successfully uninstalled
+23:23:00: Unloading library Plugin_CgProgramManager
+23:23:00: Uninstalling plugin: Octree & Terrain Scene Manager
+23:23:00: Plugin successfully uninstalled
+23:23:00: Unloading library Plugin_OctreeSceneManager
+23:23:00: Uninstalling plugin: BSP Scene Manager
+23:23:00: Plugin successfully uninstalled
+23:23:00: Unloading library Plugin_BSPSceneManager
+23:23:00: Uninstalling plugin: ParticleFX
+23:23:00: Plugin successfully uninstalled
+23:23:00: Unloading library Plugin_ParticleFX
+23:23:00: Uninstalling plugin: GL RenderSystem
+23:23:00: Render Target 'OGRE Render Window' Average FPS: 469.062 Best FPS: 484.032 Worst FPS: 454.092
+23:23:00: Unregistering ResourceManager for type GpuProgram
+23:23:00: *******************************************
+***    Stopping OSX OpenGL Subsystem    ***
+*******************************************
+23:23:00: Unregistering ResourceManager for type Texture
+23:23:00: Plugin successfully uninstalled
+23:23:00: Unloading library RenderSystem_GL
+23:23:00: Unregistering ResourceManager for type Material

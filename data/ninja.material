@@ -1,0 +1,27 @@
+material Examples/Ninja
+{
+	technique
+	{
+		pass
+		{
+		
+			texture_unit
+			{
+				texture nskingr.jpg
+			}
+		}
+	}
+}
+material Examples/Rockwall
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture rockwall.tga
+			}
+		}
+	}
+}
