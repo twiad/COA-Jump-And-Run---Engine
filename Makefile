@@ -49,7 +49,7 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include"
+	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS"
 	LIBPATH		 += -L"$(OGRE_HOME)/bin/release"
 	LIBRARIES	 += -lOgreMain -lOIS 
 	BINPATH		  = ./bin

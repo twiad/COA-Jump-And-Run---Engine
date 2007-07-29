@@ -36,9 +36,9 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release"
-	LIBRARIES	 += -lOgreMain -lOIS 
+	INCLUDE		 += -I"$(OGRE_HOME)/include" -I"$(BULLET_HOME)/src"
+	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib"
+	LIBRARIES	 += -lOgreMain -lOIS -llibbulletcollision -llibbulletdynamics -llibbulletmath
 #																			   #
 # ############################################################################ #
 
