@@ -7,9 +7,9 @@ TARGET = CoAJnR
 # global flags
 CXXFLAGS   += -pipe
 WARN_FLAGS	= -Wall
-INCLUDE	   += -I./include
-LIBPATH		=
-LIBRARIES	=
+INCLUDE	   += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include
+LIBPATH		= -L./dep/OgreBullet
+LIBRARIES	= -lOgreBullet
 BINPATH		=
 TESTBINPATH =
 EXTENSION	=
@@ -22,9 +22,9 @@ ifeq ($(shell uname -s),Darwin)
 # TODO: the INCLUDE value is cheesy and should be replaced					   #
 #		with something more general in the future							   #
 #																			   #
-  INCLUDE		 += -I/Library/Frameworks/Ogre.framework/Headers -I/Library/Frameworks/OIS.framework/Headers
+  INCLUDE		 += -I/Library/Frameworks/Ogre.framework/Headers -I/Library/Frameworks/OIS.framework/Headers -I/usr/local/include/bullet
   LIBPATH		 += 
-  LIBRARIES		 += -framework Ogre -framework OIS -framework Cocoa
+  LIBRARIES		 += -framework Ogre -framework OIS -framework Cocoa  -lbulletcollision -lbulletdynamics -lbulletmath
   BINPATH		  = ./bin/CoAJnR.app/Contents/MacOS
   TESTBINPATH	  = ./bin/Test.app/Contents/MacOS
 #																			   #
@@ -68,14 +68,16 @@ CXXFLAGS  += $(EXTRA_CXXFLAGS) $(WARN_FLAGS) $(INCLUDE) $(EXTRA_INCLUDES)
 SRC_FILES = $(wildcard src/*.cpp)
 O_FILES	  = $(SRC_FILES:%.cpp=%.o)
 
+TEST_SRC_FILES = $(wildcard test/*.cpp)
+TEST_O_FILES = $(TEST_SRC_FILES:%.cpp=%.o)
 
 all: libOgreBullet.a $(TARGET) test
 
 $(TARGET): $(O_FILES)
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)
 
-test:
-	$(CXX) $(CXXFLAGS) test/Test.cpp -o $(TESTBINPATH)/Test$(EXTENSION) $(LIB)
+test: $(TEST_O_FILES) libOgreBullet.a
+	$(CXX) $(TEST_O_FILES) -o $(TESTBINPATH)/Test$(EXTENSION) $(LIB)
 
 libOgreBullet.a:
 	make -C dep/OgreBullet
@@ -83,6 +85,9 @@ libOgreBullet.a:
 clean:
 	rm -f *.o src/*.o 
 	
-proper: clean
-	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)
+clean-test:
+	rm -rf test/*.o
+
+proper: clean clean-test
 	make proper -C dep/OgreBullet
+	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)

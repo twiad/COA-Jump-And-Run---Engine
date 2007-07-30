@@ -1,224 +1,721 @@
-21:57:26: Creating resource group General
-21:57:26: Creating resource group Internal
-21:57:26: Creating resource group Autodetect
-21:57:26: SceneManagerFactory for type 'DefaultSceneManager' registered.
-21:57:26: Registering ResourceManager for type Material
-21:57:26: Registering ResourceManager for type Mesh
-21:57:26: Registering ResourceManager for type Skeleton
-21:57:26: MovableObjectFactory for type 'ParticleSystem' registered.
-21:57:26: OverlayElementFactory for type Panel registered.
-21:57:26: OverlayElementFactory for type BorderPanel registered.
-21:57:26: OverlayElementFactory for type TextArea registered.
-21:57:26: Registering ResourceManager for type Font
-21:57:26: ArchiveFactory for archive type FileSystem registered.
-21:57:26: ArchiveFactory for archive type Zip registered.
-21:57:26: FreeImage version: 3.9.1
-21:57:26: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
-21:57:26: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi
-21:57:26: DDS codec registering
-21:57:26: Registering ResourceManager for type HighLevelGpuProgram
-21:57:26: Registering ResourceManager for type Compositor
-21:57:26: MovableObjectFactory for type 'Entity' registered.
-21:57:26: MovableObjectFactory for type 'Light' registered.
-21:57:26: MovableObjectFactory for type 'BillboardSet' registered.
-21:57:26: MovableObjectFactory for type 'ManualObject' registered.
-21:57:26: MovableObjectFactory for type 'BillboardChain' registered.
-21:57:26: MovableObjectFactory for type 'RibbonTrail' registered.
-21:57:26: Loading library RenderSystem_GL
-21:57:26: Installing plugin: GL RenderSystem
-21:57:26: OpenGL Rendering Subsystem created.
-21:57:26: Plugin successfully installed
-21:57:26: Loading library Plugin_ParticleFX
-21:57:26: Installing plugin: ParticleFX
-21:57:26: Particle Emitter Type 'Point' registered
-21:57:26: Particle Emitter Type 'Box' registered
-21:57:26: Particle Emitter Type 'Ellipsoid' registered
-21:57:26: Particle Emitter Type 'Cylinder' registered
-21:57:26: Particle Emitter Type 'Ring' registered
-21:57:26: Particle Emitter Type 'HollowEllipsoid' registered
-21:57:26: Particle Affector Type 'LinearForce' registered
-21:57:26: Particle Affector Type 'ColourFader' registered
-21:57:26: Particle Affector Type 'ColourFader2' registered
-21:57:26: Particle Affector Type 'ColourImage' registered
-21:57:26: Particle Affector Type 'ColourInterpolator' registered
-21:57:26: Particle Affector Type 'Scaler' registered
-21:57:26: Particle Affector Type 'Rotator' registered
-21:57:26: Particle Affector Type 'DirectionRandomiser' registered
-21:57:26: Particle Affector Type 'DeflectorPlane' registered
-21:57:26: Plugin successfully installed
-21:57:26: Loading library Plugin_BSPSceneManager
-21:57:26: Installing plugin: BSP Scene Manager
-21:57:26: Plugin successfully installed
-21:57:26: Loading library Plugin_OctreeSceneManager
-21:57:26: Installing plugin: Octree & Terrain Scene Manager
-21:57:26: Plugin successfully installed
-21:57:26: Loading library Plugin_CgProgramManager
-21:57:26: Installing plugin: Cg Program Manager
-21:57:26: Plugin successfully installed
-21:57:26: *-*-* OGRE Initialising
-21:57:26: *-*-* Version 1.4.0RC2 (Eihort)
-21:57:26: Creating resource group Bootstrap
-21:57:26: Added resource location '/Users/rti/Development/CoABlaster/coablaster/trunk/bin/Test.app/../../data/OgreCore.zip' of type 'Zip' to resource group 'Bootstrap'
-21:57:26: Added resource location '/Users/rti/Development/CoABlaster/coablaster/trunk/bin/Test.app/../../data' of type 'FileSystem' to resource group 'General'
-21:57:26: CPU Identifier & Features
-21:57:26: -------------------------
-21:57:26:  *   CPU ID: GenuineIntel: Intel(R) Core(TM)2 CPU         T7200  @ 2.00GHz
-21:57:26:  *      SSE: yes
-21:57:26:  *     SSE2: yes
-21:57:26:  *     SSE3: yes
-21:57:26:  *      MMX: yes
-21:57:26:  *   MMXEXT: yes
-21:57:26:  *    3DNOW: no
-21:57:26:  * 3DNOWEXT: no
-21:57:26:  *     CMOV: yes
-21:57:26:  *      TSC: yes
-21:57:26:  *      FPU: yes
-21:57:26:  *      PRO: yes
-21:57:26:  *       HT: no
-21:57:26: -------------------------
-21:57:26: *******************************************
+03:15:42: Creating resource group General
+03:15:42: Creating resource group Internal
+03:15:42: Creating resource group Autodetect
+03:15:42: SceneManagerFactory for type 'DefaultSceneManager' registered.
+03:15:42: Registering ResourceManager for type Material
+03:15:42: Registering ResourceManager for type Mesh
+03:15:42: Registering ResourceManager for type Skeleton
+03:15:42: MovableObjectFactory for type 'ParticleSystem' registered.
+03:15:42: OverlayElementFactory for type Panel registered.
+03:15:42: OverlayElementFactory for type BorderPanel registered.
+03:15:42: OverlayElementFactory for type TextArea registered.
+03:15:42: Registering ResourceManager for type Font
+03:15:42: ArchiveFactory for archive type FileSystem registered.
+03:15:42: ArchiveFactory for archive type Zip registered.
+03:15:42: FreeImage version: 3.9.1
+03:15:42: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+03:15:42: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi
+03:15:42: DDS codec registering
+03:15:42: Registering ResourceManager for type HighLevelGpuProgram
+03:15:42: Registering ResourceManager for type Compositor
+03:15:42: MovableObjectFactory for type 'Entity' registered.
+03:15:42: MovableObjectFactory for type 'Light' registered.
+03:15:42: MovableObjectFactory for type 'BillboardSet' registered.
+03:15:42: MovableObjectFactory for type 'ManualObject' registered.
+03:15:42: MovableObjectFactory for type 'BillboardChain' registered.
+03:15:42: MovableObjectFactory for type 'RibbonTrail' registered.
+03:15:42: Loading library RenderSystem_GL
+03:15:43: Installing plugin: GL RenderSystem
+03:15:43: OpenGL Rendering Subsystem created.
+03:15:43: Plugin successfully installed
+03:15:43: Loading library Plugin_ParticleFX
+03:15:43: Installing plugin: ParticleFX
+03:15:43: Particle Emitter Type 'Point' registered
+03:15:43: Particle Emitter Type 'Box' registered
+03:15:43: Particle Emitter Type 'Ellipsoid' registered
+03:15:43: Particle Emitter Type 'Cylinder' registered
+03:15:43: Particle Emitter Type 'Ring' registered
+03:15:43: Particle Emitter Type 'HollowEllipsoid' registered
+03:15:43: Particle Affector Type 'LinearForce' registered
+03:15:43: Particle Affector Type 'ColourFader' registered
+03:15:43: Particle Affector Type 'ColourFader2' registered
+03:15:43: Particle Affector Type 'ColourImage' registered
+03:15:43: Particle Affector Type 'ColourInterpolator' registered
+03:15:43: Particle Affector Type 'Scaler' registered
+03:15:43: Particle Affector Type 'Rotator' registered
+03:15:43: Particle Affector Type 'DirectionRandomiser' registered
+03:15:43: Particle Affector Type 'DeflectorPlane' registered
+03:15:43: Plugin successfully installed
+03:15:43: Loading library Plugin_BSPSceneManager
+03:15:43: Installing plugin: BSP Scene Manager
+03:15:43: Plugin successfully installed
+03:15:43: Loading library Plugin_OctreeSceneManager
+03:15:43: Installing plugin: Octree & Terrain Scene Manager
+03:15:43: Plugin successfully installed
+03:15:43: Loading library Plugin_CgProgramManager
+03:15:43: Installing plugin: Cg Program Manager
+03:15:43: Plugin successfully installed
+03:15:43: *-*-* OGRE Initialising
+03:15:43: *-*-* Version 1.4.0RC2 (Eihort)
+03:15:43: Creating resource group Bootstrap
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-ogre/OgreCore.zip' of type 'Zip' to resource group 'Bootstrap'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet' of type 'FileSystem' to resource group 'General'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet/gui' of type 'FileSystem' to resource group 'General'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet/materials' of type 'FileSystem' to resource group 'General'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet/models' of type 'FileSystem' to resource group 'General'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet/overlays' of type 'FileSystem' to resource group 'General'
+03:15:43: Added resource location '/Users/rti/Development/CoAJnR/coajnr/trunk/bin/Test.app/../../data/test-bullet/textures' of type 'FileSystem' to resource group 'General'
+03:15:43: Creating resource group OgreBullet
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media' of type 'FileSystem' to resource group 'OgreBullet'
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media/textures' of type 'FileSystem' to resource group 'OgreBullet'
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media/overlays' of type 'FileSystem' to resource group 'OgreBullet'
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media/materials' of type 'FileSystem' to resource group 'OgreBullet'
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media/models' of type 'FileSystem' to resource group 'OgreBullet'
+03:15:43: Creating resource group BetaGui
+03:15:43: Added resource location '../../../../../ogreaddons/ogrebullet/demos/Media/gui' of type 'FileSystem' to resource group 'BetaGui'
+03:15:43: CPU Identifier & Features
+03:15:43: -------------------------
+03:15:43:  *   CPU ID: GenuineIntel: Intel(R) Core(TM)2 CPU         T7200  @ 2.00GHz
+03:15:43:  *      SSE: yes
+03:15:43:  *     SSE2: yes
+03:15:43:  *     SSE3: yes
+03:15:43:  *      MMX: yes
+03:15:43:  *   MMXEXT: yes
+03:15:43:  *    3DNOW: no
+03:15:43:  * 3DNOWEXT: no
+03:15:43:  *     CMOV: yes
+03:15:43:  *      TSC: yes
+03:15:43:  *      FPU: yes
+03:15:43:  *      PRO: yes
+03:15:43:  *       HT: no
+03:15:43: -------------------------
+03:15:43: *******************************************
 ***    Starting OSX OpenGL Subsystem    ***
 *******************************************
-21:57:26: GLRenderSystem::createRenderWindow "OGRE Render Window", 800x600 windowed  miscParams: FSAA=0 title=OGRE Render Window 
-21:57:26: Creating a Carbon Compatible Render System
-21:57:26: GL_VERSION = 1.2 APPLE-1.4.56
-21:57:26: GL_VENDOR = Intel Inc.
-21:57:26: GL_RENDERER = Intel GMA 950 OpenGL Engine
-21:57:26: GL_EXTENSIONS = GL_ARB_transpose_matrix GL_ARB_vertex_program GL_ARB_vertex_blend GL_ARB_window_pos GL_ARB_shader_objects GL_ARB_vertex_shader GL_EXT_multi_draw_arrays GL_EXT_clip_volume_hint GL_EXT_rescale_normal GL_EXT_draw_range_elements GL_EXT_fog_coord GL_EXT_gpu_program_parameters GL_APPLE_client_storage GL_APPLE_specular_vector GL_APPLE_transform_hint GL_APPLE_packed_pixels GL_APPLE_fence GL_APPLE_vertex_array_object GL_APPLE_vertex_program_evaluators GL_APPLE_element_array GL_APPLE_flush_render GL_NV_texgen_reflection GL_NV_light_max_exponent GL_IBM_rasterpos_clip GL_SGIS_generate_mipmap GL_ARB_shading_language_100 GL_ARB_texture_border_clamp GL_ARB_multitexture GL_ARB_texture_env_add GL_ARB_texture_cube_map GL_ARB_texture_env_dot3 GL_ARB_texture_env_combine GL_ARB_texture_compression GL_ARB_texture_mirrored_repeat GL_ARB_shadow GL_ARB_depth_texture GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_point_sprite GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ARB_pixel_buffer_object GL_EXT_framebuffer_object GL_EXT_texture_rectangle GL_ARB_texture_rectangle GL_EXT_texture_env_add GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_texture_lod_bias GL_EXT_abgr GL_EXT_bgra GL_EXT_stencil_wrap GL_EXT_texture_filter_anisotropic GL_EXT_separate_specular_color GL_EXT_secondary_color GL_EXT_blend_func_separate GL_EXT_shadow_funcs GL_EXT_stencil_two_side GL_EXT_texture_compression_s3tc GL_EXT_texture_compression_dxt1 GL_EXT_blend_equation_separate GL_EXT_packed_depth_stencil GL_APPLE_flush_buffer_range GL_APPLE_ycbcr_422 GL_APPLE_texture_range GL_APPLE_pixel_buffer GL_NV_blend_square GL_ATI_texture_env_combine3 GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod 
-21:57:26: ***************************
-21:57:26: *** GL Renderer Started ***
-21:57:26: ***************************
-21:57:26: Registering ResourceManager for type GpuProgram
-21:57:26: GLSL support detected
-21:57:26: GL: Using PBuffers for rendering to textures
-21:57:26: RenderSystem capabilities
-21:57:26: -------------------------
-21:57:26:  * Hardware generation of mipmaps: yes
-21:57:26:  * Texture blending: yes
-21:57:26:  * Anisotropic texture filtering: yes
-21:57:26:  * Dot product texture operation: yes
-21:57:26:  * Cube mapping: yes
-21:57:26:  * Hardware stencil buffer: yes
-21:57:26:    - Stencil depth: 8
-21:57:26:    - Two sided stencil support: yes
-21:57:26:    - Wrap stencil values: yes
-21:57:26:  * Hardware vertex / index buffers: yes
-21:57:26:  * Vertex programs: yes
-21:57:26:    - Max vertex program version: arbvp1
-21:57:26:  * Fragment programs: yes
-21:57:26:    - Max fragment program version: arbfp1
-21:57:26:  * Texture Compression: yes
-21:57:26:    - DXT: yes
-21:57:26:    - VTC: no
-21:57:26:  * Scissor Rectangle: yes
-21:57:26:  * Hardware Occlusion Query: no
-21:57:26:  * User clip planes: yes
-21:57:26:  * VET_UBYTE4 vertex element type: yes
-21:57:26:  * Infinite far plane projection: yes
-21:57:26:  * Hardware render-to-texture: yes
-21:57:26:  * Floating point textures: no
-21:57:26:  * Non-power-of-two textures: yes
-21:57:26:  * Volume textures: yes
-21:57:26:  * Multiple Render Targets: 1
-21:57:26:  * Point Sprites: yes
-21:57:26:  * Extended point parameters: no
-21:57:26:  * Max Point Size: 64
-21:57:26:  * Vertex texture fetch: no
-21:57:26: Registering ResourceManager for type Texture
-21:57:26: ResourceBackgroundQueue - threading disabled
-21:57:26: Particle Renderer Type 'billboard' registered
-21:57:26: SceneManagerFactory for type 'OctreeSceneManager' registered.
-21:57:26: SceneManagerFactory for type 'TerrainSceneManager' registered.
-21:57:26: SceneManagerFactory for type 'BspSceneManager' registered.
-21:57:26: Registering ResourceManager for type BspLevel
-21:57:26: Creating viewport on target 'OGRE Render Window', rendering from camera 'PlayerCam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
-21:57:26: Viewport for camera 'PlayerCam', actual dimensions L: 0 T: 0 W: 800 H: 600
-21:57:26: Parsing scripts for resource group Autodetect
-21:57:26: Finished parsing scripts for resource group Autodetect
-21:57:26: Parsing scripts for resource group Bootstrap
-21:57:26: Parsing script OgreCore.material
-21:57:26: Parsing script OgreProfiler.material
-21:57:26: Parsing script Ogre.fontdef
-21:57:26: Parsing script OgreDebugPanel.overlay
-21:57:26: Texture: New_Ogre_Border_Center.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
-21:57:26: Texture: New_Ogre_Border.png: Loading 1 faces(PF_A8R8G8B8,256x256x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x256x1.
-21:57:26: Texture: New_Ogre_Border_Break.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
-21:57:26: Font BlueHighwayusing texture size 512x512
-21:57:26: Info: Freetype returned null for character 127 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 128 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 129 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 130 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 131 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 132 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 133 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 134 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 135 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 136 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 137 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 138 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 139 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 140 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 141 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 142 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 143 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 144 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 145 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 146 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 147 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 148 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 149 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 150 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 151 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 152 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 153 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 154 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 155 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 156 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 157 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 158 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 159 in font BlueHighway
-21:57:26: Info: Freetype returned null for character 160 in font BlueHighway
-21:57:26: Texture: BlueHighwayTexture: Loading 1 faces(PF_BYTE_LA,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x512x1.
-21:57:26: Texture: ogretext.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
-21:57:26: Parsing script OgreLoadingPanel.overlay
-21:57:26: Finished parsing scripts for resource group Bootstrap
-21:57:26: Parsing scripts for resource group General
-21:57:26: Parsing script ninja.material
-21:57:26: Finished parsing scripts for resource group General
-21:57:26: Parsing scripts for resource group Internal
-21:57:26: Finished parsing scripts for resource group Internal
-21:57:26: Mesh: Loading ninja.mesh.
-21:57:26: Skeleton: Loading ninja.skeleton
-21:57:26: Texture: nskingr.jpg: Loading 1 faces(PF_R8G8B8,512x512x1) with 9 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
-21:57:26: Texture: rockwall.tga: Loading 1 faces(PF_R8G8B8,256x256x1) with 8 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,256x256x1.
-21:57:26: *** Initializing OIS ***
-21:57:26: Texture: spot_shadow_fade.png: Loading 1 faces(PF_R8G8B8,128x128x1) with 5 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,128x128x1.
-21:57:29: Unregistering ResourceManager for type BspLevel
-21:57:29: *-*-* OGRE Shutdown
-21:57:29: Unregistering ResourceManager for type Compositor
-21:57:29: Unregistering ResourceManager for type Font
-21:57:29: Unregistering ResourceManager for type Skeleton
-21:57:29: Unregistering ResourceManager for type Mesh
-21:57:29: Unregistering ResourceManager for type HighLevelGpuProgram
-21:57:29: Uninstalling plugin: Cg Program Manager
-21:57:29: Plugin successfully uninstalled
-21:57:29: Unloading library Plugin_CgProgramManager
-21:57:29: Uninstalling plugin: Octree & Terrain Scene Manager
-21:57:29: Plugin successfully uninstalled
-21:57:29: Unloading library Plugin_OctreeSceneManager
-21:57:29: Uninstalling plugin: BSP Scene Manager
-21:57:29: Plugin successfully uninstalled
-21:57:29: Unloading library Plugin_BSPSceneManager
-21:57:29: Uninstalling plugin: ParticleFX
-21:57:29: Plugin successfully uninstalled
-21:57:29: Unloading library Plugin_ParticleFX
-21:57:29: Uninstalling plugin: GL RenderSystem
-21:57:29: Render Target 'OGRE Render Window' Average FPS: 37.9008 Best FPS: 40.8367 Worst FPS: 34.965
-21:57:29: Unregistering ResourceManager for type GpuProgram
-21:57:29: *******************************************
+03:15:43: GLRenderSystem::createRenderWindow "OGRE Render Window", 800x600 windowed  miscParams: FSAA=0 title=OGRE Render Window 
+03:15:43: Creating a Carbon Compatible Render System
+03:15:43: GL_VERSION = 1.2 APPLE-1.4.56
+03:15:43: GL_VENDOR = Intel Inc.
+03:15:43: GL_RENDERER = Intel GMA 950 OpenGL Engine
+03:15:43: GL_EXTENSIONS = GL_ARB_transpose_matrix GL_ARB_vertex_program GL_ARB_vertex_blend GL_ARB_window_pos GL_ARB_shader_objects GL_ARB_vertex_shader GL_EXT_multi_draw_arrays GL_EXT_clip_volume_hint GL_EXT_rescale_normal GL_EXT_draw_range_elements GL_EXT_fog_coord GL_EXT_gpu_program_parameters GL_APPLE_client_storage GL_APPLE_specular_vector GL_APPLE_transform_hint GL_APPLE_packed_pixels GL_APPLE_fence GL_APPLE_vertex_array_object GL_APPLE_vertex_program_evaluators GL_APPLE_element_array GL_APPLE_flush_render GL_NV_texgen_reflection GL_NV_light_max_exponent GL_IBM_rasterpos_clip GL_SGIS_generate_mipmap GL_ARB_shading_language_100 GL_ARB_texture_border_clamp GL_ARB_multitexture GL_ARB_texture_env_add GL_ARB_texture_cube_map GL_ARB_texture_env_dot3 GL_ARB_texture_env_combine GL_ARB_texture_compression GL_ARB_texture_mirrored_repeat GL_ARB_shadow GL_ARB_depth_texture GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_point_sprite GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object GL_ARB_pixel_buffer_object GL_EXT_framebuffer_object GL_EXT_texture_rectangle GL_ARB_texture_rectangle GL_EXT_texture_env_add GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_texture_lod_bias GL_EXT_abgr GL_EXT_bgra GL_EXT_stencil_wrap GL_EXT_texture_filter_anisotropic GL_EXT_separate_specular_color GL_EXT_secondary_color GL_EXT_blend_func_separate GL_EXT_shadow_funcs GL_EXT_stencil_two_side GL_EXT_texture_compression_s3tc GL_EXT_texture_compression_dxt1 GL_EXT_blend_equation_separate GL_EXT_packed_depth_stencil GL_APPLE_flush_buffer_range GL_APPLE_ycbcr_422 GL_APPLE_texture_range GL_APPLE_pixel_buffer GL_NV_blend_square GL_ATI_texture_env_combine3 GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod 
+03:15:43: ***************************
+03:15:43: *** GL Renderer Started ***
+03:15:43: ***************************
+03:15:43: Registering ResourceManager for type GpuProgram
+03:15:43: GLSL support detected
+03:15:43: GL: Using PBuffers for rendering to textures
+03:15:43: RenderSystem capabilities
+03:15:43: -------------------------
+03:15:43:  * Hardware generation of mipmaps: yes
+03:15:43:  * Texture blending: yes
+03:15:43:  * Anisotropic texture filtering: yes
+03:15:43:  * Dot product texture operation: yes
+03:15:43:  * Cube mapping: yes
+03:15:43:  * Hardware stencil buffer: yes
+03:15:43:    - Stencil depth: 8
+03:15:43:    - Two sided stencil support: yes
+03:15:43:    - Wrap stencil values: yes
+03:15:43:  * Hardware vertex / index buffers: yes
+03:15:43:  * Vertex programs: yes
+03:15:43:    - Max vertex program version: arbvp1
+03:15:43:  * Fragment programs: yes
+03:15:43:    - Max fragment program version: arbfp1
+03:15:43:  * Texture Compression: yes
+03:15:43:    - DXT: yes
+03:15:43:    - VTC: no
+03:15:43:  * Scissor Rectangle: yes
+03:15:43:  * Hardware Occlusion Query: no
+03:15:43:  * User clip planes: yes
+03:15:43:  * VET_UBYTE4 vertex element type: yes
+03:15:43:  * Infinite far plane projection: yes
+03:15:43:  * Hardware render-to-texture: yes
+03:15:43:  * Floating point textures: no
+03:15:43:  * Non-power-of-two textures: yes
+03:15:43:  * Volume textures: yes
+03:15:43:  * Multiple Render Targets: 1
+03:15:43:  * Point Sprites: yes
+03:15:43:  * Extended point parameters: no
+03:15:43:  * Max Point Size: 64
+03:15:43:  * Vertex texture fetch: no
+03:15:43: Registering ResourceManager for type Texture
+03:15:43: ResourceBackgroundQueue - threading disabled
+03:15:43: Particle Renderer Type 'billboard' registered
+03:15:43: SceneManagerFactory for type 'OctreeSceneManager' registered.
+03:15:43: SceneManagerFactory for type 'TerrainSceneManager' registered.
+03:15:43: SceneManagerFactory for type 'BspSceneManager' registered.
+03:15:43: Registering ResourceManager for type BspLevel
+03:15:43: Parsing scripts for resource group Autodetect
+03:15:43: Finished parsing scripts for resource group Autodetect
+03:15:43: Parsing scripts for resource group BetaGui
+03:15:43: Finished parsing scripts for resource group BetaGui
+03:15:43: Parsing scripts for resource group Bootstrap
+03:15:43: Parsing script OgreCore.material
+03:15:43: Parsing script OgreProfiler.material
+03:15:43: Parsing script Ogre.fontdef
+03:15:43: Parsing script OgreDebugPanel.overlay
+03:15:43: Texture: New_Ogre_Border_Center.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
+03:15:43: Texture: New_Ogre_Border.png: Loading 1 faces(PF_A8R8G8B8,256x256x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x256x1.
+03:15:43: Texture: New_Ogre_Border_Break.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+03:15:43: Font BlueHighwayusing texture size 512x512
+03:15:43: Info: Freetype returned null for character 127 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 128 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 129 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 130 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 131 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 132 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 133 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 134 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 135 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 136 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 137 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 138 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 139 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 140 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 141 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 142 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 143 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 144 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 145 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 146 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 147 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 148 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 149 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 150 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 151 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 152 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 153 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 154 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 155 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 156 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 157 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 158 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 159 in font BlueHighway
+03:15:43: Info: Freetype returned null for character 160 in font BlueHighway
+03:15:43: Texture: BlueHighwayTexture: Loading 1 faces(PF_BYTE_LA,512x512x1) with  hardware generated mipmaps from Image. Internal format is PF_BYTE_LA,512x512x1.
+03:15:43: Texture: ogretext.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
+03:15:43: Parsing script OgreLoadingPanel.overlay
+03:15:43: Finished parsing scripts for resource group Bootstrap
+03:15:43: Parsing scripts for resource group General
+03:15:43: Parsing script bgui.material
+03:15:43: Parsing script Base.material
+03:15:43: Error in material BulletPlane at line 73 of Base.material: Invalid vertex_program_ref entry - vertex program Examples/OffsetMappingVP has not been defined.
+03:15:43: Error in material BulletPlane at line 81 of Base.material: Invalid fragment_program_ref entry - fragment program Examples/OffsetMappingFP has not been defined.
+03:15:43: Error in material BulletPlane at line 115 of Base.material: Invalid vertex_program_ref entry - vertex program Examples/OffsetMappingVP has not been defined.
+03:15:43: Error in material BulletPlane at line 123 of Base.material: Invalid fragment_program_ref entry - fragment program Examples/OffsetMappingPS has not been defined.
+03:15:43: Error in material Bullet/box at line 179 of Base.material: Invalid vertex_program_ref entry - vertex program Examples/OffsetMappingVP has not been defined.
+03:15:43: Error in material Bullet/box at line 187 of Base.material: Invalid fragment_program_ref entry - fragment program Examples/OffsetMappingFP has not been defined.
+03:15:43: Error in material Bullet/box at line 221 of Base.material: Invalid vertex_program_ref entry - vertex program Examples/OffsetMappingVP has not been defined.
+03:15:43: Error in material Bullet/box at line 229 of Base.material: Invalid fragment_program_ref entry - fragment program Examples/OffsetMappingPS has not been defined.
+03:15:43: Parsing script chassis.material
+03:15:43: Parsing script target.material
+03:15:43: Parsing script wheel.material
+03:15:43: Parsing script WT.material
+03:15:43: Finished parsing scripts for resource group General
+03:15:43: Parsing scripts for resource group Internal
+03:15:43: Finished parsing scripts for resource group Internal
+03:15:43: Parsing scripts for resource group OgreBullet
+03:15:43: Finished parsing scripts for resource group OgreBullet
+03:15:43: Creating viewport on target 'OGRE Render Window', rendering from camera 'Cam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+03:15:43: Viewport for camera 'Cam', actual dimensions L: 0 T: 0 W: 800 H: 600
+03:15:43: Texture: target.png: Loading 1 faces(PF_A8R8G8B8,45x45x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,45x45x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name bg.mp not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.pointer.png: Loading 1 faces(PF_A8R8G8B8,32x32x1) with 5 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,32x32x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.window.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with 7 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b0 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.window.resize.png: Loading 1 faces(PF_A8R8G8B8,16x16x1) with 4 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,16x16x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b0c0 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b1 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.window.titlebar.png: Loading 1 faces(PF_A8R8G8B8,128x22x1) with 7 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x22x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b1c1 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b2 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.close.png: Loading 1 faces(PF_R8G8B8,15x15x1) with 3 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,15x15x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b2c2 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b3 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.button.png: Loading 1 faces(PF_R8G8B8,75x22x1) with 6 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,75x22x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b3c3 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b4 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b4c4 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b5 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b5c5 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b6 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w1b6c6 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w2 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b7 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b7c7 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w2b8 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w2b8c8 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w2b9 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w2b9c9 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b10 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b10c10 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b11 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b11c11 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b12 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b12c12 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b13 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b13c13 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3st0 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3st0c0 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b14 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b14c14 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b15 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b15c15 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3t1 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Texture: bgui.textinput.png: Loading 1 faces(PF_R8G8B8,120x22x1) with 6 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,120x22x1.
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3t1c1 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b16 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b16c16 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b17 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b17c17 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3st2 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3st2c2 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b18 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b18c18 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b19 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b19c19 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3t3 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3t3c3 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b20 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b20c20 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b21 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w3b21c21 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b22 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b22c22 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b23 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b23c23 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b24 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b24c24 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b25 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b25c25 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b26 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b26c26 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b27 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b27c27 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b28 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b28c28 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b29 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b29c29 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b30 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b30c30 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b31 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b31c31 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b32 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b32c32 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b33 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b33c33 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b34 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b34c34 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b35 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b35c35 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b36 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w4b36c36 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w5 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b37 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b37c37 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w5st4 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w5st4c4 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b38 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b38c38 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b39 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b39c39 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b40 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6b40c40 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b41 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b41c41 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st5 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st5c5 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st6 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st6c6 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st7 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st7c7 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st8 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st8c8 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st9 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st9c9 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st10 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st10c10 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st11 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st11c11 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st12 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st12c12 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b42 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w0b42c42 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:43: Mesh: Loading Plane.mesh.
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_0 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Texture: tiled_floor_normalheightmap.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with 9 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+03:15:43: Texture: tiled_floor_diffuse.png: Loading 1 faces(PF_R8G8B8,512x512x1) with 9 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_1 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_2 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_3 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_4 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_5 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_6 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_7 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_8 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_9 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_10 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_11 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_12 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_13 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_14 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_15 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_16 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_17 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_18 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_19 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_20 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_21 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_22 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_23 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_24 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_25 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_26 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_27 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_28 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_29 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_30 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_31 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_32 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_33 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_34 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_35 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_36 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_37 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_38 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_39 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_40 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_41 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_42 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_43 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_44 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_45 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_46 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_47 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_48 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_49 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_50 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_51 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_52 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_53 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_54 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_55 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_56 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_57 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_58 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_59 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_60 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_61 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_62 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_63 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_64 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_65 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_66 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_67 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_68 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_69 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_70 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_71 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_72 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_73 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_74 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_75 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_76 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_77 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_78 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_79 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:43: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_80 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Creating viewport on target 'OGRE Render Window', rendering from camera 'Cam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+03:15:47: Viewport for camera 'Cam', actual dimensions L: 0 T: 0 W: 800 H: 600
+03:15:47: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st13 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:47: OGRE EXCEPTION(5:ItemIdentityException): OverlayElement with name OgreBulletGui.w6st13c13 not found. in OverlayManager::getOverlayElementImpl at /Users/justinwalsh/OgreEihort/Mac/Ogre/../../OgreMain/src/OgreOverlayManager.cpp (line 588)
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_0 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_1 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_2 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_3 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_4 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_5 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_6 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_7 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_8 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_9 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_10 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_11 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_12 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_13 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_14 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_15 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_16 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_17 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_18 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_19 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_20 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_21 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_22 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_23 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_24 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_25 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_26 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_27 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_28 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_29 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_30 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_31 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_32 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_33 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_34 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_35 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_36 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_37 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_38 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_39 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_40 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_41 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_42 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_43 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_44 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_45 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_46 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_47 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_48 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_49 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_50 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_51 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_52 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_53 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_54 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_55 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_56 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_57 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_58 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_59 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_60 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_61 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_62 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_63 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_64 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_65 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_66 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_67 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_68 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_69 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_70 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_71 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_72 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_73 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_74 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_75 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_76 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_77 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_78 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_79 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_80 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Mesh: Loading bulletbox.mesh.
+03:15:47: Texture: box.jpg: Loading 1 faces(PF_R8G8B8,512x512x1) with 9 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,512x512x1.
+03:15:47: Texture: crate_normalheightmap.png: Loading 1 faces(PF_A8R8G8B8,248x244x1) with 7 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,248x244x1.
+03:15:47: Texture: crate_diffuse.png: Loading 1 faces(PF_R8G8B8,250x251x1) with 7 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,250x251x1.
+03:15:47: Mesh: Loading chassis.mesh.
+03:15:47: Texture: CB_SKIN.png: Loading 1 faces(PF_A8R8G8B8,512x512x1) with 9 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x512x1.
+03:15:47: Mesh: Loading wheel.mesh.
+03:15:47: Texture: Tire_tex.png: Loading 1 faces(PF_A8R8G8B8,256x256x1) with 8 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x256x1.
+03:15:47: Creating viewport on target 'OGRE Render Window', rendering from camera 'Cam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+03:15:47: Viewport for camera 'Cam', actual dimensions L: 0 T: 0 W: 800 H: 600
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_0 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_1 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_2 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_3 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_4 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_5 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_6 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_7 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_8 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_9 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_10 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_11 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_12 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_13 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_14 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_15 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_16 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_17 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_18 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_19 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_20 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_21 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_22 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_23 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_24 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_25 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_26 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_27 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_28 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_29 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_30 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_31 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_32 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_33 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_34 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_35 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_36 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_37 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_38 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_39 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_40 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_41 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_42 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_43 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_44 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_45 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_46 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_47 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_48 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_49 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_50 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_51 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_52 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_53 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_54 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_55 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_56 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_57 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_58 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_59 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_60 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_61 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_62 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_63 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_64 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_65 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_66 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_67 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_68 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_69 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_70 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_71 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_72 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_73 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_74 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_75 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_76 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_77 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_78 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_79 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_80 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Creating viewport on target 'OGRE Render Window', rendering from camera 'Cam', relative dimensions L: 0.00 T: 0.00 W: 1.00 H: 1.00 ZOrder: 0
+03:15:47: Viewport for camera 'Cam', actual dimensions L: 0 T: 0 W: 800 H: 600
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_0 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_1 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_2 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_3 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_4 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_5 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_6 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_7 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_8 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_9 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_10 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_11 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_12 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_13 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_14 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_15 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_16 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_17 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_18 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_19 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_20 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_21 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_22 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_23 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_24 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_25 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_26 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_27 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_28 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_29 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_30 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_31 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_32 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_33 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_34 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_35 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_36 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_37 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_38 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_39 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_40 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_41 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_42 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_43 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_44 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_45 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_46 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_47 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_48 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_49 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_50 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_51 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_52 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_53 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_54 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_55 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_56 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_57 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_58 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_59 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_60 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_61 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_62 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_63 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_64 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_65 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_66 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_67 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_68 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_69 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_70 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_71 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_72 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_73 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_74 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_75 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_76 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_77 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_78 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_79 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:47: Can't assign material Ac3d/Plane/Mat001_Tex00 to SubEntity of Plane_80 because this Material does not exist. Have you forgotten to define it in a .material script?
+03:15:52: Texture: bgui.button.over.png: Loading 1 faces(PF_R8G8B8,75x22x1) with 6 hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,75x22x1.
+03:15:52: Texture: bgui.window.over.png: Loading 1 faces(PF_A8R8G8B8,128x128x1) with 7 hardware generated mipmaps from Image. Internal format is PF_A8R8G8B8,128x128x1.
+03:15:57: Unregistering ResourceManager for type BspLevel
+03:15:57: *-*-* OGRE Shutdown
+03:15:57: Unregistering ResourceManager for type Compositor
+03:15:57: Unregistering ResourceManager for type Font
+03:15:57: Unregistering ResourceManager for type Skeleton
+03:15:57: Unregistering ResourceManager for type Mesh
+03:15:57: Unregistering ResourceManager for type HighLevelGpuProgram
+03:15:57: Uninstalling plugin: Cg Program Manager
+03:15:57: Plugin successfully uninstalled
+03:15:57: Unloading library Plugin_CgProgramManager
+03:15:57: Uninstalling plugin: Octree & Terrain Scene Manager
+03:15:57: Plugin successfully uninstalled
+03:15:57: Unloading library Plugin_OctreeSceneManager
+03:15:57: Uninstalling plugin: BSP Scene Manager
+03:15:57: Plugin successfully uninstalled
+03:15:57: Unloading library Plugin_BSPSceneManager
+03:15:57: Uninstalling plugin: ParticleFX
+03:15:57: Plugin successfully uninstalled
+03:15:57: Unloading library Plugin_ParticleFX
+03:15:57: Uninstalling plugin: GL RenderSystem
+03:15:57: Render Target 'OGRE Render Window' Average FPS: 141.901 Best FPS: 220.559 Worst FPS: 130.348
+03:15:57: Unregistering ResourceManager for type GpuProgram
+03:15:57: *******************************************
 ***    Stopping OSX OpenGL Subsystem    ***
 *******************************************
-21:57:29: Unregistering ResourceManager for type Texture
-21:57:29: Plugin successfully uninstalled
-21:57:29: Unloading library RenderSystem_GL
-21:57:29: Unregistering ResourceManager for type Material
+03:15:57: Unregistering ResourceManager for type Texture
+03:15:57: Plugin successfully uninstalled
+03:15:57: Unloading library RenderSystem_GL
+03:15:57: Unregistering ResourceManager for type Material
