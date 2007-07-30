@@ -73,7 +73,7 @@ TEST_O_FILES = $(TEST_SRC_FILES:%.cpp=%.o)
 
 all: libOgreBullet.a $(TARGET) test
 
-$(TARGET): $(O_FILES)
+$(TARGET): $(O_FILES) libOgreBullet.a
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)
 
 test: $(TEST_O_FILES) libOgreBullet.a
