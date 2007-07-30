@@ -30,9 +30,9 @@ using namespace OgreBulletCollisions;
 OgreBulletApplication::OgreBulletApplication(std::vector <OgreBulletListener *> *bulletListeners) : 
     ExampleApplication(),
     FrameListener(),
-    mInputSystem(0),
+    mBulletListener(0),
     mInput(0),
-    mBulletListener(0)
+    mInputSystem(0)
 {
     mBulletListeners = bulletListeners;
     assert (!mBulletListeners->empty());

@@ -1,5 +1,5 @@
 
-#include "Renderer.h"
+#include "GraphicsManager.h"
 
 #include "InputHandler.h"
 
@@ -36,7 +36,7 @@ std::string macBundlePath()
 #endif
 
 
-Renderer::Renderer()
+GraphicsManager::GraphicsManager()
 {
     m_initialized = false;
     m_root = 0;
@@ -52,7 +52,7 @@ Renderer::Renderer()
 
 }
 
-Renderer::~Renderer()
+GraphicsManager::~GraphicsManager()
 {
     if(m_initialized)
         if(m_root)
@@ -60,7 +60,7 @@ Renderer::~Renderer()
 }
 
 void
-Renderer::setupResources()
+GraphicsManager::setupResources()
 {
     ConfigFile configFile;
     configFile.load(m_resourcePath + "resources.cfg");
@@ -89,7 +89,7 @@ Renderer::setupResources()
 }
 
 bool 
-Renderer::init()
+GraphicsManager::init()
 {
     m_root = new Root(
             m_resourcePath + "plugins.cfg", 
@@ -130,7 +130,7 @@ Renderer::init()
 }
 
 bool 
-Renderer::renderOneFrame()
+GraphicsManager::renderOneFrame()
 {
     if(!m_initialized)
         return false;
@@ -141,7 +141,7 @@ Renderer::renderOneFrame()
 }
 
 bool 
-Renderer::startRendering()
+GraphicsManager::startRendering()
 {
     if(!m_initialized)
         return false;

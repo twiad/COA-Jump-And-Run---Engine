@@ -1,6 +1,6 @@
 
-#ifndef COABLASTER_RENDERER_INCLUDED
-#define COABLASTER_RENDERER_INCLUDED
+#ifndef COABLASTER_GRAPHICSMANAGER_INCLUDED
+#define COABLASTER_GRAPHICSMANAGER_INCLUDED
 
 #include "Dependencies.h"
 
@@ -10,7 +10,7 @@ namespace CoABlaster
 /**
  * this class is rensponsable for ogre configuration and runtime
  */
-class Renderer
+class GraphicsManager
 {
     /// whether the renderer is initialized
     bool m_initialized;
@@ -38,12 +38,12 @@ public:
     /**
      * ctor.
      */
-    Renderer();
+    GraphicsManager();
     
     /**
      * dtor.
      */
-    virtual ~Renderer();
+    virtual ~GraphicsManager();
     
     /**
      * brings up the ogre subsystem.

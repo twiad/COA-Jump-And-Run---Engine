@@ -1,6 +1,6 @@
 #include "MainApplication.h"
 
-#include "Renderer.h"
+#include "GraphicsManager.h"
 
 namespace CoABlaster
 {
@@ -20,14 +20,14 @@ MainApplication::go()
 {
     std::cout << COABLASTER_VERION_STRING << std::endl;
 
-    Renderer* renderer = new Renderer();
+    GraphicsManager* gm = new GraphicsManager();
 
-    if(!renderer->init())
+    if(!gm->init())
         return;
 
-    renderer->startRendering();
+    gm->startRendering();
     
-    delete renderer;
+    delete gm;
 }
 
 
