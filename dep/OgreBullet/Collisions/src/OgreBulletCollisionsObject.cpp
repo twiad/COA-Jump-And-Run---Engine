@@ -45,14 +45,14 @@ namespace OgreBulletCollisions
         :	
         MovableObject(name),
         UserDefinedObject(),
-        mWorld(world),
-        mShape(0),
-        mState(0),
         mRootNode(0),
-        mBounds(Vector3::ZERO, Vector3::ZERO),
-        mDebugShape(0),
         mShapeNode(0),
-        mDebugNode(0)
+        mDebugNode(0),
+        mState(0),
+        mWorld(world),
+        mBounds(Vector3::ZERO, Vector3::ZERO),
+        mShape(0),
+        mDebugShape(0)
     {
         if (init)
         {

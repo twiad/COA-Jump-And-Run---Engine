@@ -276,9 +276,9 @@ MeshToShapeConverter::MeshToShapeConverter(Entity *entity,const Matrix4 &transfo
 	mIndexBuffer (0),
 	mVertexCount (0),
 	mIndexCount (0),
-	mBounds (Vector3(-1,-1,-1)),
+	mBoneIndex (0),
 	mBoundRadius (-1),
-	mBoneIndex (0)
+	mBounds (Vector3(-1,-1,-1))
 {
 	addEntity(entity, transform);	
 }
@@ -288,9 +288,9 @@ MeshToShapeConverter::MeshToShapeConverter() :
 		mIndexBuffer (0),
 		mVertexCount (0),
 		mIndexCount (0),
-		mBounds (Vector3(-1,-1,-1)),
+        mBoneIndex (0),
 		mBoundRadius (-1),
-        mBoneIndex (0)
+		mBounds (Vector3(-1,-1,-1))
 {
 	
 }

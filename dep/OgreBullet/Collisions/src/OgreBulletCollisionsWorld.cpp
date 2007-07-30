@@ -41,11 +41,11 @@ namespace OgreBulletCollisions
 {
     // -------------------------------------------------------------------------
     CollisionsWorld::CollisionsWorld(SceneManager *scn, const AxisAlignedBox &bounds, bool init):
-        mScnMgr(scn),
         mBounds(bounds),
         mShowDebugShapes(false),
         mShowDebugContactPoints(false),
-        mDebugContactPoints(0)
+        mDebugContactPoints(0),
+        mScnMgr(scn)
     {
         mDispatcher = new btCollisionDispatcher();
         mBroadphase = new btAxisSweep3(

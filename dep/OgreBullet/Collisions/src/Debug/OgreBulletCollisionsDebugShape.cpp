@@ -59,12 +59,16 @@ void DebugCollisionShape::setStatemode(DebugCollisionShape::Mode mode)
 
 			case DebugCollisionShape::Mode_Disabled:
 				setMaterial("OgreBulletCollisionsDebugLines/Disabled");
-
 			break;
 
 			case DebugCollisionShape::Mode_Static:
 				setMaterial("OgreBulletCollisionsDebugLines/Static");
 			break;
+			
+			/// @todo TODO: choose another material here
+			default:
+			    setMaterial("OgreBulletCollisionsDebugLines/Static");
+            break;
 		}
 	}
 }

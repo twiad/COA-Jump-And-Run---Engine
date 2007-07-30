@@ -44,9 +44,9 @@ namespace OgreBulletCollisions
 {
     //------------------------------------------------------------------------------------------------
     DebugContact::DebugContact(const String &name, CollisionsWorld *world) : 
+        _enabled(false),
         _name(name), 
-        _world(world),
-        _enabled(false)
+        _world(world)
     {
         // scene node 
         _node = _world->getSceneManager()->getRootSceneNode ()->createChildSceneNode ();
@@ -131,22 +131,22 @@ namespace OgreBulletCollisions
                                 const String &fontName, 
                                 int charHeight, 
                                 const ColourValue &color)
-        : mpCam(NULL)
-        , mpWin(NULL)
-        , mpFont(NULL)
+        : mFontName(fontName)
+        , mType("DebugContact")
         , mName(name)
         , mCaption(caption)
-        , mFontName(fontName)
-        , mCharHeight(charHeight)
+        , mHorizontalAlignment(H_LEFT)
+        , mVerticalAlignment(V_BELOW)
         , mColor(color)
-        , mType("DebugContact")
-        , mTimeUntilNextToggle(0)
+        , mCharHeight(charHeight)
         , mSpaceWidth(0)
         , mUpdateColors(true)
         , mOnTop(false)
-        , mHorizontalAlignment(H_LEFT)
-        , mVerticalAlignment(V_BELOW)
+        , mTimeUntilNextToggle(0)
         , mAdditionalHeight(0.0)
+        , mpCam(NULL)
+        , mpWin(NULL)
+        , mpFont(NULL)
         , mNode(node)
 
     {
@@ -334,7 +334,7 @@ namespace OgreBulletCollisions
             HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY);
         bind->setBinding(COLOUR_BINDING, cbuf);
 
-        size_t charlen = mCaption.size();
+        // size_t charlen = mCaption.size();
         Real *pPCBuff = static_cast<Real*>(ptbuf->lock(HardwareBuffer::HBL_DISCARD));
 
         float largestWidth = 0;

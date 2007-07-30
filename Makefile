@@ -69,22 +69,20 @@ SRC_FILES = $(wildcard src/*.cpp)
 O_FILES	  = $(SRC_FILES:%.cpp=%.o)
 
 
-all: $(TARGET) libOgreBulletCollisions.a libOgreBulletDynamics.a test
+all: libOgreBullet.a $(TARGET) test
 
 $(TARGET): $(O_FILES)
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)
 
-test: test/Test.cpp test/ExampleFrameListener.h test/ExampleApplication.h
+test:
 	$(CXX) $(CXXFLAGS) test/Test.cpp -o $(TESTBINPATH)/Test$(EXTENSION) $(LIB)
 
-libOgreBulletCollisions.a:
-	make -C dep/OgreBullet/Collisions
-
-libOgreBulletDynamics.a:
-	make -C dep/OgreBullet/Dynamics
+libOgreBullet.a:
+	make -C dep/OgreBullet
 
 clean:
 	rm -f *.o src/*.o 
 	
 proper: clean
 	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)
+	make proper -C dep/OgreBullet
