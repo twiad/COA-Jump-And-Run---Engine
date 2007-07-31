@@ -48,8 +48,8 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
 	if(m_joystick) 
 	    m_joystick->capture();
 	
-	/// stop render loop on key Q
-	if(m_keyboard->isKeyDown(KC_Q))
+	/// stop render loop on key Q and ESC
+	if(m_keyboard->isKeyDown(KC_Q) || m_keyboard->isKeyDown(KC_ESCAPE))
         return false;
     
     return true;

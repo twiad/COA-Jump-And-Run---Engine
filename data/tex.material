@@ -1,0 +1,28 @@
+material Material/SOLID/TEX/wood1.png
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.800000 0.800000 0.800000
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture wood1.png
+			}
+		}
+	}
+}
+material SOLID/TEX/plasma1.png
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture plasma1.png
+			}
+		}
+	}
+}

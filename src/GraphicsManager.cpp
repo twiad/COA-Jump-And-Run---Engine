@@ -2,6 +2,7 @@
 #include "GraphicsManager.h"
 
 #include "InputHandler.h"
+#include "Scenery.h"
 
 using namespace Ogre;
 
@@ -9,9 +10,7 @@ namespace CoABlaster
 {
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-
 #include <CoreFoundation/CoreFoundation.h>
-
 std::string macBundlePath()
 {
     char path[1024];
@@ -32,9 +31,9 @@ std::string macBundlePath()
 
     return std::string(path);
 }
-
 #endif
 
+GraphicsManager* GraphicsManager::m_instance = 0;
 
 GraphicsManager::GraphicsManager()
 {
@@ -42,6 +41,7 @@ GraphicsManager::GraphicsManager()
     m_root = 0;
     m_camera = 0;
     m_sceneManager = 0;
+    m_scenery = 0;
     m_window = 0;
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
@@ -55,8 +55,12 @@ GraphicsManager::GraphicsManager()
 GraphicsManager::~GraphicsManager()
 {
     if(m_initialized)
+    {
+        if(m_scenery)
+            delete m_scenery;
         if(m_root)
             delete m_root;
+    }
 }
 
 void
@@ -89,7 +93,7 @@ GraphicsManager::setupResources()
 }
 
 bool 
-GraphicsManager::init()
+GraphicsManager::init(Scenery* p_scenery)
 {
     m_root = new Root(
             m_resourcePath + "plugins.cfg", 
@@ -107,26 +111,36 @@ GraphicsManager::init()
     m_sceneManager = m_root->
             createSceneManager(ST_GENERIC, "ExampleSMInstance");
             
-    m_camera = m_sceneManager->createCamera("cam");
-    m_camera->setPosition(Vector3(0, 0, 500));
-    m_camera->lookAt(Vector3(0, 0, -300));
-    m_camera->setNearClipDistance(5);
+    m_camera = m_sceneManager->createCamera("camera");
+    m_camera->setPosition(Vector3(0, 0, -50));
+    m_camera->lookAt(Vector3(0, 0, 0));
+    m_camera->setNearClipDistance(1);
 
-    Viewport* vp = m_window->addViewport(m_camera);
-    vp->setBackgroundColour(ColourValue(0,0,0));
+    m_viewport = m_window->addViewport(m_camera);
+    m_viewport->setBackgroundColour(ColourValue( 0, 0, 0));
 
     m_camera->setAspectRatio(
-            Real(vp->getActualWidth()) / Real(vp->getActualHeight()));
+            Real(m_viewport->getActualWidth()) /
+            Real(m_viewport->getActualHeight()));
 
     TextureManager::getSingleton().setDefaultNumMipmaps(5);
-
-    m_root->addFrameListener(new InputHandler(m_window));
 
 	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
     m_initialized = true;
 
+    registerFrameListeners();
+
+    if(p_scenery)
+        setScenery(p_scenery);
+
     return true;
+}
+
+void
+GraphicsManager::registerFrameListeners()
+{
+    m_root->addFrameListener(new InputHandler(m_window));
 }
 
 bool 
@@ -134,9 +148,9 @@ GraphicsManager::renderOneFrame()
 {
     if(!m_initialized)
         return false;
-        
+
     m_root->renderOneFrame();
-        
+
     return true;
 }
 
@@ -149,6 +163,21 @@ GraphicsManager::startRendering()
     m_root->startRendering();
 
     return true;
+}
+
+void
+GraphicsManager::setScenery(Scenery* p_scenery)
+{
+    assert(p_scenery);
+
+    if(m_scenery)
+    {
+        m_scenery->cleanup();
+        delete m_scenery;
+    }
+
+    m_scenery = p_scenery;
+    m_scenery->setup();
 }
 
 }

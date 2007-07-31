@@ -1,6 +1,7 @@
 #include "MainApplication.h"
 
 #include "GraphicsManager.h"
+#include "SceneryTest.h"
 
 namespace CoABlaster
 {
@@ -20,9 +21,9 @@ MainApplication::go()
 {
     std::cout << COABLASTER_VERION_STRING << std::endl;
 
-    GraphicsManager* gm = new GraphicsManager();
+    GraphicsManager* gm = GraphicsManager::get();
 
-    if(!gm->init())
+    if(!gm->init(new SceneryTest))
         return;
 
     gm->startRendering();
