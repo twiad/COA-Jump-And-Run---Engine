@@ -42,7 +42,6 @@ bool
 InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
 {
     m_keyboard->capture();
-	
 	m_mouse->capture();
 	
 	if(m_joystick) 

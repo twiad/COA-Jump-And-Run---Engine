@@ -4,6 +4,7 @@
 
 #include "Dependencies.h"
 
+#include "PhysicsManager.h"
 #include "Scenery.h"
 
 namespace CoABlaster
@@ -33,14 +34,37 @@ public:
         
         gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
         
-        sm->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
+        sm->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+        
+        // light
+        Ogre::Light* light = sm->createLight("point-light");
+        light->setType(Ogre::Light::LT_POINT);
+        light->setPosition(Ogre::Vector3(10, 20, 20));
 
         // cube
+        // entity, mesh, tex, etc
         Ogre::Entity* cube = sm->createEntity("cube", "Cube.mesh");
+        cube->setNormaliseNormals(true);
+
+        // collision shape
+        OgreBulletCollisions::BoxCollisionShape* cubeShape = 
+                new OgreBulletCollisions::BoxCollisionShape(
+                        Ogre::Vector3(2, 2, 2));
+        
+        // dynamics body
+        OgreBulletDynamics::RigidBody* cubeBody = 
+                new OgreBulletDynamics::RigidBody(
+                        "cube-body", PhysicsManager::get()->world());
+
+        // scene node
         Ogre::SceneNode* cubeNode = 
                 sm->getRootSceneNode()->createChildSceneNode("cube-node");
-        cubeNode->attachObject(cube);
         cubeNode->setPosition(Ogre::Vector3(0, 3, 0));
+
+        // combine stuff
+        cubeNode->attachObject(cube);
+        cubeBody->setShape(
+                cubeNode, cubeShape, 1, 1, 1, Ogre::Vector3(0, 3, 0));
 
         // plane
         Ogre::Entity* plane = sm->createEntity("plane", "Plane.mesh");
@@ -60,6 +84,7 @@ public:
         sm->destroyEntity("plane");
         sm->destroySceneNode("cube-node");
         sm->destroySceneNode("plane-node");
+        sm->destroyLight("point-light");
     }
 };
 

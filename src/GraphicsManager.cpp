@@ -2,6 +2,7 @@
 #include "GraphicsManager.h"
 
 #include "InputHandler.h"
+#include "PhysicsManager.h"
 #include "Scenery.h"
 
 using namespace Ogre;
@@ -130,6 +131,8 @@ GraphicsManager::init(Scenery* p_scenery)
     m_initialized = true;
 
     registerFrameListeners();
+    
+    m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
 
     if(p_scenery)
         setScenery(p_scenery);
@@ -141,6 +144,7 @@ void
 GraphicsManager::registerFrameListeners()
 {
     m_root->addFrameListener(new InputHandler(m_window));
+    m_root->addFrameListener(PhysicsManager::get());
 }
 
 bool 

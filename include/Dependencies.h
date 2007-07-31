@@ -14,6 +14,11 @@
 /// ois input system
 #include <OIS.h>
 
+/// ogre bullet physics binding
+#define _PRECOMP
+#include "OgreBulletCollisions.h"
+#include "OgreBulletDynamics.h"
+
 /// CoA-Blaster compile time configuration
 #include "Config.h"
 

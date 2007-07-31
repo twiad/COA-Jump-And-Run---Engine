@@ -26,6 +26,8 @@ MainApplication::go()
     if(!gm->init(new SceneryTest))
         return;
 
+    // gm->root()->addFrameListener(PhysicsManager::get());
+
     gm->startRendering();
     
     delete gm;
