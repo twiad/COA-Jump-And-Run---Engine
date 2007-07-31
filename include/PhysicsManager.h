@@ -17,6 +17,9 @@ class PhysicsManager : public Ogre::FrameListener
     
     OgreBulletDynamics::DynamicsWorld* m_world;
 
+    Ogre::SceneNode* m_debugNode;
+
+
 public:
     /**
      * get access to the singleton instance.
