@@ -59,19 +59,39 @@ public:
         // scene node
         Ogre::SceneNode* cubeNode = 
                 sm->getRootSceneNode()->createChildSceneNode("cube-node");
-        cubeNode->setPosition(Ogre::Vector3(0, 3, 0));
+        cubeNode->setPosition(Ogre::Vector3(0, 7, 0));
 
         // combine stuff
         cubeNode->attachObject(cube);
         cubeBody->setShape(
-                cubeNode, cubeShape, 1, 1, 1, Ogre::Vector3(0, 3, 0));
+                cubeNode, cubeShape, 1, 1, 1, Ogre::Vector3(0, 7, 0));
+
+
 
         // plane
         Ogre::Entity* plane = sm->createEntity("plane", "Plane.mesh");
+        plane->setNormaliseNormals(true);
+
+        // collision shape
+        OgreBulletCollisions::StaticPlaneCollisionShape* planeShape =
+                new OgreBulletCollisions::StaticPlaneCollisionShape(
+                        Ogre::Vector3(0,1,0), 0);
+
+        // scene node
         Ogre::SceneNode* planeNode = 
                 sm->getRootSceneNode()->createChildSceneNode("plane-node");
-        planeNode->attachObject(plane);
+
         planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(90));
+        
+        // body
+        OgreBulletDynamics::RigidBody* planeBody = 
+                new OgreBulletDynamics::RigidBody(
+                        "plane-body", PhysicsManager::get()->world());
+
+        // conbine
+        planeNode->attachObject(plane);
+        planeBody->setStaticShape(planeShape, 1, 1);
+
         
     }
     

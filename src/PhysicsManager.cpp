@@ -18,15 +18,13 @@ PhysicsManager::PhysicsManager()
             Ogre::AxisAlignedBox(-1000, -1000, -1000, 1000, 1000, 1000), 
             Ogre::Vector3(0, -9.81, 0));
 
-    // // add Debug info displa tool
-    // DebugDrawer *debugDrawer = new DebugDrawer();
-    // 
-    // m_world->setDebugDrawer(debugDrawer);
-    // 
-    // SceneNode *node = mSceneMgr->getRootSceneNode()->
-    //      createChildSceneNode("debugDrawer", Vector3::ZERO);
-    // node->attachObject (static_cast <SimpleRenderable *> (debugDrawer));
-    // 
+    DebugDrawer* debugDrawer = new DebugDrawer();
+    m_world->setDebugDrawer(debugDrawer);
+    Ogre::SceneNode* debugNode = 
+            GraphicsManager::get()->sceneManager()->getRootSceneNode()->
+                 createChildSceneNode("ogrebullet-debug-node");
+                 
+    debugNode->attachObject(debugDrawer);
 }
 
 PhysicsManager::~PhysicsManager()
