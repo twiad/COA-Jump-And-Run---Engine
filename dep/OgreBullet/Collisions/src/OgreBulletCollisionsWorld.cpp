@@ -207,5 +207,15 @@ namespace OgreBulletCollisions
             OgreBtConverter::to(rayresult.getRay().getDirection()), 
             *rayresult.getBulletRay ());
     }
+    
+    bool CollisionsWorld::removeObject(Object *obj) 
+    { 
+       std::deque<Object*>::iterator it = find(mObjects.begin(), mObjects.end(), obj); 
+       if (it == mObjects.end()) 
+          return false; 
+       mObjects.erase(it); 
+       return true; 
+    } 
+    
 }
 

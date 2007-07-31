@@ -84,7 +84,7 @@ void MeshToShapeConverter::addVertexData(const VertexData *vertex_data,
     }
 
 	// Get the bone index element
-	if (mEntity->hasSkeleton())
+	if (mEntity && mEntity->hasSkeleton())
 	{
 
         Ogre::MeshPtr mesh = mEntity->getMesh ();
@@ -281,6 +281,24 @@ MeshToShapeConverter::MeshToShapeConverter(Entity *entity,const Matrix4 &transfo
 	mBounds (Vector3(-1,-1,-1))
 {
 	addEntity(entity, transform);	
+}
+//------------------------------------------------------------------------------------------------
+MeshToShapeConverter::MeshToShapeConverter(Renderable *rend, const Matrix4 &transform) : 
+    mEntity (0), 
+    mTransform (transform),
+    mVertexBuffer (0), 
+    mIndexBuffer (0), 
+    mVertexCount (0), 
+    mIndexCount (0), 
+    mBoneIndex (0), 
+    mBoundRadius (-1), 
+    mBounds (Vector3(-1,-1,-1))
+{ 
+   RenderOperation op; 
+   rend->getRenderOperation(op); 
+   addVertexData(op.vertexData); 
+   if(op.useIndexes) 
+      addIndexData(op.indexData); 
 }
 //------------------------------------------------------------------------------------------------
 MeshToShapeConverter::MeshToShapeConverter() :

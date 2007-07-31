@@ -63,6 +63,9 @@ namespace OgreBulletCollisions
 
         void launchRay (CollisionRayResultCallback &ray);
 
+        /// Returns false if obj was not found. 
+        bool removeObject(Object *obj); 
+
     protected:
         btCollisionWorld*          mWorld;
         btCollisionDispatcher*     mDispatcher;
