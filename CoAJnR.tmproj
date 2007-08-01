@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>src/MainApplication.cpp</string>
+	<string>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsWorld.cpp</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,14 +21,126 @@
 	<integer>374</integer>
 	<key>metaData</key>
 	<dict>
+		<key>dep/OgreBullet/Collisions/src/OgreBulletCollisionsObjectState.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>33</integer>
+				<key>line</key>
+				<integer>57</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>3</integer>
+		</dict>
+		<key>dep/OgreBullet/Collisions/src/OgreBulletCollisionsWorld.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>9</integer>
+				<key>line</key>
+				<integer>69</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>39</integer>
+		</dict>
+		<key>dep/OgreBullet/Dynamics/include/OgreBulletDynamicsObjectState.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>37</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>dep/OgreBullet/Dynamics/include/OgreBulletDynamicsWorld.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>82</integer>
+				<key>line</key>
+				<integer>58</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>12</integer>
+		</dict>
+		<key>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsObjectState.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>50</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>5</integer>
+		</dict>
+		<key>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsWorld.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>68</integer>
+				<key>line</key>
+				<integer>72</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>34</integer>
+		</dict>
+		<key>include/Dependencies.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>22</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>include/GraphicsManager.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>85</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>55</integer>
+		</dict>
 		<key>include/MainApplication.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>20</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>13</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -40,28 +152,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>68</integer>
+				<integer>11</integer>
 				<key>line</key>
-				<integer>128</integer>
+				<integer>153</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>141</integer>
+			<integer>131</integer>
 		</dict>
 		<key>src/MainApplication.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>42</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>52</integer>
+				<integer>29</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>21</integer>
+			<integer>0</integer>
 		</dict>
 		<key>src/PhysicsManager.cpp</key>
 		<dict>
@@ -75,19 +187,58 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>10</integer>
+			<integer>0</integer>
+		</dict>
+		<key>test/ExampleFrameListener.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>68</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>32</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>68</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>src/MainApplication.cpp</string>
+		<string>dep/OgreBullet/Collisions/src/OgreBulletCollisionsObjectState.cpp</string>
+		<string>dep/OgreBullet/Collisions/src/OgreBulletCollisionsWorld.cpp</string>
+		<string>dep/OgreBullet/Dynamics/include/OgreBulletDynamicsWorld.h</string>
+		<string>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsWorld.cpp</string>
+		<string>dep/OgreBullet/Dynamics/include/OgreBulletDynamicsObjectState.h</string>
+		<string>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsObjectState.cpp</string>
+		<string>test/ExampleFrameListener.h</string>
+		<string>include/Dependencies.h</string>
 		<string>include/MainApplication.h</string>
 		<string>src/PhysicsManager.cpp</string>
 		<string>src/GraphicsManager.cpp</string>
+		<string>include/GraphicsManager.h</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{20, 4}, {777, 774}}</string>
+	<string>{{0, 4}, {800, 998}}</string>
 </dict>
 </plist>

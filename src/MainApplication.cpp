@@ -27,7 +27,7 @@ MainApplication::go()
 {
     std::cout << COABLASTER_VERION_STRING << std::endl;
 
-    SDL_Init(SDL_INIT_TIMER | SDL_INIT_EVENTTHREAD | SDL_INIT_NOPARACHUTE);
+    SDL_Init(SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE);
 
     initialize();
 
@@ -70,7 +70,8 @@ MainApplication::graphicsWorkerThread(void* data)
         
         SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
         
-        // const Ogre::RenderTarget::FrameStats& stats = GraphicsManager::get()->window()->getStatistics();
+        // const Ogre::RenderTarget::FrameStats& stats = 
+        //         GraphicsManager::get()->window()->getStatistics();
         // std::cout << "avgFPS " << stats.avgFPS << std::endl;
     }
 
