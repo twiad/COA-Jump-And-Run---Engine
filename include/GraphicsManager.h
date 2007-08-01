@@ -83,7 +83,7 @@ public:
     /**
      * updates the graphics manager (renders a frame)
      */
-    void update(double elapsed);
+    bool update(double elapsed);
     
     /**
      * renders one frame and returns.

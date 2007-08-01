@@ -10,6 +10,7 @@
 
 /// simple direct media layer
 #include <SDL.h>
+#include <SDL_thread.h>
 
 /// ogre rendering engine
 #include <Ogre.h>
