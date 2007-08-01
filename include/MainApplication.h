@@ -17,11 +17,11 @@ class MainApplication
     Renderer* m_renderer;
 
 public:
-    MainApplication();
+    MainApplication() {};
 
-    virtual ~MainApplication();    
+    virtual ~MainApplication() {};    
     
-    void go();
+    static void go();
 };
 
 }

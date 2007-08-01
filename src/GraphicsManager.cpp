@@ -147,6 +147,12 @@ GraphicsManager::registerFrameListeners()
     m_root->addFrameListener(PhysicsManager::get());
 }
 
+void
+GraphicsManager::update(double p_elapsed)
+{
+    renderOneFrame();
+}
+
 bool 
 GraphicsManager::renderOneFrame()
 {

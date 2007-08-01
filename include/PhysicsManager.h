@@ -43,6 +43,11 @@ public:
     virtual ~PhysicsManager();
     
     /**
+     * updates the physics manager, steps the world for a certain time amount.
+     */
+    void update(double elapesd);
+    
+    /**
      * framelistener callback for physics update.
      */
     bool frameStarted(const Ogre::FrameEvent& event);

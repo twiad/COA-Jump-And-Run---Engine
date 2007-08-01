@@ -39,12 +39,16 @@ PhysicsManager::~PhysicsManager()
 }
 
 
+void
+PhysicsManager::update(double p_elapsed)
+{
+    m_world->stepSimulation(p_elapsed);
+}
+
 bool 
 PhysicsManager::frameStarted(const Ogre::FrameEvent& p_event)
 {
-    // looks some more realistic with a factor of 1.4
-    m_world->stepSimulation(p_event.timeSinceLastFrame * 1.4);
-    
+    update(p_event.timeSinceLastFrame);
     return true;
 }
 

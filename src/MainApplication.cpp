@@ -6,16 +6,6 @@
 namespace CoABlaster
 {
 
-MainApplication::MainApplication()
-{
-    
-}
-
-MainApplication::~MainApplication()
-{
-    
-}
-
 void
 MainApplication::go()
 {
@@ -25,8 +15,6 @@ MainApplication::go()
 
     if(!gm->init(new SceneryTest))
         return;
-
-    // gm->root()->addFrameListener(PhysicsManager::get());
 
     gm->startRendering();
     

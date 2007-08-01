@@ -81,6 +81,11 @@ public:
     bool init(Scenery* scenery = 0);
     
     /**
+     * updates the graphics manager (renders a frame)
+     */
+    void update(double elapsed);
+    
+    /**
      * renders one frame and returns.
      */
     bool renderOneFrame();

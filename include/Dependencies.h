@@ -8,6 +8,9 @@
 /// std::string
 #include <string>
 
+/// simple direct media layer
+#include <SDL.h>
+
 /// ogre rendering engine
 #include <Ogre.h>
 
