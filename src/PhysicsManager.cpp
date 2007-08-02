@@ -38,17 +38,23 @@ PhysicsManager::~PhysicsManager()
     //         destroySceneNode("ogrebullet-debug-node");
 }
 
-
 void
 PhysicsManager::update(double p_elapsed)
 {
     m_world->stepSimulation(p_elapsed);
 }
 
+void
+PhysicsManager::synchronize()
+{
+    m_world->synchronizeToOgre();
+}
+
 bool 
 PhysicsManager::frameStarted(const Ogre::FrameEvent& p_event)
 {
     update(p_event.timeSinceLastFrame);
+    synchronize();
     return true;
 }
 

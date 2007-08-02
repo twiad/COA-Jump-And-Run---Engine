@@ -14,6 +14,8 @@ class MainApplication
 {
     static SDL_mutex* m_graphicsLock;    
     static SDL_mutex* m_physicsLock;
+    
+    static bool m_physicsKeepRunning;
 
     static void initialize();
 

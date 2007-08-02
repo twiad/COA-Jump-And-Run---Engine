@@ -1,6 +1,7 @@
 #include "MainApplication.h"
 
 #include "GraphicsManager.h"
+#include "PhysicsManager.h"
 #include "SceneryTest.h"
 
 #define COAJNR_GRAPHICS_FPS 100;
@@ -10,9 +11,11 @@
 namespace CoABlaster
 {
     
-SDL_mutex* MainApplication::m_graphicsLock = 0;
-SDL_mutex* MainApplication::m_physicsLock = 0;
-    
+SDL_mutex*  MainApplication::m_graphicsLock = 0;
+SDL_mutex*  MainApplication::m_physicsLock = 0;
+bool        MainApplication::m_physicsKeepRunning = true;    
+
+
 void
 MainApplication::initialize()
 {
@@ -32,20 +35,30 @@ MainApplication::go()
     initialize();
 
     SDL_Thread* graphicsThread;
+    SDL_Thread* physicsThread;
     
     graphicsThread = 
             SDL_CreateThread(&(MainApplication::graphicsWorkerThread), 0);
     
+    SDL_Delay(5000);
+
+    physicsThread =
+            SDL_CreateThread(&(MainApplication::physicsWorkerThread), 0);
+    
     SDL_WaitThread(graphicsThread, 0);
-    
-    // delete gm;
-    
+
+    m_physicsKeepRunning = false;
+
+    SDL_WaitThread(physicsThread, 0);
+
     SDL_Quit();
 }
 
 int 
 MainApplication::graphicsWorkerThread(void* data)
 {
+    lockGraphics();
+
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
     double elapsedSeconds = 0;
@@ -54,26 +67,33 @@ MainApplication::graphicsWorkerThread(void* data)
     
     GraphicsManager::get()->init(new COAJNR_INIT_SCENE);
 
+    unlockGraphics();
+
     while(true)
     {
         startTime = SDL_GetTicks();
-        
+
         lockGraphics();
-        
+
         if(GraphicsManager::get()->update(0) == false)
-            break; /// @todo TODO: do a clean shut down here
+        {
+            unlockGraphics();
+            break;
+        }
         
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         elapsedSeconds = elapsedMilliSeconds / 1000.0f;
         
         unlockGraphics();
         
-        SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
+        // SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
         
         // const Ogre::RenderTarget::FrameStats& stats = 
         //         GraphicsManager::get()->window()->getStatistics();
         // std::cout << "avgFPS " << stats.avgFPS << std::endl;
     }
+
+    delete GraphicsManager::get();
 
     return 0;
 }
@@ -81,6 +101,15 @@ MainApplication::graphicsWorkerThread(void* data)
 int 
 MainApplication::physicsWorkerThread(void* data)
 {
+    while(m_physicsKeepRunning)
+    {
+        lockPhysics();
+        PhysicsManager::get()->update(0.1);
+        lockGraphics();
+        PhysicsManager::get()->synchronize();
+        unlockGraphics();
+        unlockPhysics();
+    }
     
     return 0;
 }

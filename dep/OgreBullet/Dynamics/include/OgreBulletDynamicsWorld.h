@@ -48,6 +48,8 @@ namespace OgreBulletDynamics
 
         void stepSimulation(const Ogre::Real elapsedTime);
 
+        void synchronizeToOgre();
+
         void addRigidBody (RigidBody *rb);
 
         void setDebugDrawer(OgreBulletCollisions::DebugDrawer *debugdrawer)

@@ -34,14 +34,19 @@ using namespace Ogre;
 
 namespace OgreBulletCollisions
 {
+    std::map<Object*, btTransform> ObjectState::m_transformationCache;
+    
     // -------------------------------------------------------------------------
     ObjectState::ObjectState(Object *parent):	
         mObject(parent)
     {
+        // create an empty entry in the objects transformation cache
+        m_transformationCache[mObject] = btTransform();
     }
     // -------------------------------------------------------------------------
     ObjectState::~ObjectState()
     {
+        m_transformationCache.erase(mObject);
     }
     // -------------------------------------------------------------------------
     void ObjectState::getWorldTransform(btTransform& worldTrans) const
@@ -57,7 +62,10 @@ namespace OgreBulletCollisions
     {
         assert (mObject);        
 
-        mObject->setTransform (worldTrans);
+        // use transformation cache instead of syncing directly
+        // mObject->setTransform(worldTrans);
+        m_transformationCache[mObject] = worldTrans;
+
         mWorldTrans = worldTrans;        
     }
 }

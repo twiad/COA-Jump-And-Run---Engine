@@ -48,6 +48,11 @@ public:
     void update(double elapesd);
     
     /**
+     * synchronizes bullet transformations to ogre
+     */
+    void synchronize();
+    
+    /**
      * framelistener callback for physics update.
      */
     bool frameStarted(const Ogre::FrameEvent& event);

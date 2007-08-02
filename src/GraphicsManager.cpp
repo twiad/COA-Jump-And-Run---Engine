@@ -2,7 +2,7 @@
 #include "GraphicsManager.h"
 
 #include "InputHandler.h"
-#include "PhysicsManager.h"
+// #include "PhysicsManager.h"
 #include "Scenery.h"
 
 using namespace Ogre;
@@ -144,7 +144,7 @@ void
 GraphicsManager::registerFrameListeners()
 {
     m_root->addFrameListener(new InputHandler(m_window));
-    m_root->addFrameListener(PhysicsManager::get());
+    // m_root->addFrameListener(PhysicsManager::get());
 }
 
 bool

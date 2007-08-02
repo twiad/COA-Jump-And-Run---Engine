@@ -27,6 +27,7 @@ http://www.gnu.org/copyleft/lesser.txt.
 #include "OgreBulletDynamics.h"
 
 #include "OgreBulletCollisionsShape.h"
+#include "OgreBulletCollisionsObjectState.h"
 
 #include "OgreBulletDynamicsWorld.h"
 #include "OgreBulletDynamicsObjectState.h"
@@ -76,6 +77,7 @@ namespace OgreBulletDynamics
         if (mDebugDrawer) 
             mDebugDrawer->clear ();
 
+        // step the world
         static_cast <btSimpleDynamicsWorld *> (mWorld)->stepSimulation(elapsedTime);
 
         if (mDebugDrawer) 
@@ -96,6 +98,19 @@ namespace OgreBulletDynamics
                     ++it;
                 }
             }
+        }
+    }
+    // -------------------------------------------------------------------------
+    void DynamicsWorld::synchronizeToOgre()
+    {
+        // sync all object back to ogre
+        std::map<Object*, btTransform>::const_iterator it = 
+                OgreBulletCollisions::ObjectState::transformationCache().begin();
+
+        while(it != OgreBulletCollisions::ObjectState::transformationCache().end())
+        {
+            (*it).first->setTransform((*it).second);
+            it++;
         }
     }
     // -------------------------------------------------------------------------

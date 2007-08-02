@@ -33,7 +33,7 @@ http://www.gnu.org/copyleft/lesser.txt.
 namespace OgreBulletCollisions
 {
     class ObjectState : public btMotionState
-    {
+    {        
     public:
 	    ObjectState(Object *parent);
 	    ~ObjectState();
@@ -41,9 +41,15 @@ namespace OgreBulletCollisions
 	    virtual void getWorldTransform(btTransform& worldTrans ) const;
         virtual void setWorldTransform(const btTransform& worldTrans);	
 
+        static const std::map<Object*, btTransform>& transformationCache()
+        {
+            return m_transformationCache;
+        }
+
     private:
         Object      *mObject;
         btTransform  mWorldTrans;
+        static std::map<Object*, btTransform> m_transformationCache;
     };
 }
 #endif //_OGREBULLETCOLLISIONS_ObjectState_H
