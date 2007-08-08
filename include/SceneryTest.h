@@ -9,6 +9,8 @@
 namespace CoABlaster
 {
 
+class InputController;
+
 class SceneryTest : public Scenery
 {
     Ogre::SceneNode* m_cubeNode;
@@ -24,7 +26,8 @@ class SceneryTest : public Scenery
     
     OgreBulletDynamics::RigidBody* m_cubeBody;
     OgreBulletDynamics::RigidBody* m_planeBody;
-    
+
+    InputController* m_movementInputController;
     
 public:
     SceneryTest();

@@ -35,18 +35,24 @@ using namespace Ogre;
 namespace OgreBulletCollisions
 {
     std::map<Object*, btTransform> ObjectState::m_transformationCache;
+    SDL_mutex* ObjectState::m_tranformationCacheMutex = SDL_CreateMutex();
+
     
     // -------------------------------------------------------------------------
     ObjectState::ObjectState(Object *parent):	
         mObject(parent)
     {
         // create an empty entry in the objects transformation cache
+        lockTransformationCache();
         m_transformationCache[mObject] = btTransform();
+        unlockTransformationCache();
     }
     // -------------------------------------------------------------------------
     ObjectState::~ObjectState()
     {
+        lockTransformationCache();
         m_transformationCache.erase(mObject);
+        unlockTransformationCache();
     }
     // -------------------------------------------------------------------------
     void ObjectState::getWorldTransform(btTransform& worldTrans) const
@@ -64,7 +70,10 @@ namespace OgreBulletCollisions
 
         // use transformation cache instead of syncing directly
         // mObject->setTransform(worldTrans);
+
+        lockTransformationCache();
         m_transformationCache[mObject] = worldTrans;
+        unlockTransformationCache();
 
         mWorldTrans = worldTrans;        
     }

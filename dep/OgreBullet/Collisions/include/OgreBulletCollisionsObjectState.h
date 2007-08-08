@@ -41,6 +41,16 @@ namespace OgreBulletCollisions
 	    virtual void getWorldTransform(btTransform& worldTrans ) const;
         virtual void setWorldTransform(const btTransform& worldTrans);	
 
+        static bool lockTransformationCache()
+        {
+            return SDL_LockMutex(m_tranformationCacheMutex);
+        }
+
+        static bool unlockTransformationCache()
+        {
+            return SDL_UnlockMutex(m_tranformationCacheMutex);            
+        }
+
         static const std::map<Object*, btTransform>& transformationCache()
         {
             return m_transformationCache;
@@ -49,6 +59,8 @@ namespace OgreBulletCollisions
     private:
         Object      *mObject;
         btTransform  mWorldTrans;
+        
+        static SDL_mutex* m_tranformationCacheMutex;
         static std::map<Object*, btTransform> m_transformationCache;
     };
 }

@@ -1,18 +1,23 @@
 #include "InputHandler.h"
 
+#include "InputController.h"
+#include "GraphicsManager.h"
+
 using namespace Ogre;
 using namespace OIS;
 
 namespace CoABlaster
 {
     
-InputHandler::InputHandler(RenderWindow* p_window)
+InputHandler* InputHandler::m_instance = 0;
+    
+InputHandler::InputHandler()
 {
 	ParamList pl;
 	size_t windowHnd = 0;
 	std::ostringstream windowHndStr;
 
-	p_window->getCustomAttribute("WINDOW", &windowHnd);
+	GraphicsManager::get()->window()->getCustomAttribute("WINDOW", &windowHnd);
 	windowHndStr << windowHnd;
 	pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
@@ -50,8 +55,29 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
 	/// stop render loop on key Q and ESC
 	if(m_keyboard->isKeyDown(KC_Q) || m_keyboard->isKeyDown(KC_ESCAPE))
         return false;
+        
+    std::vector<InputController*>::iterator it = m_inputControllers.begin();
+    
+    while(it != m_inputControllers.end())
+        (*it++)->handleInput();
     
     return true;
 }
- 
+
+void
+InputHandler::addInputController(InputController* p_controller)
+{
+    m_inputControllers.push_back(p_controller);
+}
+
+void
+InputHandler::removeInputController(InputController* p_controller)
+{
+    std::vector<InputController*>::iterator it;
+
+    for(it = m_inputControllers.begin(); it != m_inputControllers.end(); it++)
+        if((*it) == p_controller)
+            m_inputControllers.erase(it);
+} 
+
 }

@@ -40,8 +40,8 @@ namespace OgreBulletDynamics
 	    PhysicState(RigidBody *parent);
 	    ~PhysicState();
 
-	    virtual void getWorldTransform(btTransform& worldTrans ) const;
-	    virtual void setWorldTransform(const btTransform& worldTrans);	
+        // virtual void getWorldTransform(btTransform& worldTrans ) const;
+        // virtual void setWorldTransform(const btTransform& worldTrans);   
     
     protected:
         RigidBody *mObject;

@@ -16,9 +16,9 @@ ifeq ($(shell uname -s),Darwin)
 # TODO: the INCLUDE value is cheesy and should be replaced					   #
 #		with something more general in the future							   #
 #																			   #
-  INCLUDE		 += -I/Library/Frameworks/Ogre.framework/Headers -I/Library/Frameworks/OIS.framework/Headers -I /usr/local/include/bullet
+  INCLUDE		 += -I/Library/Frameworks/Ogre.framework/Headers -I/Library/Frameworks/OIS.framework/Headers -I /usr/local/include/bullet -I/Library/Frameworks/SDL.framework/Headers
   LIBPATH		 += 
-  LIBRARIES		 += -framework Ogre -framework OIS -framework Cocoa -lbulletcollision -lbulletdynamics -lbulletmath
+  LIBRARIES		 += -framework Ogre -framework OIS -framework Cocoa -framework SDL -lbulletcollision -lbulletdynamics -lbulletmath
 #																			   #
 # ############################################################################ #
 
@@ -41,7 +41,7 @@ else
 #																			   #
 	INCLUDE		 += -I"$(OGRE_HOME)/include" -I"$(BULLET_HOME)/src"
 	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib"
-	LIBRARIES	 += -lOgreMain -lOIS -llibbulletcollision -llibbulletdynamics -llibbulletmath
+	LIBRARIES	 += -lOgreMain -lOIS -llibbulletcollision -llibbulletdynamics -llibbulletmath -lSDL
 #																			   #
 # ############################################################################ #
 

@@ -44,22 +44,29 @@ namespace OgreBulletDynamics
     PhysicState::~PhysicState()
     {
     }
+    
+    /// @todo TODO: strange thing, is this really needed?
+    
     // -------------------------------------------------------------------------
-    void PhysicState::getWorldTransform(btTransform& worldTrans ) const
-    {
-        assert (mObject);
-        
-        worldTrans.setOrigin(OgreBulletCollisions::OgreBtConverter::to(mObject->getWorldPosition()));
-        worldTrans.setRotation(OgreBulletCollisions::OgreBtConverter::to(mObject->getWorldOrientation()));
-        
-    }
-    // -------------------------------------------------------------------------
-    void PhysicState::setWorldTransform(const btTransform& worldTrans)
-    {
-        assert (mObject);
-
-        mObject->setPosition(OgreBulletCollisions::BtOgreConverter::to(worldTrans.getOrigin()));
-        mObject->setOrientation(OgreBulletCollisions::BtOgreConverter::to(worldTrans.getRotation()));
-        
-    }
+    // void PhysicState::getWorldTransform(btTransform& worldTrans ) const
+    // {
+    //     assert (mObject);
+    //     
+    //     std::cout << "void PhysicState::getWorldTransform(btTransform& worldTrans ) const" << std::endl;
+    //     
+    //     worldTrans.setOrigin(OgreBulletCollisions::OgreBtConverter::to(mObject->getWorldPosition()));
+    //     worldTrans.setRotation(OgreBulletCollisions::OgreBtConverter::to(mObject->getWorldOrientation()));
+    //     
+    // }
+    // // -------------------------------------------------------------------------
+    // void PhysicState::setWorldTransform(const btTransform& worldTrans)
+    // {
+    //     assert (mObject);
+    // 
+    //     std::cout << "void PhysicState::setWorldTransform(const btTransform& worldTrans)" << std::endl;
+    // 
+    //     mObject->setPosition(OgreBulletCollisions::BtOgreConverter::to(worldTrans.getOrigin()));
+    //     mObject->setOrientation(OgreBulletCollisions::BtOgreConverter::to(worldTrans.getRotation()));
+    //     
+    // }
 }

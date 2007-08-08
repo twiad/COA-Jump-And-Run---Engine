@@ -147,6 +147,11 @@ namespace OgreBulletDynamics
         getBulletRigidBody()->setLinearVelocity (btVector3(x, y, z));
     }
     // -------------------------------------------------------------------------
+    Ogre::Vector3 RigidBody::getLinearVelocity()
+    {
+        return BtOgreConverter::to(getBulletRigidBody()->getLinearVelocity());
+    }
+    // -------------------------------------------------------------------------
     void RigidBody::applyImpulse( const Ogre::Vector3 &impulse, const Ogre::Vector3 &position )
     {
         getBulletRigidBody()->applyImpulse (OgreBtConverter::to(impulse), OgreBtConverter::to(position));

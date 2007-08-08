@@ -7,11 +7,15 @@
 namespace CoABlaster
 {
 
+class InputController;
+
 /**
  * checks for input between frames
  */
 class InputHandler : public Ogre::FrameListener
 {
+    static InputHandler* m_instance;
+    
     /// the ois input sub system
     OIS::InputManager* m_inputManager;
     
@@ -24,12 +28,45 @@ class InputHandler : public Ogre::FrameListener
 	/// the joystick input device
 	OIS::JoyStick* m_joystick;
 
+    /// input controllers
+    std::vector<InputController*> m_inputControllers;
+    
 public:
-    InputHandler(Ogre::RenderWindow*);
+    InputHandler();
     
     virtual ~InputHandler();
     
+    static InputHandler* get()
+    {
+        if(!m_instance)
+            m_instance = new InputHandler();
+        
+        return m_instance;
+    }
+    
     bool frameStarted(const Ogre::FrameEvent& event);
+
+    void addInputController(InputController* controller);
+
+    void removeInputController(InputController* controller);    
+
+    OIS::Keyboard* keyboard() 
+    { 
+        assert(m_keyboard);
+        return m_keyboard; 
+    };
+
+    OIS::Mouse* mouse() 
+    { 
+        assert(m_mouse);
+        return m_mouse; 
+    };
+
+    OIS::JoyStick* joystick() 
+    { 
+        assert(m_joystick);
+        return m_joystick; 
+    };
 };
 
 }

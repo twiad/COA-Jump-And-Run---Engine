@@ -8,6 +8,11 @@
 /// std::string
 #include <string>
 
+/// vector, map, list
+#include <vector>
+#include <map>
+#include <list>
+
 /// simple direct media layer
 #include <SDL.h>
 #include <SDL_thread.h>

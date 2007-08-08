@@ -15,6 +15,15 @@ class MainApplication
     static SDL_mutex* m_graphicsLock;    
     static SDL_mutex* m_physicsLock;
     
+    static SDL_cond* m_physicsCanStartCondition;
+    static SDL_mutex* m_physicsCanStartMutex;
+
+    static SDL_Thread* m_graphicsThread;
+    static SDL_Thread* m_physicsThread;
+
+    static uint m_physicsUpdates;
+    static uint m_graphicsUpdates;
+    
     static bool m_physicsKeepRunning;
 
     static void initialize();
@@ -34,6 +43,9 @@ public:
     
     static int lockPhysics();
     static int unlockPhysics();
+
+    static void waitPhysicsCanStart();
+    static void signalPhysicsCanStart();
 };
 
 }

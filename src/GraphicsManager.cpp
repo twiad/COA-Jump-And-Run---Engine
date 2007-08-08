@@ -143,7 +143,8 @@ GraphicsManager::init(Scenery* p_scenery)
 void
 GraphicsManager::registerFrameListeners()
 {
-    m_root->addFrameListener(new InputHandler(m_window));
+    m_root->addFrameListener(InputHandler::get());
+    // m_root->addFrameListener(new InputHandler(m_window));
     // m_root->addFrameListener(PhysicsManager::get());
 }
 

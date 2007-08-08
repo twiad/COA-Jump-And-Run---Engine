@@ -7,10 +7,12 @@
 namespace CoABlaster
 {
 
+class PhysicsInteractionPacket;
+
 /**
  * this class is rensponsable for bullet configuration and runtime
  */
-class PhysicsManager : public Ogre::FrameListener
+class PhysicsManager // : public Ogre::FrameListener
 {
     /// singleton pattern
     static PhysicsManager* m_instance;
@@ -19,6 +21,7 @@ class PhysicsManager : public Ogre::FrameListener
 
     Ogre::SceneNode* m_debugNode;
 
+    void applyQueuedPhysicsInteractions();
 
 public:
     /**
@@ -65,6 +68,8 @@ public:
         assert(m_world);
         return m_world;
     }
+    
+    void queuePhysicsInteraction(PhysicsInteractionPacket* packet);
 };
 
 }

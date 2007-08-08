@@ -103,6 +103,8 @@ namespace OgreBulletDynamics
     // -------------------------------------------------------------------------
     void DynamicsWorld::synchronizeToOgre()
     {
+        OgreBulletCollisions::ObjectState::lockTransformationCache();
+
         // sync all object back to ogre
         std::map<Object*, btTransform>::const_iterator it = 
                 OgreBulletCollisions::ObjectState::transformationCache().begin();
@@ -112,6 +114,8 @@ namespace OgreBulletDynamics
             (*it).first->setTransform((*it).second);
             it++;
         }
+        
+        OgreBulletCollisions::ObjectState::unlockTransformationCache();
     }
     // -------------------------------------------------------------------------
     void DynamicsWorld::removeConstraint(TypedConstraint *constraint)

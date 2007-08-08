@@ -2,13 +2,29 @@
 
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
+#include "InputHandler.h"
+#include "MovementInputController.h"
 
 namespace CoABlaster
 {
 
 SceneryTest::SceneryTest()
 {
+    m_cubeNode = 0;
+    m_planeNode = 0;
     
+    m_cube = 0;
+    m_plane = 0;
+    
+    m_light = 0;
+    
+    m_cubeShape = 0;
+    m_planeShape = 0;
+    
+    m_cubeBody = 0;
+    m_planeBody = 0;
+
+    m_movementInputController = 0;
 }
 
 SceneryTest::~SceneryTest()
@@ -27,7 +43,7 @@ SceneryTest::setup()
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
     
-    sm->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+    sm->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
     
     // light
     m_light = sm->createLight("point-light");
@@ -79,6 +95,10 @@ SceneryTest::setup()
             1,   // restitution 
             0.9  // friction
             );
+
+    m_movementInputController = new MovementInputController(m_cubeBody);
+
+    InputHandler::get()->addInputController(m_movementInputController);
 }
 
 void
@@ -86,6 +106,9 @@ SceneryTest::cleanup()
 {
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
+
+    InputHandler::get()->removeInputController(m_movementInputController);
+    delete m_movementInputController;
 
     // cleaning up ogre objects
     sm->destroyEntity("cube");

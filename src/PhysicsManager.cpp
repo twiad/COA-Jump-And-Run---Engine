@@ -1,6 +1,7 @@
 #include "PhysicsManager.h"
 
 #include "GraphicsManager.h"
+#include "PhysicsInteractionPacket.h"
 
 using namespace OgreBulletCollisions;
 using namespace OgreBulletDynamics;
@@ -26,7 +27,7 @@ PhysicsManager::PhysicsManager()
     // m_debugNode->attachObject(debugDrawer);
     
     m_world->setShowDebugShapes(true);    
-    m_world->setShowDebugContactPoints(true); // does not seem to work
+    // m_world->setShowDebugContactPoints(true); // does not seem to work
 }
 
 PhysicsManager::~PhysicsManager()
@@ -41,6 +42,8 @@ PhysicsManager::~PhysicsManager()
 void
 PhysicsManager::update(double p_elapsed)
 {
+    applyQueuedPhysicsInteractions();
+    
     m_world->stepSimulation(p_elapsed);
 }
 
@@ -56,6 +59,26 @@ PhysicsManager::frameStarted(const Ogre::FrameEvent& p_event)
     update(p_event.timeSinceLastFrame);
     synchronize();
     return true;
+}
+
+void
+PhysicsManager::queuePhysicsInteraction(PhysicsInteractionPacket* p_packet)
+{
+    
+}
+
+void
+PhysicsManager::applyQueuedPhysicsInteractions()
+{
+    // for each packet
+
+    /**
+    switch(packet.type())
+    {
+        case
+    }
+    
+    */
 }
 
 }

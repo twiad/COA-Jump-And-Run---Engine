@@ -45,6 +45,9 @@ std::string macBundlePath()
 }
 #endif
 
+#ifdef __APPLE__
+  #undef main
+#endif
 
 // Windows stuff
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
