@@ -1,9 +1,10 @@
 #include "SceneryTest.h"
 
-#include "GraphicsManager.h"
-#include "PhysicsManager.h"
-#include "InputHandler.h"
+#include "CameraSmoothFollow.h"
 #include "CharacterMovementController.h"
+#include "GraphicsManager.h"
+#include "InputHandler.h"
+#include "PhysicsManager.h"
 
 namespace CoABlaster
 {
@@ -70,11 +71,12 @@ SceneryTest::setup()
             m_cubeNode, 
             m_cubeShape, 
             0.0, // restitution 
-            0.9, // friction
+            0.5, // friction
             5,   // mass
             Ogre::Vector3(0, 7, 0));
 
-    gm->camera()->setAutoTracking(true, m_cubeNode);
+    // m_cubeBody->setDamping(0,0);
+    m_cubeBody->setDamping(1,1);
 
     // plane
     m_plane = sm->createEntity("plane", "ground.mesh");
@@ -100,12 +102,15 @@ SceneryTest::setup()
     m_planeBody->setStaticShape(
             m_planeShape,
             0.0,   // restitution 
-            0.9  // friction
+            0.5  // friction
             );
 
     m_movementInputController = new CharacterMovementController(m_cubeBody);
 
     InputHandler::get()->addInputController(m_movementInputController);
+    GraphicsManager::get()->root()->addFrameListener(
+            new CameraSmoothFollow(
+                    GraphicsManager::get()->camera(), m_cubeNode));
 }
 
 void

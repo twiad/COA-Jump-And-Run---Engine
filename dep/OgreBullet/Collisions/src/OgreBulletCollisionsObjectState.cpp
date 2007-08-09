@@ -44,7 +44,7 @@ namespace OgreBulletCollisions
     {
         // create an empty entry in the objects transformation cache
         lockTransformationCache();
-        m_transformationCache[mObject] = btTransform();
+        m_transformationCache[mObject] = btTransform(btQuaternion(0,0,0,1));
         unlockTransformationCache();
     }
     // -------------------------------------------------------------------------
@@ -72,7 +72,9 @@ namespace OgreBulletCollisions
         // mObject->setTransform(worldTrans);
 
         lockTransformationCache();
-        m_transformationCache[mObject] = worldTrans;
+        // m_transformationCache[mObject] = worldTrans;
+        m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());
+        // m_transformationCache[mObject].setBasis(worldTrans.getBasis());
         unlockTransformationCache();
 
         mWorldTrans = worldTrans;        
