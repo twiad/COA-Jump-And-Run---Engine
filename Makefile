@@ -92,3 +92,4 @@ clean-test:
 proper: clean clean-test
 	make proper -C dep/OgreBullet
 	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)
+	rm -rf `find . -name "Ogre.log"`

@@ -3,7 +3,7 @@
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "InputHandler.h"
-#include "MovementInputController.h"
+#include "CharacterMovementController.h"
 
 namespace CoABlaster
 {
@@ -55,8 +55,9 @@ SceneryTest::setup()
     m_cube = sm->createEntity("cube", "Cube.mesh");
     m_cube->setNormaliseNormals(true);
 
-    m_cubeShape = new OgreBulletCollisions::BoxCollisionShape(
-            Ogre::Vector3(1, 1, 1));
+    // m_cubeShape = new OgreBulletCollisions::BoxCollisionShape(
+    //         Ogre::Vector3(1, 1, 1));
+    m_cubeShape = new OgreBulletCollisions::SphereCollisionShape(1);
     
     m_cubeBody = new OgreBulletDynamics::RigidBody(
                     "cube-body", PhysicsManager::get()->world());
@@ -76,16 +77,21 @@ SceneryTest::setup()
     gm->camera()->setAutoTracking(true, m_cubeNode);
 
     // plane
-    m_plane = sm->createEntity("plane", "Plane.mesh");
+    m_plane = sm->createEntity("plane", "ground.mesh");
     m_plane->setNormaliseNormals(true);
-
-    m_planeShape = new OgreBulletCollisions::StaticPlaneCollisionShape(
-            Ogre::Vector3(0,1,0), 0.97);
 
     m_planeNode = sm->getRootSceneNode()->
             createChildSceneNode("plane-node");
 
-    m_planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(90));
+    m_planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(-90));
+
+    // m_planeShape = new OgreBulletCollisions::StaticPlaneCollisionShape(
+    //         Ogre::Vector3(0,1,0), 0.97);
+
+    Ogre::Matrix4 transform;
+    m_planeNode->getWorldTransforms(&transform);
+    OgreBulletCollisions::MeshToShapeConverter converter(m_plane, transform);
+    m_planeShape = converter.createTrimesh();
     
     m_planeBody = new OgreBulletDynamics::RigidBody(
             "plane-body", PhysicsManager::get()->world());
@@ -97,7 +103,7 @@ SceneryTest::setup()
             0.9  // friction
             );
 
-    m_movementInputController = new MovementInputController(m_cubeBody);
+    m_movementInputController = new CharacterMovementController(m_cubeBody);
 
     InputHandler::get()->addInputController(m_movementInputController);
 }

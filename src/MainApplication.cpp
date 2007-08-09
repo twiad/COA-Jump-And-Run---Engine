@@ -4,10 +4,10 @@
 #include "PhysicsManager.h"
 #include "SceneryTest.h"
 
-#define COAJNR_GRAPHICS_FPS 50;
-#define COAJNR_PHYSICS_FPS 50;
+#define COAJNR_GRAPHICS_FPS 80
+#define COAJNR_PHYSICS_FPS 80
 #define COAJNR_INIT_SCENE SceneryTest
-#define COAJNR_PHYSICS_SPEED_FACTOR 2.5
+#define COAJNR_PHYSICS_SPEED_FACTOR 1.5
 
 namespace CoABlaster
 {
@@ -75,6 +75,8 @@ MainApplication::graphicsWorkerThread(void* data)
 
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
+    uint timeToWait = 0;
+    
     double elapsedSeconds = 0;
     
     uint minFrameTime = 1000 / COAJNR_GRAPHICS_FPS;
@@ -111,10 +113,16 @@ MainApplication::graphicsWorkerThread(void* data)
         
         unlockGraphics();
         
-        SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
+        timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
+        
+        SDL_Delay(timeToWait);
+        
+        if(!timeToWait)
+            std::cout << "WARNING! graphics update too slow!" 
+                    << std::endl;
 
 #ifdef _DEBUG
-        if(m_graphicsUpdates % 50 == 0)
+        if(m_graphicsUpdates % (COAJNR_GRAPHICS_FPS * 2) == 0)
         {
             const Ogre::RenderTarget::FrameStats& stats = 
                     GraphicsManager::get()->window()->getStatistics();
@@ -137,6 +145,7 @@ MainApplication::physicsWorkerThread(void* data)
 
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
+    uint timeToWait = 0;
     double elapsedSeconds = 0;
     double updateTime = 0;
     
@@ -162,7 +171,13 @@ MainApplication::physicsWorkerThread(void* data)
         elapsedSeconds = elapsedMilliSeconds / 1000.0f;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
 
-        SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
+        timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
+
+        SDL_Delay(timeToWait);
+        
+        if(!timeToWait)
+            std::cout << "WARNING! physics update too slow!" 
+                << std::endl;
     }
 
     return 0;

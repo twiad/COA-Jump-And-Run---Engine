@@ -1,5 +1,5 @@
 
-#include "MovementInputController.h"
+#include "CharacterMovementController.h"
 
 #include "InputHandler.h"
 
@@ -8,19 +8,19 @@
 namespace CoABlaster
 {
 
-MovementInputController::MovementInputController(
+CharacterMovementController::CharacterMovementController(
         OgreBulletDynamics::RigidBody* p_body)
 {
     m_body = p_body;
 }
 
-MovementInputController::~MovementInputController()
+CharacterMovementController::~CharacterMovementController()
 {
     
 }
 
 void
-MovementInputController::handleInput()
+CharacterMovementController::handleInput()
 {
     OIS::Keyboard* keyboard = InputHandler::get()->keyboard();
     
@@ -30,22 +30,25 @@ MovementInputController::handleInput()
 
     Ogre::Vector3 linearVelocity = Ogre::Vector3::ZERO; 
     linearVelocity.y += m_body->getLinearVelocity().y;
+    
+    linearVelocity.x += m_body->getLinearVelocity().x * 0.2;
+    linearVelocity.z += m_body->getLinearVelocity().z * 0.2;
 
     if(keyboard->isKeyDown(OIS::KC_RSHIFT) || 
         keyboard->isKeyDown(OIS::KC_LSHIFT))
-        speed *= 1.4;
+        speed *= 1.8;
     
-    if(keyboard->isKeyDown(OIS::KC_UP))
-        linearVelocity += Ogre::Vector3(speed,0,0);
-
-    if(keyboard->isKeyDown(OIS::KC_DOWN))
-        linearVelocity += Ogre::Vector3(-speed,0,0);
+    // if(keyboard->isKeyDown(OIS::KC_UP))
+    //     linearVelocity += Ogre::Vector3(speed,0,0);
+    // 
+    // if(keyboard->isKeyDown(OIS::KC_DOWN))
+    //     linearVelocity += Ogre::Vector3(-speed,0,0);
 
     if(keyboard->isKeyDown(OIS::KC_LEFT))
-        linearVelocity += Ogre::Vector3(0,0,speed);
+        linearVelocity += Ogre::Vector3(-speed,0,0);
 
     if(keyboard->isKeyDown(OIS::KC_RIGHT))
-        linearVelocity += Ogre::Vector3(0,0,-speed);
+        linearVelocity += Ogre::Vector3(speed,0,0);
 
     if(linearVelocity != Ogre::Vector3::ZERO)
     {
@@ -56,8 +59,12 @@ MovementInputController::handleInput()
     if(keyboard->isKeyDown(OIS::KC_SPACE))
         m_body->applyImpulse(Ogre::Vector3(0,10,0), Ogre::Vector3(0,0,0));
 
-    m_body->setAngularVelocity(Ogre::Vector3::ZERO);
-    m_body->setOrientation(0,0,0,1);
+    // for cube collision shape...
+    // m_body->setAngularVelocity(Ogre::Vector3::ZERO);
+    // m_body->setOrientation(0,0,0,1);
+    
+    Ogre::Vector3 pos = m_body->getWorldPosition();
+    m_body->setPosition(pos.x, pos.y, 0);
 
     MainApplication::unlockPhysics();
 }
