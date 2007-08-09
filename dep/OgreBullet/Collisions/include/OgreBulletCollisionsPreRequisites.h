@@ -77,6 +77,9 @@ namespace OgreBulletCollisions
     class ConvexHullCollisionShape;
     class TriangleMeshCollisionShape;
 
+    class CollisionInfo;
+    class CollisionHandler;
+
     class Object;
 
     class ObjectState;

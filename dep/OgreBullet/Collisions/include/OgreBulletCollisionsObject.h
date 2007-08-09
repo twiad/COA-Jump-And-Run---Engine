@@ -30,6 +30,7 @@ http://www.gnu.org/copyleft/lesser.txt.
 #include "OgreBulletCollisionsPrerequisites.h"
 
 #include "OgreBulletCollisionsWorld.h"
+#include "OgreBulletCollisionHandler.h"
 
 namespace OgreBulletCollisions
 {
@@ -88,6 +89,13 @@ namespace OgreBulletCollisions
         inline CollisionShape *getShape() const{ return mShape;};
         inline DebugCollisionShape* getDebugShape() const{ return mDebugShape;};
 
+        inline void setCollisionHandler(CollisionHandler* handler) 
+        { 
+            mCollisionHandler = handler; 
+            mCollisionHandler->setCollisionObject(this);
+        }
+        inline CollisionHandler* getCollisionHandler() { return mCollisionHandler; }
+
         void setShape(CollisionShape *shape, 
             const Ogre::Vector3 &pos, 
             const Ogre::Quaternion &quat);
@@ -108,6 +116,8 @@ namespace OgreBulletCollisions
 
         CollisionShape*         mShape;
         DebugCollisionShape *   mDebugShape;
+        
+        CollisionHandler*       mCollisionHandler;
 
 
     public:

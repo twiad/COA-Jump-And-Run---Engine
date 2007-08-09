@@ -1,6 +1,7 @@
 #include "SceneryTest.h"
 
 #include "CameraSmoothFollow.h"
+#include "CharacterCollisionHandler.h"
 #include "CharacterMovementController.h"
 #include "GraphicsManager.h"
 #include "InputHandler.h"
@@ -39,7 +40,7 @@ SceneryTest::setup()
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
     
-    gm->camera()->setPosition(Ogre::Vector3(20, 7, 20));
+    gm->camera()->setPosition(Ogre::Vector3(-16, -10, 17));
     gm->camera()->lookAt(Ogre::Vector3(0, 0, 0));
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
@@ -56,12 +57,11 @@ SceneryTest::setup()
     m_cube = sm->createEntity("cube", "Cube.mesh");
     m_cube->setNormaliseNormals(true);
 
-    // m_cubeShape = new OgreBulletCollisions::BoxCollisionShape(
-    //         Ogre::Vector3(1, 1, 1));
     m_cubeShape = new OgreBulletCollisions::SphereCollisionShape(1);
     
     m_cubeBody = new OgreBulletDynamics::RigidBody(
                     "cube-body", PhysicsManager::get()->world());
+    m_cubeBody->setCollisionHandler(new CharacterCollisionHandler());
 
     m_cubeNode = sm->getRootSceneNode()->createChildSceneNode("cube-node");
     m_cubeNode->setPosition(Ogre::Vector3(0, 7, 0));
@@ -76,10 +76,10 @@ SceneryTest::setup()
             Ogre::Vector3(0, 7, 0));
 
     // m_cubeBody->setDamping(0,0);
-    m_cubeBody->setDamping(1,1);
+    // m_cubeBody->setDamping(1,1);
 
     // plane
-    m_plane = sm->createEntity("plane", "ground.mesh");
+    m_plane = sm->createEntity("plane", "level2.mesh");
     m_plane->setNormaliseNormals(true);
 
     m_planeNode = sm->getRootSceneNode()->

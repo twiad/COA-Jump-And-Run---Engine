@@ -82,6 +82,8 @@ namespace OgreBulletDynamics
         body->setFriction(bodyFriction);
 
         mObject = body;
+        mObject->setUserPointer(this);
+        
         getDynamicsWorld()->addRigidBody(this);
     }
 
@@ -114,6 +116,8 @@ namespace OgreBulletDynamics
         body->getWorldTransform().setRotation(btQuaternion(quat.x, quat.y, quat.z, quat.w));
 
         mObject = body;
+        mObject->setUserPointer(this);
+        
         getDynamicsWorld()->addRigidBody(this);
     }
     // -------------------------------------------------------------------------
@@ -134,6 +138,8 @@ namespace OgreBulletDynamics
         body->getWorldTransform().setRotation(btQuaternion(quat.x, quat.y, quat.z, quat.w));
 
         mObject = body;
+        mObject->setUserPointer(this);
+        
         getDynamicsWorld()->addRigidBody(this);
     }
     // -------------------------------------------------------------------------

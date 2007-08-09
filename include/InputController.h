@@ -18,7 +18,7 @@ public:
     
     virtual ~InputController() { }
     
-    virtual void handleInput() = 0;
+    virtual void handleInput(double timeSinceLastFrame) = 0;
 };
 
 }

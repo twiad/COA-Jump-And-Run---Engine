@@ -33,6 +33,8 @@ http://www.gnu.org/copyleft/lesser.txt.
 #include "OgreBulletDynamicsObjectState.h"
 #include "OgreBulletDynamicsRigidBody.h"
 #include "OgreBulletDynamicsConstraint.h"
+#include "OgreBulletCollisionInfo.h"
+#include "OgreBulletCollisionHandler.h"
 
 #include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
 
@@ -78,7 +80,58 @@ namespace OgreBulletDynamics
             mDebugDrawer->clear ();
 
         // step the world
-        static_cast <btSimpleDynamicsWorld *> (mWorld)->stepSimulation(elapsedTime);
+        static_cast <btSimpleDynamicsWorld *> (mWorld)->stepSimulation(elapsedTime, 50);
+
+
+        CollisionHandler* handlerA = 0;
+        CollisionHandler* handlerB = 0;
+
+        const unsigned int  numManifolds = mWorld->getDispatcher()->getNumManifolds();
+        for (unsigned int i=0;i < numManifolds; i++)
+        {
+
+            btPersistentManifold* contactManifold = mWorld->getDispatcher()->getManifoldByIndexInternal(i);
+
+            btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
+            btCollisionObject* obB = static_cast<btCollisionObject*>(contactManifold->getBody1());
+
+            if(obA)
+                handlerA = ((Object*)obA->getUserPointer())->getCollisionHandler();
+            else
+                handlerA = 0;
+
+            if(obB)
+                handlerB = ((Object*)obB->getUserPointer())->getCollisionHandler();
+            else
+                handlerB = 0;
+            
+            if(!handlerA && !handlerB)
+                continue;
+            
+            contactManifold->refreshContactPoints(obA->getWorldTransform(),obB->getWorldTransform());
+            
+            const unsigned int numContacts = contactManifold->getNumContacts();
+            for (unsigned int j = 0;j < numContacts; j++)
+            {
+                btManifoldPoint& pt = contactManifold->getContactPoint(j);
+                        
+                if(handlerA)
+                {                    
+                    CollisionInfo info(
+                        (Object*)obB->getUserPointer(), pt.m_localPointA, pt.getPositionWorldOnA());
+                    handlerA->handleCollision(info);
+                }
+            
+                if(handlerB)
+                {
+                    CollisionInfo info(
+                        (Object*)obA->getUserPointer(), pt.m_localPointB, pt.getPositionWorldOnB());
+                    handlerB->handleCollision(info);
+                }
+            
+            }
+        }
+
 
         if (mDebugDrawer) 
         {

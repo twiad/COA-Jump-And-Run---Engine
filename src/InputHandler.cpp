@@ -59,7 +59,7 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
     std::vector<InputController*>::iterator it = m_inputControllers.begin();
     
     while(it != m_inputControllers.end())
-        (*it++)->handleInput();
+        (*it++)->handleInput(p_event.timeSinceLastFrame);
     
     return true;
 }

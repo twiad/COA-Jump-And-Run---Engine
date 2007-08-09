@@ -71,6 +71,7 @@ namespace OgreBulletCollisions
         // use transformation cache instead of syncing directly
         // mObject->setTransform(worldTrans);
 
+        /// @todo TODO: APPLY ROTATIONS AGAIN
         lockTransformationCache();
         // m_transformationCache[mObject] = worldTrans;
         m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());

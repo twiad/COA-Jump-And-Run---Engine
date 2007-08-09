@@ -54,9 +54,13 @@ namespace OgreBulletCollisions
         mShape(0),
         mDebugShape(0)
     {
+        mCollisionHandler = 0;
+        
         if (init)
         {
             mObject = new btCollisionObject();
+            mObject->setUserPointer(this);
+            
             mState = new ObjectState(this);
         }
     }
@@ -78,6 +82,9 @@ namespace OgreBulletCollisions
         delete mShape;
         delete mState;
         delete mDebugShape;
+        
+        if(mCollisionHandler)
+            delete mCollisionHandler;
     }
     //-----------------------------------------------------------------------
     void Object::showDebugShape(bool show)

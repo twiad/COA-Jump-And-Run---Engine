@@ -19,7 +19,7 @@ public:
 
     virtual ~CharacterMovementController();
     
-    virtual void handleInput();
+    virtual void handleInput(double timeSinceLastFrame);
 };
 
 }

@@ -74,8 +74,9 @@ http://www.gnu.org/copyleft/lesser.txt.
     #include "Debug/OgreBulletCollisionsDebugDrawer.h"
     #include "Debug/OgreBulletCollisionsDebugContact.h"
 
-
-
+    #include "OgreBulletCollisionInfo.h"
+    #include "OgreBulletCollisionHandler.h"
+    
 
     #include "OgreString.h"
     #include "OgreFontManager.h"
