@@ -61,6 +61,8 @@ GraphicsManager::~GraphicsManager()
             delete m_scenery;
         if(m_root)
             delete m_root;
+        
+        delete InputHandler::get();
     }
 }
 
@@ -104,7 +106,7 @@ GraphicsManager::init(Scenery* p_scenery)
     setupResources();
 
     if(m_root->showConfigDialog())
-          m_window = m_root->initialise(true);
+          m_window = m_root->initialise(true, "CoA JnR");
 
     if(!m_window)
         return false;

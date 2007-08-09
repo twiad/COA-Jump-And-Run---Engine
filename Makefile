@@ -5,14 +5,15 @@ include ./Make.conf
 TARGET = CoAJnR
 
 # global flags
-CXXFLAGS   += -pipe
-WARN_FLAGS	= -Wall
-INCLUDE	   += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include
-LIBPATH		= -L./dep/OgreBullet
-LIBRARIES	= -lOgreBullet
-BINPATH		=
-TESTBINPATH =
-EXTENSION	=
+CXXFLAGS        += -pipe
+EXTRA_CXXFLAGS   = -D_DEBUG
+WARN_FLAGS	     = -Wall
+INCLUDE	        += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include
+LIBPATH		     = -L./dep/OgreBullet
+LIBRARIES	     = -lOgreBullet
+BINPATH		     =
+TESTBINPATH      =
+EXTENSION	     =
 
 ifeq ($(shell uname -s),Darwin)
 

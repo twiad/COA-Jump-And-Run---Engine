@@ -7,6 +7,7 @@
 #define COAJNR_GRAPHICS_FPS 50;
 #define COAJNR_PHYSICS_FPS 50;
 #define COAJNR_INIT_SCENE SceneryTest
+#define COAJNR_PHYSICS_SPEED_FACTOR 2.5
 
 namespace CoABlaster
 {
@@ -16,11 +17,13 @@ SDL_mutex*  MainApplication::m_physicsLock = 0;
 bool        MainApplication::m_physicsKeepRunning = true;    
 SDL_cond*   MainApplication::m_physicsCanStartCondition = 0;
 SDL_mutex*  MainApplication::m_physicsCanStartMutex = 0;
-uint        MainApplication::m_physicsUpdates = 0;
-uint        MainApplication::m_graphicsUpdates = 0;
 SDL_Thread* MainApplication::m_graphicsThread = 0;
 SDL_Thread* MainApplication::m_physicsThread = 0;
 
+#ifdef _DEBUG
+uint        MainApplication::m_physicsUpdates = 0;
+uint        MainApplication::m_graphicsUpdates = 0;
+#endif
 
 void
 MainApplication::initialize()
@@ -54,10 +57,13 @@ MainApplication::go()
     m_graphicsThread = SDL_CreateThread(
             &(MainApplication::graphicsWorkerThread), 0);
     
+    SDL_WaitThread(m_physicsThread, 0);
     SDL_WaitThread(m_graphicsThread, 0);
 
+#ifdef _DEBUG
     std::cout << "Physics Update Cycles : " << m_physicsUpdates << std::endl;
     std::cout << "Graphics Update Cycles: " << m_graphicsUpdates << std::endl;
+#endif
 
     SDL_Quit();
 }
@@ -81,7 +87,9 @@ MainApplication::graphicsWorkerThread(void* data)
 
     while(true)
     {
+#ifdef _DEBUG
         m_graphicsUpdates++;
+#endif
         
         startTime = SDL_GetTicks();
 
@@ -94,9 +102,7 @@ MainApplication::graphicsWorkerThread(void* data)
             lockPhysics();
             m_physicsKeepRunning = false;
             unlockPhysics();
-            
-            SDL_WaitThread(m_physicsThread, 0);
-        
+                    
             break;
         }
         
@@ -106,18 +112,20 @@ MainApplication::graphicsWorkerThread(void* data)
         unlockGraphics();
         
         SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
-        
-        // const Ogre::RenderTarget::FrameStats& stats = 
-        //         GraphicsManager::get()->window()->getStatistics();
-        // std::cout << "graphics avgFPS " << stats.avgFPS << std::endl;
-        // 
-        // std::cout << "graphics elapsed: " << elapsedSeconds << std::endl;
-        // std::cout << "graphics elapsed: " << elapsedMilliSeconds << std::endl;
-        // std::cout << "graphics waited:" << 
-        //         std::max<int>(minFrameTime - elapsedMilliSeconds, 0) << std::endl;
+
+#ifdef _DEBUG
+        if(m_graphicsUpdates % 50 == 0)
+        {
+            const Ogre::RenderTarget::FrameStats& stats = 
+                    GraphicsManager::get()->window()->getStatistics();
+            std::cout << "Graphics FPS: " << stats.avgFPS << std::endl;
+        }
+#endif
     }
 
+#ifdef _DEBUG
     delete GraphicsManager::get();
+#endif
 
     return 0;
 }
@@ -126,16 +134,6 @@ int
 MainApplication::physicsWorkerThread(void* data)
 {
     waitPhysicsCanStart();
-
-    // while(m_physicsKeepRunning)
-    // {
-    //     lockPhysics();
-    //     PhysicsManager::get()->update(0.1);
-    //     lockGraphics();
-    //     PhysicsManager::get()->synchronize();
-    //     unlockGraphics();
-    //     unlockPhysics();
-    // }
 
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
@@ -146,30 +144,25 @@ MainApplication::physicsWorkerThread(void* data)
     
     while(m_physicsKeepRunning)
     {
+#ifdef _DEBUG
         m_physicsUpdates++;
+#endif
         
         startTime = SDL_GetTicks();
 
         lockPhysics();
-        PhysicsManager::get()->update(updateTime);
+        PhysicsManager::get()->update(updateTime * COAJNR_PHYSICS_SPEED_FACTOR);
+        unlockPhysics();
+        
         lockGraphics();
         PhysicsManager::get()->synchronize();
         unlockGraphics();
-        unlockPhysics();
         
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         elapsedSeconds = elapsedMilliSeconds / 1000.0f;
+        updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
 
         SDL_Delay(std::max<int>(minFrameTime - elapsedMilliSeconds, 0));
-
-        updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
-        
-        // 
-        // std::cout << "physics elapsed: " << elapsedSeconds << std::endl;
-        // std::cout << "physics elapsed: " << elapsedMilliSeconds << std::endl;
-        // std::cout << "physics updateTime: " << updateTime << std::endl;
-        // std::cout << "physics waited:" << 
-        //         std::max<int>(minFrameTime - elapsedMilliSeconds, 0) << std::endl;
     }
 
     return 0;

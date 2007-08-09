@@ -68,11 +68,12 @@ SceneryTest::setup()
     m_cubeBody->setShape(
             m_cubeNode, 
             m_cubeShape, 
-            0.1, // restitution 
+            0.0, // restitution 
             0.9, // friction
             5,   // mass
             Ogre::Vector3(0, 7, 0));
 
+    gm->camera()->setAutoTracking(true, m_cubeNode);
 
     // plane
     m_plane = sm->createEntity("plane", "Plane.mesh");
@@ -92,7 +93,7 @@ SceneryTest::setup()
     m_planeNode->attachObject(m_plane);
     m_planeBody->setStaticShape(
             m_planeShape,
-            1,   // restitution 
+            0.0,   // restitution 
             0.9  // friction
             );
 
