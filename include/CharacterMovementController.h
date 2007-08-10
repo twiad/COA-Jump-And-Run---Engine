@@ -14,6 +14,8 @@ class CharacterMovementController : public InputController
 
     OgreBulletDynamics::RigidBody* m_body;
 
+    bool isCharacterOnGround();
+
 public:
     CharacterMovementController(OgreBulletDynamics::RigidBody* body);
 

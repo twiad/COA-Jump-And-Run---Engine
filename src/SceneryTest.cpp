@@ -40,7 +40,7 @@ SceneryTest::setup()
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
     
-    gm->camera()->setPosition(Ogre::Vector3(-16, -10, 17));
+    gm->camera()->setPosition(Ogre::Vector3(-16, -10, 23));
     gm->camera()->lookAt(Ogre::Vector3(0, 0, 0));
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
@@ -79,6 +79,7 @@ SceneryTest::setup()
     // m_cubeBody->setDamping(1,1);
 
     // plane
+    // m_plane = sm->createEntity("plane", "ground.mesh");
     m_plane = sm->createEntity("plane", "level2.mesh");
     m_plane->setNormaliseNormals(true);
 

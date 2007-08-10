@@ -6,6 +6,7 @@
 #include "InputHandler.h"
 
 #include "MainApplication.h"
+#include "PhysicsManager.h"
 
 namespace CoABlaster
 {
@@ -21,6 +22,35 @@ CharacterMovementController::~CharacterMovementController()
     
 }
 
+/// @todo TODO: dynamic (character size)
+bool
+CharacterMovementController::isCharacterOnGround()
+{
+    Ogre::Vector3 origin = m_body->getWorldPosition();
+    origin.x--;
+    
+    origin.y -= 1.0;
+    
+    for(int i = 0; i < 3; i++)
+    {    
+        origin.x++;
+        
+        Ogre::Ray ray(origin, Ogre::Vector3::NEGATIVE_UNIT_Y);
+        OgreBulletCollisions::CollisionClosestRayResultCallback
+                cb(ray, PhysicsManager::get()->world());
+    
+        PhysicsManager::get()->world()->launchRay(cb);
+        
+        if(cb.doesCollide())
+        std::cout << "o: " << origin << " c: " << cb.getCollisionPoint() << std::endl;    
+
+        if(cb.doesCollide() && (origin.y - cb.getCollisionPoint().y) < 0.2)
+            return true;
+    }
+    
+    return false;
+}
+
 void
 CharacterMovementController::handleInput(double p_timeSinceLastFrame)
 {
@@ -28,19 +58,23 @@ CharacterMovementController::handleInput(double p_timeSinceLastFrame)
         
     double speed = 4;
     double impulse = 1;
-    double jumpImpulse = 42;
+    double jumpSpeed = 10;
     
     bool runKeyPressed = false;
     bool jumpKeyPressed = false;
+
     
     MainApplication::lockPhysics();
 
     Ogre::Vector3 angularVelocity = Ogre::Vector3::ZERO; 
-    Ogre::Vector3 linearImpulse = Ogre::Vector3::ZERO;
+    Ogre::Vector3 linearImpulse = Ogre::Vector3::ZERO; 
 
     if(keyboard->isKeyDown(OIS::KC_RSHIFT) || 
         keyboard->isKeyDown(OIS::KC_LSHIFT))
+    {    
         speed *= 2.8;
+        impulse *= 2.8;
+    }
     
     if(keyboard->isKeyDown(OIS::KC_LEFT))
     {
@@ -56,17 +90,17 @@ CharacterMovementController::handleInput(double p_timeSinceLastFrame)
         runKeyPressed = true;
     }
     
-    if(keyboard->isKeyDown(OIS::KC_SPACE) && 
-            ((CharacterCollisionHandler*)m_body->
-                    getCollisionHandler())->isCharacterOnGround())
+    if((keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP)) 
+            && isCharacterOnGround())
+    // if((keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP)) 
+    //         && ((CharacterCollisionHandler*)m_body->
+    //                 getCollisionHandler())->isCharacterOnGround())
     {
-        linearImpulse += Ogre::Vector3(0,jumpImpulse,0);
         jumpKeyPressed = true;
     }
     
 
-    if(angularVelocity != Ogre::Vector3::ZERO 
-            || linearImpulse != Ogre::Vector3::ZERO)
+    if(angularVelocity != Ogre::Vector3::ZERO || jumpKeyPressed)
         m_body->enableActiveState();
 
     if(!runKeyPressed)
@@ -76,11 +110,17 @@ CharacterMovementController::handleInput(double p_timeSinceLastFrame)
         {
             m_body->enableActiveState();
             m_body->setLinearVelocity(
-                    vel.x * (pow(0.01, p_timeSinceLastFrame)), vel.y, 0);
+                    vel.x * (pow(0.0001, p_timeSinceLastFrame)), vel.y, 0);
         }
     }
 
-    if(runKeyPressed || jumpKeyPressed)
+    if(jumpKeyPressed)
+    {
+        Ogre::Vector3 vel = m_body->getLinearVelocity();
+        m_body->setLinearVelocity(vel.x, jumpSpeed, vel.z);
+    }
+    
+    if(runKeyPressed)
     {
         m_body->setAngularVelocity(angularVelocity);
         m_body->applyImpulse(linearImpulse, Ogre::Vector3(0,0,0));

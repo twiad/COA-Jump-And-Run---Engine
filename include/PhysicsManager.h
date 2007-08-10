@@ -21,8 +21,6 @@ class PhysicsManager // : public Ogre::FrameListener
 
     Ogre::SceneNode* m_debugNode;
 
-    void applyQueuedPhysicsInteractions();
-
 public:
     /**
      * get access to the singleton instance.
@@ -69,7 +67,6 @@ public:
         return m_world;
     }
     
-    void queuePhysicsInteraction(PhysicsInteractionPacket* packet);
 };
 
 }

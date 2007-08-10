@@ -7,7 +7,7 @@
 #define COAJNR_GRAPHICS_FPS 80
 #define COAJNR_PHYSICS_FPS 80
 #define COAJNR_INIT_SCENE SceneryTest
-#define COAJNR_PHYSICS_SPEED_FACTOR 1.5
+#define COAJNR_PHYSICS_SPEED_FACTOR 2
 
 namespace CoABlaster
 {
