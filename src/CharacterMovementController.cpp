@@ -23,29 +23,35 @@ CharacterMovementController::~CharacterMovementController()
 }
 
 /// @todo TODO: dynamic (character size)
+/// @todo TODO: maybe another way to prevent ray-self collision?
+/// @todo TODO: different ray tresholds to approx sphere shape and prevent
+///             jumping off corners
 bool
 CharacterMovementController::isCharacterOnGround()
 {
     Ogre::Vector3 origin = m_body->getWorldPosition();
+    Ogre::Vector3 target;
+    
+    // go one to the left
     origin.x--;
-    
-    origin.y -= 1.0;
-    
-    for(int i = 0; i < 3; i++)
-    {    
-        origin.x++;
         
-        Ogre::Ray ray(origin, Ogre::Vector3::NEGATIVE_UNIT_Y);
+    /// test 3, left, middle, right (!!! adjust with char size !!!)
+    for(int i = 0; i < 3; i++)
+    {   
+        // ray in negative y axis
+        target = Ogre::Vector3(origin.x, origin.y - 1.1, origin.z);
+        
+        Ogre::Ray ray(origin, target);
         OgreBulletCollisions::CollisionClosestRayResultCallback
                 cb(ray, PhysicsManager::get()->world());
     
         PhysicsManager::get()->world()->launchRay(cb);
         
-        if(cb.doesCollide())
-        std::cout << "o: " << origin << " c: " << cb.getCollisionPoint() << std::endl;    
-
-        if(cb.doesCollide() && (origin.y - cb.getCollisionPoint().y) < 0.2)
+        if(cb.doesCollide() && cb.getCollidedObject() != m_body 
+                && (origin.y - cb.getCollisionPoint().y) < 1.1)
             return true;
+
+        origin.x++;
     }
     
     return false;
