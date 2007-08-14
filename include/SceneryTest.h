@@ -11,29 +11,28 @@ namespace CoABlaster
 
 #define BOX_COUNT
 
+class Character;
 class InputController;
 
 class SceneryTest : public Scenery
 {
-    Ogre::SceneNode* m_cubeNode;
     Ogre::SceneNode* m_planeNode;
-    // Ogre::SceneNode* m_boxStackNodes[10];
+    // Ogre::SceneNode* m_boxStackNodes[BOX_COUNT];
     
-    Ogre::Entity* m_cube;
     Ogre::Entity* m_plane;
-    // Ogre::Entity* m_boxStack[10];
+    // Ogre::Entity* m_boxStack[BOX_COUNT];
     
     Ogre::Light* m_light;
     
-    OgreBulletCollisions::CollisionShape* m_cubeShape;
     OgreBulletCollisions::CollisionShape* m_planeShape;
-    // OgreBulletCollisions::CollisionShape* m_boxStackShape[10];
+    // OgreBulletCollisions::CollisionShape* m_boxStackShape[BOX_COUNT];
     
-    OgreBulletDynamics::RigidBody* m_cubeBody;
     OgreBulletDynamics::RigidBody* m_planeBody;
-    // OgreBulletDynamics::RigidBody* m_boxStackBodies[10];
+    // OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
 
     InputController* m_movementInputController;
+    
+    Character* m_character;
     
 public:
     SceneryTest();

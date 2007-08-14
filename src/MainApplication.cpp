@@ -4,8 +4,8 @@
 #include "PhysicsManager.h"
 #include "SceneryTest.h"
 
-#define COAJNR_GRAPHICS_FPS 80
-#define COAJNR_PHYSICS_FPS 80
+#define COAJNR_GRAPHICS_FPS 60
+#define COAJNR_PHYSICS_FPS 60
 #define COAJNR_INIT_SCENE SceneryTest
 #define COAJNR_PHYSICS_SPEED_FACTOR 2
 
@@ -78,6 +78,7 @@ MainApplication::graphicsWorkerThread(void* data)
     uint timeToWait = 0;
     
     double elapsedSeconds = 0;
+    double updateTime = 0;
     
     uint minFrameTime = 1000 / COAJNR_GRAPHICS_FPS;
     
@@ -97,7 +98,7 @@ MainApplication::graphicsWorkerThread(void* data)
 
         lockGraphics();
 
-        if(GraphicsManager::get()->update(0) == false)
+        if(GraphicsManager::get()->update(updateTime) == false)
         {
             unlockGraphics();
         
@@ -108,11 +109,11 @@ MainApplication::graphicsWorkerThread(void* data)
             break;
         }
         
+        unlockGraphics();
+
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         elapsedSeconds = elapsedMilliSeconds / 1000.0f;
-        
-        unlockGraphics();
-        
+        updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
         
         SDL_Delay(timeToWait);
@@ -170,7 +171,6 @@ MainApplication::physicsWorkerThread(void* data)
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         elapsedSeconds = elapsedMilliSeconds / 1000.0f;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
-
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
 
         SDL_Delay(timeToWait);

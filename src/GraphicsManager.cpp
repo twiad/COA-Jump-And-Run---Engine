@@ -1,8 +1,8 @@
 
 #include "GraphicsManager.h"
 
+#include "Character.h"
 #include "InputHandler.h"
-// #include "PhysicsManager.h"
 #include "Scenery.h"
 
 using namespace Ogre;
@@ -154,6 +154,7 @@ bool
 GraphicsManager::update(double p_elapsed)
 {
     WindowEventUtilities::messagePump();
+    applyMovementCorrections(p_elapsed);
     return renderOneFrame();
 }
 
@@ -190,6 +191,32 @@ GraphicsManager::setScenery(Scenery* p_scenery)
 
     m_scenery = p_scenery;
     m_scenery->setup();
+}
+
+void
+GraphicsManager::applyMovementCorrections(double p_elapsed)
+{
+    std::vector<Character*>::iterator it;
+    for(it = m_characters.begin(); it != m_characters.end(); it++)
+        (*it)->applyMovementCorrections(p_elapsed);
+}
+
+void
+GraphicsManager::addCharacter(Character* p_character)
+{
+    assert(p_character && "character must not be null");
+    m_characters.push_back(p_character);
+}
+
+void
+GraphicsManager::removeCharacter(Character* p_character)
+{
+    assert(p_character && "character must not be null");
+    
+    std::vector<Character*>::iterator it;
+    for(it = m_characters.begin(); it != m_characters.end(); it++)
+        if(*it == p_character)
+            m_characters.erase(it);
 }
 
 }

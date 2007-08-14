@@ -9,15 +9,14 @@
 namespace CoABlaster
 {
 
+class Character;
+
 class CharacterMovementController : public InputController
 {
-
-    OgreBulletDynamics::RigidBody* m_body;
-
-    bool isCharacterOnGround();
+    Character* m_character;
 
 public:
-    CharacterMovementController(OgreBulletDynamics::RigidBody* body);
+    CharacterMovementController(Character* character);
 
     virtual ~CharacterMovementController();
     

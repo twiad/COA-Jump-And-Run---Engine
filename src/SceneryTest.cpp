@@ -1,7 +1,7 @@
 #include "SceneryTest.h"
 
 #include "CameraSmoothFollow.h"
-#include "CharacterCollisionHandler.h"
+#include "Character.h"
 #include "CharacterMovementController.h"
 #include "GraphicsManager.h"
 #include "InputHandler.h"
@@ -12,21 +12,13 @@ namespace CoABlaster
 
 SceneryTest::SceneryTest()
 {
-    m_cubeNode = 0;
     m_planeNode = 0;
-    
-    m_cube = 0;
     m_plane = 0;
-    
     m_light = 0;
-    
-    m_cubeShape = 0;
     m_planeShape = 0;
-    
-    m_cubeBody = 0;
     m_planeBody = 0;
-
     m_movementInputController = 0;
+    m_character = 0;
 }
 
 SceneryTest::~SceneryTest()
@@ -51,32 +43,6 @@ SceneryTest::setup()
     m_light = sm->createLight("point-light");
     m_light->setType(Ogre::Light::LT_POINT);
     m_light->setPosition(Ogre::Vector3(10, 20, 20));
-
-
-    // cube
-    m_cube = sm->createEntity("cube", "Cube.mesh");
-    m_cube->setNormaliseNormals(true);
-
-    m_cubeShape = new OgreBulletCollisions::SphereCollisionShape(1);
-    
-    m_cubeBody = new OgreBulletDynamics::RigidBody(
-                    "cube-body", PhysicsManager::get()->world());
-    m_cubeBody->setCollisionHandler(new CharacterCollisionHandler());
-
-    m_cubeNode = sm->getRootSceneNode()->createChildSceneNode("cube-node");
-    m_cubeNode->setPosition(Ogre::Vector3(0, 7, 0));
-
-    m_cubeNode->attachObject(m_cube);
-    m_cubeBody->setShape(
-            m_cubeNode, 
-            m_cubeShape, 
-            0.0, // restitution 
-            0.5, // friction
-            5,   // mass
-            Ogre::Vector3(0, 7, 0));
-
-    // m_cubeBody->setDamping(0,0);
-    // m_cubeBody->setDamping(1,1);
 
     // plane
     // m_plane = sm->createEntity("plane", "ground.mesh");
@@ -106,12 +72,14 @@ SceneryTest::setup()
             0.5  // friction
             );
 
-    m_movementInputController = new CharacterMovementController(m_cubeBody);
-
+    m_character = new Character("player", "Cube.mesh");
+    m_movementInputController = new CharacterMovementController(m_character);
     InputHandler::get()->addInputController(m_movementInputController);
+
     GraphicsManager::get()->root()->addFrameListener(
             new CameraSmoothFollow(
-                    GraphicsManager::get()->camera(), m_cubeNode));
+                    GraphicsManager::get()->camera(), 
+                    m_character->sceneNode()));
 }
 
 void
@@ -124,25 +92,14 @@ SceneryTest::cleanup()
     delete m_movementInputController;
 
     // cleaning up ogre objects
-    sm->destroyEntity("cube");
-    m_cube = 0;
-    
     sm->destroyEntity("plane");
     m_plane = 0;
-    
-    sm->destroySceneNode("cube-node");
-    m_cubeNode = 0;
 
     sm->destroySceneNode("plane-node");
     m_planeNode = 0;
 
     sm->destroyLight("point-light");
     m_light = 0;
-
-    // cleaning up ogrebullet objects
-    delete m_cubeBody;
-    m_cubeBody = 0;
-    m_cubeShape = 0;
     
     delete m_planeBody;
     m_planeBody = 0;

@@ -8,6 +8,7 @@ namespace CoABlaster
 {
     
 class Scenery;
+class Character;
 
 /**
  * this class is rensponsable for ogre configuration and runtime
@@ -39,6 +40,9 @@ class GraphicsManager
 
     /// the current scenery
     Scenery* m_scenery;
+
+    /// list of characters to make movement corrections
+    std::vector<Character*> m_characters;
 
     /**
      * setup renderer resources, like textures etc
@@ -101,6 +105,21 @@ public:
      * sets the current scenery and deactivated the active one before.
      */
     void setScenery(Scenery* scenery);
+
+    /**
+     * adds a character to the list of objects which get movment corrections.
+     */
+    void addCharacter(Character* character);
+
+    /**
+     * removes a character from the graphics manager.
+     */
+    void removeCharacter(Character* character);
+
+    /**
+     * applies movement corrections for all registered characters.
+     */
+    void applyMovementCorrections(double p_elapsed);
 
     /**
      * returns the scenemanager.
