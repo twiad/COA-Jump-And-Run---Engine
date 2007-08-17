@@ -39,9 +39,9 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include" -I"$(BULLET_HOME)/src"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib"
-	LIBRARIES	 += -lOgreMain -lOIS -llibbulletcollision -llibbulletdynamics -llibbulletmath -lSDL
+	INCLUDE		 += -I"$(OGRE_HOME)/include" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
+	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
+	LIBRARIES	 += -lOgreMain -lOIS -lbulletcollision -lbulletdynamics -lbulletmath -lOgreBullet -lSDLmain -lSDL
 #																			   #
 # ############################################################################ #
 

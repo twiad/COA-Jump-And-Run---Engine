@@ -50,9 +50,9 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release"
-	LIBRARIES	 += -lOgreMain -lOIS 
+	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
+	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
+	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lOgreBullet -lSDLmain -lSDL
 	BINPATH		  = ./bin
 	TESTBINPATH	  = ./bin
 	EXTENSION	  = .exe
