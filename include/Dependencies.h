@@ -31,4 +31,6 @@
 /// CoA-Blaster compile time configuration
 #include "Config.h"
 
+#define uint unsigned int
+
 #endif
