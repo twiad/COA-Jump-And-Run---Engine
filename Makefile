@@ -6,7 +6,7 @@ TARGET = CoAJnR
 
 # global flags
 CXXFLAGS        += -pipe
-EXTRA_CXXFLAGS   = -D_DEBUG
+EXTRA_CXXFLAGS   = -DDEBUG
 WARN_FLAGS	     = -Wall
 INCLUDE	        += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include
 LIBPATH		     = -L./dep/OgreBullet

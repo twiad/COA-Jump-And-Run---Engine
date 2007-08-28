@@ -2,6 +2,10 @@
 #ifndef COABLASTER_DEPENDENCIES_INCLUDED
 #define COABLASTER_DEPENDENCIES_INCLUDED
 
+#ifdef DEBUG
+#define _DEBUG
+#endif
+
 /// general c++ input output streams
 #include <iostream>
 

@@ -98,6 +98,8 @@ GraphicsManager::setupResources()
 bool 
 GraphicsManager::init(Scenery* p_scenery)
 {
+    assert(p_scenery && "scenery must not be null");
+    
     m_root = new Root(
             m_resourcePath + "plugins.cfg", 
             m_resourcePath + "ogre.cfg", 
@@ -105,6 +107,7 @@ GraphicsManager::init(Scenery* p_scenery)
 
     setupResources();
 
+    /// @todo TODO: else??
     if(m_root->showConfigDialog())
           m_window = m_root->initialise(true, "CoA JnR");
 
@@ -181,7 +184,8 @@ GraphicsManager::startRendering()
 void
 GraphicsManager::setScenery(Scenery* p_scenery)
 {
-    assert(p_scenery);
+    assert(p_scenery && "scenery must not be null");
+    
 
     if(m_scenery)
     {
@@ -212,7 +216,6 @@ void
 GraphicsManager::removeCharacter(Character* p_character)
 {
     assert(p_character && "character must not be null");
-    
     std::vector<Character*>::iterator it;
     for(it = m_characters.begin(); it != m_characters.end(); it++)
         if(*it == p_character)

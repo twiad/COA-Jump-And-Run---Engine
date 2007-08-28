@@ -8,15 +8,18 @@
 namespace CoABlaster
 {
 
+/// @todo TODO: create a special object state for characters to have only
+/// characters always axis aligned, next is the boxstack then ^^
+
 Character::Character(std::string p_idenitfier, std::string p_meshFile)
     : OgreBulletDynamics::RigidBody(
             p_idenitfier, PhysicsManager::get()->world()) 
 {
     m_identifier = p_idenitfier;
     
-    m_moveRotation =  800;
-    m_moveImpule   =  200;
-    m_jumpForce    = 10;    
+    m_moveRotation = 800;
+    m_moveImpule   = 200;
+    m_jumpForce    =  10;    
     
     m_entity = GraphicsManager::get()->sceneManager()->
             createEntity(p_idenitfier, p_meshFile);
@@ -27,7 +30,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             GraphicsManager::get()->sceneManager()->
                     getRootSceneNode()->createChildSceneNode(p_idenitfier), 
             new OgreBulletCollisions::SphereCollisionShape(1), 
-            0.0, /* ............................................. restitution */
+            2.0, /* ............................................. restitution */
             0.5, /* ............................................. friction    */
             5,   /* ............................................. mass        */
             Ogre::Vector3(0, 7, 0));
@@ -135,7 +138,7 @@ Character::applyMovementCorrections(double p_elaped)
         setLinearVelocity(
             vel.x * (pow(0.0001, p_elaped * 1.0)), vel.y, 0);
 
-        std::cout << vel << std::endl;
+        // std::cout << vel << std::endl;
     }
     
 }

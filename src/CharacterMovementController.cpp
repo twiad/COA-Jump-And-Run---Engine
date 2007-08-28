@@ -12,6 +12,7 @@ namespace CoABlaster
 
 CharacterMovementController::CharacterMovementController(Character* p_character)
 {
+    assert(p_character && "character must not be null");
     m_character = p_character;
 }
 

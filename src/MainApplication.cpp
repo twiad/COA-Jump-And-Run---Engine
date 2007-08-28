@@ -28,6 +28,8 @@ uint        MainApplication::m_graphicsUpdates = 0;
 void
 MainApplication::initialize()
 {
+    SDL_Init(SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE);
+
     m_graphicsLock = SDL_CreateMutex();
     m_physicsLock = SDL_CreateMutex();
 
@@ -41,11 +43,19 @@ MainApplication::initialize()
 }
 
 void
+MainApplication::cleanup()
+{
+    /// @todo TODO: clean exit
+    // delete PhysicsManager::get();
+    // delete GraphicsManager::get();
+
+    SDL_Quit();
+}
+
+void
 MainApplication::go()
 {
     std::cout << COABLASTER_VERION_STRING << std::endl;
-
-    SDL_Init(SDL_INIT_TIMER | SDL_INIT_NOPARACHUTE);
 
     initialize();
 
@@ -65,11 +75,11 @@ MainApplication::go()
     std::cout << "Graphics Update Cycles: " << m_graphicsUpdates << std::endl;
 #endif
 
-    SDL_Quit();
+    cleanup();
 }
 
 int 
-MainApplication::graphicsWorkerThread(void* data)
+MainApplication::graphicsWorkerThread(void* p_data)
 {
     lockGraphics();
 
@@ -77,7 +87,6 @@ MainApplication::graphicsWorkerThread(void* data)
     uint elapsedMilliSeconds = 0;
     uint timeToWait = 0;
     
-    double elapsedSeconds = 0;
     double updateTime = 0;
     
     uint minFrameTime = 1000 / COAJNR_GRAPHICS_FPS;
@@ -112,7 +121,6 @@ MainApplication::graphicsWorkerThread(void* data)
         unlockGraphics();
 
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
-        elapsedSeconds = elapsedMilliSeconds / 1000.0f;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
         
@@ -132,22 +140,18 @@ MainApplication::graphicsWorkerThread(void* data)
 #endif
     }
 
-#ifdef _DEBUG
-    delete GraphicsManager::get();
-#endif
-
     return 0;
 }
 
 int 
-MainApplication::physicsWorkerThread(void* data)
+MainApplication::physicsWorkerThread(void* p_data)
 {
     waitPhysicsCanStart();
 
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
     uint timeToWait = 0;
-    double elapsedSeconds = 0;
+
     double updateTime = 0;
     
     uint minFrameTime = 1000 / COAJNR_PHYSICS_FPS;
@@ -169,7 +173,6 @@ MainApplication::physicsWorkerThread(void* data)
         unlockGraphics();
         
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
-        elapsedSeconds = elapsedMilliSeconds / 1000.0f;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
 
@@ -218,6 +221,18 @@ void
 MainApplication::signalPhysicsCanStart()
 {
     SDL_CondSignal(m_physicsCanStartCondition);
+}
+
+void
+MainApplication::syncWithPhysics()
+{
+    
+}
+
+void
+MainApplication::syncWithGraphics()
+{
+    
 }
 
 }

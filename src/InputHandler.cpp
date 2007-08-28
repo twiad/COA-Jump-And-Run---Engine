@@ -57,7 +57,6 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
         return false;
         
     std::vector<InputController*>::iterator it = m_inputControllers.begin();
-    
     while(it != m_inputControllers.end())
         (*it++)->handleInput(p_event.timeSinceLastFrame);
     
@@ -67,14 +66,15 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
 void
 InputHandler::addInputController(InputController* p_controller)
 {
+    assert(p_controller && "controller must not be null");
     m_inputControllers.push_back(p_controller);
 }
 
 void
 InputHandler::removeInputController(InputController* p_controller)
 {
+    assert(p_controller && "controller must not be null");
     std::vector<InputController*>::iterator it;
-
     for(it = m_inputControllers.begin(); it != m_inputControllers.end(); it++)
         if((*it) == p_controller)
             m_inputControllers.erase(it);

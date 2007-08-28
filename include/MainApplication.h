@@ -27,6 +27,13 @@ class MainApplication
     static bool m_physicsKeepRunning;
 
     static void initialize();
+    static void cleanup();
+
+    static void waitPhysicsCanStart();
+    static void signalPhysicsCanStart();
+
+    static void syncWithPhysics();
+    static void syncWithGraphics();
 
 public:
     MainApplication() {};
@@ -44,8 +51,6 @@ public:
     static int lockPhysics();
     static int unlockPhysics();
 
-    static void waitPhysicsCanStart();
-    static void signalPhysicsCanStart();
 };
 
 }

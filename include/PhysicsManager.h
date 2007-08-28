@@ -30,6 +30,7 @@ public:
         if(!m_instance)
             m_instance = new PhysicsManager;
 
+        assert(m_instance);
         return m_instance;
     }
     
