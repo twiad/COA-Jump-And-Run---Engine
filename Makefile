@@ -52,7 +52,7 @@ else
 #																			   #
 	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
 	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
-	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lOgreBullet -lSDLmain -lSDL
+	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lOgreBullet -lmingw32 -lSDLmain -lSDL -mwindows
 	BINPATH		  = ./bin
 	TESTBINPATH	  = ./bin
 	EXTENSION	  = .exe
@@ -72,7 +72,7 @@ O_FILES	  = $(SRC_FILES:%.cpp=%.o)
 TEST_SRC_FILES = $(wildcard test/*.cpp)
 TEST_O_FILES = $(TEST_SRC_FILES:%.cpp=%.o)
 
-all: libOgreBullet.a $(TARGET) test
+all: libOgreBullet.a $(TARGET)
 
 $(TARGET): $(O_FILES) libOgreBullet.a
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)

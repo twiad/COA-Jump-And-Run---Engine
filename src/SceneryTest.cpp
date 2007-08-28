@@ -13,7 +13,9 @@ namespace CoABlaster
 SceneryTest::SceneryTest()
 {
     m_planeNode = 0;
+    m_boxNode = 0;
     m_plane = 0;
+    m_box = 0;
     m_light = 0;
     m_planeShape = 0;
     m_planeBody = 0;
@@ -72,6 +74,24 @@ SceneryTest::setup()
             0.5  // friction
             );
 
+    /*// questionmark box
+    m_box = sm->createEntity("QBox" , "QuestionCube.mesh");
+    m_box->setNormaliseNormals(true);
+        
+    m_boxNode = sm->getRootSceneNode()->createChildSceneNode("QBoxNode");
+    
+    m_boxNode->attachObject(m_box);
+    
+    m_boxBody = new OgreBulletDynamics::RigidBody("BoxBody", PhysicsManager::get()->world());
+    m_boxBody->setStaticShape(
+    		m_boxNode,
+    		new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(1, 1, 1)),
+    		0.0,
+    		0.0,
+    		Ogre::Vector3(0, 8, 0)
+    		);*/
+    
+    // Character
     m_character = new Character("player", "Cube.mesh");
     m_movementInputController = new CharacterMovementController(m_character);
     InputHandler::get()->addInputController(m_movementInputController);
@@ -105,6 +125,5 @@ SceneryTest::cleanup()
     m_planeBody = 0;
     m_planeShape = 0;
 }
-
 
 }
