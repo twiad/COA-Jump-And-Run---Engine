@@ -74,7 +74,7 @@ SceneryTest::setup()
             0.5  // friction
             );
 
-    /*// questionmark box
+    // questionmark box
     m_box = sm->createEntity("QBox" , "QuestionCube.mesh");
     m_box->setNormaliseNormals(true);
         
@@ -84,12 +84,12 @@ SceneryTest::setup()
     
     m_boxBody = new OgreBulletDynamics::RigidBody("BoxBody", PhysicsManager::get()->world());
     m_boxBody->setStaticShape(
-    		m_boxNode,
-    		new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(1, 1, 1)),
-    		0.0,
-    		0.0,
-    		Ogre::Vector3(0, 8, 0)
-    		);*/
+            m_boxNode,
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(1, 1, 1)),
+            0.0,
+            0.0,
+            Ogre::Vector3(4, 8, 0)
+            );
     
     // Character
     m_character = new Character("player", "Cube.mesh");

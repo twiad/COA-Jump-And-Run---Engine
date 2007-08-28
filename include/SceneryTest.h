@@ -27,11 +27,11 @@ class SceneryTest : public Scenery
     Ogre::Light* m_light;
     
     OgreBulletCollisions::CollisionShape* m_planeShape;
-    //OgreBulletCollisions::CollisionShape* m_boxShape;
+    OgreBulletCollisions::CollisionShape* m_boxShape;
     // OgreBulletCollisions::CollisionShape* m_boxStackShape[BOX_COUNT];
     
     OgreBulletDynamics::RigidBody* m_planeBody;
-    //OgreBulletDynamics::RigidBody* m_boxBody;
+    OgreBulletDynamics::RigidBody* m_boxBody;
     // OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
 
     InputController* m_movementInputController;
