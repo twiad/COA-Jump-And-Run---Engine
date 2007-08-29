@@ -140,6 +140,8 @@ Character::applyMovementCorrections(double p_elaped)
 
         // std::cout << vel << std::endl;
     }
+
+    setOrientation(btQuaternion());
     
 }
 

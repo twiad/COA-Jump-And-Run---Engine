@@ -73,8 +73,8 @@ namespace OgreBulletCollisions
 
         /// @todo TODO: APPLY ROTATIONS AGAIN
         lockTransformationCache();
-        // m_transformationCache[mObject] = worldTrans;
-        m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());
+        m_transformationCache[mObject] = worldTrans;
+        // m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());
         // m_transformationCache[mObject].setBasis(worldTrans.getBasis());
         unlockTransformationCache();
 
