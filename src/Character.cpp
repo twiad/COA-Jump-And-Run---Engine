@@ -126,7 +126,7 @@ Character::moveRight(double p_elapsed)
 }
 
 void
-Character::applyMovementCorrections(double p_elaped)
+Character::applyMovementCorrections(double p_elapsed)
 {
     Ogre::Vector3 pos = getWorldPosition();
     setPosition(pos.x, pos.y, 0);
@@ -136,7 +136,7 @@ Character::applyMovementCorrections(double p_elaped)
     {
         enableActiveState();
         setLinearVelocity(
-            vel.x * (pow(0.0001, p_elaped * 1.0)), vel.y, 0);
+            vel.x * (pow(0.0001, p_elapsed * 1.0)), vel.y, 0);
 
         // std::cout << vel << std::endl;
     }

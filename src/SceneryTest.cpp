@@ -6,6 +6,7 @@
 #include "GraphicsManager.h"
 #include "InputHandler.h"
 #include "PhysicsManager.h"
+#include "LevelObject.h"
 
 namespace CoABlaster
 {
@@ -48,20 +49,18 @@ SceneryTest::setup()
 
     // plane
     // m_plane = sm->createEntity("plane", "ground.mesh");
-    m_plane = sm->createEntity("plane", "level2.mesh");
+    m_plane = sm->createEntity("plane", "Level3.mesh");
     m_plane->setNormaliseNormals(true);
 
     m_planeNode = sm->getRootSceneNode()->
             createChildSceneNode("plane-node");
 
-    m_planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(-90));
+    //m_planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(-90));
 
     // m_planeShape = new OgreBulletCollisions::StaticPlaneCollisionShape(
     //         Ogre::Vector3(0,1,0), 0.97);
 
-    Ogre::Matrix4 transform;
-    m_planeNode->getWorldTransforms(&transform);
-    OgreBulletCollisions::MeshToShapeConverter converter(m_plane, transform);
+    OgreBulletCollisions::MeshToShapeConverter converter(m_plane);
     m_planeShape = converter.createTrimesh();
     
     m_planeBody = new OgreBulletDynamics::RigidBody(
@@ -69,11 +68,16 @@ SceneryTest::setup()
 
     m_planeNode->attachObject(m_plane);
     m_planeBody->setStaticShape(
+    		m_planeNode,
             m_planeShape,
             0.0,   // restitution 
-            0.5  // friction
+            0.5,  // friction
+            Ogre::Vector3(0, 0, 0),
+            Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
             );
-
+    
+    m_planeBody->setPosition(Ogre::Vector3(0,0,0));
+    m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
     // questionmark box
     m_box = sm->createEntity("QBox" , "QuestionCube.mesh");
     m_box->setNormaliseNormals(true);
@@ -90,6 +94,8 @@ SceneryTest::setup()
             0.0,
             Ogre::Vector3(4, 8, 0)
             );
+    
+    new LevelObject("QBox_X" , "QuestionCube.mesh", Ogre::Vector3(6, 8, 0));
     
     // Character
     m_character = new Character("player", "Cube.mesh");
