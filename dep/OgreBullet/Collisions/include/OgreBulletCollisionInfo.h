@@ -43,6 +43,7 @@ namespace OgreBulletCollisions
     public:
         CollisionInfo(Object* object, Object* partner, btVector3 localPosition, btVector3 worldPosition)
         {
+            m_object = object;
             m_partner = partner;
             m_localPosition = localPosition;
             m_worldPosition = worldPosition;

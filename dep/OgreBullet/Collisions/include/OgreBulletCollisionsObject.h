@@ -89,11 +89,7 @@ namespace OgreBulletCollisions
         inline CollisionShape *getShape() const{ return mShape;};
         inline DebugCollisionShape* getDebugShape() const{ return mDebugShape;};
 
-        inline void setCollisionHandler(CollisionHandler* handler) 
-        { 
-            mCollisionHandler = handler; 
-            mCollisionHandler->setCollisionObject(this);
-        }
+        inline void setCollisionHandler(CollisionHandler* handler) { mCollisionHandler = handler; }
         inline CollisionHandler* getCollisionHandler() { return mCollisionHandler; }
 
         void setShape(CollisionShape *shape, 

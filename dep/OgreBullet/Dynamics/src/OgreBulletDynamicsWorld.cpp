@@ -107,25 +107,23 @@ namespace OgreBulletDynamics
             else
                 handlerB = 0;
             
-            //if(!handlerA && !handlerB)
-                //continue;
+            if(!handlerA && !handlerB)
+                continue;
             
             contactManifold->refreshContactPoints(obA->getWorldTransform(),obB->getWorldTransform());
             
             const unsigned int numContacts = contactManifold->getNumContacts();
-            std::cout << numContacts << std::endl;
             for (unsigned int j = 0;j < numContacts; j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                        
+                                
                 if(handlerA)
                 {                    
-                    CollisionInfo info(
+                    CollisionInfo* info = new CollisionInfo(
                         (Object*)obA->getUserPointer(), 
                         (Object*)obB->getUserPointer(), 
                         pt.m_localPointA, 
                         pt.getPositionWorldOnA());
-                    // handlerA->handleCollision(info);
 
                     SDL_LockMutex(mCollisionInfosMutex);
                     mCollisionInfos.push_back(info);
@@ -134,12 +132,11 @@ namespace OgreBulletDynamics
             
                 if(handlerB)
                 {
-                    CollisionInfo info(
+                    CollisionInfo* info = new CollisionInfo(
                         (Object*)obB->getUserPointer(), 
                         (Object*)obA->getUserPointer(), 
                         pt.m_localPointB, 
                         pt.getPositionWorldOnB());
-                    // handlerB->handleCollision(info);
 
                     SDL_LockMutex(mCollisionInfosMutex);
                     mCollisionInfos.push_back(info);
@@ -150,25 +147,25 @@ namespace OgreBulletDynamics
         }
 
 
-        if (mDebugDrawer) 
-        {
-            // draw lines that step Simulation sent.
-            mDebugDrawer->draw();
-
-            const bool drawFeaturesText = (mDebugDrawer->getDebugMode () & btIDebugDraw::DBG_DrawFeaturesText) != 0;
-            if (drawFeaturesText)
-            {
-                // on all bodies we have
-                // we get all shapes and draw more information
-                //depending on mDebugDrawer mode.
-                std::deque<Object*>::iterator it = mObjects.begin();
-                while (it != mObjects.end())
-                {
-                    //(*it)->drawFeaturesText();
-                    ++it;
-                }
-            }
-        }
+        // if (mDebugDrawer) 
+        // {
+        //     // draw lines that step Simulation sent.
+        //     mDebugDrawer->draw();
+        // 
+        //     const bool drawFeaturesText = (mDebugDrawer->getDebugMode () & btIDebugDraw::DBG_DrawFeaturesText) != 0;
+        //     if (drawFeaturesText)
+        //     {
+        //         // on all bodies we have
+        //         // we get all shapes and draw more information
+        //         //depending on mDebugDrawer mode.
+        //         std::deque<Object*>::iterator it = mObjects.begin();
+        //         while (it != mObjects.end())
+        //         {
+        //             //(*it)->drawFeaturesText();
+        //             ++it;
+        //         }
+        //     }
+        // }
     }
     // -------------------------------------------------------------------------
     void DynamicsWorld::synchronizeToOgre()
@@ -192,14 +189,16 @@ namespace OgreBulletDynamics
     {
         SDL_LockMutex(mCollisionInfosMutex);
 
-        // std::cout << "publishing " << mCollisionInfos.size() 
-        //         << " collision events" << std::endl;
+        OgreBulletCollisions::CollisionInfo* info;
 
         while(mCollisionInfos.size())
         {
-            if(mCollisionInfos.front().getObject()->getCollisionHandler())
-                mCollisionInfos.front().getObject()->getCollisionHandler()->
-                        handleCollision(mCollisionInfos.front());
+            info = mCollisionInfos.front();
+            
+            if(info->getObject()->getCollisionHandler())
+                info->getObject()->getCollisionHandler()->handleCollision(info);
+
+            delete info;
 
             mCollisionInfos.pop_front();
         }

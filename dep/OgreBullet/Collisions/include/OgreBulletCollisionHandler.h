@@ -35,15 +35,10 @@ namespace OgreBulletCollisions
 
     class CollisionHandler 
     {
-        Object* m_collisionObject;
-        
     public:
-        CollisionHandler() { m_collisionObject = 0; }        
+        CollisionHandler() {}        
         virtual ~CollisionHandler() {}
-        virtual void handleCollision(CollisionInfo& info) = 0;
-
-        Object* getCollisionObject() { return m_collisionObject; }
-        void setCollisionObject(Object* collisionObject) { m_collisionObject = collisionObject; }
+        virtual void handleCollision(CollisionInfo* info) = 0;
     };
 }
 #endif //_OGREBULLETCOLLISIONS_CollisionHandler_H

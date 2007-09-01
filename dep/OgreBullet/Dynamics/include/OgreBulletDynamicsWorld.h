@@ -77,7 +77,7 @@ namespace OgreBulletDynamics
 
         std::deque <TypedConstraint *>                    mConstraints;
 
-        std::list <OgreBulletCollisions::CollisionInfo>   mCollisionInfos;
+        std::list <OgreBulletCollisions::CollisionInfo*>  mCollisionInfos;
         SDL_mutex*                                        mCollisionInfosMutex;
         
     };

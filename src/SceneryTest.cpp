@@ -74,10 +74,14 @@ SceneryTest::setup()
     
     m_planeBody->setPosition(Ogre::Vector3(0,0,0));
     m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
+
     // questionmark box
     new LevelObject("NBox_1" , "NormalCube.mesh", Ogre::Vector3(4, 8, 0));
-    new LevelObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(5, 8, 0));
+    LevelObject* tmp = 
+        new LevelObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(5, 8, 0));
     new LevelObject("NBox_2" , "NormalCube.mesh", Ogre::Vector3(6, 8, 0));
+
+    tmp->setCollisionHandler(new DebugOutputCollisionHandler);
 
 
     // for(int i = 0; i < BOX_COUNT; i++)

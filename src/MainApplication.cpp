@@ -159,6 +159,8 @@ MainApplication::interactionWorkerThread(void* data)
                     << std::endl;
 
     }
+
+    return 0;
 }
 
 int 

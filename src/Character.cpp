@@ -17,7 +17,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 {
     m_identifier = p_idenitfier;
     
-    m_moveRotation = 800;
+    m_moveRotation = 80;
     m_moveImpule   = 200;
     m_jumpForce    =  10;    
     
@@ -31,7 +31,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
                     getRootSceneNode()->createChildSceneNode(m_identifier), 
             new OgreBulletCollisions::SphereCollisionShape(1), 
             2.0, /* ............................................. restitution */
-            0.5, /* ............................................. friction    */
+            2.0, /* ............................................. friction    */
             5,   /* ............................................. mass        */
             Ogre::Vector3(0, 7, 0));
 
@@ -139,7 +139,8 @@ Character::applyMovementCorrections(double p_elapsed)
     {
         enableActiveState();
         setLinearVelocity(
-            vel.x * (pow(0.0001, p_elapsed * 1.0)), vel.y, 0);
+            // vel.x * (pow(0.0001, p_elapsed * 1.0)), vel.y, 0);
+            vel.x * 0.9, vel.y, 0);
 
         // std::cout << vel << std::endl;
     }

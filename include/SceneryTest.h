@@ -48,6 +48,29 @@ public:
     virtual void cleanup();
 };
 
+class DebugOutputCollisionHandler : 
+        public OgreBulletCollisions::CollisionHandler
+{
+public:
+    void handleCollision(OgreBulletCollisions::CollisionInfo* info)
+    {
+        std::cout << "*** collision happened ***" << std::endl;
+
+        std::cout << " object: " << info->getObject() << std::endl;
+        std::cout << " partner: " << info->getPartner() << std::endl;
+        std::cout << " local position: " << 
+                info->getLocalPosition().x() << " " <<
+                info->getLocalPosition().y() << " " <<
+                info->getLocalPosition().z() << " " <<
+                std::endl;
+        std::cout << " world position: " << 
+                info->getWorldPosition().x() << " " <<
+                info->getWorldPosition().y() << " " <<
+                info->getWorldPosition().z() << " " <<
+                std::endl;
+    }  
+};
+
 }
 
 #endif
