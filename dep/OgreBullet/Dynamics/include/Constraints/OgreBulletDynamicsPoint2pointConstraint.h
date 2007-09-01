@@ -39,6 +39,8 @@ namespace OgreBulletDynamics
     {
     public:
 	    PointToPointConstraint(RigidBody *body, const Ogre::Vector3 &pivot);
+        PointToPointConstraint(RigidBody *body1, RigidBody *body2, 
+            const Ogre::Vector3 &pivot1, const Ogre::Vector3 &pivot2);
 
 	    virtual ~PointToPointConstraint();
 

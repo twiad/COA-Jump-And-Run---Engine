@@ -85,56 +85,63 @@ SceneryTest::setup()
 
 
     // this is the constraint test
-    //     {
-    //         m_testConstraint[0] = sm->createEntity("const0", "QuestionCube.mesh");
-    //         m_testConstraint[0]->setNormaliseNormals(true);
-    // 
-    //         m_testConstraintNodes[0] = sm->getRootSceneNode()->
-    //                 createChildSceneNode("constnode0");
-    //     
-    //         m_testConstraintBodies[0] = new OgreBulletDynamics::RigidBody(
-    //                 "constbody0", 
-    //                 PhysicsManager::get()->world());
-    //     
-    //         m_testConstraintBodies[0]->setShape(
-    //             m_testConstraintNodes[0], 
-    //             new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-    //             2.0, /* ............................................. restitution */
-    //             2.0, /* ............................................. friction    */
-    //             1,   /* ............................................. mass        */
-    //             Ogre::Vector3(1, 9, 0));    
-    // 
-    //         m_testConstraintNodes[0]->attachObject(m_testConstraint[0]);
-    // 
-    //         m_testConstraint[1] = sm->createEntity("const1", "QuestionCube.mesh");
-    //         m_testConstraint[1]->setNormaliseNormals(true);
-    // 
-    //         m_testConstraintNodes[1] = sm->getRootSceneNode()->
-    //                 createChildSceneNode("constnode1");
-    //     
-    //         m_testConstraintBodies[1] = new OgreBulletDynamics::RigidBody(
-    //                 "constbody1", 
-    //                 PhysicsManager::get()->world());
-    //     
-    //         m_testConstraintBodies[1]->setShape(
-    //             m_testConstraintNodes[1], 
-    //             new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-    //             2.0, /* ............................................. restitution */
-    //             2.0, /* ............................................. friction    */
-    //             1,   /* ............................................. mass        */
-    //             Ogre::Vector3(-2, 9, 0));    
-    // 
-    //         m_testConstraintNodes[1]->attachObject(m_testConstraint[1]);
-    //         
-    // m_testConstraintObject = new OgreBulletDynamics::ConeTwistConstraint(
-    //     m_testConstraintBodies[0], m_testConstraintBodies[1], 
-    //             Ogre::Vector3(0,0,0),
-    //             Ogre::Quaternion::IDENTITY,
-    //             Ogre::Vector3(3,0,0),
-    //             Ogre::Quaternion::IDENTITY);
-    // 
-    //         PhysicsManager::get()->world()->addConstraint(m_testConstraintObject);
-    //     }
+    {
+        m_testConstraint[0] = sm->createEntity("const0", "QuestionCube.mesh");
+        m_testConstraint[0]->setNormaliseNormals(true);
+
+        m_testConstraintNodes[0] = sm->getRootSceneNode()->
+                createChildSceneNode("constnode0");
+    
+        m_testConstraintBodies[0] = new OgreBulletDynamics::RigidBody(
+                "constbody0", 
+                PhysicsManager::get()->world());
+    
+        m_testConstraintBodies[0]->setShape(
+            m_testConstraintNodes[0], 
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
+            2.0, /* ............................................. restitution */
+            2.0, /* ............................................. friction    */
+            1,   /* ............................................. mass        */
+            Ogre::Vector3(1, 9, 0));    
+
+        m_testConstraintNodes[0]->attachObject(m_testConstraint[0]);
+
+        m_testConstraint[1] = sm->createEntity("const1", "QuestionCube.mesh");
+        m_testConstraint[1]->setNormaliseNormals(true);
+
+        m_testConstraintNodes[1] = sm->getRootSceneNode()->
+                createChildSceneNode("constnode1");
+    
+        m_testConstraintBodies[1] = new OgreBulletDynamics::RigidBody(
+                "constbody1", 
+                PhysicsManager::get()->world());
+    
+        m_testConstraintBodies[1]->setShape(
+            m_testConstraintNodes[1], 
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
+            2.0, /* ............................................. restitution */
+            2.0, /* ............................................. friction    */
+            1,   /* ............................................. mass        */
+            Ogre::Vector3(-2, 9, 0));    
+
+        m_testConstraintNodes[1]->attachObject(m_testConstraint[1]);
+        
+        // m_testConstraintObject = new OgreBulletDynamics::ConeTwistConstraint(
+        //     m_testConstraintBodies[0], m_testConstraintBodies[1], 
+        //             Ogre::Vector3(0,0,0),
+        //             Ogre::Quaternion::IDENTITY,
+        //             Ogre::Vector3(3,0,0),
+        //             Ogre::Quaternion::IDENTITY);
+
+        m_testConstraintObject = new OgreBulletDynamics::SixDofConstraint(
+            m_testConstraintBodies[0], m_testConstraintBodies[1], 
+                    Ogre::Vector3(0,0,0),
+                    Ogre::Quaternion::IDENTITY,
+                    Ogre::Vector3(3,0,0),
+                    Ogre::Quaternion::IDENTITY);
+
+        PhysicsManager::get()->world()->addConstraint(m_testConstraintObject);
+    }
 
     // this is the box stack
     for(int j = 0; j < 4; j++)
@@ -161,7 +168,7 @@ SceneryTest::setup()
                 new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
                 2.0, /* ............................................. restitution */
                 2.0, /* ............................................. friction    */
-                1,   /* ............................................. mass        */
+                5,   /* ............................................. mass        */
                 Ogre::Vector3(- 17 + i + (i*0.3), 1 + j + (j*0.1), 0));    
 
             m_boxStackNodes[i]->attachObject(m_boxStack[i]);

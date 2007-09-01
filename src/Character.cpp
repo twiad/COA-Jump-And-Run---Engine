@@ -147,12 +147,12 @@ Character::applyMovementCorrections()
     getBulletRigidBody()->getWorldTransform().setOrigin(
             btVector3(pos.x, pos.y, 0));
 
-    if(m_grabbedObject)
-    {
-        pos = m_grabbedObject->getWorldPosition();
-        m_grabbedObject->getBulletRigidBody()->getWorldTransform().setOrigin(
-                btVector3(pos.x, pos.y, 0));
-    }
+    // if(m_grabbedObject)
+    // {
+    //     pos = m_grabbedObject->getWorldPosition();
+    //     m_grabbedObject->getBulletRigidBody()->getWorldTransform().setOrigin(
+    //             btVector3(pos.x, pos.y, 0));
+    // }
 
     // setPosition(pos.x, pos.y, 0);
     // setOrientation(btQuaternion());
@@ -194,27 +194,19 @@ Character::grab()
     
     if(grabObject)
     {
-        Ogre::Vector3 distance = 
-                this->getWorldPosition() - grabObject->getWorldPosition();
-        
-        m_grabConstraint = new OgreBulletDynamics::ConeTwistConstraint(
-		    grabObject, 
-		    this, 
-            distance,
-            grabObject->getWorldOrientation(),
-            Ogre::Vector3::ZERO,
-            this->getWorldOrientation());
+        Ogre::Vector3 grabHinge = Ogre::Matrix4(grabObject->
+                getWorldOrientation()).inverse() * 
+                -(grabObject->getWorldPosition() - this->getWorldPosition());
 
-        // m_grabConstraint->setLimit(M_PI * 2, M_PI * 2, M_PI_4);
+        m_grabConstraint = new OgreBulletDynamics::PointToPointConstraint(
+		    this, 
+		    grabObject, 
+            Ogre::Vector3::ZERO,            
+            grabHinge);
 
         m_grabbedObject = grabObject;
 
-        Ogre::Vector3 pos = m_grabbedObject->getWorldPosition();
-        m_grabbedObject->getBulletRigidBody()->getWorldTransform().setOrigin(
-                btVector3(pos.x, pos.y, 0));
-
         PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
-
     }    
 }
 

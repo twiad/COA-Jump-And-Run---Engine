@@ -43,6 +43,16 @@ namespace OgreBulletDynamics
             OgreBulletCollisions::OgreBtConverter::to(pivot));
     }
     // -------------------------------------------------------------------------
+    PointToPointConstraint::PointToPointConstraint(RigidBody *body1, RigidBody *body2, 
+            const Vector3 &pivot1, const Vector3 &pivot2) :
+        TypedConstraint(body1, body2)
+    {
+        mConstraint = new btPoint2PointConstraint(*(body1->getBulletRigidBody ()),
+            *(body2->getBulletRigidBody ()),
+            OgreBulletCollisions::OgreBtConverter::to(pivot1),
+            OgreBulletCollisions::OgreBtConverter::to(pivot2));
+    }
+    // -------------------------------------------------------------------------
     PointToPointConstraint::~PointToPointConstraint()
     {
     }

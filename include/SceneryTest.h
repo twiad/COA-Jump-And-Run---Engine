@@ -38,7 +38,8 @@ class SceneryTest : public Scenery
     OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
     OgreBulletDynamics::RigidBody* m_testConstraintBodies[2];
 
-    OgreBulletDynamics::ConeTwistConstraint* m_testConstraintObject;
+    // OgreBulletDynamics::ConeTwistConstraint* m_testConstraintObject;
+    OgreBulletDynamics::SixDofConstraint* m_testConstraintObject;
 
     InputController* m_movementInputController;
     
