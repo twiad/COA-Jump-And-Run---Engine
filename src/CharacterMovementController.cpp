@@ -30,8 +30,13 @@ CharacterMovementController::handleInput()
         m_character->moveLeft(0.1);
     if(keyboard->isKeyDown(OIS::KC_RIGHT))
         m_character->moveRight(0.1);
-    if(keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP))
+    if(keyboard->isKeyDown(OIS::KC_UP))
         m_character->jump(0.1);
+
+    if(keyboard->isKeyDown(OIS::KC_SPACE))
+        m_character->grab();
+    else
+        m_character->ungrab();
 }
 
 }

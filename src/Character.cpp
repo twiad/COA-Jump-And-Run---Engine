@@ -19,9 +19,10 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     m_identifier = p_idenitfier;
     
     m_moveRotation = 20;
-    m_moveImpule   = 200;
-    m_jumpForce    =  10;    
-    
+    m_moveImpule   = 50;
+    m_jumpForce    =  10;
+    m_maxGrabDistance = 3;
+
     m_entity = GraphicsManager::get()->sceneManager()->
             createEntity(p_idenitfier, p_meshFile);
 
@@ -33,13 +34,14 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             new OgreBulletCollisions::SphereCollisionShape(1), 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
-            5,   /* ............................................. mass        */
+            1,   /* ............................................. mass        */
             Ogre::Vector3(0, 7, 0));
 
     mRootNode->attachObject(m_entity);
     
     InteractionManager::get()->addCharacter(this);
-    
+
+    m_grabConstraint = 0;    
 }
 
 Character::~Character()
@@ -145,6 +147,67 @@ Character::applyMovementCorrections()
     // setPosition(pos.x, pos.y, 0);
     //setOrientation(btQuaternion());
     
+}
+
+OgreBulletDynamics::RigidBody* 
+Character::findNextObject()
+{
+    /// @todo TODO: look also top bottom right front and back
+    
+    Ogre::Vector3 origin = getWorldPosition();
+    origin.y -= 0.5; // look a bit lower
+
+    Ogre::Vector3 target;
+
+
+    // cast a ray to the left
+    target = Ogre::Vector3(origin.x - m_maxGrabDistance, origin.y, origin.z);
+    
+    Ogre::Ray ray(origin, target);
+    OgreBulletCollisions::CollisionClosestRayResultCallback cb(ray, mWorld);
+    mWorld->launchRay(cb);
+
+    if(cb.doesCollide() && cb.getCollidedObject() != this)
+        return dynamic_cast<OgreBulletDynamics::RigidBody*>(
+                cb.getCollidedObject());
+    
+    return 0;
+}
+
+void
+Character::grab()
+{
+    if(m_grabConstraint)
+        return;
+    
+    OgreBulletDynamics::RigidBody* grabObject = findNextObject();
+    
+    if(grabObject)
+    {
+        Ogre::Vector3 distance = 
+                this->getWorldPosition() - grabObject->getWorldPosition();
+        
+        m_grabConstraint = new OgreBulletDynamics::ConeTwistConstraint(
+		    grabObject, 
+		    this, 
+            distance,
+            grabObject->getWorldOrientation(),
+            Ogre::Vector3::ZERO,
+            this->getWorldOrientation());
+
+        PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
+    }    
+}
+
+void
+Character::ungrab()
+{
+    if(!m_grabConstraint)
+        return;
+    
+    PhysicsManager::get()->world()->removeConstraint(m_grabConstraint);
+    delete m_grabConstraint;
+    m_grabConstraint = 0;
 }
 
 }

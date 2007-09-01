@@ -43,6 +43,8 @@ namespace OgreBulletDynamics
             const Ogre::Vector3& FrameInBVector, const Ogre::Quaternion& FrameInBOrientation);
 
         virtual ~ConeTwistConstraint();
+        
+        void setLimit(Ogre::Real a, Ogre::Real b, Ogre::Real c);
 
     };
 }

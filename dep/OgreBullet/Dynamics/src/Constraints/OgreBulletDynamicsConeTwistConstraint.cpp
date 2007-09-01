@@ -57,4 +57,10 @@ namespace OgreBulletDynamics
     ConeTwistConstraint::~ConeTwistConstraint()
     {
     }
+    
+    void ConeTwistConstraint::setLimit(Ogre::Real a, Ogre::Real b, Ogre::Real c)
+    {
+        dynamic_cast<btConeTwistConstraint*>(mConstraint)->setLimit(a,b,c);
+    }
+    
 }

@@ -18,7 +18,13 @@ class Character : public OgreBulletDynamics::RigidBody
     double m_moveImpule;
     double m_jumpForce;
 
+    double m_maxGrabDistance;
+
     void move(double factor);
+
+    OgreBulletDynamics::RigidBody* findNextObject();
+
+    OgreBulletDynamics::ConeTwistConstraint* m_grabConstraint;
 
 public:
     Character(std::string identifier, std::string meshFile);
@@ -27,6 +33,9 @@ public:
     virtual void moveLeft(double elapsed);
     virtual void moveRight(double elapsed);
     virtual void jump(double elapsed);
+
+    virtual void grab();
+    virtual void ungrab();
 
     virtual bool isCharacterOnGround();
 
