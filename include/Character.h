@@ -25,6 +25,7 @@ class Character : public OgreBulletDynamics::RigidBody
     OgreBulletDynamics::RigidBody* findNextObject();
 
     OgreBulletDynamics::ConeTwistConstraint* m_grabConstraint;
+    OgreBulletDynamics::RigidBody* m_grabbedObject;
 
 public:
     Character(std::string identifier, std::string meshFile);

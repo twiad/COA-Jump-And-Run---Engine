@@ -42,6 +42,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     InteractionManager::get()->addCharacter(this);
 
     m_grabConstraint = 0;    
+    m_grabbedObject = 0;    
 }
 
 Character::~Character()
@@ -78,8 +79,8 @@ Character::isCharacterOnGround()
     
         mWorld->launchRay(cb);
         
-        if(cb.doesCollide() && cb.getCollidedObject() != this 
-                && (origin.y - cb.getCollisionPoint().y) < 1.1)
+        if(cb.doesCollide() && cb.getCollidedObject() != this && 
+                cb.getCollidedObject() != m_grabbedObject)
             return true;
     
         origin.x++;
@@ -196,6 +197,8 @@ Character::grab()
             this->getWorldOrientation());
 
         PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
+
+        m_grabbedObject = grabObject;
     }    
 }
 
@@ -208,6 +211,7 @@ Character::ungrab()
     PhysicsManager::get()->world()->removeConstraint(m_grabConstraint);
     delete m_grabConstraint;
     m_grabConstraint = 0;
+    m_grabbedObject = 0;
 }
 
 }
