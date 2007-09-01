@@ -42,7 +42,7 @@ public:
         return m_entity;
     }
 
-    void applyMovementCorrections(double elapsed);
+    void applyMovementCorrections();
 
 };
     

@@ -31,10 +31,7 @@ CharacterMovementController::handleInput()
     if(keyboard->isKeyDown(OIS::KC_RIGHT))
         m_character->moveRight(0.1);
     if(keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP))
-    {
-        std::cout << "jump requested" << std::endl;
         m_character->jump(0.1);
-    }
 }
 
 }

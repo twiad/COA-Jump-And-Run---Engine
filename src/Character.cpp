@@ -2,6 +2,7 @@
 
 #include "PhysicsManager.h"
 #include "GraphicsManager.h"
+#include "InteractionManager.h"
 
 #include "MainApplication.h"
 
@@ -17,7 +18,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 {
     m_identifier = p_idenitfier;
     
-    m_moveRotation = 80;
+    m_moveRotation = 20;
     m_moveImpule   = 200;
     m_jumpForce    =  10;    
     
@@ -37,14 +38,14 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 
     mRootNode->attachObject(m_entity);
     
-    GraphicsManager::get()->addCharacter(this);
+    InteractionManager::get()->addCharacter(this);
     
 }
 
 Character::~Character()
 {
     /// @todo TODO: cleanup
-    GraphicsManager::get()->removeCharacter(this);
+    InteractionManager::get()->removeCharacter(this);
     GraphicsManager::get()->sceneManager()->destroyEntity(m_entity);
     GraphicsManager::get()->sceneManager()->destroySceneNode(m_identifier);
 
@@ -111,7 +112,6 @@ Character::jump(double p_elapsed)
     {
         Ogre::Vector3 vel = getLinearVelocity();
         setLinearVelocity(vel.x, m_jumpForce, vel.z);
-        std::cout << "jump allowed" << std::endl;
     }
 }
     
@@ -129,7 +129,7 @@ Character::moveRight(double p_elapsed)
 }
 
 void
-Character::applyMovementCorrections(double p_elapsed)
+Character::applyMovementCorrections()
 {
     Ogre::Vector3 pos = getWorldPosition();
     setPosition(pos.x, pos.y, 0);
@@ -140,7 +140,7 @@ Character::applyMovementCorrections(double p_elapsed)
         enableActiveState();
         setLinearVelocity(
             // vel.x * (pow(0.0001, p_elapsed * 1.0)), vel.y, 0);
-            vel.x * 0.9, vel.y, 0);
+            vel.x * 0.5, vel.y, 0);
 
         // std::cout << vel << std::endl;
     }
