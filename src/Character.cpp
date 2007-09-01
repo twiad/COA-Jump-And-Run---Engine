@@ -145,6 +145,13 @@ Character::applyMovementCorrections()
     getBulletRigidBody()->getWorldTransform().setOrigin(
             btVector3(pos.x, pos.y, 0));
 
+    if(m_grabbedObject)
+    {
+        pos = m_grabbedObject->getWorldPosition();
+        m_grabbedObject->getBulletRigidBody()->getWorldTransform().setOrigin(
+                btVector3(pos.x, pos.y, 0));
+    }
+
     // setPosition(pos.x, pos.y, 0);
     //setOrientation(btQuaternion());
     
