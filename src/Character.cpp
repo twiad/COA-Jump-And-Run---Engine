@@ -21,7 +21,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     m_identifier = p_idenitfier;
     
     m_moveRotation = 20;
-    m_moveImpule   = 50;
+    m_moveImpule   = 350;
     m_jumpForce    =  10;
     m_maxGrabDistance = 3;
 
@@ -36,7 +36,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             new OgreBulletCollisions::SphereCollisionShape(1), 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
-            1,   /* ............................................. mass        */
+            7,   /* ............................................. mass        */
             Ogre::Vector3(0, 7, 0));
 
     mRootNode->attachObject(m_entity);
@@ -205,9 +205,16 @@ Character::grab()
             Ogre::Vector3::ZERO,
             this->getWorldOrientation());
 
-        PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
+        // m_grabConstraint->setLimit(M_PI * 2, M_PI * 2, M_PI_4);
 
         m_grabbedObject = grabObject;
+
+        Ogre::Vector3 pos = m_grabbedObject->getWorldPosition();
+        m_grabbedObject->getBulletRigidBody()->getWorldTransform().setOrigin(
+                btVector3(pos.x, pos.y, 0));
+
+        PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
+
     }    
 }
 
