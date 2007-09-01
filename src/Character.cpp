@@ -16,6 +16,8 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     : OgreBulletDynamics::RigidBody(
             p_idenitfier, PhysicsManager::get()->world()) 
 {
+    setSyncRotations(false);
+    
     m_identifier = p_idenitfier;
     
     m_moveRotation = 20;
@@ -153,7 +155,7 @@ Character::applyMovementCorrections()
     }
 
     // setPosition(pos.x, pos.y, 0);
-    //setOrientation(btQuaternion());
+    // setOrientation(btQuaternion());
     
 }
 

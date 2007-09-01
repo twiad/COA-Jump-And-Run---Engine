@@ -97,7 +97,12 @@ namespace OgreBulletCollisions
             const Ogre::Quaternion &quat);
         void showDebugShape(bool show);
 
+        void setSyncRotations(bool value){ mSyncRotations = value; }
+        bool getSyncRotations() { return mSyncRotations; }
+
     protected:
+        
+        bool                    mSyncRotations;
 
         Ogre::SceneNode*        mRootNode;
         Ogre::SceneNode*        mShapeNode;

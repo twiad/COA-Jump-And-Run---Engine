@@ -74,7 +74,10 @@ namespace OgreBulletCollisions
         // mObject->setTransform(worldTrans);
         
         lockTransformationCache();
-        m_transformationCache[mObject] = worldTrans;
+        if(mObject->getSyncRotations())
+            m_transformationCache[mObject] = worldTrans;
+        else
+            m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());
         unlockTransformationCache();
         
         mWorldTrans = worldTrans;        

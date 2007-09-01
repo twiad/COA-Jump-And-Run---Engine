@@ -55,6 +55,7 @@ namespace OgreBulletCollisions
         mDebugShape(0)
     {
         mCollisionHandler = 0;
+        mSyncRotations = true;
         
         if (init)
         {
