@@ -128,7 +128,7 @@ namespace OgreBulletDynamics
                     // handlerA->handleCollision(info);
 
                     SDL_LockMutex(mCollisionInfosMutex);
-                    mCollisionInfos.push_front(info);
+                    mCollisionInfos.push_back(info);
                     SDL_UnlockMutex(mCollisionInfosMutex);
                 }
             
@@ -142,7 +142,7 @@ namespace OgreBulletDynamics
                     // handlerB->handleCollision(info);
 
                     SDL_LockMutex(mCollisionInfosMutex);
-                    mCollisionInfos.push_front(info);
+                    mCollisionInfos.push_back(info);
                     SDL_UnlockMutex(mCollisionInfosMutex);
                 }
             
