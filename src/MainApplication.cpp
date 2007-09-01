@@ -6,10 +6,12 @@
 #include "InteractionManager.h"
 
 /// target loops per second for the graphics thread
-#define COAJNR_GRAPHICS_FPS 50
+// #define COAJNR_GRAPHICS_FPS 20
+#define COAJNR_GRAPHICS_FPS 60
 
 /// target loops per second for the phyics thread
-#define COAJNR_PHYSICS_FPS 50
+// #define COAJNR_PHYSICS_FPS 20
+#define COAJNR_PHYSICS_FPS 60
 
 /// target loops per second for the interaction thread
 #define COAJNR_INTERACTION_FPS 20

@@ -44,6 +44,7 @@ namespace OgreBulletDynamics
     class HingeConstraint;
     class SixDofConstraint;
     class PointToPointConstraint;
+    class ConeTwistConstraint;
 
     class WheeledRigidBody;
     class VehicleRayCaster;

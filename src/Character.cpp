@@ -89,8 +89,6 @@ Character::isCharacterOnGround()
 void
 Character::move(double p_factor)
 {
-    MainApplication::lockPhysics();
-
     Ogre::Vector3 angularVelocity = Ogre::Vector3::ZERO; 
     Ogre::Vector3 linearImpulse = Ogre::Vector3::ZERO; 
 
@@ -101,8 +99,6 @@ Character::move(double p_factor)
 
     setAngularVelocity(angularVelocity);
     applyImpulse(linearImpulse, Ogre::Vector3(0,0,0));
-
-    MainApplication::unlockPhysics();
 }
 
 void
