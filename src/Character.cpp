@@ -28,7 +28,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 
     setShape(
             GraphicsManager::get()->sceneManager()->
-                    getRootSceneNode()->createChildSceneNode(p_idenitfier), 
+                    getRootSceneNode()->createChildSceneNode(m_identifier), 
             new OgreBulletCollisions::SphereCollisionShape(1), 
             2.0, /* ............................................. restitution */
             0.5, /* ............................................. friction    */
@@ -46,6 +46,8 @@ Character::~Character()
     /// @todo TODO: cleanup
     GraphicsManager::get()->removeCharacter(this);
     GraphicsManager::get()->sceneManager()->destroyEntity(m_entity);
+    GraphicsManager::get()->sceneManager()->destroySceneNode(m_identifier);
+
 }
 
 /// @todo TODO: dynamic (character size)
@@ -109,6 +111,7 @@ Character::jump(double p_elapsed)
     {
         Ogre::Vector3 vel = getLinearVelocity();
         setLinearVelocity(vel.x, m_jumpForce, vel.z);
+        std::cout << "jump allowed" << std::endl;
     }
 }
     

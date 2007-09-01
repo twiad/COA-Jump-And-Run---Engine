@@ -22,16 +22,19 @@ CharacterMovementController::~CharacterMovementController()
 }
 
 void
-CharacterMovementController::handleInput(double p_timeSinceLastFrame)
+CharacterMovementController::handleInput()
 {    
     OIS::Keyboard* keyboard = InputHandler::get()->keyboard();
 
     if(keyboard->isKeyDown(OIS::KC_LEFT))
-        m_character->moveLeft(p_timeSinceLastFrame);
+        m_character->moveLeft(0.1);
     if(keyboard->isKeyDown(OIS::KC_RIGHT))
-        m_character->moveRight(p_timeSinceLastFrame);
-    if(keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP)) 
-        m_character->jump(p_timeSinceLastFrame);
+        m_character->moveRight(0.1);
+    if(keyboard->isKeyDown(OIS::KC_SPACE) || keyboard->isKeyDown(OIS::KC_UP))
+    {
+        std::cout << "jump requested" << std::endl;
+        m_character->jump(0.1);
+    }
 }
 
 }

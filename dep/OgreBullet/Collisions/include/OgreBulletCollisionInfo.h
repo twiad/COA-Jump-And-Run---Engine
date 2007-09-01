@@ -35,12 +35,13 @@ namespace OgreBulletCollisions
 
     class CollisionInfo 
     {
+        Object* m_object;
         Object* m_partner;
         btVector3 m_localPosition;
         btVector3 m_worldPosition;
         
     public:
-        CollisionInfo(Object* partner, btVector3 localPosition, btVector3 worldPosition)
+        CollisionInfo(Object* object, Object* partner, btVector3 localPosition, btVector3 worldPosition)
         {
             m_partner = partner;
             m_localPosition = localPosition;
@@ -49,6 +50,7 @@ namespace OgreBulletCollisions
         
         virtual ~CollisionInfo() { };
         
+        Object* getObject() { return m_object; }
         Object* getPartner() { return m_partner; }
         btVector3 getLocalPosition() { return m_localPosition; }
         btVector3 getWorldPosition() { return m_worldPosition; }

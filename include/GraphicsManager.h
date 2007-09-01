@@ -64,6 +64,7 @@ public:
         if(!m_instance)
             m_instance = new GraphicsManager;
 
+        assert(m_instance);
         return m_instance;
     }
     
@@ -93,13 +94,6 @@ public:
      * renders one frame and returns.
      */
     bool renderOneFrame();
-    
-    /**
-     * starts the rendering loop.
-     *
-     * this functions returns as soon as the render loop gets interupted.
-     */
-    bool startRendering();
     
     /**
      * sets the current scenery and deactivated the active one before.

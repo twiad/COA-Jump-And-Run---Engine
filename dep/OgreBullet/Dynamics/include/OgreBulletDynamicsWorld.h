@@ -50,6 +50,8 @@ namespace OgreBulletDynamics
 
         void synchronizeToOgre();
 
+        void publishCollisions();
+
         void addRigidBody (RigidBody *rb);
 
         void setDebugDrawer(OgreBulletCollisions::DebugDrawer *debugdrawer)
@@ -74,6 +76,10 @@ namespace OgreBulletDynamics
         btConstraintSolver                                *mConstraintsolver;
 
         std::deque <TypedConstraint *>                    mConstraints;
+
+        std::deque <OgreBulletCollisions::CollisionInfo>  mCollisionInfos;
+        SDL_mutex*                                        mCollisionInfosMutex;
+        
     };
 }
 #endif //_OGREBULLETDYNAMICS_DynamicWorld_H

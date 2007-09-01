@@ -3,26 +3,42 @@
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "SceneryTest.h"
+#include "InteractionManager.h"
 
-#define COAJNR_GRAPHICS_FPS 60
-#define COAJNR_PHYSICS_FPS 60
+/// target loops per second for the graphics thread
+#define COAJNR_GRAPHICS_FPS 50
+
+/// target loops per second for the phyics thread
+#define COAJNR_PHYSICS_FPS 50
+
+/// target loops per second for the interaction thread
+#define COAJNR_INTERACTION_FPS 20
+
+/// scenery class name to init on startup
 #define COAJNR_INIT_SCENE SceneryTest
+
+/// physics acceleration factor (makes it look more realistic)
 #define COAJNR_PHYSICS_SPEED_FACTOR 2
+
 
 namespace CoABlaster
 {
-    
+
 SDL_mutex*  MainApplication::m_graphicsLock = 0;
 SDL_mutex*  MainApplication::m_physicsLock = 0;
 bool        MainApplication::m_physicsKeepRunning = true;    
+bool        MainApplication::m_graphicsKeepRunning = true;    
 SDL_cond*   MainApplication::m_physicsCanStartCondition = 0;
 SDL_mutex*  MainApplication::m_physicsCanStartMutex = 0;
 SDL_Thread* MainApplication::m_graphicsThread = 0;
 SDL_Thread* MainApplication::m_physicsThread = 0;
+SDL_Thread* MainApplication::m_interactionThread = 0;
 
 #ifdef _DEBUG
+uint        MainApplication::m_startTime = 0;
 uint        MainApplication::m_physicsUpdates = 0;
 uint        MainApplication::m_graphicsUpdates = 0;
+uint        MainApplication::m_interactionUpdates = 0;
 #endif
 
 void
@@ -59,6 +75,10 @@ MainApplication::go()
 
     initialize();
 
+#ifdef _DEBUG
+    m_startTime = SDL_GetTicks();
+#endif
+
     SDL_LockMutex(m_physicsCanStartMutex);
     m_physicsThread = SDL_CreateThread(
             &(MainApplication::physicsWorkerThread), 0);    
@@ -67,22 +87,83 @@ MainApplication::go()
     m_graphicsThread = SDL_CreateThread(
             &(MainApplication::graphicsWorkerThread), 0);
     
+    m_interactionThread = SDL_CreateThread(
+            &(MainApplication::interactionWorkerThread), 0);
+    
     SDL_WaitThread(m_physicsThread, 0);
     SDL_WaitThread(m_graphicsThread, 0);
+    SDL_WaitThread(m_interactionThread, 0);
 
 #ifdef _DEBUG
-    std::cout << "Physics Update Cycles : " << m_physicsUpdates << std::endl;
-    std::cout << "Graphics Update Cycles: " << m_graphicsUpdates << std::endl;
+    uint runTimeMS = SDL_GetTicks() - m_startTime;
+    double runTimeSec = runTimeMS / 1000.0;
+
+    std::cout << "Physics Update Cycles: " 
+            << m_physicsUpdates << std::endl;
+    std::cout << "Physics Update Cycles per second: " 
+            << m_physicsUpdates /  runTimeSec << std::endl;
+    std::cout << "Graphics Update Cycles: " 
+            << m_graphicsUpdates << std::endl;
+    std::cout << "Physics Update Cycles per second: " 
+            << m_graphicsUpdates /  runTimeSec << std::endl;
+    std::cout << "Interaction Update Cycles: " 
+            << m_interactionUpdates << std::endl;
+    std::cout << "Physics Update Cycles per second: " 
+            << m_interactionUpdates /  runTimeSec << std::endl;
 #endif
 
     cleanup();
 }
 
 int 
+MainApplication::interactionWorkerThread(void* data)
+{
+    uint startTime = 0;
+    uint elapsedMilliSeconds = 0;
+    uint timeToWait = 0;
+    
+    double updateTime = 0;
+    
+    uint minFrameTime = 1000 / COAJNR_INTERACTION_FPS;
+
+    while(true)
+    {
+#ifdef _DEBUG
+        m_interactionUpdates++;
+#endif
+
+        startTime = SDL_GetTicks();
+
+        MainApplication::lockPhysics();
+        MainApplication::lockGraphics();
+        
+        if(!InteractionManager::get()->update())
+        {
+            m_graphicsKeepRunning = false;
+            MainApplication::unlockPhysics();
+            MainApplication::unlockGraphics();            
+            break;
+        }
+        
+        MainApplication::unlockPhysics();
+        MainApplication::unlockGraphics();
+        
+        elapsedMilliSeconds = SDL_GetTicks() - startTime;
+        updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
+        timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
+        
+        SDL_Delay(timeToWait);
+        
+        if(!timeToWait)
+            std::cout << "WARNING! interaction update too slow!" 
+                    << std::endl;
+
+    }
+}
+
+int 
 MainApplication::graphicsWorkerThread(void* p_data)
 {
-    lockGraphics();
-
     uint startTime = 0;
     uint elapsedMilliSeconds = 0;
     uint timeToWait = 0;
@@ -91,14 +172,17 @@ MainApplication::graphicsWorkerThread(void* p_data)
     
     uint minFrameTime = 1000 / COAJNR_GRAPHICS_FPS;
     
+    lockGraphics();
     GraphicsManager::get()->init(new COAJNR_INIT_SCENE);
-
     unlockGraphics();
 
     signalPhysicsCanStart();
 
-    while(true)
+    lockGraphics();
+    while(m_graphicsKeepRunning)
     {
+        unlockGraphics();
+
 #ifdef _DEBUG
         m_graphicsUpdates++;
 #endif
@@ -106,20 +190,9 @@ MainApplication::graphicsWorkerThread(void* p_data)
         startTime = SDL_GetTicks();
 
         lockGraphics();
-
-        if(GraphicsManager::get()->update(updateTime) == false)
-        {
-            unlockGraphics();
-        
-            lockPhysics();
-            m_physicsKeepRunning = false;
-            unlockPhysics();
-                    
-            break;
-        }
-        
+        GraphicsManager::get()->update(updateTime);
         unlockGraphics();
-
+        
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
@@ -138,7 +211,14 @@ MainApplication::graphicsWorkerThread(void* p_data)
             std::cout << "Graphics FPS: " << stats.avgFPS << std::endl;
         }
 #endif
+
+        lockGraphics();
     }
+    unlockGraphics();
+
+    lockPhysics();
+    m_physicsKeepRunning = false;
+    unlockPhysics();
 
     return 0;
 }
@@ -146,6 +226,9 @@ MainApplication::graphicsWorkerThread(void* p_data)
 int 
 MainApplication::physicsWorkerThread(void* p_data)
 {
+    /// @todo TODO: make the following line possible
+    // sleep(3); // breakes the synchronization
+    
     waitPhysicsCanStart();
 
     uint startTime = 0;
@@ -156,8 +239,11 @@ MainApplication::physicsWorkerThread(void* p_data)
     
     uint minFrameTime = 1000 / COAJNR_PHYSICS_FPS;
     
+    lockPhysics();
     while(m_physicsKeepRunning)
     {
+        unlockPhysics();
+
 #ifdef _DEBUG
         m_physicsUpdates++;
 #endif
@@ -181,7 +267,10 @@ MainApplication::physicsWorkerThread(void* p_data)
         if(!timeToWait)
             std::cout << "WARNING! physics update too slow!" 
                 << std::endl;
+
+        lockPhysics();
     }
+    unlockPhysics();
 
     return 0;
 }
@@ -221,18 +310,6 @@ void
 MainApplication::signalPhysicsCanStart()
 {
     SDL_CondSignal(m_physicsCanStartCondition);
-}
-
-void
-MainApplication::syncWithPhysics()
-{
-    
-}
-
-void
-MainApplication::syncWithGraphics()
-{
-    
 }
 
 }

@@ -12,7 +12,7 @@ class InputController;
 /**
  * checks for input between frames
  */
-class InputHandler : public Ogre::FrameListener
+class InputHandler
 {
     static InputHandler* m_instance;
     
@@ -44,7 +44,7 @@ public:
         return m_instance;
     }
     
-    bool frameStarted(const Ogre::FrameEvent& event);
+    bool update();
 
     void addInputController(InputController* controller);
 

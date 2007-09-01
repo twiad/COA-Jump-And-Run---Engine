@@ -51,21 +51,17 @@ SceneryTest::setup()
     // m_plane = sm->createEntity("plane", "ground.mesh");
     m_plane = sm->createEntity("plane", "Level3.mesh");
     m_plane->setNormaliseNormals(true);
-
+    
     m_planeNode = sm->getRootSceneNode()->
             createChildSceneNode("plane-node");
 
-    //m_planeNode->rotate(Ogre::Vector3::UNIT_X, Ogre::Degree(-90));
-
-    // m_planeShape = new OgreBulletCollisions::StaticPlaneCollisionShape(
-    //         Ogre::Vector3(0,1,0), 0.97);
-
     OgreBulletCollisions::MeshToShapeConverter converter(m_plane);
+
     m_planeShape = converter.createTrimesh();
     
     m_planeBody = new OgreBulletDynamics::RigidBody(
             "plane-body", PhysicsManager::get()->world());
-
+    
     m_planeNode->attachObject(m_plane);
     m_planeBody->setStaticShape(
     		m_planeNode,
@@ -86,14 +82,42 @@ SceneryTest::setup()
     
     m_boxNode->attachObject(m_box);
     
-    m_boxBody = new OgreBulletDynamics::RigidBody("BoxBody", PhysicsManager::get()->world());
+    m_boxBody = new OgreBulletDynamics::RigidBody("BoxBody", 
+            PhysicsManager::get()->world());
+    
     m_boxBody->setStaticShape(
             m_boxNode,
             new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(1, 1, 1)),
-            0.0,
-            0.0,
+            0.5,
+            0.5,
             Ogre::Vector3(4, 8, 0)
             );
+
+    // for(int i = 0; i < BOX_COUNT; i++)
+    // {
+    //     m_boxStack[i] = sm->createEntity(
+    //             "QBox" + Ogre::StringConverter::toString(i), 
+    //             "QuestionCube.mesh");
+    //     m_boxStack[i]->setNormaliseNormals(true);
+    // 
+    //     m_boxStackNodes[i] = sm->getRootSceneNode()->
+    //             createChildSceneNode("QBoxNode" + 
+    //                     Ogre::StringConverter::toString(i));
+    // 
+    //     m_boxStackNodes[i]->attachObject(m_boxStack[i]);
+    // 
+    //     m_boxStackBodies[i] = new OgreBulletDynamics::RigidBody(
+    //             "BoxBody" + Ogre::StringConverter::toString(i), 
+    //             PhysicsManager::get()->world());
+    //     
+    //     m_boxStackBodies[i]->setShape(
+    //             m_boxStackNodes[i] = sm->getRootSceneNode()->
+    //                     createChildSceneNode("QBoxBodyNode" + 
+    //                             Ogre::StringConverter::toString(i)),
+    //             new OgreBulletCollisions::BoxCollisionShape(
+    //                     Ogre::Vector3(1, 1, 1)),
+    //             0.0, 0.0, 0.0, Ogre::Vector3(-i * 2, i, 0));
+    // }
     
     new LevelObject("QBox_X" , "QuestionCube.mesh", Ogre::Vector3(6, 8, 0));
     
@@ -101,7 +125,7 @@ SceneryTest::setup()
     m_character = new Character("player", "Cube.mesh");
     m_movementInputController = new CharacterMovementController(m_character);
     InputHandler::get()->addInputController(m_movementInputController);
-
+    // 
     GraphicsManager::get()->root()->addFrameListener(
             new CameraSmoothFollow(
                     GraphicsManager::get()->camera(), 

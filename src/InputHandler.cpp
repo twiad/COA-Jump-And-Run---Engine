@@ -44,7 +44,7 @@ InputHandler::~InputHandler()
 }
 
 bool
-InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
+InputHandler::update()
 {
     m_keyboard->capture();
 	m_mouse->capture();
@@ -56,9 +56,10 @@ InputHandler::frameStarted(const Ogre::FrameEvent& p_event)
 	if(m_keyboard->isKeyDown(KC_Q) || m_keyboard->isKeyDown(KC_ESCAPE))
         return false;
         
+    /// @todo TODO: no time here
     std::vector<InputController*>::iterator it = m_inputControllers.begin();
     while(it != m_inputControllers.end())
-        (*it++)->handleInput(p_event.timeSinceLastFrame);
+        (*it++)->handleInput();
     
     return true;
 }

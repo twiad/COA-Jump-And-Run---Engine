@@ -63,12 +63,11 @@ namespace OgreBulletDynamics
             const Ogre::Vector3 &pos = Ogre::Vector3::ZERO, 
             const Ogre::Quaternion &quat = Ogre::Quaternion::IDENTITY);
 
-        void setStaticShape(OgreBulletCollisions::CollisionShape *shape,
-            const float      bodyRestitution,
-            const float      bodyFriction,
-            const Ogre::Vector3 &pos = Ogre::Vector3::ZERO, 
-            const Ogre::Quaternion &quat = Ogre::Quaternion::IDENTITY);
-
+        // void setStaticShape(OgreBulletCollisions::CollisionShape *shape,
+        //     const float      bodyRestitution,
+        //     const float      bodyFriction,
+        //     const Ogre::Vector3 &pos = Ogre::Vector3::ZERO, 
+        //     const Ogre::Quaternion &quat = Ogre::Quaternion::IDENTITY);
 
         void setLinearVelocity(const Ogre::Vector3 &vel);
         void setLinearVelocity(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z);

@@ -121,27 +121,27 @@ namespace OgreBulletDynamics
         getDynamicsWorld()->addRigidBody(this);
     }
     // -------------------------------------------------------------------------
-    void RigidBody::setStaticShape(OgreBulletCollisions::CollisionShape *shape,
-        const float      bodyRestitution,
-        const float      bodyFriction,
-        const Vector3 &pos, 
-        const Quaternion &quat)
-    {
-
-        mShape = shape;
-        btRigidBody *body = new btRigidBody(0.0, mState, mShape->getBulletShape ());
-
-        body->setRestitution(bodyRestitution);
-        body->setFriction(bodyFriction);
-
-        body->getWorldTransform().setOrigin(btVector3(pos.x, pos.y, pos.z));
-        body->getWorldTransform().setRotation(btQuaternion(quat.x, quat.y, quat.z, quat.w));
-
-        mObject = body;
-        mObject->setUserPointer(this);
-        
-        getDynamicsWorld()->addRigidBody(this);
-    }
+    // void RigidBody::setStaticShape(OgreBulletCollisions::CollisionShape *shape,
+    //     const float      bodyRestitution,
+    //     const float      bodyFriction,
+    //     const Vector3 &pos, 
+    //     const Quaternion &quat)
+    // {
+    // 
+    //     mShape = shape;
+    //     btRigidBody *body = new btRigidBody(0.0, mState, mShape->getBulletShape ());
+    // 
+    //     body->setRestitution(bodyRestitution);
+    //     body->setFriction(bodyFriction);
+    // 
+    //     body->getWorldTransform().setOrigin(btVector3(pos.x, pos.y, pos.z));
+    //     body->getWorldTransform().setRotation(btQuaternion(quat.x, quat.y, quat.z, quat.w));
+    // 
+    //     mObject = body;
+    //     mObject->setUserPointer(this);
+    //     
+    //     getDynamicsWorld()->addRigidBody(this);
+    // }
     // -------------------------------------------------------------------------
     void RigidBody::setLinearVelocity( const Ogre::Vector3 &vel )
     {

@@ -68,16 +68,15 @@ namespace OgreBulletCollisions
     {
         assert (mObject);        
 
+        /// @todo TODO: check this strange behaviour
+
         // use transformation cache instead of syncing directly
         // mObject->setTransform(worldTrans);
-
-        /// @todo TODO: APPLY ROTATIONS AGAIN
+        
         lockTransformationCache();
         m_transformationCache[mObject] = worldTrans;
-        // m_transformationCache[mObject].setOrigin(worldTrans.getOrigin());
-        // m_transformationCache[mObject].setBasis(worldTrans.getBasis());
         unlockTransformationCache();
-
+        
         mWorldTrans = worldTrans;        
     }
 }

@@ -60,11 +60,14 @@ namespace OgreBulletDynamics
 
         static_cast <btSimpleDynamicsWorld *> (mWorld)->setGravity(btVector3(gravity.x,gravity.y,gravity.z));
 
+        mCollisionInfosMutex = SDL_CreateMutex();
+        assert(mCollisionInfosMutex);
     }
     // -------------------------------------------------------------------------
     DynamicsWorld::~DynamicsWorld()
     {
         delete mConstraintsolver;
+        SDL_DestroyMutex(mCollisionInfosMutex);
     }
     // -------------------------------------------------------------------------
     void DynamicsWorld::addRigidBody (RigidBody *rb)
@@ -89,7 +92,6 @@ namespace OgreBulletDynamics
         const unsigned int  numManifolds = mWorld->getDispatcher()->getNumManifolds();
         for (unsigned int i=0;i < numManifolds; i++)
         {
-
             btPersistentManifold* contactManifold = mWorld->getDispatcher()->getManifoldByIndexInternal(i);
 
             btCollisionObject* obA = static_cast<btCollisionObject*>(contactManifold->getBody0());
@@ -118,15 +120,29 @@ namespace OgreBulletDynamics
                 if(handlerA)
                 {                    
                     CollisionInfo info(
-                        (Object*)obB->getUserPointer(), pt.m_localPointA, pt.getPositionWorldOnA());
-                    handlerA->handleCollision(info);
+                        (Object*)obA->getUserPointer(), 
+                        (Object*)obB->getUserPointer(), 
+                        pt.m_localPointA, 
+                        pt.getPositionWorldOnA());
+                    // handlerA->handleCollision(info);
+
+                    SDL_LockMutex(mCollisionInfosMutex);
+                    mCollisionInfos.push_front(info);
+                    SDL_UnlockMutex(mCollisionInfosMutex);
                 }
             
                 if(handlerB)
                 {
                     CollisionInfo info(
-                        (Object*)obA->getUserPointer(), pt.m_localPointB, pt.getPositionWorldOnB());
-                    handlerB->handleCollision(info);
+                        (Object*)obB->getUserPointer(), 
+                        (Object*)obA->getUserPointer(), 
+                        pt.m_localPointB, 
+                        pt.getPositionWorldOnB());
+                    // handlerB->handleCollision(info);
+
+                    SDL_LockMutex(mCollisionInfosMutex);
+                    mCollisionInfos.push_front(info);
+                    SDL_UnlockMutex(mCollisionInfosMutex);
                 }
             
             }
@@ -169,6 +185,24 @@ namespace OgreBulletDynamics
         }
         
         OgreBulletCollisions::ObjectState::unlockTransformationCache();
+    }
+    // -------------------------------------------------------------------------
+    void DynamicsWorld::publishCollisions()
+    {
+        SDL_LockMutex(mCollisionInfosMutex);
+
+        // std::cout << "publishing " << mCollisionInfos.size() 
+        //         << " collision events" << std::endl;
+
+        while(mCollisionInfos.size())
+        {
+            if(mCollisionInfos.front().getObject()->getCollisionHandler())
+                mCollisionInfos.front().getObject()->getCollisionHandler()->
+                        handleCollision(mCollisionInfos.front());
+
+            mCollisionInfos.pop_front();
+        }
+        SDL_UnlockMutex(mCollisionInfosMutex);
     }
     // -------------------------------------------------------------------------
     void DynamicsWorld::removeConstraint(TypedConstraint *constraint)

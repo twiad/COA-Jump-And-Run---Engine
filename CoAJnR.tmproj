@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>src/Character.cpp</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -20,59 +18,10 @@
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>295</integer>
 	<key>metaData</key>
-	<dict>
-		<key>include/SceneryTest.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>29</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>4</integer>
-		</dict>
-		<key>src/Character.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>50</integer>
-				<key>line</key>
-				<integer>24</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>src/SceneryTest.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>28</integer>
-				<key>line</key>
-				<integer>73</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>34</integer>
-		</dict>
-	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>src/SceneryTest.cpp</string>
-		<string>src/Character.cpp</string>
-		<string>include/SceneryTest.h</string>
-	</array>
+	<dict/>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{53, 173}, {828, 774}}</string>
+	<string>{{5, 4}, {826, 998}}</string>
 </dict>
 </plist>

@@ -34,16 +34,16 @@ using namespace Ogre;
 namespace OgreBulletDynamics
 {
     // -------------------------------------------------------------------------
-    PhysicState::PhysicState(RigidBody *parent)
-        :	
-      btMotionState(),
-        mObject(parent)
-    {
-    }
-    // -------------------------------------------------------------------------
-    PhysicState::~PhysicState()
-    {
-    }
+    // PhysicState::PhysicState(RigidBody *parent)
+    //     :    
+    //   btMotionState(),
+    //     mObject(parent)
+    // {
+    // }
+    // // -------------------------------------------------------------------------
+    // PhysicState::~PhysicState()
+    // {
+    // }
     
     /// @todo TODO: strange thing, is this really needed?
     

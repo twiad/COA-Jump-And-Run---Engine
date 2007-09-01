@@ -148,7 +148,7 @@ GraphicsManager::init(Scenery* p_scenery)
 void
 GraphicsManager::registerFrameListeners()
 {
-    m_root->addFrameListener(InputHandler::get());
+    // m_root->addFrameListener(InputHandler::get());
     // m_root->addFrameListener(new InputHandler(m_window));
     // m_root->addFrameListener(PhysicsManager::get());
 }
@@ -156,7 +156,8 @@ GraphicsManager::registerFrameListeners()
 bool
 GraphicsManager::update(double p_elapsed)
 {
-    WindowEventUtilities::messagePump();
+    Ogre::WindowEventUtilities::messagePump();
+    
     applyMovementCorrections(p_elapsed);
     return renderOneFrame();
 }
@@ -170,22 +171,10 @@ GraphicsManager::renderOneFrame()
     return m_root->renderOneFrame();
 }
 
-bool 
-GraphicsManager::startRendering()
-{
-    if(!m_initialized)
-        return false;
-
-    m_root->startRendering();
-
-    return true;
-}
-
 void
 GraphicsManager::setScenery(Scenery* p_scenery)
 {
     assert(p_scenery && "scenery must not be null");
-    
 
     if(m_scenery)
     {
