@@ -75,23 +75,10 @@ SceneryTest::setup()
     m_planeBody->setPosition(Ogre::Vector3(0,0,0));
     m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
     // questionmark box
-    m_box = sm->createEntity("QBox" , "QuestionCube.mesh");
-    m_box->setNormaliseNormals(true);
-        
-    m_boxNode = sm->getRootSceneNode()->createChildSceneNode("QBoxNode");
-    
-    m_boxNode->attachObject(m_box);
-    
-    m_boxBody = new OgreBulletDynamics::RigidBody("BoxBody", 
-            PhysicsManager::get()->world());
-    
-    m_boxBody->setStaticShape(
-            m_boxNode,
-            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(1, 1, 1)),
-            0.5,
-            0.5,
-            Ogre::Vector3(4, 8, 0)
-            );
+    new LevelObject("NBox_1" , "NormalCube.mesh", Ogre::Vector3(4, 8, 0));
+    new LevelObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(5, 8, 0));
+    new LevelObject("NBox_2" , "NormalCube.mesh", Ogre::Vector3(6, 8, 0));
+
 
     // for(int i = 0; i < BOX_COUNT; i++)
     // {
@@ -118,8 +105,6 @@ SceneryTest::setup()
     //                     Ogre::Vector3(1, 1, 1)),
     //             0.0, 0.0, 0.0, Ogre::Vector3(-i * 2, i, 0));
     // }
-    
-    new LevelObject("QBox_X" , "QuestionCube.mesh", Ogre::Vector3(6, 8, 0));
     
     // Character
     m_character = new Character("player", "Cube.mesh");

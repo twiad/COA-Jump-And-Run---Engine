@@ -107,12 +107,13 @@ namespace OgreBulletDynamics
             else
                 handlerB = 0;
             
-            if(!handlerA && !handlerB)
-                continue;
+            //if(!handlerA && !handlerB)
+                //continue;
             
             contactManifold->refreshContactPoints(obA->getWorldTransform(),obB->getWorldTransform());
             
             const unsigned int numContacts = contactManifold->getNumContacts();
+            std::cout << numContacts << std::endl;
             for (unsigned int j = 0;j < numContacts; j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
