@@ -84,31 +84,41 @@ SceneryTest::setup()
     tmp->setCollisionHandler(new DebugOutputCollisionHandler);
 
 
-    // for(int i = 0; i < BOX_COUNT; i++)
-    // {
-    //     m_boxStack[i] = sm->createEntity(
-    //             "QBox" + Ogre::StringConverter::toString(i), 
-    //             "QuestionCube.mesh");
-    //     m_boxStack[i]->setNormaliseNormals(true);
-    // 
-    //     m_boxStackNodes[i] = sm->getRootSceneNode()->
-    //             createChildSceneNode("QBoxNode" + 
-    //                     Ogre::StringConverter::toString(i));
-    // 
-    //     m_boxStackNodes[i]->attachObject(m_boxStack[i]);
-    // 
-    //     m_boxStackBodies[i] = new OgreBulletDynamics::RigidBody(
-    //             "BoxBody" + Ogre::StringConverter::toString(i), 
-    //             PhysicsManager::get()->world());
-    //     
-    //     m_boxStackBodies[i]->setShape(
-    //             m_boxStackNodes[i] = sm->getRootSceneNode()->
-    //                     createChildSceneNode("QBoxBodyNode" + 
-    //                             Ogre::StringConverter::toString(i)),
-    //             new OgreBulletCollisions::BoxCollisionShape(
-    //                     Ogre::Vector3(1, 1, 1)),
-    //             0.0, 0.0, 0.0, Ogre::Vector3(-i * 2, i, 0));
-    // }
+    for(int j = 0; j < 4; j++)
+        for(int i = 0; i < BOX_COUNT; i++)
+        {
+            m_boxStack[i] = sm->createEntity(
+                    "QBox" + Ogre::StringConverter::toString(j) + 
+                    " " + Ogre::StringConverter::toString(i), 
+                    "QuestionCube.mesh");
+            m_boxStack[i]->setNormaliseNormals(true);
+    
+            m_boxStackNodes[i] = sm->getRootSceneNode()->
+                    createChildSceneNode("QBoxNode" + 
+                        Ogre::StringConverter::toString(j) + " " +
+                        Ogre::StringConverter::toString(i));
+        
+            m_boxStackBodies[i] = new OgreBulletDynamics::RigidBody(
+                    "BoxBody" + Ogre::StringConverter::toString(j) + " " +
+                    Ogre::StringConverter::toString(i), 
+                    PhysicsManager::get()->world());
+        
+            // m_boxStackBodies[i]->setShape(
+            //         m_boxStackNodes[i],
+            //         new OgreBulletCollisions::BoxCollisionShape(
+            //                 Ogre::Vector3(1, 1, 1)),
+            //         0.0, 0.0, 0.0, 
+            //         Ogre::Vector3(-i * 2, i, 0));
+            m_boxStackBodies[i]->setShape(
+                m_boxStackNodes[i], 
+                new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
+                2.0, /* ............................................. restitution */
+                2.0, /* ............................................. friction    */
+                1,   /* ............................................. mass        */
+                Ogre::Vector3(- 17 + i + (i*0.3), 1 + j + (j*0.1), 0));    
+
+            m_boxStackNodes[i]->attachObject(m_boxStack[i]);
+        }
     
     // Character
     m_character = new Character("player", "Cube.mesh");

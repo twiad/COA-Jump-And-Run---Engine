@@ -131,9 +131,6 @@ Character::moveRight(double p_elapsed)
 void
 Character::applyMovementCorrections()
 {
-    Ogre::Vector3 pos = getWorldPosition();
-    setPosition(pos.x, pos.y, 0);
-
     Ogre::Vector3 vel = getLinearVelocity();
     if((vel != Ogre::Vector3::ZERO))
     {
@@ -145,6 +142,11 @@ Character::applyMovementCorrections()
         // std::cout << vel << std::endl;
     }
 
+    Ogre::Vector3 pos = getWorldPosition();
+    getBulletRigidBody()->getWorldTransform().setOrigin(
+            btVector3(pos.x, pos.y, 0));
+
+    // setPosition(pos.x, pos.y, 0);
     //setOrientation(btQuaternion());
     
 }
