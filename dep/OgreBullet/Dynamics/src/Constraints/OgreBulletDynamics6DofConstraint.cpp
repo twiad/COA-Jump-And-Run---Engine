@@ -57,4 +57,44 @@ namespace OgreBulletDynamics
     SixDofConstraint::~SixDofConstraint()
     {
     }
+    void 
+    SixDofConstraint::setLinearLowerLimit(const Ogre::Vector3& linearLower)
+    {
+        btGeneric6DofConstraint* constraint = 
+                dynamic_cast<btGeneric6DofConstraint*>(mConstraint);
+        
+        constraint->setLinearLowerLimit(
+                OgreBulletCollisions::OgreBtConverter::to(linearLower));
+    }
+    
+    void                                                                    
+    SixDofConstraint::setLinearUpperLimit(const Ogre::Vector3& linearUpper)
+    {
+        btGeneric6DofConstraint* constraint = 
+                dynamic_cast<btGeneric6DofConstraint*>(mConstraint);
+
+        constraint->setLinearUpperLimit(
+                OgreBulletCollisions::OgreBtConverter::to(linearUpper));
+    }
+    
+    void                                                                    
+    SixDofConstraint::setAngularLowerLimit(const Ogre::Vector3& angularLower)
+    {
+        btGeneric6DofConstraint* constraint = 
+                dynamic_cast<btGeneric6DofConstraint*>(mConstraint);
+
+        constraint->setAngularLowerLimit(
+                OgreBulletCollisions::OgreBtConverter::to(angularLower));
+    }
+    
+    void                                                                    
+    SixDofConstraint::setAngularUpperLimit(const Ogre::Vector3& angularUpper)
+    {
+        btGeneric6DofConstraint* constraint = 
+                dynamic_cast<btGeneric6DofConstraint*>(mConstraint);
+
+        constraint->setAngularUpperLimit(
+                OgreBulletCollisions::OgreBtConverter::to(angularUpper));
+    }
+    
 }

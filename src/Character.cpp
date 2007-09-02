@@ -21,9 +21,9 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     m_identifier = p_idenitfier;
     
     m_moveRotation = 20;
-    m_moveImpule   = 350;
+    m_moveImpule   = 120;
     m_jumpForce    =  10;
-    m_maxGrabDistance = 3;
+    m_maxGrabDistance = 5;
 
     m_entity = GraphicsManager::get()->sceneManager()->
             createEntity(p_idenitfier, p_meshFile);
@@ -36,7 +36,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             new OgreBulletCollisions::SphereCollisionShape(1), 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
-            7,   /* ............................................. mass        */
+            2,   /* ............................................. mass        */
             Ogre::Vector3(0, 7, 0));
 
     mRootNode->attachObject(m_entity);
@@ -192,10 +192,12 @@ Character::grab()
         Ogre::Vector3 grabHinge = Ogre::Matrix4(m_grabbedObject->
                 getWorldOrientation()).inverse() * 
                 -(m_grabbedObject->getWorldPosition() - this->getWorldPosition());
-    
-        if(grabHinge.length() >= 2.1)
+            
+        if(grabHinge.length() >= 3.5)
             m_grabConstraint->setPivotB(grabHinge * 0.9);
 
+        if(grabHinge.length() < 2.1)
+            m_grabConstraint->setPivotB(grabHinge * 1.1);
         return;
     }
     
@@ -208,13 +210,25 @@ Character::grab()
                 -(grabObject->getWorldPosition() - this->getWorldPosition());
 
         m_grabConstraint = new OgreBulletDynamics::PointToPointConstraint(
-		    this, 
-		    grabObject, 
+            this, 
+            grabObject, 
             Ogre::Vector3::ZERO,            
             grabHinge);
 
-        m_grabbedObject = grabObject;
+        m_grabConstraint->setDamping(0.3);
+      
 
+            //         m_grabConstraint = new OgreBulletDynamics::ConeTwistConstraint(
+            // this, 
+            // grabObject, 
+            //             Ogre::Vector3::ZERO,
+            //             Ogre::Quaternion::IDENTITY,
+            //             grabObject->getWorldPosition() - this->getWorldPosition(),
+            //             Ogre::Quaternion::IDENTITY);
+            // 
+            //         m_grabConstraint->setLimit(M_PI_4,M_PI_4,M_PI_4);
+            // 
+        m_grabbedObject = grabObject;
         PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
     }    
 }

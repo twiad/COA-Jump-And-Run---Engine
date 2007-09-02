@@ -43,6 +43,11 @@ namespace OgreBulletDynamics
             const Ogre::Vector3& FrameInBVector, const Ogre::Quaternion& FrameInBOrientation);
 
         virtual ~SixDofConstraint();
+        
+        void setLinearLowerLimit(const Ogre::Vector3& linearLower);
+        void setLinearUpperLimit(const Ogre::Vector3& linearUpper);
+        void setAngularLowerLimit(const Ogre::Vector3& angularLower);
+        void setAngularUpperLimit(const Ogre::Vector3& angularUpper);
 
     };
 }

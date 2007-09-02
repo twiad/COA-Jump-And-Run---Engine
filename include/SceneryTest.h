@@ -5,6 +5,8 @@
 #include "Dependencies.h"
 
 #include "Scenery.h"
+#include "GraphicsManager.h"
+#include "PhysicsManager.h"
 
 namespace CoABlaster
 {
@@ -39,7 +41,8 @@ class SceneryTest : public Scenery
     OgreBulletDynamics::RigidBody* m_testConstraintBodies[2];
 
     // OgreBulletDynamics::ConeTwistConstraint* m_testConstraintObject;
-    OgreBulletDynamics::SixDofConstraint* m_testConstraintObject;
+    // OgreBulletDynamics::SixDofConstraint* m_testConstraintObject;
+    OgreBulletDynamics::HingeConstraint* m_testConstraintObject;
 
     InputController* m_movementInputController;
     
@@ -75,6 +78,56 @@ public:
                 info->getWorldPosition().y() << " " <<
                 info->getWorldPosition().z() << " " <<
                 std::endl;
+    }  
+};
+
+class CubeSpawnCollisionHandler : 
+        public OgreBulletCollisions::CollisionHandler
+{
+    static uint m_spawnId;
+    
+    uint m_lastSpawn;
+    
+public:
+    CubeSpawnCollisionHandler() : OgreBulletCollisions::CollisionHandler()
+    {
+        m_lastSpawn = 0;
+    }
+
+    void handleCollision(OgreBulletCollisions::CollisionInfo* info)
+    {
+        if(SDL_GetTicks() - m_lastSpawn < 150)
+            return;
+        
+        GraphicsManager* gm = GraphicsManager::get();
+        Ogre::SceneManager* sm = gm->sceneManager();
+        
+        m_spawnId++;
+        
+        Ogre::Entity* ent = sm->createEntity(
+                "SpawnBox" + Ogre::StringConverter::toString(m_spawnId), 
+                "QuestionCube.mesh");
+        ent->setNormaliseNormals(true);
+
+        Ogre::SceneNode* node = sm->getRootSceneNode()->
+                createChildSceneNode("SpawnBoxNode" + 
+                    Ogre::StringConverter::toString(m_spawnId));
+    
+        OgreBulletDynamics::RigidBody* body = new OgreBulletDynamics::RigidBody(
+                "BoxSpawnBody" + Ogre::StringConverter::toString(m_spawnId), 
+                PhysicsManager::get()->world());
+    
+        body->setShape(
+            node, 
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
+            2.0, /* ............................................. restitution */
+            2.0, /* ............................................. friction    */
+            3,   /* ............................................. mass        */
+            Ogre::Vector3(-4, 7, 0));    
+
+        node->attachObject(ent);
+
+        m_lastSpawn = SDL_GetTicks();
     }  
 };
 
