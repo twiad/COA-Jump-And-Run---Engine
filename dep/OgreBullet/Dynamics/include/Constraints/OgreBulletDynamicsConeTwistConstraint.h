@@ -34,7 +34,7 @@ http://www.gnu.org/copyleft/lesser.txt.
 namespace OgreBulletDynamics
 {
     // -------------------------------------------------------------------------
-    // SixDofConstraint  class
+    // ConeTwistConstraint class
     class ConeTwistConstraint : public TypedConstraint
     {
     public:

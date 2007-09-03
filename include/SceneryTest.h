@@ -96,7 +96,7 @@ public:
 
     void handleCollision(OgreBulletCollisions::CollisionInfo* info)
     {
-        if(SDL_GetTicks() - m_lastSpawn < 150)
+        if(SDL_GetTicks() - m_lastSpawn < 500)
             return;
         
         GraphicsManager* gm = GraphicsManager::get();

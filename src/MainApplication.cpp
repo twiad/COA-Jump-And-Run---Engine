@@ -41,6 +41,9 @@ uint        MainApplication::m_startTime = 0;
 uint        MainApplication::m_physicsUpdates = 0;
 uint        MainApplication::m_graphicsUpdates = 0;
 uint        MainApplication::m_interactionUpdates = 0;
+double      MainApplication::m_physicsWaitTime = 0;
+double      MainApplication::m_graphicsWaitTime = 0;
+double      MainApplication::m_interactionWaitTime = 0;
 #endif
 
 void
@@ -96,10 +99,17 @@ MainApplication::go()
     SDL_WaitThread(m_graphicsThread, 0);
     SDL_WaitThread(m_interactionThread, 0);
 
+    cleanup();
+
 #ifdef _DEBUG
     uint runTimeMS = SDL_GetTicks() - m_startTime;
     double runTimeSec = runTimeMS / 1000.0;
 
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "*** STATISTICS ***" << std::endl;
+    std::cout << std::endl;
+    
     std::cout << "Physics Update Cycles: " 
             << m_physicsUpdates << std::endl;
     std::cout << "Physics Update Cycles per second: " 
@@ -110,11 +120,21 @@ MainApplication::go()
             << m_graphicsUpdates /  runTimeSec << std::endl;
     std::cout << "Interaction Update Cycles: " 
             << m_interactionUpdates << std::endl;
-    std::cout << "Physics Update Cycles per second: " 
+    std::cout << "Interaction Update Cycles per second: " 
             << m_interactionUpdates /  runTimeSec << std::endl;
-#endif
+    
+    std::cout << "Physics Usage: " << (int)(100 -
+            ((m_physicsWaitTime / m_physicsUpdates) / 
+            (1.0 / COAJNR_PHYSICS_FPS) * 100)) << "%"<< std::endl;
+    std::cout << "Graphics Usage: " << (int)(100 -
+            ((m_graphicsWaitTime / m_graphicsUpdates) /
+            (1.0 / COAJNR_GRAPHICS_FPS) * 100)) << "%"<< std::endl;
+    std::cout << "Interaction Usage: " << (int)(100 -
+            ((m_interactionWaitTime / m_interactionUpdates) / 
+            (1.0 / COAJNR_INTERACTION_FPS) * 100)) << "%"<< std::endl;
 
-    cleanup();
+    std::cout << std::endl;
+#endif
 }
 
 int 
@@ -153,6 +173,8 @@ MainApplication::interactionWorkerThread(void* data)
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
+        
+        m_interactionWaitTime += timeToWait / 1000.0f;
         
         SDL_Delay(timeToWait);
         
@@ -201,6 +223,8 @@ MainApplication::graphicsWorkerThread(void* p_data)
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
         
+        m_graphicsWaitTime += timeToWait / 1000.0f;
+
         SDL_Delay(timeToWait);
         
         if(!timeToWait)
@@ -265,6 +289,8 @@ MainApplication::physicsWorkerThread(void* p_data)
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
+
+        m_physicsWaitTime += timeToWait / 1000.0f;
 
         SDL_Delay(timeToWait);
         

@@ -193,7 +193,7 @@ Character::grab()
                 getWorldOrientation()).inverse() * 
                 -(m_grabbedObject->getWorldPosition() - this->getWorldPosition());
             
-        if(grabHinge.length() >= 3.5)
+        if(grabHinge.length() >= 2.5)
             m_grabConstraint->setPivotB(grabHinge * 0.9);
 
         if(grabHinge.length() < 2.1)

@@ -48,6 +48,11 @@ class MainApplication
 
     /// number of interaction thread loops
     static uint m_interactionUpdates;
+
+    static double m_physicsWaitTime;
+    static double m_graphicsWaitTime;
+    static double m_interactionWaitTime;
+    
 #endif
     
     /// when set to false, physics thread terminates after next update
