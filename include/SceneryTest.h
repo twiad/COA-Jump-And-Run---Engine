@@ -19,10 +19,12 @@ class InputController;
 class SceneryTest : public Scenery
 {
     Ogre::SceneNode* m_planeNode;
+    Ogre::SceneNode* m_terrainNode;
     Ogre::SceneNode* m_boxStackNodes[BOX_COUNT];
     Ogre::SceneNode* m_testConstraintNodes[2];
     
     Ogre::Entity* m_plane;
+    Ogre::Entity* m_terrain;
     Ogre::Entity* m_boxStack[BOX_COUNT];
     Ogre::Entity* m_testConstraint[2];
     

@@ -61,6 +61,22 @@ SceneryTest::setup()
     m_planeNode = sm->getRootSceneNode()->
             createChildSceneNode("plane-node");
 
+    m_terrain = sm->createEntity("terrain", "terrain.mesh");
+    m_terrain->setNormaliseNormals(true);
+    // 
+    // m_terrainNode = sm->getRootSceneNode()->
+    //         createChildSceneNode("terrain-node");
+    // m_terrainNode->attachObject(m_terrain);
+    // m_terrainNode->rotate(
+    //     Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+    // m_terrainNode->setPosition(0,-10,-30);
+    // 
+    Ogre::StaticGeometry* sg = new Ogre::StaticGeometry(sm, "static terrain");
+    sg->addEntity(m_terrain, Ogre::Vector3(0,-10,-30), 
+        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+    
+    sg->build();
+
     OgreBulletCollisions::MeshToShapeConverter converter(m_plane);
 
     m_planeShape = converter.createTrimesh();

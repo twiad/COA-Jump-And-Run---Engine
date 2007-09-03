@@ -13,3 +13,16 @@ material Material/SOLID/TEX/Level3_Level3.tga
 		}
 	}
 }
+material SOLID/TEX/grass.jpg
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture grass.jpg
+			}
+		}
+	}
+}

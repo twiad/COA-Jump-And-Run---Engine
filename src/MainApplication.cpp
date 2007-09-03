@@ -178,9 +178,9 @@ MainApplication::interactionWorkerThread(void* data)
         
         SDL_Delay(timeToWait);
         
-        if(!timeToWait)
-            std::cout << "WARNING! interaction update too slow!" 
-                    << std::endl;
+        // if(!timeToWait)
+        //     std::cout << "WARNING! interaction update too slow!" 
+        //             << std::endl;
 
     }
 
@@ -227,9 +227,9 @@ MainApplication::graphicsWorkerThread(void* p_data)
 
         SDL_Delay(timeToWait);
         
-        if(!timeToWait)
-            std::cout << "WARNING! graphics update too slow!" 
-                    << std::endl;
+        // if(!timeToWait)
+        //     std::cout << "WARNING! graphics update too slow!" 
+        //             << std::endl;
 
 #ifdef _DEBUG
         if(m_graphicsUpdates % (COAJNR_GRAPHICS_FPS * 2) == 0)
@@ -290,13 +290,14 @@ MainApplication::physicsWorkerThread(void* p_data)
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
 
+        /// @todo TODO: measure real phy update time
         m_physicsWaitTime += timeToWait / 1000.0f;
 
         SDL_Delay(timeToWait);
         
-        if(!timeToWait)
-            std::cout << "WARNING! physics update too slow!" 
-                << std::endl;
+        // if(!timeToWait)
+        //     std::cout << "WARNING! physics update too slow!" 
+        //         << std::endl;
 
         lockPhysics();
     }

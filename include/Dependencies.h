@@ -36,6 +36,6 @@
 #include "Config.h"
 
 #define uint unsigned int
-#define ZPOS -50
+#define ZPOS 0
 
 #endif
