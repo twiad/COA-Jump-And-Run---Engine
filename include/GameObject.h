@@ -1,12 +1,12 @@
-#ifndef COABLASTER_LEVELOBJECT_INCLUDED
-#define COABLASTER_LEVELOBJECT_INCLUDED
+#ifndef COABLASTER_GAMEOBJECT_INCLUDED
+#define COABLASTER_GAMEOBJECT_INCLUDED
 
 #include "Dependencies.h"
 
 namespace CoABlaster
 {
     
-class LevelObject : public OgreBulletDynamics::RigidBody
+class GameObject : public OgreBulletDynamics::RigidBody
 {
     Ogre::SceneNode* m_sceneNode;
     Ogre::Entity* m_entity;
@@ -15,8 +15,8 @@ class LevelObject : public OgreBulletDynamics::RigidBody
 
 
 public:
-    LevelObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
-    virtual ~LevelObject();
+    GameObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
+    virtual ~GameObject();
 
     Ogre::SceneNode* sceneNode()
     {

@@ -103,7 +103,8 @@ GraphicsManager::init(Scenery* p_scenery)
     m_root = new Root(
             m_resourcePath + "plugins.cfg", 
             m_resourcePath + "ogre.cfg", 
-            m_resourcePath + "Ogre.log");
+            m_resourcePath + "Ogre.log"
+    		);
 
     setupResources();
 
@@ -115,8 +116,9 @@ GraphicsManager::init(Scenery* p_scenery)
         return false;
 
     m_sceneManager = m_root->
-            createSceneManager(ST_GENERIC, "ExampleSMInstance");
-            
+    createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
+    //createSceneManager(ST_GENERIC, "ExampleSMInstance");
+
     m_camera = m_sceneManager->createCamera("camera");
     m_camera->setPosition(Vector3(0, 0, -50));
     m_camera->lookAt(Vector3(0, 0, 0));

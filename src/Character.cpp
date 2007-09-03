@@ -16,7 +16,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     : OgreBulletDynamics::RigidBody(
             p_idenitfier, PhysicsManager::get()->world()) 
 {
-    setSyncRotations(false);
+    setSyncRotations(true);
     
     m_identifier = p_idenitfier;
     
@@ -37,7 +37,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
             2,   /* ............................................. mass        */
-            Ogre::Vector3(0, 7, 0));
+            Ogre::Vector3(0, 7, ZPOS));
 
     mRootNode->attachObject(m_entity);
     
@@ -145,7 +145,7 @@ Character::applyMovementCorrections()
 
     Ogre::Vector3 pos = getWorldPosition();
     getBulletRigidBody()->getWorldTransform().setOrigin(
-            btVector3(pos.x, pos.y, 0));
+            btVector3(pos.x, pos.y, ZPOS));
 
     // if(m_grabbedObject)
     // {

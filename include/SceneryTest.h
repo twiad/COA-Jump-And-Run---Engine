@@ -19,24 +19,20 @@ class InputController;
 class SceneryTest : public Scenery
 {
     Ogre::SceneNode* m_planeNode;
-    Ogre::SceneNode* m_boxNode;
     Ogre::SceneNode* m_boxStackNodes[BOX_COUNT];
     Ogre::SceneNode* m_testConstraintNodes[2];
     
     Ogre::Entity* m_plane;
-    Ogre::Entity* m_box;
     Ogre::Entity* m_boxStack[BOX_COUNT];
     Ogre::Entity* m_testConstraint[2];
     
     Ogre::Light* m_light;
     
     OgreBulletCollisions::CollisionShape* m_planeShape;
-    OgreBulletCollisions::CollisionShape* m_boxShape;
     OgreBulletCollisions::CollisionShape* m_boxStackShape[BOX_COUNT];
     OgreBulletCollisions::CollisionShape* m_testConstraintShape[2];
     
     OgreBulletDynamics::RigidBody* m_planeBody;
-    OgreBulletDynamics::RigidBody* m_boxBody;
     OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
     OgreBulletDynamics::RigidBody* m_testConstraintBodies[2];
 
@@ -47,6 +43,8 @@ class SceneryTest : public Scenery
     InputController* m_movementInputController;
     
     Character* m_character;
+    
+    Ogre::Quaternion* m_rot;
     
 public:
     SceneryTest();
