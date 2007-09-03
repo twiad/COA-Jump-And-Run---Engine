@@ -5,7 +5,7 @@
 using namespace OgreBulletCollisions;
 using namespace OgreBulletDynamics;
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 PhysicsManager* PhysicsManager::m_instance = 0;

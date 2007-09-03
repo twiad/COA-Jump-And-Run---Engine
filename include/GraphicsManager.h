@@ -4,7 +4,7 @@
 
 #include "Dependencies.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
     
 class Scenery;

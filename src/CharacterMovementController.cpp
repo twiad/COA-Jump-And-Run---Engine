@@ -7,7 +7,7 @@
 #include "MainApplication.h"
 #include "PhysicsManager.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 CharacterMovementController::CharacterMovementController(Character* p_character)

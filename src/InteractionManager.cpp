@@ -5,7 +5,7 @@
 #include "MainApplication.h"
 #include "PhysicsManager.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 InteractionManager* InteractionManager::m_instance = 0;

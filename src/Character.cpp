@@ -6,7 +6,7 @@
 
 #include "MainApplication.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 /// @todo TODO: create a special object state for characters to have only

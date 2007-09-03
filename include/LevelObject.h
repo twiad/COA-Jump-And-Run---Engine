@@ -3,7 +3,7 @@
 
 #include "Dependencies.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
     
 class LevelObject : public OgreBulletDynamics::RigidBody

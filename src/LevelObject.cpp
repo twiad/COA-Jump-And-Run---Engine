@@ -5,7 +5,7 @@
 
 #include "MainApplication.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 LevelObject::LevelObject(std::string p_idenitfier, std::string p_meshFile, Ogre::Vector3 p_pos, Ogre::Quaternion &p_rot)

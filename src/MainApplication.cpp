@@ -23,7 +23,7 @@
 #define COAJNR_PHYSICS_SPEED_FACTOR 2
 
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 SDL_mutex*  MainApplication::m_graphicsLock = 0;

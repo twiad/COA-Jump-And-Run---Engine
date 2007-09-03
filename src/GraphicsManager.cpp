@@ -7,7 +7,7 @@
 
 using namespace Ogre;
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
@@ -116,7 +116,8 @@ GraphicsManager::init(Scenery* p_scenery)
         return false;
 
     m_sceneManager = m_root->
-    createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
+        createSceneManager("TerrainSceneManager");
+    //createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
     //createSceneManager(ST_GENERIC, "ExampleSMInstance");
 
     m_camera = m_sceneManager->createCamera("camera");

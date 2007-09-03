@@ -10,7 +10,7 @@
 //int main(int p_argc, char const** p_argv)
 int main (int argc, char *argv[])
 {
-    CoABlaster::MainApplication::go();
+    CoAJnR::MainApplication::go();
     return 0;
 }
 

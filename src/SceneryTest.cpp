@@ -9,7 +9,7 @@
 #include "LevelObject.h"
 #include "GameObject.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 uint CubeSpawnCollisionHandler::m_spawnId = 0;
@@ -37,6 +37,8 @@ SceneryTest::setup()
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
     
+    sm->setSkyBox(true, "CoAJnR/SkyBox/miramar");
+    
     gm->camera()->setPosition(Ogre::Vector3(-16, 10, 23));
     gm->camera()->lookAt(Ogre::Vector3(0, 0, ZPOS));
     
@@ -44,7 +46,7 @@ SceneryTest::setup()
     
     sm->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
 
-    //sm->setWorldGeometry("terrain.cfg");
+    // sm->setWorldGeometry("terrain.cfg");
     
     // light
     m_light = sm->createLight("point-light");

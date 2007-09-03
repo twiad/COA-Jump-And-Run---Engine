@@ -6,7 +6,7 @@
 using namespace Ogre;
 using namespace OIS;
 
-namespace CoABlaster
+namespace CoAJnR
 {
     
 InputHandler* InputHandler::m_instance = 0;

@@ -8,7 +8,7 @@
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 #define BOX_COUNT 10
@@ -121,7 +121,7 @@ public:
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
             3,   /* ............................................. mass        */
-            Ogre::Vector3(-4, 7, 0));    
+            Ogre::Vector3(-4, 7, ZPOS));    
 
         node->attachObject(ent);
 

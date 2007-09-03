@@ -6,7 +6,7 @@
 
 #include "InputController.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 class Character;

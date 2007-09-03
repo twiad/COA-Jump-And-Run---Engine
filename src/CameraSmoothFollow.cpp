@@ -1,6 +1,6 @@
 #include "CameraSmoothFollow.h"
 
-namespace CoABlaster
+namespace CoAJnR
 {
 
 CameraSmoothFollow::CameraSmoothFollow(
