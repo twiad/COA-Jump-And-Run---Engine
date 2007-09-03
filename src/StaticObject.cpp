@@ -1,4 +1,4 @@
-#include "GameObject.h"
+#include "StaticObject.h"
 
 #include "PhysicsManager.h"
 #include "GraphicsManager.h"
@@ -8,7 +8,7 @@
 namespace CoAJnR
 {
 
-GameObject::GameObject(std::string p_idenitfier, std::string p_meshFile, Ogre::Vector3 p_pos, Ogre::Quaternion &p_rot)
+StaticObject::StaticObject(std::string p_idenitfier, std::string p_meshFile, Ogre::Vector3 p_pos, Ogre::Quaternion &p_rot)
     : OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
 {
     m_identifier = p_idenitfier;   
@@ -17,12 +17,11 @@ GameObject::GameObject(std::string p_idenitfier, std::string p_meshFile, Ogre::V
 
     m_entity->setNormaliseNormals(true);
     
-    setShape(
+    setStaticShape(
             GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_idenitfier), 
             new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)), 
-            2.0, /* ............................................. restitution */
-            2.0, /* ............................................. friction    */
-            5,
+            0.0, /* ............................................. restitution */
+            0.0, /* ............................................. friction    */
             p_pos,
             p_rot
             //Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
@@ -34,7 +33,7 @@ GameObject::GameObject(std::string p_idenitfier, std::string p_meshFile, Ogre::V
     //getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(5,8,0));
 }
 
-GameObject::~GameObject()
+StaticObject::~StaticObject()
 {
     /// @todo TODO: cleanup
 }

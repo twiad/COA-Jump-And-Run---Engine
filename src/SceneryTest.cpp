@@ -6,8 +6,8 @@
 #include "GraphicsManager.h"
 #include "InputHandler.h"
 #include "PhysicsManager.h"
-#include "LevelObject.h"
-#include "GameObject.h"
+#include "StaticObject.h"
+#include "DynamicObject.h"
 
 namespace CoAJnR
 {
@@ -37,10 +37,12 @@ SceneryTest::setup()
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
     
+
+    gm->camera()->setPosition(Ogre::Vector3(-16, 15, 23));
+    gm->camera()->lookAt(Ogre::Vector3(0, 0, 0));
+
     sm->setSkyBox(true, "CoAJnR/SkyBox/miramar");
-    
-    gm->camera()->setPosition(Ogre::Vector3(-16, 10, 23));
-    gm->camera()->lookAt(Ogre::Vector3(0, 0, ZPOS));
+
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
     
@@ -51,11 +53,11 @@ SceneryTest::setup()
     // light
     m_light = sm->createLight("point-light");
     m_light->setType(Ogre::Light::LT_POINT);
-    m_light->setPosition(Ogre::Vector3(10, 20, 20+ZPOS));
+    m_light->setPosition(Ogre::Vector3(10, 20, 20));
 
     // plane
     // m_plane = sm->createEntity("plane", "ground.mesh");
-    m_plane = sm->createEntity("plane", "Level3.mesh");
+    m_plane = sm->createEntity("plane", "Level4.mesh");
     m_plane->setNormaliseNormals(true);
     
     m_planeNode = sm->getRootSceneNode()->
@@ -94,18 +96,9 @@ SceneryTest::setup()
             Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
             );
     
-    m_planeBody->setPosition(Ogre::Vector3(0,0,ZPOS));
-    m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,ZPOS));
+    m_planeBody->setPosition(Ogre::Vector3(0,0,0));
+    m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
 
-    // questionmark box
-    // m_rot = new Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-    new LevelObject("NBox_1" , "NormalCube.mesh", Ogre::Vector3(4, 8, ZPOS), *m_rot);
-    LevelObject* tmp = 
-        new LevelObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(5, 8, ZPOS), *m_rot);
-    new LevelObject("NBox_2" , "NormalCube.mesh", Ogre::Vector3(6, 8, ZPOS), *m_rot);
-
-    // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
-    tmp->setCollisionHandler(new CubeSpawnCollisionHandler);
 
     // // this is the constraint test
     // {
@@ -181,21 +174,68 @@ SceneryTest::setup()
     for(int j = 0; j < 4; j++)
         for(int i = 0; i < BOX_COUNT; i++)
         {
-            new GameObject(
+            new DynamicObject(
             		"QBox" + Ogre::StringConverter::toString(j) + 
                     " " + Ogre::StringConverter::toString(i), 
                     "QuestionCube.mesh",
-                    Ogre::Vector3(- 17 + i + (i*0.3), 1 + j + (j*0.1), ZPOS),
+                    Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
             		*m_rot
             		);
         }
+    for(int i = 0; i < 4; i++)
+            {
+                new StaticObject(
+                		"NBox" + Ogre::StringConverter::toString(i), 
+                        "NormalCube.mesh",
+                        Ogre::Vector3(26 + i, 5, 0),
+                		*m_rot
+                		);
+            }
 
-    new GameObject("Wippe","Plane.mesh",Ogre::Vector3(16,8,ZPOS),*m_rot);
-    m_rot = new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_X));
-    LevelObject* tmp2 =
-    new LevelObject("Wall","Plane.mesh",Ogre::Vector3(20, 9, ZPOS),*m_rot);
-    tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Z)));
-
+    for(int i = 0; i < 5; i++)
+                {
+                    new StaticObject(
+                    		"NBox1" + Ogre::StringConverter::toString(i), 
+                            "NormalCube.mesh",
+                            Ogre::Vector3(17 + i, 9, 0),
+                    		*m_rot
+                    		);
+                }
+    
+    for(int i = 0; i < 5; i++)
+                {
+                    new StaticObject(
+                    		"NBox2" + Ogre::StringConverter::toString(i), 
+                            "NormalCube.mesh",
+                            Ogre::Vector3(26 + i, 13, 0),
+                    		*m_rot
+                    		);
+                }
+    
+    for(int i = 0; i < 7; i++)
+                {
+                    new StaticObject(
+                    		"NBox3" + Ogre::StringConverter::toString(i), 
+                            "NormalCube.mesh",
+                            Ogre::Vector3(10 + i, 11, 0),
+                    		*m_rot
+                    		);
+                }
+    StaticObject* Q1 = new StaticObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(30, 5, 0), *m_rot);
+    // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
+    Q1->setCollisionHandler(new CubeSpawnCollisionHandler);
+    
+    StaticObject* Q2 = new StaticObject("QBox_2" , "QuestionCube.mesh", Ogre::Vector3(9, 16, 0), *m_rot);
+    // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
+    Q2->setCollisionHandler(new CubeSpawnCollisionHandler);
+    //new StaticObject("Wall","Plane.mesh",Ogre::Vector3(40, 5, 0),*m_rot);
+    
+    //DynamicObject* tmp2 = new DynamicObject("Wippe","Plane.mesh",Ogre::Vector3(40,8,0), *m_rot);
+    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
+    
+    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
+    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Z)));
+    
     // Character
     m_character = new Character("player", "Cube.mesh");
     m_movementInputController = new CharacterMovementController(m_character);

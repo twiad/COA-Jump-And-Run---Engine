@@ -37,7 +37,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
             2,   /* ............................................. mass        */
-            Ogre::Vector3(0, 7, ZPOS));
+            Ogre::Vector3(17, 5, ZPOS));
 
     mRootNode->attachObject(m_entity);
     
@@ -145,7 +145,7 @@ Character::applyMovementCorrections()
 
     Ogre::Vector3 pos = getWorldPosition();
     getBulletRigidBody()->getWorldTransform().setOrigin(
-            btVector3(pos.x, pos.y, ZPOS));
+            btVector3(pos.x, pos.y, 0));
 
     // if(m_grabbedObject)
     // {

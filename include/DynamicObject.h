@@ -1,12 +1,12 @@
-#ifndef COABLASTER_GAMEOBJECT_INCLUDED
-#define COABLASTER_GAMEOBJECT_INCLUDED
+#ifndef COABLASTER_DYNAMICOBJECT_INCLUDED
+#define COABLASTER_DYNAMICOBJECT_INCLUDED
 
 #include "Dependencies.h"
 
 namespace CoAJnR
 {
     
-class GameObject : public OgreBulletDynamics::RigidBody
+class DynamicObject : public OgreBulletDynamics::RigidBody
 {
     Ogre::SceneNode* m_sceneNode;
     Ogre::Entity* m_entity;
@@ -15,8 +15,8 @@ class GameObject : public OgreBulletDynamics::RigidBody
 
 
 public:
-    GameObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
-    virtual ~GameObject();
+    DynamicObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
+    virtual ~DynamicObject();
 
     Ogre::SceneNode* sceneNode()
     {

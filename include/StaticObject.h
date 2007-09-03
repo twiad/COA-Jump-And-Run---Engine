@@ -6,7 +6,7 @@
 namespace CoAJnR
 {
     
-class LevelObject : public OgreBulletDynamics::RigidBody
+class StaticObject : public OgreBulletDynamics::RigidBody
 {
     Ogre::SceneNode* m_sceneNode;
     Ogre::Entity* m_entity;
@@ -15,8 +15,8 @@ class LevelObject : public OgreBulletDynamics::RigidBody
 
 
 public:
-    LevelObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
-    virtual ~LevelObject();
+    StaticObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
+    virtual ~StaticObject();
 
     Ogre::SceneNode* sceneNode()
     {
