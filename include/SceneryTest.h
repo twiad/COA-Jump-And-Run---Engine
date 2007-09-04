@@ -201,7 +201,7 @@ public:
         m_spawnId++;
         
         Ogre::Entity* ent = sm->createEntity(
-                "SpawnBox" + Ogre::StringConverter::toString(m_spawnId), 
+                "SpawnBox2" + Ogre::StringConverter::toString(m_spawnId), 
                 "QuestionCube.mesh");
         ent->setNormaliseNormals(true);
 
