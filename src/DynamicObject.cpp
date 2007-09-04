@@ -8,8 +8,14 @@
 namespace CoAJnR
 {
 
-DynamicObject::DynamicObject(std::string p_idenitfier, std::string p_meshFile, Ogre::Vector3 p_pos, Ogre::Quaternion &p_rot)
-    : OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
+DynamicObject::DynamicObject(
+		std::string p_idenitfier, 
+		std::string p_meshFile, 
+		OgreBulletCollisions::CollisionShape* p_shape,
+		int p_mass,
+		Ogre::Vector3 p_pos, 
+		Ogre::Quaternion &p_rot)
+    	: OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
 {
     m_identifier = p_idenitfier;   
     
@@ -19,10 +25,10 @@ DynamicObject::DynamicObject(std::string p_idenitfier, std::string p_meshFile, O
     
     setShape(
             GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_idenitfier), 
-            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)), 
+            p_shape, 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
-            7,
+            p_mass,
             p_pos,
             p_rot
             //Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)

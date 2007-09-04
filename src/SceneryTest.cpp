@@ -195,6 +195,8 @@ SceneryTest::setup()
             		"QBox" + Ogre::StringConverter::toString(j) + 
                     " " + Ogre::StringConverter::toString(i), 
                     "QuestionCube.mesh",
+                    m_standardBoxShape,
+                    5,
                     Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
             		m_rot
             		);

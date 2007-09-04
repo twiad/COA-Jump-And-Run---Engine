@@ -15,7 +15,13 @@ class DynamicObject : public OgreBulletDynamics::RigidBody
 
 
 public:
-    DynamicObject(std::string identifier, std::string meshFile, Ogre::Vector3 pos, Ogre::Quaternion &rot);
+    DynamicObject(
+    		std::string identifier, 
+    		std::string meshFile, 
+    		OgreBulletCollisions::CollisionShape* shape,
+    		int mass,
+    		Ogre::Vector3 pos, 
+    		Ogre::Quaternion &rot);
     virtual ~DynamicObject();
 
     Ogre::SceneNode* sceneNode()

@@ -152,10 +152,13 @@ public:
             return;
             
         Ogre::Quaternion q = Ogre::Quaternion::IDENTITY;
+        OgreBulletCollisions::CollisionShape* b = new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5));
         
         new DynamicObject(
         		"SpawnBox" + Ogre::StringConverter::toString(++m_spawnId), 
                 "QuestionCube.mesh",
+                b,
+                7,
                 Ogre::Vector3(32, 5, 0), 
                 q);
 
