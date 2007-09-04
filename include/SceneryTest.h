@@ -4,16 +4,18 @@
 
 #include "Dependencies.h"
 
+#include "Character.h"
 #include "Scenery.h"
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
+#include "DynamicObject.h"
 
 namespace CoAJnR
 {
 
 #define BOX_COUNT 10
 
-class Character;
+// class Character;
 class InputController;
 
 class SceneryTest : public Scenery
@@ -83,6 +85,52 @@ public:
     }  
 };
 
+class DestroyTouchingObjectsCollisionHandler :
+        public OgreBulletCollisions::CollisionHandler
+{
+    static uint m_psCount;
+    std::list<OgreBulletCollisions::Object*> m_deletedObjects;
+
+public:
+    DestroyTouchingObjectsCollisionHandler()
+    {
+        m_psCount = 0;
+    }
+    
+    void handleCollision(OgreBulletCollisions::CollisionInfo* info)
+    {
+        if(info)
+            if(info->getPartner())
+            {
+                std::list<OgreBulletCollisions::Object*>::iterator it;
+                for(it = m_deletedObjects.begin(); 
+                    it != m_deletedObjects.end(); it++)
+                    if(*it == info->getPartner())
+                        break;
+                
+                if(it == m_deletedObjects.end())
+                {
+                    Ogre::ParticleSystem* ps = 
+                    GraphicsManager::get()->sceneManager()->
+                            createParticleSystem("destroy ps " + 
+                            Ogre::StringConverter::toString(m_psCount++),
+                            "Examples/Smoke");
+                            
+                    info->getPartner()->sceneNode()->detachAllObjects();
+                    
+                    info->getPartner()->sceneNode()->attachObject(ps);
+                    delete info->getPartner();
+                    m_deletedObjects.push_back(info->getPartner());
+                }
+            }
+    }
+    
+    void allCollisionsPublished()
+    {
+        m_deletedObjects.clear();
+    }
+};
+
 class CubeSpawnCollisionHandler : 
         public OgreBulletCollisions::CollisionHandler
 {
@@ -100,35 +148,14 @@ public:
     {
         if(SDL_GetTicks() - m_lastSpawn < 500)
             return;
+            
+        Ogre::Quaternion q = Ogre::Quaternion::IDENTITY;
         
-        GraphicsManager* gm = GraphicsManager::get();
-        Ogre::SceneManager* sm = gm->sceneManager();
-        
-        m_spawnId++;
-        
-        Ogre::Entity* ent = sm->createEntity(
-                "SpawnBox" + Ogre::StringConverter::toString(m_spawnId), 
-                "QuestionCube.mesh");
-        ent->setNormaliseNormals(true);
-
-        Ogre::SceneNode* node = sm->getRootSceneNode()->
-                createChildSceneNode("SpawnBoxNode" + 
-                    Ogre::StringConverter::toString(m_spawnId));
-    
-        OgreBulletDynamics::RigidBody* body = new OgreBulletDynamics::RigidBody(
-                "BoxSpawnBody" + Ogre::StringConverter::toString(m_spawnId), 
-                PhysicsManager::get()->world());
-    
-        body->setShape(
-            node, 
-            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-            2.0, /* ............................................. restitution */
-            2.0, /* ............................................. friction    */
-            3,   /* ............................................. mass        */
-            Ogre::Vector3(32, 5, 0));    
-
-
-        node->attachObject(ent);
+        new DynamicObject(
+        		"SpawnBox" + Ogre::StringConverter::toString(++m_spawnId), 
+                "QuestionCube.mesh",
+                Ogre::Vector3(32, 5, 0), 
+                q);
 
         m_lastSpawn = SDL_GetTicks();
     }  

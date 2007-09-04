@@ -113,10 +113,12 @@ namespace OgreBulletDynamics
             contactManifold->refreshContactPoints(obA->getWorldTransform(),obB->getWorldTransform());
             
             const unsigned int numContacts = contactManifold->getNumContacts();
-            for (unsigned int j = 0;j < numContacts; j++)
+            for (unsigned int j = 0; j < numContacts; j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
                                 
+                SDL_LockMutex(mCollisionInfosMutex);
+
                 if(handlerA)
                 {                    
                     CollisionInfo* info = new CollisionInfo(
@@ -125,9 +127,7 @@ namespace OgreBulletDynamics
                         pt.m_localPointA, 
                         pt.getPositionWorldOnA());
 
-                    SDL_LockMutex(mCollisionInfosMutex);
                     mCollisionInfos.push_back(info);
-                    SDL_UnlockMutex(mCollisionInfosMutex);
                 }
             
                 if(handlerB)
@@ -138,10 +138,10 @@ namespace OgreBulletDynamics
                         pt.m_localPointB, 
                         pt.getPositionWorldOnB());
 
-                    SDL_LockMutex(mCollisionInfosMutex);
                     mCollisionInfos.push_back(info);
-                    SDL_UnlockMutex(mCollisionInfosMutex);
                 }
+
+                SDL_UnlockMutex(mCollisionInfosMutex);
             
             }
         }
@@ -187,22 +187,34 @@ namespace OgreBulletDynamics
     // -------------------------------------------------------------------------
     void DynamicsWorld::publishCollisions()
     {
-        SDL_LockMutex(mCollisionInfosMutex);
-
+        std::list<OgreBulletCollisions::CollisionHandler*> m_handlers;
         OgreBulletCollisions::CollisionInfo* info;
+
+        SDL_LockMutex(mCollisionInfosMutex);
 
         while(mCollisionInfos.size())
         {
             info = mCollisionInfos.front();
             
-            if(info->getObject()->getCollisionHandler())
-                info->getObject()->getCollisionHandler()->handleCollision(info);
-
-            delete info;
-
+            if(info)
+            {
+                if(info->getObject()->getCollisionHandler())
+                {
+                    info->getObject()->getCollisionHandler()->handleCollision(info);
+                    m_handlers.push_back(info->getObject()->getCollisionHandler());
+                }
+                delete info;
+            }
+            
             mCollisionInfos.pop_front();
         }
         SDL_UnlockMutex(mCollisionInfosMutex);
+        
+        while(m_handlers.size())
+        {
+            m_handlers.back()->allCollisionsPublished();
+            m_handlers.pop_back();
+        }
     }
     // -------------------------------------------------------------------------
     void DynamicsWorld::removeConstraint(TypedConstraint *constraint)

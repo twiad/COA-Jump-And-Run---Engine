@@ -115,15 +115,15 @@ GraphicsManager::init(Scenery* p_scenery)
     if(!m_window)
         return false;
 
-    m_sceneManager = m_root->
-        createSceneManager("TerrainSceneManager");
-    //createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
-    //createSceneManager(ST_GENERIC, "ExampleSMInstance");
+    m_sceneManager = m_root->createSceneManager(ST_GENERIC);
+        //createSceneManager("TerrainSceneManager");
+        //createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
 
     m_camera = m_sceneManager->createCamera("camera");
     m_camera->setPosition(Vector3(0, 0, -50));
     m_camera->lookAt(Vector3(0, 0, 0));
     m_camera->setNearClipDistance(1);
+    m_camera->setFarClipDistance(20);
 
     m_viewport = m_window->addViewport(m_camera);
     m_viewport->setBackgroundColour(ColourValue( 0, 0, 0));

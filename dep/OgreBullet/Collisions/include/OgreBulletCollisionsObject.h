@@ -99,6 +99,8 @@ namespace OgreBulletCollisions
 
         void setSyncRotations(bool value){ mSyncRotations = value; }
         bool getSyncRotations() { return mSyncRotations; }
+        
+        Ogre::SceneNode* sceneNode() { return mRootNode; }
 
     protected:
         

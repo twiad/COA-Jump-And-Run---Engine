@@ -39,6 +39,7 @@ namespace OgreBulletCollisions
         CollisionHandler() {}        
         virtual ~CollisionHandler() {}
         virtual void handleCollision(CollisionInfo* info) = 0;
+        virtual void allCollisionsPublished() {}
     };
 }
 #endif //_OGREBULLETCOLLISIONS_CollisionHandler_H

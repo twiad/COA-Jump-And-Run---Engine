@@ -13,6 +13,7 @@ namespace CoAJnR
 {
 
 uint CubeSpawnCollisionHandler::m_spawnId = 0;
+uint DestroyTouchingObjectsCollisionHandler::m_psCount = 0;
 
 SceneryTest::SceneryTest()
 {
@@ -43,13 +44,25 @@ SceneryTest::setup()
     gm->camera()->lookAt(Ogre::Vector3(0, 0, 0));
 
     sm->setSkyBox(true, "CoAJnR/SkyBox/miramar");
-
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
     
     sm->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
 
     // sm->setWorldGeometry("terrain.cfg");
+
+    OgreBulletCollisions::CollisionShape* floorShape = 
+            new OgreBulletCollisions::StaticPlaneCollisionShape(
+                    Ogre::Vector3(0, 1, 0), -2);
+
+    OgreBulletDynamics::RigidBody* floorBody = 
+            new OgreBulletDynamics::RigidBody(
+                    "floor", PhysicsManager::get()->world());
+
+
+    floorBody->setStaticShape(floorShape, 1, 1, Ogre::Vector3(0, 1, 0));
+    floorBody->setCollisionHandler(new DestroyTouchingObjectsCollisionHandler);
+
     
     // light
     m_light = sm->createLight("point-light");
@@ -243,7 +256,7 @@ SceneryTest::setup()
     
     //new StaticObject("Wall","Plane.mesh",Ogre::Vector3(40, 5, 0),*m_rot);
     
-    //DynamicObject* tmp2 = new DynamicObject("Wippe","Plane.mesh",Ogre::Vector3(40,8,0), *m_rot);
+    //DynamicObject* tmp2 = new DynamicObject("Wippe","Plane.mesh",Ogre::Vector3(40,8,0), m_rot);
     //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
     
     //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
