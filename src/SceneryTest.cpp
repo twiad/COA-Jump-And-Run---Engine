@@ -195,7 +195,7 @@ SceneryTest::setup()
             		"QBox" + Ogre::StringConverter::toString(j) + 
                     " " + Ogre::StringConverter::toString(i), 
                     "QuestionCube.mesh",
-                    m_standardBoxShape,
+                    new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)),
                     5,
                     Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
             		m_rot
@@ -269,7 +269,7 @@ SceneryTest::setup()
     //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Z)));
     
     // Character
-    m_character = new Character("player", "Cube.mesh");
+    m_character = new Character("player", "Player.mesh");
     m_movementInputController = new CharacterMovementController(m_character);
     InputHandler::get()->addInputController(m_movementInputController);
     // 
