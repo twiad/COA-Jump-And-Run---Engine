@@ -8,8 +8,13 @@
 namespace CoAJnR
 {
 
-StaticObject::StaticObject(std::string p_idenitfier, std::string p_meshFile, Ogre::Vector3 p_pos, Ogre::Quaternion &p_rot)
-    : OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
+StaticObject::StaticObject(
+		std::string p_idenitfier, 
+		std::string p_meshFile, 
+		OgreBulletCollisions::CollisionShape* p_shape,
+		Ogre::Vector3 p_pos, 
+		Ogre::Quaternion p_rot)
+    	: OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
 {
     m_identifier = p_idenitfier;   
     
@@ -19,7 +24,7 @@ StaticObject::StaticObject(std::string p_idenitfier, std::string p_meshFile, Ogr
     
     setStaticShape(
             GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_idenitfier), 
-            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)), 
+            p_shape, 
             0.0, /* ............................................. restitution */
             0.0, /* ............................................. friction    */
             p_pos,

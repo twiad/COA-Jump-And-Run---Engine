@@ -23,7 +23,8 @@ SceneryTest::SceneryTest()
     m_planeBody = 0;
     m_movementInputController = 0;
     m_character = 0;
-    m_rot = new Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+    m_rot = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+    m_standardBoxShape = new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5));
 }
 
 SceneryTest::~SceneryTest()
@@ -179,7 +180,7 @@ SceneryTest::setup()
                     " " + Ogre::StringConverter::toString(i), 
                     "QuestionCube.mesh",
                     Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
-            		*m_rot
+            		m_rot
             		);
         }
     for(int i = 0; i < 4; i++)
@@ -187,8 +188,9 @@ SceneryTest::setup()
                 new StaticObject(
                 		"NBox" + Ogre::StringConverter::toString(i), 
                         "NormalCube.mesh",
+                        m_standardBoxShape,
                         Ogre::Vector3(26 + i, 5, 0),
-                		*m_rot
+                		m_rot
                 		);
             }
 
@@ -197,8 +199,9 @@ SceneryTest::setup()
                     new StaticObject(
                     		"NBox1" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
+                            m_standardBoxShape,
                             Ogre::Vector3(17 + i, 9, 0),
-                    		*m_rot
+                    		m_rot
                     		);
                 }
     
@@ -207,8 +210,9 @@ SceneryTest::setup()
                     new StaticObject(
                     		"NBox2" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
+                            m_standardBoxShape,
                             Ogre::Vector3(26 + i, 13, 0),
-                    		*m_rot
+                    		m_rot
                     		);
                 }
     
@@ -217,17 +221,26 @@ SceneryTest::setup()
                     new StaticObject(
                     		"NBox3" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
+                            m_standardBoxShape,
                             Ogre::Vector3(10 + i, 11, 0),
-                    		*m_rot
+                    		m_rot
                     		);
                 }
-    StaticObject* Q1 = new StaticObject("QBox_1" , "QuestionCube.mesh", Ogre::Vector3(30, 5, 0), *m_rot);
+    OgreBulletCollisions::CollisionShape* m_tubeShape = 
+    	new OgreBulletCollisions::CylinderCollisionShape(Ogre::Vector3(1, 1, 1),Ogre::Vector3::UNIT_Z);
+
+    StaticObject* T1 = new StaticObject("Tube_1" , "Tube.mesh", m_tubeShape, Ogre::Vector3(31.5, 14, 0), m_rot);
+    Ogre::Quaternion m_trot = Ogre::Quaternion(Ogre::Degree(-180), (Ogre::Vector3::UNIT_Z)); 
+    T1->setOrientation(m_trot*m_rot);
+    
+    StaticObject* Q1 = new StaticObject("QBox_1" , "QuestionCube.mesh", m_standardBoxShape, Ogre::Vector3(30, 5, 0), m_rot);
     // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
     Q1->setCollisionHandler(new CubeSpawnCollisionHandler);
     
-    StaticObject* Q2 = new StaticObject("QBox_2" , "QuestionCube.mesh", Ogre::Vector3(9, 16, 0), *m_rot);
+    StaticObject* Q2 = new StaticObject("QBox_2" , "QuestionCube.mesh", m_standardBoxShape, Ogre::Vector3(9, 16, 0), m_rot);
     // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
     Q2->setCollisionHandler(new CubeSpawnCollisionHandler);
+    
     //new StaticObject("Wall","Plane.mesh",Ogre::Vector3(40, 5, 0),*m_rot);
     
     //DynamicObject* tmp2 = new DynamicObject("Wippe","Plane.mesh",Ogre::Vector3(40,8,0), *m_rot);

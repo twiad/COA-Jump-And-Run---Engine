@@ -33,6 +33,8 @@ class SceneryTest : public Scenery
     OgreBulletCollisions::CollisionShape* m_planeShape;
     OgreBulletCollisions::CollisionShape* m_boxStackShape[BOX_COUNT];
     OgreBulletCollisions::CollisionShape* m_testConstraintShape[2];
+    OgreBulletCollisions::CollisionShape* m_standardBoxShape;
+    
     
     OgreBulletDynamics::RigidBody* m_planeBody;
     OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
@@ -46,7 +48,7 @@ class SceneryTest : public Scenery
     
     Character* m_character;
     
-    Ogre::Quaternion* m_rot;
+    Ogre::Quaternion m_rot;
     
 public:
     SceneryTest();
