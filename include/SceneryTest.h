@@ -8,7 +8,9 @@
 #include "Scenery.h"
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
+#include "InputHandler.h"
 #include "DynamicObject.h"
+
 
 namespace CoAJnR
 {
@@ -159,6 +161,72 @@ public:
 
         m_lastSpawn = SDL_GetTicks();
     }  
+};
+
+class TubeCollisionHandler : 
+        public OgreBulletCollisions::CollisionHandler
+{
+    static uint m_spawnId;
+    
+    uint m_lastSpawn;
+    
+public:
+    TubeCollisionHandler() : OgreBulletCollisions::CollisionHandler()
+    {
+        m_lastSpawn = 0;
+    }
+
+    void handleCollision(OgreBulletCollisions::CollisionInfo* info)
+    {
+        if(SDL_GetTicks() - m_lastSpawn < 100)
+            return;
+
+        std::cout << " local position: " << 
+                        info->getLocalPosition().x() << " " <<
+                        info->getLocalPosition().y() << " " <<
+                        info->getLocalPosition().z() << " " <<
+                        std::endl;
+        
+        if(info->getLocalPosition().z() < 0)
+        	return;
+        
+        OIS::Keyboard* keyboard = InputHandler::get()->keyboard();
+        
+        if(!keyboard->isKeyDown(OIS::KC_DOWN))
+        	return;
+        
+        GraphicsManager* gm = GraphicsManager::get();
+        Ogre::SceneManager* sm = gm->sceneManager();
+        
+        m_spawnId++;
+        
+        Ogre::Entity* ent = sm->createEntity(
+                "SpawnBox" + Ogre::StringConverter::toString(m_spawnId), 
+                "QuestionCube.mesh");
+        ent->setNormaliseNormals(true);
+
+        Ogre::SceneNode* node = sm->getRootSceneNode()->
+                createChildSceneNode("SpawnBoxNode" + 
+                    Ogre::StringConverter::toString(m_spawnId));
+    
+        OgreBulletDynamics::RigidBody* body = new OgreBulletDynamics::RigidBody(
+                "BoxSpawnBody" + Ogre::StringConverter::toString(m_spawnId), 
+                PhysicsManager::get()->world());
+    
+        body->setShape(
+            node, 
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
+            2.0, /* ............................................. restitution */
+            2.0, /* ............................................. friction    */
+            3,   /* ............................................. mass        */
+            Ogre::Vector3(32, 10, 0));    
+
+
+        node->attachObject(ent);
+
+        m_lastSpawn = SDL_GetTicks();
+    }
+    
 };
 
 }

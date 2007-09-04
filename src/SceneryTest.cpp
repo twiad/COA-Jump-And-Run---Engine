@@ -13,7 +13,10 @@ namespace CoAJnR
 {
 
 uint CubeSpawnCollisionHandler::m_spawnId = 0;
+uint TubeCollisionHandler::m_spawnId = 0;
+
 uint DestroyTouchingObjectsCollisionHandler::m_psCount = 0;
+
 
 SceneryTest::SceneryTest()
 {
@@ -242,9 +245,10 @@ SceneryTest::setup()
     OgreBulletCollisions::CollisionShape* m_tubeShape = 
     	new OgreBulletCollisions::CylinderCollisionShape(Ogre::Vector3(1, 1, 1),Ogre::Vector3::UNIT_Z);
 
-    StaticObject* T1 = new StaticObject("Tube_1" , "Tube.mesh", m_tubeShape, Ogre::Vector3(31.5, 14, 0), m_rot);
+    StaticObject* T1 = new StaticObject("Tube_1" , "Tube.mesh", m_tubeShape, Ogre::Vector3(31.5, 15, 0), m_rot);
     Ogre::Quaternion m_trot = Ogre::Quaternion(Ogre::Degree(-180), (Ogre::Vector3::UNIT_Z)); 
     T1->setOrientation(m_trot*m_rot);
+    T1->setCollisionHandler(new TubeCollisionHandler);
     
     StaticObject* Q1 = new StaticObject("QBox_1" , "QuestionCube.mesh", m_standardBoxShape, Ogre::Vector3(30, 5, 0), m_rot);
     // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
