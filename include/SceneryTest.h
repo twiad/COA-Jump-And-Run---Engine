@@ -96,7 +96,6 @@ class DestroyTouchingObjectsCollisionHandler :
 public:
     DestroyTouchingObjectsCollisionHandler()
     {
-        m_psCount = 0;
     }
     
     void handleCollision(OgreBulletCollisions::CollisionInfo* info)
@@ -104,6 +103,11 @@ public:
         if(info)
             if(info->getPartner())
             {
+                if(dynamic_cast<Character*>(info->getPartner()))
+                    return;
+                
+                
+                
                 std::list<OgreBulletCollisions::Object*>::iterator it;
                 for(it = m_deletedObjects.begin(); 
                     it != m_deletedObjects.end(); it++)
@@ -143,7 +147,6 @@ class CubeSpawnCollisionHandler :
 public:
     CubeSpawnCollisionHandler() : OgreBulletCollisions::CollisionHandler()
     {
-        m_lastSpawn = 0;
     }
 
     void handleCollision(OgreBulletCollisions::CollisionInfo* info)
