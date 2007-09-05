@@ -54,6 +54,8 @@ http://www.gnu.org/copyleft/lesser.txt.
 
     #include "Shapes/OgreBulletCollisionsTrimeshShape.h"
 
+    // #include "Shapes/OgreBulletCollisionsGImpactMeshShape.h"
+
     //Utils
     #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 

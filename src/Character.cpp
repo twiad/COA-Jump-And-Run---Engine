@@ -181,6 +181,8 @@ Character::findNextObject()
         return dynamic_cast<OgreBulletDynamics::RigidBody*>(
                 cb.getCollidedObject());
     
+    std::cout << "nothing to grab" << std::endl;
+    
     return 0;
 }
 
@@ -217,17 +219,6 @@ Character::grab()
 
         m_grabConstraint->setDamping(0.3);
       
-
-            //         m_grabConstraint = new OgreBulletDynamics::ConeTwistConstraint(
-            // this, 
-            // grabObject, 
-            //             Ogre::Vector3::ZERO,
-            //             Ogre::Quaternion::IDENTITY,
-            //             grabObject->getWorldPosition() - this->getWorldPosition(),
-            //             Ogre::Quaternion::IDENTITY);
-            // 
-            //         m_grabConstraint->setLimit(M_PI_4,M_PI_4,M_PI_4);
-            // 
         m_grabbedObject = grabObject;
         PhysicsManager::get()->world()->addConstraint(m_grabConstraint);
     }    
@@ -243,6 +234,25 @@ Character::ungrab()
     delete m_grabConstraint;
     m_grabConstraint = 0;
     m_grabbedObject = 0;
+}
+
+void
+Character::throwAway()
+{
+    OgreBulletDynamics::RigidBody* grabbedObject = m_grabbedObject;
+    
+    ungrab();
+    
+    if(grabbedObject)
+    {
+        Ogre::Vector3 direction = grabbedObject->getWorldPosition() -
+            this->getWorldPosition();
+            
+        direction.normalise();
+        direction *= 100;
+        
+        grabbedObject->applyImpulse(direction, Ogre::Vector3::ZERO);
+    }
 }
 
 }

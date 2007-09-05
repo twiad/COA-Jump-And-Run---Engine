@@ -32,6 +32,8 @@ http://www.gnu.org/copyleft/lesser.txt.
 #include "Shapes/OgreBulletCollisionsCylinderShape.h"
 #include "Shapes/OgreBulletCollisionsSphereShape.h"
 #include "Shapes/OgreBulletCollisionsBoxShape.h"
+#include "Shapes/OgreBulletCollisionsGImpactMeshShape.h"
+#include "Shapes/OgreBulletCollisionsConvexHullShape.h"
 
 using namespace OgreBulletCollisions;
 using namespace Ogre;
@@ -411,7 +413,26 @@ ConvexHullCollisionShape* MeshToShapeConverter::createConvex()
     assert(mVertexCount && (mIndexCount >= 6) && 
         ("Mesh must have some vertices and at least 6 indices (2 triangles)"));
 
-    return 0;//new ConvexHullCollisionShape (_vertices, _vertex_count, 3*sizeof(float));
+    // return 0;//new ConvexHullCollisionShape (_vertices, _vertex_count, 3*sizeof(float));
+    
+    
+    ConvexHullCollisionShape* shape;
+
+    Ogre::Real vertices[mVertexCount * 3];
+
+    for(unsigned int i = 0; i < mVertexCount; i++)
+    {
+        vertices[(i * 3) + 0] = mVertexBuffer[i].x;
+        vertices[(i * 3) + 1] = mVertexBuffer[i].y;
+        vertices[(i * 3) + 2] = mVertexBuffer[i].z;
+
+        std::cout << " > " << mVertexBuffer[i].x << " " << mVertexBuffer[i].y << " " << mVertexBuffer[i].z << std::endl;
+    }
+
+    shape = new ConvexHullCollisionShape(
+            vertices, mVertexCount, 3 * sizeof(Ogre::Real));
+
+    return shape;
 }
 //------------------------------------------------------------------------------------------------
 TriangleMeshCollisionShape* MeshToShapeConverter::createTrimesh()
@@ -421,6 +442,14 @@ TriangleMeshCollisionShape* MeshToShapeConverter::createTrimesh()
 
 	return new TriangleMeshCollisionShape(mVertexBuffer, mVertexCount,mIndexBuffer, mIndexCount);
 }
+//------------------------------------------------------------------------------------------------
+// GImpactMeshCollisionShape* MeshToShapeConverter::createGImpact()
+// {
+//  assert(mVertexCount && (mIndexCount >= 6) && 
+//         ("Mesh must have some vertices and at least 6 indices (2 triangles)"));
+// 
+//  return new GImpactMeshCollisionShape(mVertexBuffer, mVertexCount,mIndexBuffer, mIndexCount);
+// }
 //------------------------------------------------------------------------------------------------
 bool MeshToShapeConverter::addBoneVertices(unsigned char bone, unsigned int &vertex_count, Ogre::Vector3* &vertices)
 {

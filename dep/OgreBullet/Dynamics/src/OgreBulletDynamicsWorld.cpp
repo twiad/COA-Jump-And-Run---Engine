@@ -83,7 +83,7 @@ namespace OgreBulletDynamics
             mDebugDrawer->clear ();
 
         // step the world
-        static_cast <btSimpleDynamicsWorld *> (mWorld)->stepSimulation(elapsedTime, 50);
+        static_cast <btSimpleDynamicsWorld *> (mWorld)->stepSimulation(elapsedTime, 5);
 
 
         CollisionHandler* handlerA = 0;

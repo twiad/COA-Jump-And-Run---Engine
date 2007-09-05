@@ -5,23 +5,6 @@
 #include "SceneryTest.h"
 #include "InteractionManager.h"
 
-/// target loops per second for the graphics thread
-// #define COAJNR_GRAPHICS_FPS 20
-#define COAJNR_GRAPHICS_FPS 60
-
-/// target loops per second for the phyics thread
-// #define COAJNR_PHYSICS_FPS 20
-#define COAJNR_PHYSICS_FPS 60
-
-/// target loops per second for the interaction thread
-#define COAJNR_INTERACTION_FPS 20
-
-/// scenery class name to init on startup
-#define COAJNR_INIT_SCENE SceneryTest
-
-/// physics acceleration factor (makes it look more realistic)
-#define COAJNR_PHYSICS_SPEED_FACTOR 2
-
 
 namespace CoAJnR
 {
@@ -76,7 +59,7 @@ MainApplication::cleanup()
 void
 MainApplication::go()
 {
-    std::cout << COABLASTER_VERION_STRING << std::endl;
+    std::cout << COAJNR_VERION_STRING << std::endl;
 
     initialize();
 

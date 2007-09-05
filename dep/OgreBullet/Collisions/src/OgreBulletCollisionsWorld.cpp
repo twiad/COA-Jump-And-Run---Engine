@@ -52,6 +52,8 @@ namespace OgreBulletCollisions
             OgreBtConverter::to(bounds.getMinimum()), 
             OgreBtConverter::to(bounds.getMaximum()));
 
+        // btGImpactCollisionAlgorithm::registerAlgorithm(mDispatcher);
+
         // if not called by a inherited class
         if (init)
             mWorld = new btCollisionWorld(mDispatcher, mBroadphase);

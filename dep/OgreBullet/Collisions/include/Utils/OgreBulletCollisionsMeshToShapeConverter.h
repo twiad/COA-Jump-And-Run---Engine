@@ -51,6 +51,7 @@ namespace OgreBulletCollisions
         TriangleMeshCollisionShape*     createTrimesh();
         CylinderCollisionShape*         createCylinder();
         ConvexHullCollisionShape*       createConvex();
+        // GImpactMeshCollisionShape*      createGImpact();
 
 
 		const Ogre::Vector3*    getVertices();

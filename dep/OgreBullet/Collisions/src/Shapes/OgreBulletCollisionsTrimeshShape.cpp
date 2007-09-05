@@ -69,6 +69,10 @@ namespace OgreBulletCollisions
     // -------------------------------------------------------------------------
     TriangleMeshCollisionShape::~TriangleMeshCollisionShape()
     {
+        /// @todo TODO: verify deletion is correct here
+        
+        if(mTriMesh)
+            delete mTriMesh;
     }
     // -------------------------------------------------------------------------
     bool TriangleMeshCollisionShape::drawWireFrame(DebugLines *wire) const

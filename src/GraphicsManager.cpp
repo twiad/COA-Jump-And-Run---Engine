@@ -123,7 +123,7 @@ GraphicsManager::init(Scenery* p_scenery)
     m_camera->setPosition(Vector3(0, 0, -50));
     m_camera->lookAt(Vector3(0, 0, 0));
     m_camera->setNearClipDistance(1);
-    m_camera->setFarClipDistance(20);
+    m_camera->setFarClipDistance(100);
 
     m_viewport = m_window->addViewport(m_camera);
     m_viewport->setBackgroundColour(ColourValue( 0, 0, 0));
@@ -141,6 +141,8 @@ GraphicsManager::init(Scenery* p_scenery)
     registerFrameListeners();
     
     m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
+    // m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
+    // m_sceneManager->setShadowTechnique(SHADOWTYPE_TEXTURE_ADDITIVE);
 
     if(p_scenery)
         setScenery(p_scenery);

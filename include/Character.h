@@ -1,6 +1,6 @@
 
-#ifndef COABLASTER_CHARACTER_INCLUDED
-#define COABLASTER_CHARACTER_INCLUDED
+#ifndef COAJNR_CHARACTER_INCLUDED
+#define COAJNR_CHARACTER_INCLUDED
 
 #include "Dependencies.h"
 
@@ -38,6 +38,7 @@ public:
 
     virtual void grab();
     virtual void ungrab();
+    virtual void throwAway();
 
     virtual bool isCharacterOnGround();
 

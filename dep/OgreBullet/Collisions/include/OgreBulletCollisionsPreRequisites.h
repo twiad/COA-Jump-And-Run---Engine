@@ -28,6 +28,8 @@ http://www.gnu.org/copyleft/lesser.txt.
 #define _OGREBULLETCOLLISIONS_PREREQUISITES_H
 
 #include "btBulletCollisionCommon.h"
+// #include "GIMPACT/Bullet/btGImpactShape.h"
+// #include "GIMPACT/Bullet/btGImpactCollisionAlgorithm.h"
 
 #include "Ogre.h"
 
@@ -84,6 +86,8 @@ namespace OgreBulletCollisions
 
     class ConvexHullCollisionShape;
     class TriangleMeshCollisionShape;
+
+    // class GImpactMeshCollisionShape;
 
     class CollisionInfo;
     class CollisionHandler;

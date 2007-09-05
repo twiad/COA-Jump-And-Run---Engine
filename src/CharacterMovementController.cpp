@@ -36,7 +36,12 @@ CharacterMovementController::handleInput()
     if(keyboard->isKeyDown(OIS::KC_SPACE))
         m_character->grab();
     else
-        m_character->ungrab();
+    {
+        if(keyboard->isKeyDown(OIS::KC_DOWN))
+            m_character->ungrab();
+        else
+            m_character->throwAway();
+    }
 }
 
 }

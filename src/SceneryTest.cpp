@@ -116,134 +116,153 @@ SceneryTest::setup()
     m_planeBody->setPosition(Ogre::Vector3(0,0,0));
     m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
 
-
-    // // this is the constraint test
-    // {
-    //     m_testConstraint[0] = sm->createEntity("const0", "QuestionCube.mesh");
-    //     m_testConstraint[0]->setNormaliseNormals(true);
+    // // gimpact test
+    //     Ogre::Entity* gimpactEnt = GraphicsManager::get()->sceneManager()->
+    //             createEntity("gimpact-test-entity", "QuestionCube.mesh");
+    //     Ogre::SceneNode* gimpactNode = sm->getRootSceneNode()->
+    //                 createChildSceneNode("gimpact-test-node");
+    //     OgreBulletDynamics::RigidBody* gimpactBody = new OgreBulletDynamics::RigidBody(
+    //             "gimpact-test-body", PhysicsManager::get()->world());
     // 
-    //     m_testConstraintNodes[0] = sm->getRootSceneNode()->
-    //             createChildSceneNode("constnode0");
-    // 
-    //     m_testConstraintBodies[0] = new OgreBulletDynamics::RigidBody(
-    //             "constbody0", 
-    //             PhysicsManager::get()->world());
-    // 
-    //     m_testConstraintBodies[0]->setShape(
-    //         m_testConstraintNodes[0], 
-    //         new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-    //         2.0, /* ............................................. restitution */
-    //         2.0, /* ............................................. friction    */
-    //         1,   /* ............................................. mass        */
-    //         Ogre::Vector3(-2, 9, 0));    
-    // 
-    //     m_testConstraintNodes[0]->attachObject(m_testConstraint[0]);
-    // 
-    //     m_testConstraint[1] = sm->createEntity("const1", "QuestionCube.mesh");
-    //     m_testConstraint[1]->setNormaliseNormals(true);
-    // 
-    //     m_testConstraintNodes[1] = sm->getRootSceneNode()->
-    //             createChildSceneNode("constnode1");
-    // 
-    //     m_testConstraintBodies[1] = new OgreBulletDynamics::RigidBody(
-    //             "constbody1", 
-    //             PhysicsManager::get()->world());
-    // 
-    //     m_testConstraintBodies[1]->setShape(
-    //         m_testConstraintNodes[1], 
-    //         new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-    //         2.0, /* ............................................. restitution */
-    //         2.0, /* ............................................. friction    */
-    //         1,   /* ............................................. mass        */
-    //         Ogre::Vector3(-2, 5, 0));    
-    // 
-    //     m_testConstraintNodes[1]->attachObject(m_testConstraint[1]);
+    //     OgreBulletCollisions::MeshToShapeConverter gimpactConv(gimpactEnt);
     //     
-    //     // m_testConstraintObject = new OgreBulletDynamics::ConeTwistConstraint(
-    //     //     m_testConstraintBodies[0], m_testConstraintBodies[1], 
-    //     //             Ogre::Vector3(0,0,0),
-    //     //             Ogre::Quaternion::IDENTITY,
-    //     //             Ogre::Vector3(3,0,0),
-    //     //             Ogre::Quaternion::IDENTITY);
-    // 
-    //     // m_testConstraintObject = new OgreBulletDynamics::SixDofConstraint(
-    //     //     m_testConstraintBodies[0], m_testConstraintBodies[1], 
-    //     //             Ogre::Vector3(0,0,0),
-    //     //             Ogre::Quaternion::IDENTITY,
-    //     //             Ogre::Vector3(0,4,0),
-    //     //             Ogre::Quaternion::IDENTITY);
-    // 
-    //     m_testConstraintObject = new OgreBulletDynamics::HingeConstraint(
-    //         m_testConstraintBodies[0], m_testConstraintBodies[1], 
-    //                 Ogre::Vector3(0,5,0),
-    //                 Ogre::Vector3(0,1,0),
-    //                 Ogre::Vector3(0,1,0),
-    //                 Ogre::Vector3(0,1,0));
-    // 
-    //     // m_testConstraintObject->setLinearUpperLimit(Ogre::Vector3(0,5,0));
-    //     // m_testConstraintObject->setLinearLowerLimit(Ogre::Vector3(0,2,0));
+    //     gimpactBody->setShape(
+    //              gimpactNode,
+    //                 gimpactConv.createGImpact(),
+    //                 0.0,   // restitution 
+    //                 0.5,  // friction
+    //                 0.5,  // friction
+    //                 Ogre::Vector3(10, 1, 0),
+    //                 Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
+    //                 );
     //     
-    //     PhysicsManager::get()->world()->addConstraint(m_testConstraintObject);
-    // }
+    //     gimpactNode->attachObject(gimpactEnt);
+    //     
+    //     Ogre::Quaternion q(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
+    //     DynamicObject* d = new DynamicObject(
+    //                     "QBox1123123", 
+    //                     "QuestionCube.mesh",
+    //                     Ogre::Vector3(22, 1, 0),
+    //                     q
+    //                  );
+    //     
+    //      OgreBulletDynamics::PointToPointConstraint* constr = new OgreBulletDynamics::PointToPointConstraint(
+    //          gimpactBody, 
+    //          d, 
+    //          Ogre::Vector3::ZERO,            
+    //          Ogre::Vector3(3,0,0));
+    // 
+    //      PhysicsManager::get()->world()->addConstraint(constr);
+    // 
 
- 
+
+    // convex hull object hardcoded
+    Ogre::Real points[8][3] = 
+    { 
+        {0.5,0.5,0.5},
+        {0.5,0.5,-0.5},
+        {0.5,-0.5,0.5},
+        {0.5,-0.5,-0.5},
+        {-0.5,0.5,0.5},
+        {-0.5,0.5,-0.5},
+        {-0.5,-0.5,0.5},
+        {-0.5,-0.5,-0.5}
+    };
+    
+    new DynamicObject(
+         "QBox-convex", 
+            "QuestionCube.mesh",
+            new OgreBulletCollisions::ConvexHullCollisionShape((Ogre::Real*)points, 8, 3*sizeof(Ogre::Real)),
+            5,
+            Ogre::Vector3(13.5, 5, 0),
+         m_rot
+         );
+
+
+     // convex hull object mesh to shape converter
+     Ogre::Entity* convexEnt = GraphicsManager::get()->sceneManager()->
+             createEntity("convex-test-entity", "stone.mesh");
+     Ogre::SceneNode* convexNode = sm->getRootSceneNode()->
+                 createChildSceneNode("convex-test-node");
+     OgreBulletDynamics::RigidBody* convexBody = new OgreBulletDynamics::RigidBody(
+             "convex-test-body", PhysicsManager::get()->world());
+
+     OgreBulletCollisions::MeshToShapeConverter convexConv(convexEnt);
+
+     convexBody->setShape(
+              convexNode,
+                 convexConv.createConvex(),
+                 2.0,   // restitution 
+                 2.0,  // friction
+                 8,  // mass
+                 Ogre::Vector3(35, 4, 0),
+                 Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
+                 );
+
+     convexNode->attachObject(convexEnt);
+
+
+        
     // this is the box stack
-    for(int j = 0; j < 4; j++)
-        for(int i = 0; i < BOX_COUNT; i++)
-        {
-            new DynamicObject(
-            		"QBox" + Ogre::StringConverter::toString(j) + 
-                    " " + Ogre::StringConverter::toString(i), 
-                    "QuestionCube.mesh",
-                    new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)),
-                    5,
-                    Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
-            		m_rot
-            		);
-        }
+    // for(int j = 0; j < 3; j++)
+    //     for(int i = 0; i < BOX_COUNT; i++)
+    //     {
+    //         new DynamicObject(
+    //              "QBox" + Ogre::StringConverter::toString(j) + 
+    //                 " " + Ogre::StringConverter::toString(i), 
+    //                 "QuestionCube.mesh",
+    //                 new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)),
+    //                 5,
+    //                 Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
+    //              m_rot
+    //              );
+    //     }
+
     for(int i = 0; i < 4; i++)
             {
                 new StaticObject(
-                		"NBox" + Ogre::StringConverter::toString(i), 
+                     "NBox" + Ogre::StringConverter::toString(i), 
                         "NormalCube.mesh",
                         m_standardBoxShape,
                         Ogre::Vector3(26 + i, 5, 0),
-                		m_rot
-                		);
+                     m_rot
+                     );
             }
-
+    
     for(int i = 0; i < 5; i++)
                 {
                     new StaticObject(
-                    		"NBox1" + Ogre::StringConverter::toString(i), 
+                         "NBox1" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
                             m_standardBoxShape,
                             Ogre::Vector3(17 + i, 9, 0),
-                    		m_rot
-                    		);
+                         m_rot
+                         );
                 }
     
     for(int i = 0; i < 5; i++)
                 {
                     new StaticObject(
-                    		"NBox2" + Ogre::StringConverter::toString(i), 
+                         "NBox2" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
                             m_standardBoxShape,
                             Ogre::Vector3(26 + i, 13, 0),
-                    		m_rot
-                    		);
+                         m_rot
+                         );
                 }
     
     for(int i = 0; i < 7; i++)
                 {
                     new StaticObject(
-                    		"NBox3" + Ogre::StringConverter::toString(i), 
+                         "NBox3" + Ogre::StringConverter::toString(i), 
                             "NormalCube.mesh",
                             m_standardBoxShape,
                             Ogre::Vector3(10 + i, 11, 0),
-                    		m_rot
-                    		);
+                         m_rot
+                         );
                 }
+
+
     OgreBulletCollisions::CollisionShape* m_tubeShape = 
     	new OgreBulletCollisions::CylinderCollisionShape(Ogre::Vector3(1, 1, 1),Ogre::Vector3::UNIT_Z);
 
