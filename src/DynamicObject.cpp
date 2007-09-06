@@ -18,8 +18,8 @@ DynamicObject::DynamicObject(
     	: OgreBulletDynamics::RigidBody(p_identifier, 
     	        PhysicsManager::get()->world()) 
 {
-    createObject(p_identifier, p_meshFile, p_shape, 
-            p_mass, 1.0, 1.0, p_pos, p_rot);
+    createObject(p_identifier, p_meshFile, p_shape, p_mass, 
+            1.0, 1.0, p_pos, p_rot);
 }
 
 DynamicObject::~DynamicObject()
