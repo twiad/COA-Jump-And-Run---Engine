@@ -35,7 +35,11 @@
 /// CoA-Blaster compile time configuration
 #include "Config.h"
 
-#define uint unsigned int
+/// lazy writers prefer uint
+#ifndef uint
+#  define uint unsigned int
+#endif
+
 #define ZPOS 0
 
 #endif

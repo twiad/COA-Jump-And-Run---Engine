@@ -201,22 +201,43 @@ SceneryTest::setup()
 
      convexNode->attachObject(convexEnt);
 
+     Ogre::Entity* convex2Ent = GraphicsManager::get()->sceneManager()->
+             createEntity("convex2-test-entity", "stone2.mesh");
+     Ogre::SceneNode* convex2Node = sm->getRootSceneNode()->
+                 createChildSceneNode("convex2-test-node");
+     OgreBulletDynamics::RigidBody* convex2Body = new OgreBulletDynamics::RigidBody(
+             "convex2-test-body", PhysicsManager::get()->world());
+
+     OgreBulletCollisions::MeshToShapeConverter convex2Conv(convex2Ent);
+
+     convex2Body->setShape(
+              convex2Node,
+                 convex2Conv.createConvex(),
+                 2.0,   // restitution 
+                 2.0,  // friction
+                 11,  // mass
+                 Ogre::Vector3(40, 4, 0),
+                 Ogre::Quaternion(Ogre::Degree(20), Ogre::Vector3::UNIT_Y)
+                 );
+
+     convex2Node->attachObject(convex2Ent);
+
 
         
     // this is the box stack
-    // for(int j = 0; j < 3; j++)
-    //     for(int i = 0; i < BOX_COUNT; i++)
-    //     {
-    //         new DynamicObject(
-    //              "QBox" + Ogre::StringConverter::toString(j) + 
-    //                 " " + Ogre::StringConverter::toString(i), 
-    //                 "QuestionCube.mesh",
-    //                 new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)),
-    //                 5,
-    //                 Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
-    //              m_rot
-    //              );
-    //     }
+    for(int j = 0; j < 3; j++)
+        for(int i = 0; i < BOX_COUNT; i++)
+        {
+            new DynamicObject(
+                 "QBox" + Ogre::StringConverter::toString(j) + 
+                    " " + Ogre::StringConverter::toString(i), 
+                    "QuestionCube.mesh",
+                    new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5)),
+                    5,
+                    Ogre::Vector3(2 + i + (i*0.3), 1 + j + (j*0.1), 0),
+                 m_rot
+                 );
+        }
 
     for(int i = 0; i < 4; i++)
             {

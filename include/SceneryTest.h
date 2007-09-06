@@ -103,9 +103,10 @@ public:
         if(info)
             if(info->getPartner())
             {
-                if(dynamic_cast<Character*>(info->getPartner()))
-                    return;
-                
+                // causes crash
+                /// @todo TODO: check why it crashes...
+                // if(dynamic_cast<Character*>(info->getPartner()))
+                //     return;
                 
                 
                 std::list<OgreBulletCollisions::Object*>::iterator it;
@@ -114,7 +115,7 @@ public:
                     if(*it == info->getPartner())
                         break;
                 
-                if(it == m_deletedObjects.end())
+                if(it == m_deletedObjects.end()) // not already deleted
                 {
                     Ogre::ParticleSystem* ps = 
                     GraphicsManager::get()->sceneManager()->
@@ -123,8 +124,16 @@ public:
                             "Examples/Smoke");
                             
                     info->getPartner()->sceneNode()->detachAllObjects();
+
+                    Ogre::SceneNode* psNode = GraphicsManager::get()->
+                            sceneManager()->getRootSceneNode()->
+                                createChildSceneNode("destroy ps " + 
+                                Ogre::StringConverter::toString(m_psCount++));
                     
-                    info->getPartner()->sceneNode()->attachObject(ps);
+                    psNode->setPosition(info->getPartner()->
+                            sceneNode()->getPosition());
+                    psNode->attachObject(ps);
+
                     delete info->getPartner();
                     m_deletedObjects.push_back(info->getPartner());
                 }

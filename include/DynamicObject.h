@@ -13,6 +13,10 @@ class DynamicObject : public OgreBulletDynamics::RigidBody
 
     std::string m_identifier;
 
+    void createObject(std::string& indentifier, std::string& meshFile,
+            OgreBulletCollisions::CollisionShape* shape,
+            double mass, double restitution, double friction,
+            Ogre::Vector3& position, Ogre::Quaternion& rotation);
 
 public:
     DynamicObject(

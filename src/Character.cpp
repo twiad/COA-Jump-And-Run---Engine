@@ -189,16 +189,18 @@ Character::findNextObject()
 void
 Character::grab()
 {
+    /// @todo TODO: only grab dynamic objects?
+    
     if(m_grabConstraint)
     {
         Ogre::Vector3 grabHinge = Ogre::Matrix4(m_grabbedObject->
                 getWorldOrientation()).inverse() * 
                 -(m_grabbedObject->getWorldPosition() - this->getWorldPosition());
             
-        if(grabHinge.length() >= 2.5)
+        if(grabHinge.length() >= 3.5)
             m_grabConstraint->setPivotB(grabHinge * 0.9);
 
-        if(grabHinge.length() < 2.1)
+        if(grabHinge.length() < 3.1)
             m_grabConstraint->setPivotB(grabHinge * 1.1);
         return;
     }

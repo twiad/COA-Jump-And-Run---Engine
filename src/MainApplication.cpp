@@ -210,6 +210,8 @@ MainApplication::graphicsWorkerThread(void* p_data)
 
         SDL_Delay(timeToWait);
         
+        // std::cout << elapsedMilliSeconds << std::endl;
+        
         // if(!timeToWait)
         //     std::cout << "WARNING! graphics update too slow!" 
         //             << std::endl;
@@ -219,7 +221,7 @@ MainApplication::graphicsWorkerThread(void* p_data)
         {
             const Ogre::RenderTarget::FrameStats& stats = 
                     GraphicsManager::get()->window()->getStatistics();
-            std::cout << "Graphics FPS: " << stats.avgFPS << std::endl;
+            std::cout << "FPS: " << stats.avgFPS << std::endl;
         }
 #endif
 
@@ -265,6 +267,9 @@ MainApplication::physicsWorkerThread(void* p_data)
         PhysicsManager::get()->update(updateTime * COAJNR_PHYSICS_SPEED_FACTOR);
         unlockPhysics();
         
+        m_physicsWaitTime += std::max<int>(minFrameTime - 
+                (SDL_GetTicks() - startTime), 0) / 1000.0f;
+        
         lockGraphics();
         PhysicsManager::get()->synchronize();
         unlockGraphics();
@@ -273,9 +278,9 @@ MainApplication::physicsWorkerThread(void* p_data)
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
 
-        /// @todo TODO: measure real phy update time
-        m_physicsWaitTime += timeToWait / 1000.0f;
-
+        /// @todo TODO: measure real phy update time (done, see above)
+        // m_physicsWaitTime += timeToWait / 1000.0f;
+        
         SDL_Delay(timeToWait);
         
         // if(!timeToWait)

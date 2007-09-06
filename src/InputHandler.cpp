@@ -13,18 +13,15 @@ InputHandler* InputHandler::m_instance = 0;
     
 InputHandler::InputHandler()
 {
-	ParamList pl;
 	size_t windowHnd = 0;
-	std::ostringstream windowHndStr;
 
 	GraphicsManager::get()->window()->getCustomAttribute("WINDOW", &windowHnd);
-	windowHndStr << windowHnd;
-	pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
-	m_inputManager = InputManager::createInputSystem( pl );
+	m_inputManager = InputManager::createInputSystem( windowHnd );
 
 	m_keyboard = static_cast<Keyboard*>(
 	        m_inputManager->createInputObject(OISKeyboard, false));
+
 	m_mouse = static_cast<Mouse*>(
 	        m_inputManager->createInputObject(OISMouse, false));
 
@@ -40,7 +37,8 @@ InputHandler::InputHandler()
 
 InputHandler::~InputHandler()
 {
-    
+    /// @todo TODO: cleanup
+    // OIS::InputManager::destroyInputSystem();
 }
 
 bool
