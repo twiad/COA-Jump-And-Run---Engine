@@ -52,8 +52,6 @@ SceneryTest::setup()
     
     sm->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
 
-    // sm->setWorldGeometry("terrain.cfg");
-
     OgreBulletCollisions::CollisionShape* floorShape = 
             new OgreBulletCollisions::StaticPlaneCollisionShape(
                     Ogre::Vector3(0, 1, 0), -2);
@@ -91,7 +89,7 @@ SceneryTest::setup()
     // m_terrainNode->setPosition(0,-10,-30);
     // 
     Ogre::StaticGeometry* sg = new Ogre::StaticGeometry(sm, "static terrain");
-    sg->addEntity(m_terrain, Ogre::Vector3(0,-10,-30), 
+    sg->addEntity(m_terrain, Ogre::Vector3(0,-0.01,0), 
         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
     
     sg->build();

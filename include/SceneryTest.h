@@ -202,7 +202,7 @@ public:
                         info->getLocalPosition().z() << " " <<
                         std::endl;
         
-        if(info->getLocalPosition().z() < 0)
+        if(info->getLocalPosition().z() < 1)
         	return;
         
         OIS::Keyboard* keyboard = InputHandler::get()->keyboard();

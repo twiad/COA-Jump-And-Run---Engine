@@ -26,7 +26,7 @@ StaticObject::StaticObject(
             GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_idenitfier), 
             p_shape, 
             0.0, /* ............................................. restitution */
-            0.0, /* ............................................. friction    */
+            2.0, /* ............................................. friction    */
             p_pos,
             p_rot
             //Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
