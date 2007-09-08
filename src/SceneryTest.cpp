@@ -41,7 +41,7 @@ SceneryTest::setup()
 {
     GraphicsManager* gm = GraphicsManager::get();
     Ogre::SceneManager* sm = gm->sceneManager();
-    
+    StaticObjectManager* som = StaticObjectManager::get();
 
     gm->camera()->setPosition(Ogre::Vector3(-16, 15, 23));
     gm->camera()->lookAt(Ogre::Vector3(0, 0, 0));
@@ -238,73 +238,47 @@ SceneryTest::setup()
         }
 
     for(int i = 0; i < 4; i++)
-            {
-                new StaticObject(
-                     "NBox" + Ogre::StringConverter::toString(i), 
-                        "NormalCube.mesh",
-                        m_standardBoxShape,
-                        Ogre::Vector3(26 + i, 5, 0),
-                     m_rot
-                     );
-            }
+    	{
+    		som->createBox("NormalCube.mesh", Ogre::Vector3(26 + i, 5, 0));
+    	}
     
     for(int i = 0; i < 5; i++)
-                {
-                    new StaticObject(
-                         "NBox1" + Ogre::StringConverter::toString(i), 
-                            "NormalCube.mesh",
-                            m_standardBoxShape,
-                            Ogre::Vector3(17 + i, 9, 0),
-                         m_rot
-                         );
-                }
-    
-    for(int i = 0; i < 5; i++)
-                {
-                    new StaticObject(
-                         "NBox2" + Ogre::StringConverter::toString(i), 
-                            "NormalCube.mesh",
-                            m_standardBoxShape,
-                            Ogre::Vector3(26 + i, 13, 0),
-                         m_rot
-                         );
-                }
+    	{
+    		som->createBox("NormalCube.mesh", Ogre::Vector3(17 + i, 9, 0));
+    		som->createBox("NormalCube.mesh", Ogre::Vector3(26 + i, 13, 0));
+		}
     
     for(int i = 0; i < 7; i++)
-                {
-                    new StaticObject(
-                         "NBox3" + Ogre::StringConverter::toString(i), 
-                            "NormalCube.mesh",
-                            m_standardBoxShape,
-                            Ogre::Vector3(10 + i, 11, 0),
-                         m_rot
-                         );
-                }
+    	{
+        	som->createBox("NormalCube.mesh", Ogre::Vector3(10 + i, 11, 0));
+        	som->createBox("BrownCube.mesh", Ogre::Vector3(70, 0.5+i, 0));
+    	}
+    
+    /// @todo TODO: defaultParam?
+    StaticObject* T1 = som->createTube("Tube.mesh", Ogre::Vector3(31.5, 15, 0));
 
-
-    OgreBulletCollisions::CollisionShape* m_tubeShape = 
-    	new OgreBulletCollisions::CylinderCollisionShape(Ogre::Vector3(1, 1, 1),Ogre::Vector3::UNIT_Z);
-
-    StaticObject* T1 = new StaticObject("Tube_1" , "Tube.mesh", m_tubeShape, Ogre::Vector3(31.5, 15, 0), m_rot);
     Ogre::Quaternion m_trot = Ogre::Quaternion(Ogre::Degree(-180), (Ogre::Vector3::UNIT_Z)); 
     T1->setOrientation(m_trot*m_rot);
     T1->setCollisionHandler(new TubeCollisionHandler);
     
-    StaticObject* Q1 = new StaticObject("QBox_1" , "QuestionCube.mesh", m_standardBoxShape, Ogre::Vector3(30, 5, 0), m_rot);
-    // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
-    Q1->setCollisionHandler(new CubeSpawnCollisionHandler);
+    /// @todo TODO: collisionHandler as Param?
+    som->createBox("QuestionCube.mesh", Ogre::Vector3(30, 5, 0))
+       ->setCollisionHandler(new CubeSpawnCollisionHandler);
     
-    StaticObject* Q2 = new StaticObject("QBox_2" , "QuestionCube.mesh", m_standardBoxShape, Ogre::Vector3(9, 16, 0), m_rot);
-    // tmp->setCollisionHandler(new DebugOutputCollisionHandler);
-    Q2->setCollisionHandler(new CubeSpawnCollisionHandler);
+    som->createBox("QuestionCube.mesh", Ogre::Vector3(9, 16, 0))
+       ->setCollisionHandler(new CubeSpawnCollisionHandler);
     
-    //new StaticObject("Wall","Plane.mesh",Ogre::Vector3(40, 5, 0),*m_rot);
+    //Wippe eng:seesaw
+    som->createConvexObject("seesaw.mesh",Ogre::Vector3(64, 0, 0));
     
-    //DynamicObject* tmp2 = new DynamicObject("Wippe","Plane.mesh",Ogre::Vector3(40,8,0), m_rot);
-    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
-    
-    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Y)));
-    //tmp2->setOrientation(*new Ogre::Quaternion(Ogre::Degree(-90), (Ogre::Vector3::UNIT_Z)));
+    new DynamicObject(
+    		"seesawplane", 
+    		"Plane.mesh",
+            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(4, 1, 0.1)),
+            5,
+            Ogre::Vector3(64, 2.2, 0),
+            m_rot
+            );
     
     // Character
     m_character = new Character("player", "Player.mesh");
@@ -339,6 +313,7 @@ SceneryTest::cleanup()
     delete m_planeBody;
     m_planeBody = 0;
     m_planeShape = 0;
+    
 }
 
 }

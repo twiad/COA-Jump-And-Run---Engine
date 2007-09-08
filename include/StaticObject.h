@@ -31,6 +31,36 @@ public:
     }
 
 };
+
+class StaticObjectManager
+{
+	static StaticObjectManager* m_instance;
+	
+	uint m_objectCount;
+	std::list<StaticObject*> m_staticObjects;
+	
+	OgreBulletCollisions::CollisionShape* m_standardBoxShape;
+	OgreBulletCollisions::CollisionShape* m_standardTubeShape;
+	
+	Ogre::Quaternion m_rot;
+	
+public:
+	StaticObjectManager();
+	virtual ~StaticObjectManager();
+	
+	static StaticObjectManager* get()
+	    {
+	        if(!m_instance)
+	            m_instance = new StaticObjectManager;
+
+	        assert(m_instance);
+	        return m_instance;
+	    }
+	
+	StaticObject* createBox(std::string meshFile, Ogre::Vector3 pos);
+	StaticObject* createTube(std::string meshFile, Ogre::Vector3 pos);
+	StaticObject* createConvexObject(std::string meshFile, Ogre::Vector3 pos);
+};
     
 }
 

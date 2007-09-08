@@ -3,7 +3,7 @@
 #define COAJNR_CONFIG_INCLUDED
 
 /// this is the string used to print the version identifier
-#define COAJNR_VERION_STRING "CoA JnR Version 0.0.37"
+#define COAJNR_VERION_STRING "CoA JnR Version 0.0.69"
 
 /// target loops per second for the graphics thread
 #define COAJNR_GRAPHICS_FPS 60

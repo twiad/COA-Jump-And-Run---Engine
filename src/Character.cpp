@@ -33,11 +33,11 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
     setShape(
             GraphicsManager::get()->sceneManager()->
                     getRootSceneNode()->createChildSceneNode(m_identifier), 
-            new OgreBulletCollisions::SphereCollisionShape(1), 
+            new OgreBulletCollisions::SphereCollisionShape(0.9), 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
             2,   /* ............................................. mass        */
-            Ogre::Vector3(17, 5, ZPOS));
+            Ogre::Vector3(17, 5, 0));
 
     mRootNode->attachObject(m_entity);
     
@@ -67,7 +67,7 @@ Character::isCharacterOnGround()
     Ogre::Vector3 target;
     
     // go one to the left
-    origin.x--;
+    origin.x = origin.x - 0.3;
         
     /// test 3, left, middle, right (!!! adjust with char size !!!)
     for(int i = 0; i < 3; i++)
@@ -85,7 +85,7 @@ Character::isCharacterOnGround()
                 cb.getCollidedObject() != m_grabbedObject)
             return true;
     
-        origin.x++;
+        origin.x = origin.x+0.3;
     }
     
     return false;

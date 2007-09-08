@@ -40,6 +40,4 @@
 #  define uint unsigned int
 #endif
 
-#define ZPOS 0
-
 #endif
