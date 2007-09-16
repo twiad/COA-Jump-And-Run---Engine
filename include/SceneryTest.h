@@ -10,7 +10,7 @@
 #include "PhysicsManager.h"
 #include "InputHandler.h"
 #include "DynamicObject.h"
-
+#include "MainApplication.h"
 
 namespace CoAJnR
 {
@@ -19,6 +19,7 @@ namespace CoAJnR
 
 // class Character;
 class InputController;
+class myRaySceneQueryListener;
 
 class SceneryTest : public Scenery
 {
@@ -62,6 +63,14 @@ public:
     virtual void setup();
 
     virtual void cleanup();
+    
+    PagedGeometry* grass;
+    PagedGeometry* trees;
+    
+    Ogre::RaySceneQuery* raySceneQuery;
+    Ogre::Ray updateRay;
+    myRaySceneQueryListener* raySceneQueryListener;
+    	
 };
 
 class DebugOutputCollisionHandler : 
@@ -241,8 +250,36 @@ public:
 
         m_lastSpawn = SDL_GetTicks();
     }
-    
 };
+    
+class myRaySceneQueryListener : public Ogre::RaySceneQueryListener
+{
+public:
+	inline bool queryResult(Ogre::SceneQuery::WorldFragment *fragment, Ogre::Real distance)
+    {
+    	resultDistance = distance;
+    	return false;
+    }
+    inline bool queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
+    {
+    	resultDistance = distance;
+    	return false;
+    }
+
+    float resultDistance;
+};
+
+extern SceneryTest* s;
+inline float getTerrainHeight(const float x, const float z){
+	if (x < 0 || z < 0 || x > 1500 || z > 1500) return 0;
+
+	s->updateRay.setOrigin(Ogre::Vector3(x, 0.0f, z));
+	s->updateRay.setDirection(Ogre::Vector3::UNIT_Y);
+	s->raySceneQuery->setRay(s->updateRay);
+	s->raySceneQuery->execute(s->raySceneQueryListener);
+	
+	return s->raySceneQueryListener->resultDistance;
+}
 
 }
 

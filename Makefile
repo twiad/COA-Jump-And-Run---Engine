@@ -8,9 +8,9 @@ TARGET = CoAJnR
 CXXFLAGS        += -pipe
 EXTRA_CXXFLAGS   = -DDEBUG
 WARN_FLAGS	     = -Wall
-INCLUDE	        += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include
-LIBPATH		     = -L./dep/OgreBullet
-LIBRARIES	     = -lOgreBullet
+INCLUDE	        += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include -I./dep/PagedGeometry/include
+LIBPATH		     = -L./dep/OgreBullet -L./dep/PagedGeometry
+LIBRARIES	     = -lOgreBullet -lPagedGeometry
 BINPATH		     =
 TESTBINPATH      =
 EXTENSION	     =
@@ -52,7 +52,7 @@ else
 #																			   #
 	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
 	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
-	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lOgreBullet -lmingw32 -lSDLmain -lSDL -mwindows
+	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lmingw32 -lSDLmain -lSDL -mwindows
 	BINPATH		  = ./bin
 	TESTBINPATH	  = ./bin
 	EXTENSION	  = .exe
@@ -72,9 +72,9 @@ O_FILES	  = $(SRC_FILES:%.cpp=%.o)
 TEST_SRC_FILES = $(wildcard test/*.cpp)
 TEST_O_FILES = $(TEST_SRC_FILES:%.cpp=%.o)
 
-all: libOgreBullet.a $(TARGET)
+all: libOgreBullet.a libPagedGeometry.a $(TARGET)
 
-$(TARGET): $(O_FILES) libOgreBullet.a
+$(TARGET): $(O_FILES) libOgreBullet.a libPagedGeometry.a
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)
 
 test: $(TEST_O_FILES) libOgreBullet.a
@@ -82,6 +82,9 @@ test: $(TEST_O_FILES) libOgreBullet.a
 
 libOgreBullet.a:
 	make -C dep/OgreBullet
+	
+libPagedGeometry.a:
+	make -C dep/PagedGeometry
 
 clean:
 	rm -f *.o src/*.o 
@@ -91,5 +94,6 @@ clean-test:
 
 proper: clean clean-test
 	make proper -C dep/OgreBullet
+	make proper -C dep/PagedGeometry
 	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)
 	rm -rf `find . -name "Ogre.log"`

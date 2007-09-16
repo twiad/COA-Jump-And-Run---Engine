@@ -8,6 +8,7 @@
 
 namespace CoAJnR
 {
+SceneryTest* s = new SceneryTest;
 
 SDL_mutex*  MainApplication::m_graphicsLock = 0;
 SDL_mutex*  MainApplication::m_physicsLock = 0;
@@ -182,7 +183,8 @@ MainApplication::graphicsWorkerThread(void* p_data)
     uint minFrameTime = 1000 / COAJNR_GRAPHICS_FPS;
     
     lockGraphics();
-    GraphicsManager::get()->init(new COAJNR_INIT_SCENE);
+
+    GraphicsManager::get()->init(s);
     unlockGraphics();
 
     signalPhysicsCanStart();
@@ -329,6 +331,14 @@ void
 MainApplication::signalPhysicsCanStart()
 {
     SDL_CondSignal(m_physicsCanStartCondition);
+}
+
+bool GrassFrameListener::frameStarted(const Ogre::FrameEvent& evt)
+{
+	s->trees->update();
+	s->grass->update();
+	grassloader->updateAnimation();
+	return true; 
 }
 
 }

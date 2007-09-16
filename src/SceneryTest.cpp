@@ -8,6 +8,7 @@
 #include "PhysicsManager.h"
 #include "StaticObject.h"
 #include "DynamicObject.h"
+#include "MainApplication.h"
 
 namespace CoAJnR
 {
@@ -33,7 +34,7 @@ SceneryTest::SceneryTest()
 
 SceneryTest::~SceneryTest()
 {
-    
+    ////
 }
 
 void
@@ -50,7 +51,96 @@ SceneryTest::setup()
     
     gm->viewport()->setBackgroundColour(Ogre::ColourValue( 0.8, 0.8, 0.85));
     
-    sm->setAmbientLight(Ogre::ColourValue(0.3, 0.3, 0.3));
+	//Ogre::ColourValue fadeColour(120.0f/255, 173.0f/255, 246.0f/255);
+	//sm->setFog( Ogre::FOG_LINEAR, fadeColour, .001, 200, 1000);
+	//gm->window()->getViewport(0)->setBackgroundColour(fadeColour);
+	
+	// TREESss
+
+		//Initialize the PagedGeometry engine
+	trees = new PagedGeometry();
+		trees->setCamera(gm->camera());
+		trees->setPageSize(50);
+		trees->setBounds(TBounds(-100, -100, 1500, 1500));
+
+		//Set up LODs
+		//trees->addDetailLevel<EntityPage>(50);
+		trees->addDetailLevel<BatchPage>(100, 50);
+		trees->addDetailLevel<ImpostorPage>(700, 50);
+
+		//Set up a TreeLoader for easy use 
+		TreeLoader2D *treeLoader = new TreeLoader2D(trees, TBounds(-100, -100, 1500, 1500));
+		trees->setPageLoader(treeLoader);
+		treeLoader->setHeightFunction(&getTerrainHeight);
+
+		//And add 20,000 trees to the scene through the "easy-to-use" TreeLoader class
+		Ogre::Entity *myTree = sm->createEntity("MyTree", "tree2.mesh");
+		float x = 0, z = 0, yaw, scale;
+		/*
+		for (int i = 0; i < 1000; i++){
+			if (Ogre::Math::RangeRandom(0, 1) <= 0.8f){
+				x += Ogre::Math::RangeRandom(-10.0f, 10.0f);
+				z += Ogre::Math::RangeRandom(-10.0f, 10.0f);
+				if (x < 0) x = 0; else if (x > 1500) x = 1500;
+				if (z < 0) z = 0; else if (z > 1500) z = 1500;
+			} else {
+				x = Ogre::Math::RangeRandom(0, 1500);
+				z = Ogre::Math::RangeRandom(0, 1500);
+			}
+*/
+			yaw = Ogre::Math::RangeRandom(0, 360);
+			scale = Ogre::Math::RangeRandom(0.9f, 1.1f);
+
+			treeLoader->addTree(myTree, Ogre::Vector2(28, -5), Ogre::Degree(yaw), scale);
+		//}
+	
+		//Grass
+		grass = new PagedGeometry();
+			//Initialize the PagedGeometry engine
+			grass = new PagedGeometry(gm->camera(), 30);
+			//trees = new PagedGeometry(camera, 50, TBounds(0, 0, 1500, 1500));
+
+			//Set up LODs
+			grass->addDetailLevel<GrassPage>(80);
+
+			//Set up a TreeLoader for easy use
+			GrassLoader* grassLoader = new GrassLoader(grass);
+			grass->setPageLoader(grassLoader);
+			grassLoader->setHeightFunction(&getTerrainHeight);
+
+			GrassLayer* grassLayer = grassLoader->addLayer("grass");    
+			
+			grassLayer->setAnimationEnabled(true);
+			grassLayer->setSwaySpeed(0.5f);
+			grassLayer->setSwayLength(0.5f);
+			grassLayer->setSwayDistribution(10.0f);
+
+			grassLayer->setDensity(0.2f);
+			//grassLayer->setDensityMap("GrassDensityMap.png");
+			grassLayer->setMapBounds(TBounds(0, 0, 150, 150));
+
+			//grassLayer->setMinimumSize(0.5,0.5);
+			//grassLayer->setMaximumSize(1.0, 1.0); 
+
+			grassLayer->setMinimumSize(4.0,2.0);
+			grassLayer->setMaximumSize(4.0,2.0);
+
+			grassLayer->setFadeTechnique(FADETECH_GROW);
+	
+
+	//RaySceneQuery for terrain height checks
+	updateRay.setOrigin(gm->camera()->getPosition());
+	updateRay.setDirection(Ogre::Vector3::NEGATIVE_UNIT_Y);
+	raySceneQuery = sm->createRayQuery(updateRay);
+	raySceneQuery->setQueryTypeMask(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK );   
+	raySceneQuery->setWorldFragmentType(Ogre::SceneQuery::WFT_SINGLE_INTERSECTION); 
+	raySceneQueryListener = new myRaySceneQueryListener;
+
+	GrassFrameListener* grassFrameListener = new GrassFrameListener(grassLoader);
+	GraphicsManager::get()->root()->addFrameListener(grassFrameListener);	
+	
+	
+	
 
     OgreBulletCollisions::CollisionShape* floorShape = 
             new OgreBulletCollisions::StaticPlaneCollisionShape(
@@ -70,8 +160,8 @@ SceneryTest::setup()
     m_light->setType(Ogre::Light::LT_POINT);
     m_light->setPosition(Ogre::Vector3(10, 20, 20));
 
-    // plane
-    // m_plane = sm->createEntity("plane", "ground.mesh");
+    //plane
+    //m_plane = sm->createEntity("plane", "ground.mesh");
     m_plane = sm->createEntity("plane", "Level4.mesh");
     m_plane->setNormaliseNormals(true);
     
@@ -80,14 +170,15 @@ SceneryTest::setup()
 
     m_terrain = sm->createEntity("terrain", "terrain.mesh");
     m_terrain->setNormaliseNormals(true);
-    // 
-    // m_terrainNode = sm->getRootSceneNode()->
-    //         createChildSceneNode("terrain-node");
-    // m_terrainNode->attachObject(m_terrain);
-    // m_terrainNode->rotate(
-    //     Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
-    // m_terrainNode->setPosition(0,-10,-30);
-    // 
+     
+     m_terrainNode = sm->getRootSceneNode()->
+             createChildSceneNode("terrain-node");
+     m_terrainNode->attachObject(m_terrain);
+     m_terrainNode->rotate(
+         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+     m_terrainNode->setPosition(0,-10,-30);
+     
+    
     Ogre::StaticGeometry* sg = new Ogre::StaticGeometry(sm, "static terrain");
     sg->addEntity(m_terrain, Ogre::Vector3(0,-0.01,0), 
         Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
@@ -114,69 +205,7 @@ SceneryTest::setup()
     m_planeBody->setPosition(Ogre::Vector3(0,0,0));
     m_planeBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0,0,0));
 
-    // // gimpact test
-    //     Ogre::Entity* gimpactEnt = GraphicsManager::get()->sceneManager()->
-    //             createEntity("gimpact-test-entity", "QuestionCube.mesh");
-    //     Ogre::SceneNode* gimpactNode = sm->getRootSceneNode()->
-    //                 createChildSceneNode("gimpact-test-node");
-    //     OgreBulletDynamics::RigidBody* gimpactBody = new OgreBulletDynamics::RigidBody(
-    //             "gimpact-test-body", PhysicsManager::get()->world());
-    // 
-    //     OgreBulletCollisions::MeshToShapeConverter gimpactConv(gimpactEnt);
-    //     
-    //     gimpactBody->setShape(
-    //              gimpactNode,
-    //                 gimpactConv.createGImpact(),
-    //                 0.0,   // restitution 
-    //                 0.5,  // friction
-    //                 0.5,  // friction
-    //                 Ogre::Vector3(10, 1, 0),
-    //                 Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X)
-    //                 );
-    //     
-    //     gimpactNode->attachObject(gimpactEnt);
-    //     
-    //     Ogre::Quaternion q(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-    //     DynamicObject* d = new DynamicObject(
-    //                     "QBox1123123", 
-    //                     "QuestionCube.mesh",
-    //                     Ogre::Vector3(22, 1, 0),
-    //                     q
-    //                  );
-    //     
-    //      OgreBulletDynamics::PointToPointConstraint* constr = new OgreBulletDynamics::PointToPointConstraint(
-    //          gimpactBody, 
-    //          d, 
-    //          Ogre::Vector3::ZERO,            
-    //          Ogre::Vector3(3,0,0));
-    // 
-    //      PhysicsManager::get()->world()->addConstraint(constr);
-    // 
-
-
-    // convex hull object hardcoded
-    Ogre::Real points[8][3] = 
-    { 
-        {0.5,0.5,0.5},
-        {0.5,0.5,-0.5},
-        {0.5,-0.5,0.5},
-        {0.5,-0.5,-0.5},
-        {-0.5,0.5,0.5},
-        {-0.5,0.5,-0.5},
-        {-0.5,-0.5,0.5},
-        {-0.5,-0.5,-0.5}
-    };
     
-    new DynamicObject(
-         "QBox-convex", 
-            "QuestionCube.mesh",
-            new OgreBulletCollisions::ConvexHullCollisionShape((Ogre::Real*)points, 8, 3*sizeof(Ogre::Real)),
-            5,
-            Ogre::Vector3(13.5, 5, 0),
-         m_rot
-         );
-
-
      // convex hull object mesh to shape converter
      Ogre::Entity* convexEnt = GraphicsManager::get()->sceneManager()->
              createEntity("convex-test-entity", "stone.mesh");
@@ -284,11 +313,13 @@ SceneryTest::setup()
     m_character = new Character("player", "Player.mesh");
     m_movementInputController = new CharacterMovementController(m_character);
     InputHandler::get()->addInputController(m_movementInputController);
-    // 
+     
     GraphicsManager::get()->root()->addFrameListener(
             new CameraSmoothFollow(
                     GraphicsManager::get()->camera(), 
                     m_character->sceneNode()));
+    
+    
 }
 
 void

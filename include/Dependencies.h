@@ -35,6 +35,14 @@
 /// CoA-Blaster compile time configuration
 #include "Config.h"
 
+/// PagedGeometry
+#include "PagedGeometry.h"
+#include "ImpostorPage.h"
+#include "BatchPage.h"
+#include "TreeLoader2D.h"
+#include "TreeLoader3D.h"
+#include "GrassLoader.h"
+
 /// lazy writers prefer uint
 #ifndef uint
 #  define uint unsigned int
