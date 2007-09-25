@@ -40,6 +40,8 @@ class GraphicsManager
 
     /// the current scenery
     Scenery* m_scenery;
+    
+    
 
     /**
      * setup renderer resources, like textures etc
@@ -96,6 +98,15 @@ public:
      * sets the current scenery and deactivated the active one before.
      */
     void setScenery(Scenery* scenery);
+    
+    /**
+     * returns the current Scenery
+     */
+    Scenery* scenery()
+    {
+    	assert(m_scenery);
+    	return m_scenery;
+    }
 
     /**
      * returns the scenemanager.

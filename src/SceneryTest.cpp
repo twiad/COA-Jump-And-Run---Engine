@@ -7,8 +7,7 @@
 #include "InputHandler.h"
 #include "PhysicsManager.h"
 #include "StaticObject.h"
-#include "DynamicObject.h"
-#include "MainApplication.h"
+#include "DynamicObject.h"//
 
 namespace CoAJnR
 {
@@ -34,7 +33,7 @@ SceneryTest::SceneryTest()
 
 SceneryTest::~SceneryTest()
 {
-    ////
+    /////
 }
 
 void
@@ -71,7 +70,7 @@ SceneryTest::setup()
 		//Set up a TreeLoader for easy use 
 		TreeLoader2D *treeLoader = new TreeLoader2D(trees, TBounds(-100, -100, 1500, 1500));
 		trees->setPageLoader(treeLoader);
-		treeLoader->setHeightFunction(&getTerrainHeight);
+		//treeLoader->setHeightFunction(&getTerrainHeight);
 
 		//And add 20,000 trees to the scene through the "easy-to-use" TreeLoader class
 		Ogre::Entity *myTree = sm->createEntity("MyTree", "tree2.mesh");
@@ -106,7 +105,7 @@ SceneryTest::setup()
 			//Set up a TreeLoader for easy use
 			GrassLoader* grassLoader = new GrassLoader(grass);
 			grass->setPageLoader(grassLoader);
-			grassLoader->setHeightFunction(&getTerrainHeight);
+			//grassLoader->setHeightFunction(&getTerrainHeight);
 
 			GrassLayer* grassLayer = grassLoader->addLayer("grass");    
 			
@@ -134,7 +133,7 @@ SceneryTest::setup()
 	raySceneQuery = sm->createRayQuery(updateRay);
 	raySceneQuery->setQueryTypeMask(Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK );   
 	raySceneQuery->setWorldFragmentType(Ogre::SceneQuery::WFT_SINGLE_INTERSECTION); 
-	raySceneQueryListener = new myRaySceneQueryListener;
+	raySceneQueryListener = new MyRaySceneQueryListener;
 
 	GrassFrameListener* grassFrameListener = new GrassFrameListener(grassLoader);
 	GraphicsManager::get()->root()->addFrameListener(grassFrameListener);	

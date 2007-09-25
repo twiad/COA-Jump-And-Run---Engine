@@ -3,6 +3,7 @@
 #define COAJNR_SCENERY_INCLUDED
 
 #include "Dependencies.h"
+#include "myRaySceneQueryListener.h"
 
 namespace CoAJnR
 {
@@ -14,6 +15,14 @@ class Scenery
 {
 
 public:
+
+    PagedGeometry* grass;
+    PagedGeometry* trees;
+    
+    Ogre::RaySceneQuery* raySceneQuery;
+    Ogre::Ray updateRay;
+    MyRaySceneQueryListener* raySceneQueryListener;
+    
     Scenery() { }
     
     virtual ~Scenery() { }

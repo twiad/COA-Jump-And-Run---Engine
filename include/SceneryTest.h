@@ -10,7 +10,8 @@
 #include "PhysicsManager.h"
 #include "InputHandler.h"
 #include "DynamicObject.h"
-#include "MainApplication.h"
+#include "GrassFrameListener.h"
+#include "MyRaySceneQueryListener.h"
 
 namespace CoAJnR
 {
@@ -19,7 +20,6 @@ namespace CoAJnR
 
 // class Character;
 class InputController;
-class myRaySceneQueryListener;
 
 class SceneryTest : public Scenery
 {
@@ -64,12 +64,7 @@ public:
 
     virtual void cleanup();
     
-    PagedGeometry* grass;
-    PagedGeometry* trees;
-    
-    Ogre::RaySceneQuery* raySceneQuery;
-    Ogre::Ray updateRay;
-    myRaySceneQueryListener* raySceneQueryListener;
+    float getTerrainHeight(const float x, const float z);
     	
 };
 
@@ -250,36 +245,23 @@ public:
 
         m_lastSpawn = SDL_GetTicks();
     }
-};
     
-class myRaySceneQueryListener : public Ogre::RaySceneQueryListener
-{
-public:
-	inline bool queryResult(Ogre::SceneQuery::WorldFragment *fragment, Ogre::Real distance)
-    {
-    	resultDistance = distance;
-    	return false;
-    }
-    inline bool queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
-    {
-    	resultDistance = distance;
-    	return false;
-    }
+    float getTerrainHeight(const float x, const float z){
+    	if (x < 0 || z < 0 || x > 1500 || z > 1500) return 0;
 
-    float resultDistance;
+    	CoAJnR::GraphicsManager* gm = CoAJnR::GraphicsManager::get();
+    	
+    	gm->scenery()->updateRay.setOrigin(Ogre::Vector3(x, 0.0f, z));
+    	gm->scenery()->updateRay.setDirection(Ogre::Vector3::UNIT_Y);
+    	gm->scenery()->raySceneQuery->setRay(gm->scenery()->updateRay);
+    	gm->scenery()->raySceneQuery->execute(gm->scenery()->raySceneQueryListener);
+    	
+    	return gm->scenery()->raySceneQueryListener->resultDistance;
+    }
+    
 };
 
-extern SceneryTest* s;
-inline float getTerrainHeight(const float x, const float z){
-	if (x < 0 || z < 0 || x > 1500 || z > 1500) return 0;
 
-	s->updateRay.setOrigin(Ogre::Vector3(x, 0.0f, z));
-	s->updateRay.setDirection(Ogre::Vector3::UNIT_Y);
-	s->raySceneQuery->setRay(s->updateRay);
-	s->raySceneQuery->execute(s->raySceneQueryListener);
-	
-	return s->raySceneQueryListener->resultDistance;
-}
 
 }
 
