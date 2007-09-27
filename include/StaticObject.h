@@ -15,7 +15,7 @@ class StaticObject : public OgreBulletDynamics::RigidBody
 
 
 public:
-    StaticObject(std::string identifier, std::string meshFile, OgreBulletCollisions::CollisionShape* shape, Ogre::Vector3 pos, Ogre::Quaternion rot);
+    StaticObject(Ogre::Entity* statEntity, std::string meshFile, OgreBulletCollisions::CollisionShape* shape, Ogre::Vector3 pos, Ogre::Quaternion rot);
     virtual ~StaticObject();
     
     Ogre::SceneNode* sceneNode()
@@ -38,9 +38,6 @@ class StaticObjectManager
 	
 	uint m_objectCount;
 	std::list<StaticObject*> m_staticObjects;
-	
-	OgreBulletCollisions::CollisionShape* m_standardBoxShape;
-	OgreBulletCollisions::CollisionShape* m_standardTubeShape;
 	
 	Ogre::Quaternion m_rot;
 	

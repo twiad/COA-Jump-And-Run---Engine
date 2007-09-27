@@ -46,6 +46,7 @@ namespace OgreBulletDynamics
         :	
         Object(name, world, false)
     {
+
     }
     // -------------------------------------------------------------------------
     RigidBody::~RigidBody()

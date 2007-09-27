@@ -54,6 +54,7 @@ namespace OgreBulletCollisions
         mShape(0),
         mDebugShape(0)
     {
+
         mCollisionHandler = 0;
         mSyncRotations = true;
         
@@ -64,6 +65,7 @@ namespace OgreBulletCollisions
             
             mState = new ObjectState(this);
         }
+
     }
     // -------------------------------------------------------------------------
     Object::~Object()

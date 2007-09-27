@@ -127,7 +127,6 @@ void SceneryTest::setup()
 
     for (int i = 0; i < 4; i++)
         som->createBox("NormalCube.mesh", Ogre::Vector3(26 + i, 5, 0));
-
     for (int i = 0; i < 5; i++)
     {
         som->createBox("NormalCube.mesh", Ogre::Vector3(17 + i, 9, 0));

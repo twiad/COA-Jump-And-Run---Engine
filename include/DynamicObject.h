@@ -11,8 +11,6 @@ class DynamicObject : public OgreBulletDynamics::RigidBody
     Ogre::SceneNode* m_sceneNode;
     Ogre::Entity* m_entity;
 
-    std::string m_identifier;
-
 public:
     DynamicObject(
     		Ogre::Entity* dynEntity, 
@@ -43,9 +41,6 @@ class DynamicObjectManager
 	
 	uint m_objectCount;
 	std::list<DynamicObject*> m_dynamicObjects;
-	
-	OgreBulletCollisions::CollisionShape* m_standardBoxShape;
-	OgreBulletCollisions::CollisionShape* m_standardTubeShape;
 	
 	Ogre::Quaternion m_rot;
 	
