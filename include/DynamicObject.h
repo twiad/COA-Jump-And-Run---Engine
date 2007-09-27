@@ -15,7 +15,7 @@ class DynamicObject : public OgreBulletDynamics::RigidBody
 
 public:
     DynamicObject(
-    		std::string identifier, 
+    		Ogre::Entity* dynEntity, 
     		std::string meshFile, 
     		OgreBulletCollisions::CollisionShape* shape,
     		int mass,
@@ -65,8 +65,8 @@ public:
 	DynamicObject* createBox(std::string meshFile, float mass, Ogre::Vector3 pos);
 	DynamicObject* createTube(std::string meshFile, float mass, Ogre::Vector3 pos);
 	DynamicObject* createConvexObject(std::string meshFile, float mass, Ogre::Vector3 pos);
-	
-	void deleteDynamicObject(DynamicObject* object);
+	void destroyAllObjects();	
+	void destroyDynamicObject(DynamicObject* object);
 };
     
 }

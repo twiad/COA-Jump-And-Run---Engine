@@ -17,7 +17,7 @@ class StaticObject : public OgreBulletDynamics::RigidBody
 public:
     StaticObject(std::string identifier, std::string meshFile, OgreBulletCollisions::CollisionShape* shape, Ogre::Vector3 pos, Ogre::Quaternion rot);
     virtual ~StaticObject();
-
+    
     Ogre::SceneNode* sceneNode()
     {
         assert(mRootNode);
@@ -60,6 +60,7 @@ public:
 	StaticObject* createBox(std::string meshFile, Ogre::Vector3 pos);
 	StaticObject* createTube(std::string meshFile, Ogre::Vector3 pos);
 	StaticObject* createConvexObject(std::string meshFile, Ogre::Vector3 pos);
+	void destroyAllObjects();
 };
     
 }

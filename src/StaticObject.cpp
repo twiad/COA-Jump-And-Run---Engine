@@ -58,17 +58,10 @@ StaticObjectManager::StaticObjectManager()
 }
 
 StaticObjectManager::~StaticObjectManager()
-{
-//	std::list<StaticObject*>::iterator it;
-//	for(it = m_staticObjects.begin(); it != m_staticObjects.end(); it++)
-//		delete *it;
-	
-	m_staticObjects.clear();
-	
+{	
 	delete m_standardBoxShape;
 	delete m_standardTubeShape;
 
-	std::cout << "  ~Som" << std::endl;
 }
 
 StaticObject*
@@ -136,6 +129,16 @@ StaticObjectManager::createConvexObject(
 	GraphicsManager::get()->sceneManager()->destroyEntity("SomTmpEntity");
 	
 	return tmpObject;
+}
+
+void 
+StaticObjectManager::destroyAllObjects()
+{
+	    std::list<StaticObject*>::iterator it;
+	    for(it = m_staticObjects.begin(); it != m_staticObjects.end(); it++)
+	        delete *it;
+	    
+	    m_staticObjects.clear();
 }
 
 }

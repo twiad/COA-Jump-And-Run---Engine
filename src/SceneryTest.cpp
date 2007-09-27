@@ -120,10 +120,10 @@ void SceneryTest::setup()
     dom->createConvexObject("stone2.mesh", 11, Ogre::Vector3(40, 4, 0));
 
     // this is the box stack
-    for (int j = 0; j < 3; j++)
-        for (int i = 0; i < BOX_COUNT; i++)
-            dom->createBox("QuestionCube.mesh", 5, Ogre::Vector3(
-                    2 + i+ (i*0.3), 1 + j + (j*0.1), 0));
+//    for (int j = 0; j < 3; j++)
+//        for (int i = 0; i < BOX_COUNT; i++)
+//            dom->createBox("QuestionCube.mesh", 5, Ogre::Vector3(
+//                    2 + i+ (i*0.3), 1 + j + (j*0.1), 0));
 
     for (int i = 0; i < 4; i++)
         som->createBox("NormalCube.mesh", Ogre::Vector3(26 + i, 5, 0));
@@ -147,7 +147,7 @@ void SceneryTest::setup()
             (Ogre::Vector3::UNIT_Z))*m_rot);
     tube->setCollisionHandler(new TubeCollisionHandler);
 
-    /// @todo TODO: collisionHandler as Param?
+    /// @todo TODO: collisionHandler as Param?//
     StaticObject* spawnBox1 = som->createBox("QuestionCube.mesh", Ogre::Vector3(30, 5,
             0));
 
@@ -161,7 +161,7 @@ void SceneryTest::setup()
     //Wippe eng:seesaw
     som->createConvexObject("seesaw.mesh", Ogre::Vector3(64, 0, 0));
 
-    dom->createConvexObject("Plane.mesh", 5, Ogre::Vector3(64, 2.2, 0));
+    dom->createBox("Plane.mesh", 8, Ogre::Vector3(64, 2.2, 0));
 
     // Character
     m_character = new Character("player", "Player.mesh");

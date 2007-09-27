@@ -347,9 +347,9 @@ Vector3 MeshToShapeConverter::getSize()
 			vmax.z = std::max(vmax.z, v[j].z);
 		}
 
-		mBounds.x = vmax.x - vmin.x;
-		mBounds.y = vmax.y - vmin.y;
-		mBounds.z = vmax.z - vmin.z;
+		mBounds.x = (vmax.x - vmin.x)/2.0;
+		mBounds.y = (vmax.y - vmin.y)/2.0;
+		mBounds.z = (vmax.z - vmin.z)/2.0;
 	}
 
 	return mBounds;

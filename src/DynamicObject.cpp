@@ -9,24 +9,19 @@ namespace CoAJnR
 {
 
 DynamicObject::DynamicObject(
-		std::string p_identifier, 
+		Ogre::Entity* p_dynEntity, 
 		std::string p_meshFile, 
 		OgreBulletCollisions::CollisionShape* p_shape,
 		int p_mass,
 		Ogre::Vector3 p_pos, 
 		Ogre::Quaternion &p_rot)
-    	: OgreBulletDynamics::RigidBody(p_identifier, 
+    	: OgreBulletDynamics::RigidBody(p_dynEntity->getName(), 
     	        PhysicsManager::get()->world()) 
-{
-//
-	m_identifier = p_identifier;   
-			    
-	m_entity = GraphicsManager::get()->sceneManager()->createEntity(m_identifier, p_meshFile);
-
-	m_entity->setNormaliseNormals(true);
+{   			    
+	p_dynEntity->setNormaliseNormals(true);
 			    
 	setShape(
-			GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(m_identifier), 
+			GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_dynEntity->getName()), 
 			p_shape, 
 			2.0, /* ............................................. restitution */
 			2.0, /* ............................................. friction    */
@@ -35,16 +30,15 @@ DynamicObject::DynamicObject(
 			p_rot
 			);
 			    
-	mRootNode->attachObject(m_entity);
+	mRootNode->attachObject(p_dynEntity);
 }
 
 DynamicObject::~DynamicObject()
 {
     /// @todo TODO: cleanup
-	std::cout << "   ~DynObj: " << m_identifier << std::endl;
-    GraphicsManager::get()->sceneManager()->destroyEntity(m_identifier);
+    GraphicsManager::get()->sceneManager()->destroyEntity(getName());
     //mRootNode->removeAndDestroyAllChildren();
-    GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(m_identifier);
+    GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(getName());
 
     mRootNode = 0;
 }
@@ -56,23 +50,11 @@ DynamicObjectManager::DynamicObjectManager()
 	m_objectCount = 0;
 	
 	m_rot = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X);
-	
-	m_standardBoxShape = new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5));
-	m_standardTubeShape = new OgreBulletCollisions::CylinderCollisionShape(Ogre::Vector3(1, 1, 1),Ogre::Vector3::UNIT_Z);
 }
 
 DynamicObjectManager::~DynamicObjectManager()
-{
-//	std::list<DynamicObject*>::iterator it;
-//	for(it = m_dynamicObjects.begin(); it != m_dynamicObjects.end(); it++)
-//		delete *it;
-	
-	m_dynamicObjects.clear();
-	
-	delete m_standardBoxShape;
-	delete m_standardTubeShape;
-	
-	std::cout << "  ~Dom" << std::endl;
+{	
+    
 }
 
 DynamicObject*
@@ -81,21 +63,26 @@ DynamicObjectManager::createBox(
 		float p_mass,
 		Ogre::Vector3 p_pos)
 {
-	DynamicObject* tmpObject = 
+    Ogre::Entity* boxEntity = 
+        GraphicsManager::get()->sceneManager()->createEntity(
+                "DynamicObject" + Ogre::StringConverter::toString(m_objectCount++),
+                p_meshFile);
+    OgreBulletCollisions::MeshToShapeConverter boxConv(boxEntity);
+    OgreBulletCollisions::CollisionShape* boxShape = boxConv.createBox();
+    
+	DynamicObject* boxObject = 
 		new DynamicObject(
-			"DynamicObject" + Ogre::StringConverter::toString(m_objectCount++), 
+			boxEntity, 
 	        p_meshFile,
-	        m_standardBoxShape,
+	        boxShape,
 	        p_mass,
 	        p_pos,
 	        m_rot
 	        );
-	//
-	std::cout << "BoxNr: " << Ogre::StringConverter::toString(m_objectCount) << std::endl;
 	
-	m_dynamicObjects.push_back(tmpObject);
+	m_dynamicObjects.push_back(boxObject);
 	
-	return tmpObject;
+	return boxObject;
 }
 
 DynamicObject*
@@ -104,21 +91,26 @@ DynamicObjectManager::createTube(
 		float p_mass,
 		Ogre::Vector3 p_pos)
 {	
-	DynamicObject* tmpObject = 
+    Ogre::Entity* tubeEntity = 
+        GraphicsManager::get()->sceneManager()->createEntity(
+                "DynamicObject" + Ogre::StringConverter::toString(m_objectCount++),
+                p_meshFile);
+    OgreBulletCollisions::MeshToShapeConverter tubeConv(tubeEntity);
+    OgreBulletCollisions::CollisionShape* tubeShape = tubeConv.createCylinder();
+        
+	DynamicObject* tubeObject = 
 		new DynamicObject(
-			"DynamicObject" + Ogre::StringConverter::toString(m_objectCount++), 
+			tubeEntity, 
 	        p_meshFile,
-	        m_standardTubeShape,
+	        tubeShape,
 	        p_mass,
 	        p_pos,
 	        m_rot
 	        );
 	
-	std::cout << "TubeNr: " << Ogre::StringConverter::toString(m_objectCount) << std::endl;
+	m_dynamicObjects.push_back(tubeObject);
 	
-	m_dynamicObjects.push_back(tmpObject);
-	
-	return tmpObject;
+	return tubeObject;
 }
 
 DynamicObject*
@@ -128,47 +120,52 @@ DynamicObjectManager::createConvexObject(
 		Ogre::Vector3 p_pos
 		)
 {
-	Ogre::Entity* tmpEnt = 
-		GraphicsManager::get()->sceneManager()->createEntity("DomTmpEntity", p_meshFile);
-		OgreBulletCollisions::MeshToShapeConverter convexConv(tmpEnt);
-		OgreBulletCollisions::CollisionShape* tmpshape = convexConv.createConvex();
+	Ogre::Entity* convexEntity = 
+		GraphicsManager::get()->sceneManager()->createEntity(
+		        "DynamicObject" + Ogre::StringConverter::toString(m_objectCount++),
+		        p_meshFile);
+		OgreBulletCollisions::MeshToShapeConverter convexConv(convexEntity);
+		OgreBulletCollisions::CollisionShape* convexShape = convexConv.createConvex();
 
-		DynamicObject* tmpObject = 
+		DynamicObject* convexObject = 
 		new DynamicObject(
-			"DynamicObject" + Ogre::StringConverter::toString(m_objectCount++), 
+			convexEntity, 
 	        p_meshFile,
-	        tmpshape,
+	        convexShape,
 	        p_mass,
 	        p_pos,
 	        m_rot
 	        );
+		
+	m_dynamicObjects.push_back(convexObject);	
 	
-	std::cout << "ConvexNr: " << Ogre::StringConverter::toString(m_objectCount) << std::endl;
-	
-	m_dynamicObjects.push_back(tmpObject);
-	
-	GraphicsManager::get()->sceneManager()->destroyEntity("DomTmpEntity");
-	
-	
-	return tmpObject;
+	return convexObject;
 }
 
 void 
-DynamicObjectManager::deleteDynamicObject(DynamicObject* p_object)
+DynamicObjectManager::destroyDynamicObject(DynamicObject* p_object)
 {
 	std::list<DynamicObject*>::iterator it;
 	for(it = m_dynamicObjects.begin(); it != m_dynamicObjects.end(); it++)
 	{
 		if (*it == p_object)
 		{
-			GraphicsManager::get()->sceneManager()->destroyEntity(p_object->getName());
-			//GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(p_object->getName());
+			delete *it;
 			m_dynamicObjects.erase(it);
-			std::cout << "geklappt" << std::endl;
 			break;
 		}
 	}
 	return;
+}
+
+void 
+DynamicObjectManager::destroyAllObjects()
+{
+    std::list<DynamicObject*>::iterator it;
+    for(it = m_dynamicObjects.begin(); it != m_dynamicObjects.end(); it++)
+        delete *it;
+    
+    m_dynamicObjects.clear();
 }
 
 }
