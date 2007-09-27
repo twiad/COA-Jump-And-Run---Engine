@@ -99,9 +99,7 @@ public:
                 /// @todo TODO: check whether it crashes for YOU :D
                 if(dynamic_cast<DynamicObject*>(info->getPartner()))
                 {
-                    std::cout << "bla" << std::endl;
                     DynamicObjectManager::get()->destroyDynamicObject(dynamic_cast<DynamicObject*>(info->getPartner()));
-                    std::cout << "bla" << std::endl;
                     return;
                 }
 

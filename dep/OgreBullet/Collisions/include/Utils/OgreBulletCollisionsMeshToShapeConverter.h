@@ -49,7 +49,7 @@ namespace OgreBulletCollisions
         SphereCollisionShape*           createSphere();
         BoxCollisionShape*              createBox();
         TriangleMeshCollisionShape*     createTrimesh();
-        CylinderCollisionShape*         createCylinder();
+        CylinderCollisionShape*         createCylinder(Ogre::Vector3 axis);
         ConvexHullCollisionShape*       createConvex();
         // GImpactMeshCollisionShape*      createGImpact();
 

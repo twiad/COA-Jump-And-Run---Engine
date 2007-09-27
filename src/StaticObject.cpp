@@ -18,6 +18,13 @@ StaticObject::StaticObject(
 {
     p_statEntity->setNormaliseNormals(true);
     
+    Ogre::StaticGeometry* sg = new Ogre::StaticGeometry(
+            GraphicsManager::get()->sceneManager(), 
+            p_statEntity->getName());
+    sg->addEntity(p_statEntity, p_pos, p_rot);
+
+    sg->build();
+    
     setStaticShape(
             GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_statEntity->getName()), 
             p_shape, 
@@ -26,8 +33,6 @@ StaticObject::StaticObject(
             p_pos,
             p_rot
             );
-    
-    mRootNode->attachObject(p_statEntity);
 }
 
 StaticObject::~StaticObject()
@@ -62,7 +67,7 @@ StaticObjectManager::createBox(
                 "StaticObject" + Ogre::StringConverter::toString(m_objectCount++),
                 p_meshFile);
     OgreBulletCollisions::MeshToShapeConverter boxConv(boxEntity);
-    OgreBulletCollisions::CollisionShape* boxShape = boxConv.createCylinder();
+    OgreBulletCollisions::CollisionShape* boxShape = boxConv.createBox();
 	StaticObject* boxObject = 
 		new StaticObject(
 			boxEntity, 
@@ -78,6 +83,7 @@ StaticObjectManager::createBox(
 StaticObject*
 StaticObjectManager::createTube(
 		std::string p_meshFile, 
+		Ogre::Vector3 p_axis,
 		Ogre::Vector3 p_pos)
 {	
     Ogre::Entity* tubeEntity = 
@@ -85,7 +91,7 @@ StaticObjectManager::createTube(
                 "StaticObject" + Ogre::StringConverter::toString(m_objectCount++),
                 p_meshFile);
     OgreBulletCollisions::MeshToShapeConverter tubeConv(tubeEntity);
-    OgreBulletCollisions::CollisionShape* tubeShape = tubeConv.createCylinder();
+    OgreBulletCollisions::CollisionShape* tubeShape = tubeConv.createCylinder(p_axis);
     
 	StaticObject* tubeObject = 
 		new StaticObject(
@@ -112,7 +118,7 @@ StaticObjectManager::createConvexObject(
                 "StaticObject" + Ogre::StringConverter::toString(m_objectCount++),
                 p_meshFile);
     OgreBulletCollisions::MeshToShapeConverter convexConv(convexEntity);
-    OgreBulletCollisions::CollisionShape* convexShape = convexConv.createCylinder();
+    OgreBulletCollisions::CollisionShape* convexShape = convexConv.createConvex();
 
 	StaticObject* convexObject = 
 		new StaticObject(
@@ -128,6 +134,35 @@ StaticObjectManager::createConvexObject(
 	m_staticObjects.push_back(convexObject);
 	
 	return convexObject;
+}
+
+StaticObject*
+StaticObjectManager::createTrimeshObject(
+        std::string p_meshFile, 
+        Ogre::Vector3 p_pos
+        )
+{
+    Ogre::Entity* triEntity = 
+        GraphicsManager::get()->sceneManager()->createEntity(
+                "StaticObject" + Ogre::StringConverter::toString(m_objectCount++),
+                p_meshFile);
+    OgreBulletCollisions::MeshToShapeConverter triConv(triEntity);
+    OgreBulletCollisions::CollisionShape* triShape = triConv.createTrimesh();
+
+    StaticObject* triObject = 
+        new StaticObject(
+            triEntity, 
+            p_meshFile,
+            triShape,
+            p_pos,
+            m_rot
+            );
+    
+    
+    
+    m_staticObjects.push_back(triObject);
+    
+    return triObject;
 }
 
 void 

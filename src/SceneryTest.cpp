@@ -32,25 +32,6 @@ SceneryTest::SceneryTest()
 SceneryTest::~SceneryTest()
 {
     cleanup();
-    //TODO: delete m_baseLevelBody;
-    //TODO: delete m_character;
-    //	delete m_baseLevelNode;
-    //delete m_baseLevelShape;
-    //    delete m_baseLevel;
-    //
-    //
-    //    delete m_terrainNode;
-    //    delete m_terrain;
-    //
-    //    delete m_light;
-    //
-    //    delete m_testConstraintObject;
-    //
-    //    delete m_movementInputController;
-    //
-
-
-    std::cout << " ~scenerytest"<< std::endl;
 }
 
 void SceneryTest::setup()
@@ -82,28 +63,9 @@ void SceneryTest::setup()
     m_floorBody->setCollisionHandler(new DestroyTouchingObjectsCollisionHandler);
 
     //plane
-    m_baseLevel = sm->createEntity("plane", "Level4.mesh");
-    m_baseLevel->setNormaliseNormals(true);
-
-    m_baseLevelNode = sm->getRootSceneNode()->
-    createChildSceneNode("plane-node");
-
-    OgreBulletCollisions::MeshToShapeConverter converter(m_baseLevel);
-
-    m_baseLevelShape = converter.createTrimesh();
-
-    m_baseLevelBody = new OgreBulletDynamics::RigidBody(
-            "plane-body", PhysicsManager::get()->world());
-
-    m_baseLevelNode->attachObject(m_baseLevel);
-    m_baseLevelBody->setStaticShape(m_baseLevelNode, m_baseLevelShape, 0.0, // restitution //
-            0.5, // friction
-            Ogre::Vector3(0, 0, 0), Ogre::Quaternion(Ogre::Degree(-90),
-                    Ogre::Vector3::UNIT_X));
-
-    m_baseLevelBody->setPosition(Ogre::Vector3(0, 0, 0));
-    m_baseLevelBody->getBulletRigidBody()->getWorldTransform().setOrigin(btVector3(0, 0, 0));
-
+    
+    som->createTrimeshObject("Level4.mesh", Ogre::Vector3::ZERO);
+    
     m_terrain = sm->createEntity("terrain", "terrain.mesh");
     m_terrain->setNormaliseNormals(true);
 
@@ -140,7 +102,7 @@ void SceneryTest::setup()
     }
 
     /// @todo TODO: defaultParam?//
-    StaticObject* tube = som->createTube("Tube.mesh", Ogre::Vector3(31.5, 15, 0));
+    StaticObject* tube = som->createTube("Tube.mesh", Ogre::Vector3::UNIT_Z, Ogre::Vector3(31.5, 15, 0));
 
     tube->setOrientation(Ogre::Quaternion(Ogre::Degree(-180),
             (Ogre::Vector3::UNIT_Z))*m_rot);

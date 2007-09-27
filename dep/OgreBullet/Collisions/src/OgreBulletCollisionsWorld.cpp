@@ -86,18 +86,25 @@ namespace OgreBulletCollisions
     // -------------------------------------------------------------------------
     void CollisionsWorld::setShowDebugShapes(bool show)
     {
+        std::cout << "bla" << std::endl;
         if (show && !mShowDebugShapes)
         {
+            std::cout << "bla1" << std::endl;
             //assert (mDebugShapes == 0);
             std::deque<Object*>::iterator it = mObjects.begin();
+            std::cout << "bla10" << std::endl;
             while (it != mObjects.end())
             {
+                std::cout << "bla11" << std::endl;
                 (*it)->showDebugShape(show);
                 ++it;
+                std::cout << "bla12" << std::endl;
             }
+            std::cout << "bla13" << std::endl;
             mShowDebugShapes = true;
             return;
         }
+        std::cout << "bla2" << std::endl;
         if (!show && mShowDebugShapes)
         {
             //assert (mDebugShapes != 0);
@@ -110,6 +117,7 @@ namespace OgreBulletCollisions
             mShowDebugShapes = false;
             return;
         }
+        std::cout << "blaende" << std::endl;
     }
     // -------------------------------------------------------------------------
     void CollisionsWorld::addObject(Object *obj)

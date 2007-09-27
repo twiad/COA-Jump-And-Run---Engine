@@ -32,14 +32,12 @@ InputHandler::InputHandler()
 	catch(...) {
 		m_joystick = 0;
 	}
-	std::cout << m_inputControllers.size() << std::endl;
 }
 
 InputHandler::~InputHandler()
 {
     /// @todo TODO: cleanup
     // OIS::InputManager::destroyInputSystem();
-	std::cout << " ~ih" << std::endl;
 }
 
 bool

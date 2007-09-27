@@ -55,8 +55,10 @@ public:
 	    }
 	
 	StaticObject* createBox(std::string meshFile, Ogre::Vector3 pos);
-	StaticObject* createTube(std::string meshFile, Ogre::Vector3 pos);
+	StaticObject* createTube(std::string meshFile, Ogre::Vector3 axis, Ogre::Vector3 pos);
 	StaticObject* createConvexObject(std::string meshFile, Ogre::Vector3 pos);
+	StaticObject* createTrimeshObject(std::string meshFile, Ogre::Vector3 pos);
+        
 	void destroyAllObjects();
 };
     

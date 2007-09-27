@@ -332,7 +332,7 @@ Vector3 MeshToShapeConverter::getSize()
 	{
 
 		const Ogre::Vector3 * const v = getVertices();
-
+		
         Ogre::Vector3 vmin(v[0]);
         Ogre::Vector3 vmax(v[0]);
 
@@ -390,21 +390,20 @@ BoxCollisionShape* MeshToShapeConverter::createBox()
 {
 	const Ogre::Vector3 sz = getSize();
 
-	assert((sz.x > 0.0) && (sz.y > 0.0) && (sz.y > 0.0) && 
+	assert((sz.x > 0.0) && (sz.y > 0.0) && (sz.z > 0.0) && 
         ("Size of box must be greater than zero on all axes"));
 
 	BoxCollisionShape* shape = new BoxCollisionShape(sz);
 	return shape;
 }
 //------------------------------------------------------------------------------------------------
-CylinderCollisionShape* MeshToShapeConverter::createCylinder()
+CylinderCollisionShape* MeshToShapeConverter::createCylinder(Ogre::Vector3 axis)
 {
     const Ogre::Vector3 sz = getSize();
-
-    assert((sz.x > 0.0) && (sz.y > 0.0) && (sz.y > 0.0) && 
+    assert((sz.x > 0.0) && (sz.y > 0.0) && (sz.z > 0.0) && 
         ("Size of Cylinder must be greater than zero on all axes"));
 
-    CylinderCollisionShape* shape = new CylinderCollisionShape(sz, Vector3::UNIT_X);
+    CylinderCollisionShape* shape = new CylinderCollisionShape(sz, axis);
     return shape;
 }
 //------------------------------------------------------------------------------------------------
@@ -425,8 +424,6 @@ ConvexHullCollisionShape* MeshToShapeConverter::createConvex()
         vertices[(i * 3) + 0] = mVertexBuffer[i].x;
         vertices[(i * 3) + 1] = mVertexBuffer[i].y;
         vertices[(i * 3) + 2] = mVertexBuffer[i].z;
-
-        std::cout << " > " << mVertexBuffer[i].x << " " << mVertexBuffer[i].y << " " << mVertexBuffer[i].z << std::endl;
     }
 
     shape = new ConvexHullCollisionShape(

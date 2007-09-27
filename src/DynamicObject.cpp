@@ -89,6 +89,7 @@ DynamicObject*
 DynamicObjectManager::createTube(
 		std::string p_meshFile, 
 		float p_mass,
+		Ogre::Vector3 p_axis,
 		Ogre::Vector3 p_pos)
 {	
     Ogre::Entity* tubeEntity = 
@@ -96,7 +97,7 @@ DynamicObjectManager::createTube(
                 "DynamicObject" + Ogre::StringConverter::toString(m_objectCount++),
                 p_meshFile);
     OgreBulletCollisions::MeshToShapeConverter tubeConv(tubeEntity);
-    OgreBulletCollisions::CollisionShape* tubeShape = tubeConv.createCylinder();
+    OgreBulletCollisions::CollisionShape* tubeShape = tubeConv.createCylinder(p_axis);
         
 	DynamicObject* tubeObject = 
 		new DynamicObject(
