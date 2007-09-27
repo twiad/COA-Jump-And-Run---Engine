@@ -113,13 +113,13 @@ void SceneryTest::setup()
 
     sg->build();
 
-    pagedBla();
+    // pagedBla();
 
     // convex hull object mesh to shape converter//
     dom->createConvexObject("stone.mesh", 8, Ogre::Vector3(35, 4, 0));
     dom->createConvexObject("stone2.mesh", 11, Ogre::Vector3(40, 4, 0));
 
-    // this is the box stack//
+    // this is the box stack
     for (int j = 0; j < 3; j++)
         for (int i = 0; i < BOX_COUNT; i++)
             dom->createBox("QuestionCube.mesh", 5, Ogre::Vector3(

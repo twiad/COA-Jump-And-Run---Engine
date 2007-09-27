@@ -21,231 +21,77 @@
 	<integer>403</integer>
 	<key>metaData</key>
 	<dict>
-		<key>Makefile</key>
+		<key>dep/OgreBullet/Collisions/src/OgreBulletCollisionsObject.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>113</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>27</integer>
+				<integer>99</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>2</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/OgreBulletCollisions.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>52</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>5</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/OgreBulletCollisionsPreRequisites.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>32</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>18</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>30</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>32</integer>
-			</dict>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/OgreBulletCollisionsWorld.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>57</integer>
-				<key>line</key>
-				<integer>63</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsConvexHullShape.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsGImpactMeshShape.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>18</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsTrimeshShape.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>43</integer>
-				<key>line</key>
-				<integer>41</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/include/Utils/OgreBulletCollisionsMeshToShapeConverter.h</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>41</integer>
-				<key>line</key>
-				<integer>67</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>35</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/src/OgreBulletCollisionsShape.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>23</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/src/OgreBulletCollisionsWorld.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>54</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>24</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsConvexHullShape.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>74</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsGImpactMeshShape.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>24</integer>
-				<key>line</key>
-				<integer>32</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsTrimeshShape.cpp</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>55</integer>
-				<key>line</key>
-				<integer>71</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>29</integer>
+			<integer>45</integer>
 		</dict>
 		<key>dep/OgreBullet/Collisions/src/Utils/OgreBulletCollisionsMeshToShapeConverter.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>55</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>428</integer>
+				<integer>435</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>28</integer>
+			<integer>362</integer>
 		</dict>
-		<key>dep/OgreBullet/Makefile</key>
+		<key>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsWorld.cpp</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>127</integer>
+				<integer>5</integer>
 				<key>line</key>
-				<integer>20</integer>
+				<integer>64</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
+			<integer>34</integer>
+		</dict>
+		<key>dep/PagedGeometry/Makefile</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>23</integer>
+				<key>line</key>
+				<integer>58</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
 			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>16</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>58</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>23</integer>
+				<key>line</key>
+				<integer>58</integer>
+			</dict>
 		</dict>
 		<key>include/Config.h</key>
 		<dict>
@@ -254,21 +100,133 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>19</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>src/DynamicObject.cpp</key>
+		<key>include/Dependencies.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>37</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>include/DynamicObject.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>37</integer>
+				<key>line</key>
+				<integer>18</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>include/InputHandler.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>50</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>14</integer>
+		</dict>
+		<key>include/SceneryTest.h</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>16</integer>
+				<key>line</key>
+				<integer>109</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>86</integer>
+		</dict>
+		<key>include/StaticObject.h</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>7</integer>
+		</dict>
+		<key>src/Character.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>23</integer>
+				<key>line</key>
+				<integer>140</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>102</integer>
+		</dict>
+		<key>src/DynamicObject.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>12</integer>
+				<key>line</key>
+				<integer>21</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>src/GraphicsManager.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>35</integer>
+				<key>line</key>
+				<integer>142</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>95</integer>
+		</dict>
+		<key>src/InputHandler.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>82</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -280,14 +238,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>4</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>108</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>153</integer>
+			<integer>245</integer>
 		</dict>
 		<key>src/PhysicsManager.cpp</key>
 		<dict>
@@ -310,56 +268,52 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>219</integer>
+				<integer>143</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>161</integer>
-			<key>selectFrom</key>
+			<integer>141</integer>
+		</dict>
+		<key>src/StaticObject.cpp</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>206</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
 				<integer>0</integer>
-				<key>line</key>
-				<integer>219</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>src/MainApplication.cpp</string>
-		<string>dep/OgreBullet/Makefile</string>
-		<string>include/Config.h</string>
-		<string>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsGImpactMeshShape.h</string>
-		<string>dep/OgreBullet/Collisions/include/OgreBulletCollisionsWorld.h</string>
-		<string>dep/OgreBullet/Collisions/include/OgreBulletCollisions.h</string>
-		<string>dep/OgreBullet/Collisions/include/OgreBulletCollisionsPreRequisites.h</string>
-		<string>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsTrimeshShape.h</string>
-		<string>dep/OgreBullet/Collisions/src/OgreBulletCollisionsWorld.cpp</string>
-		<string>dep/OgreBullet/Collisions/include/Utils/OgreBulletCollisionsMeshToShapeConverter.h</string>
-		<string>dep/OgreBullet/Collisions/src/Utils/OgreBulletCollisionsMeshToShapeConverter.cpp</string>
-		<string>src/SceneryTest.cpp</string>
-		<string>src/PhysicsManager.cpp</string>
 		<string>src/DynamicObject.cpp</string>
-		<string>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsConvexHullShape.cpp</string>
-		<string>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsTrimeshShape.cpp</string>
-		<string>dep/OgreBullet/Collisions/include/Shapes/OgreBulletCollisionsConvexHullShape.h</string>
-		<string>dep/OgreBullet/Collisions/src/OgreBulletCollisionsShape.cpp</string>
-		<string>Makefile</string>
-		<string>dep/OgreBullet/Collisions/src/Shapes/OgreBulletCollisionsGImpactMeshShape.cpp</string>
+		<string>src/PhysicsManager.cpp</string>
+		<string>include/InputHandler.h</string>
+		<string>src/InputHandler.cpp</string>
+		<string>src/GraphicsManager.cpp</string>
+		<string>include/SceneryTest.h</string>
+		<string>src/MainApplication.cpp</string>
+		<string>src/Character.cpp</string>
+		<string>src/SceneryTest.cpp</string>
+		<string>include/StaticObject.h</string>
+		<string>src/StaticObject.cpp</string>
+		<string>dep/OgreBullet/Dynamics/src/OgreBulletDynamicsWorld.cpp</string>
+		<string>dep/OgreBullet/Collisions/src/Utils/OgreBulletCollisionsMeshToShapeConverter.cpp</string>
+		<string>include/Config.h</string>
+		<string>dep/PagedGeometry/Makefile</string>
+		<string>include/Dependencies.h</string>
+		<string>dep/OgreBullet/Collisions/src/OgreBulletCollisionsObject.cpp</string>
+		<string>include/DynamicObject.h</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{2, 4}, {842, 998}}</string>
+	<string>{{10, 225}, {842, 774}}</string>
 </dict>
 </plist>

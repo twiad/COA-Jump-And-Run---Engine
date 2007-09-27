@@ -202,6 +202,7 @@ MainApplication::graphicsWorkerThread(void* p_data)
         startTime = SDL_GetTicks();
 
         lockGraphics();
+        PhysicsManager::get()->synchronize();
         GraphicsManager::get()->update(updateTime);
         unlockGraphics();
         
@@ -276,9 +277,9 @@ MainApplication::physicsWorkerThread(void* p_data)
         m_physicsWaitTime += std::max<int>(minFrameTime - 
                 (SDL_GetTicks() - startTime), 0) / 1000.0f;
         
-        lockGraphics();
-        PhysicsManager::get()->synchronize();
-        unlockGraphics();
+        // lockGraphics();
+        // PhysicsManager::get()->synchronize();
+        // unlockGraphics();
         
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
