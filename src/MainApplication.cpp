@@ -51,10 +51,10 @@ void
 MainApplication::cleanup()
 {
     /// @todo TODO: clean exit
-    // delete PhysicsManager::get();
-    // delete GraphicsManager::get();
-
+    //delete PhysicsManager::get();
+    //delete InteractionManager::get();
     SDL_Quit();
+    std::cout << "cleaned up" << std::endl;
 }
 
 void
@@ -80,8 +80,8 @@ MainApplication::go()
             &(MainApplication::interactionWorkerThread), 0);
     
     SDL_WaitThread(m_physicsThread, 0);
-    SDL_WaitThread(m_graphicsThread, 0);
     SDL_WaitThread(m_interactionThread, 0);
+    SDL_WaitThread(m_graphicsThread, 0);
 
     cleanup();
 
@@ -236,6 +236,9 @@ MainApplication::graphicsWorkerThread(void* p_data)
     m_physicsKeepRunning = false;
     unlockPhysics();
 
+    delete GraphicsManager::get();
+
+    
     return 0;
 }
 

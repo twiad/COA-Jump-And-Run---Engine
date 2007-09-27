@@ -17,7 +17,7 @@ InteractionManager::InteractionManager()
 
 InteractionManager::~InteractionManager()
 {
-
+	std::cout << "~im" << std::endl;
 }
 
 bool

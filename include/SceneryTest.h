@@ -23,53 +23,42 @@ class InputController;
 
 class SceneryTest : public Scenery
 {
-    Ogre::SceneNode* m_planeNode;
-    Ogre::SceneNode* m_terrainNode;
-    Ogre::SceneNode* m_boxStackNodes[BOX_COUNT];
-    Ogre::SceneNode* m_testConstraintNodes[2];
-    
-    Ogre::Entity* m_plane;
+    Ogre::SceneNode* m_baseLevelNode;
+    Ogre::Entity* m_baseLevel;
+    OgreBulletCollisions::CollisionShape* m_baseLevelShape;
+    OgreBulletDynamics::RigidBody* m_baseLevelBody;
+
     Ogre::Entity* m_terrain;
-    Ogre::Entity* m_boxStack[BOX_COUNT];
-    Ogre::Entity* m_testConstraint[2];
-    
+    OgreBulletCollisions::CollisionShape* m_floorShape;
+    OgreBulletDynamics::RigidBody* m_floorBody;
+
     Ogre::Light* m_light;
-    
-    OgreBulletCollisions::CollisionShape* m_planeShape;
-    OgreBulletCollisions::CollisionShape* m_boxStackShape[BOX_COUNT];
-    OgreBulletCollisions::CollisionShape* m_testConstraintShape[2];
+
     OgreBulletCollisions::CollisionShape* m_standardBoxShape;
-    
-    
-    OgreBulletDynamics::RigidBody* m_planeBody;
-    OgreBulletDynamics::RigidBody* m_boxStackBodies[BOX_COUNT];
-    OgreBulletDynamics::RigidBody* m_testConstraintBodies[2];
-
-    // OgreBulletDynamics::ConeTwistConstraint* m_testConstraintObject;
-    // OgreBulletDynamics::SixDofConstraint* m_testConstraintObject;
-    OgreBulletDynamics::HingeConstraint* m_testConstraintObject;
-
-    InputController* m_movementInputController;
-    
-    Character* m_character;
-    
     Ogre::Quaternion m_rot;
-    
+
+    Character* m_character;
+    InputController* m_movementInputController;
+
+
+
 public:
     SceneryTest();
-    
+
     virtual ~SceneryTest();
 
     virtual void setup();
 
     virtual void cleanup();
-    
-    float getTerrainHeight(const float x, const float z);
-    	
+
+    static float getTerrainHeight(const float x, const float z);
+
+    void pagedBla();
+
 };
 
 class DebugOutputCollisionHandler : 
-        public OgreBulletCollisions::CollisionHandler
+public OgreBulletCollisions::CollisionHandler
 {
 public:
     void handleCollision(OgreBulletCollisions::CollisionInfo* info)
@@ -79,84 +68,69 @@ public:
         std::cout << " object: " << info->getObject() << std::endl;
         std::cout << " partner: " << info->getPartner() << std::endl;
         std::cout << " local position: " << 
-                info->getLocalPosition().x() << " " <<
-                info->getLocalPosition().y() << " " <<
-                info->getLocalPosition().z() << " " <<
-                std::endl;
+        info->getLocalPosition().x() << " " <<
+        info->getLocalPosition().y() << " " <<
+        info->getLocalPosition().z() << " " <<
+        std::endl;
         std::cout << " world position: " << 
-                info->getWorldPosition().x() << " " <<
-                info->getWorldPosition().y() << " " <<
-                info->getWorldPosition().z() << " " <<
-                std::endl;
+        info->getWorldPosition().x() << " " <<
+        info->getWorldPosition().y() << " " <<
+        info->getWorldPosition().z() << " " <<
+        std::endl;
     }  
 };
 
 class DestroyTouchingObjectsCollisionHandler :
-        public OgreBulletCollisions::CollisionHandler
+public OgreBulletCollisions::CollisionHandler
 {
     static uint m_psCount;
-    std::list<OgreBulletCollisions::Object*> m_deletedObjects;
 
 public:
     DestroyTouchingObjectsCollisionHandler()
     {
     }
-    
+
     void handleCollision(OgreBulletCollisions::CollisionInfo* info)
     {
         if(info)
             if(info->getPartner())
             {
-                // causes crash
-                /// @todo TODO: check why it crashes...
-                // if(dynamic_cast<Character*>(info->getPartner()))
-                //     return;
-                
-                
-                std::list<OgreBulletCollisions::Object*>::iterator it;
-                for(it = m_deletedObjects.begin(); 
-                    it != m_deletedObjects.end(); it++)
-                    if(*it == info->getPartner())
-                        break;
-                
-                if(it == m_deletedObjects.end()) // not already deleted
+                // causes crash for rob
+                /// @todo TODO: check whether it crashes for YOU :D
+                if(dynamic_cast<DynamicObject*>(info->getPartner()))
                 {
-                    Ogre::ParticleSystem* ps = 
-                    GraphicsManager::get()->sceneManager()->
-                            createParticleSystem("destroy ps " + 
-                            Ogre::StringConverter::toString(m_psCount++),
-                            "Examples/Smoke");
-                            
-                    info->getPartner()->sceneNode()->detachAllObjects();
-
-                    Ogre::SceneNode* psNode = GraphicsManager::get()->
-                            sceneManager()->getRootSceneNode()->
-                                createChildSceneNode("destroy ps " + 
-                                Ogre::StringConverter::toString(m_psCount++));
-                    
-                    psNode->setPosition(info->getPartner()->
-                            sceneNode()->getPosition());
-                    psNode->attachObject(ps);
-
-                    delete info->getPartner();
-                    m_deletedObjects.push_back(info->getPartner());
+                    DynamicObjectManager::get()->deleteDynamicObject(dynamic_cast<DynamicObject*>(info->getPartner()));
+                    return;
                 }
+
+//                Ogre::ParticleSystem* ps = 
+//                    GraphicsManager::get()->sceneManager()->
+//                    createParticleSystem("destroy ps " + 
+//                            Ogre::StringConverter::toString(m_psCount++),
+//                    "Examples/Smoke");
+//
+//                info->getPartner()->sceneNode()->detachAllObjects();
+//
+//                Ogre::SceneNode* psNode = GraphicsManager::get()->
+//                sceneManager()->getRootSceneNode()->
+//                createChildSceneNode("destroy ps " + 
+//                        Ogre::StringConverter::toString(m_psCount++));
+//
+//                psNode->setPosition(info->getPartner()->
+//                        sceneNode()->getPosition());
+//                psNode->attachObject(ps);
+//                delete info->getPartner();
             }
-    }
-    
-    void allCollisionsPublished()
-    {
-        m_deletedObjects.clear();
     }
 };
 
 class CubeSpawnCollisionHandler : 
-        public OgreBulletCollisions::CollisionHandler
+public OgreBulletCollisions::CollisionHandler
 {
     static uint m_spawnId;
-    
+
     uint m_lastSpawn;
-    
+
 public:
     CubeSpawnCollisionHandler() : OgreBulletCollisions::CollisionHandler()
     {
@@ -166,29 +140,20 @@ public:
     {
         if(SDL_GetTicks() - m_lastSpawn < 500)
             return;
-            
-        Ogre::Quaternion q = Ogre::Quaternion::IDENTITY;
-        OgreBulletCollisions::CollisionShape* b = new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5, 0.5, 0.5));
-        
-        new DynamicObject(
-        		"SpawnBox" + Ogre::StringConverter::toString(++m_spawnId), 
-                "QuestionCube.mesh",
-                b,
-                7,
-                Ogre::Vector3(32, 5, 0), 
-                q);
+
+        DynamicObjectManager::get()->createBox("QuestionCube.mesh",7,Ogre::Vector3(32, 5, 0));
 
         m_lastSpawn = SDL_GetTicks();
     }  
 };
 
 class TubeCollisionHandler : 
-        public OgreBulletCollisions::CollisionHandler
+public OgreBulletCollisions::CollisionHandler
 {
     static uint m_spawnId;
-    
+
     uint m_lastSpawn;
-    
+
 public:
     TubeCollisionHandler() : OgreBulletCollisions::CollisionHandler()
     {
@@ -200,65 +165,24 @@ public:
         if(SDL_GetTicks() - m_lastSpawn < 100)
             return;
 
-        std::cout << " local position: " << 
-                        info->getLocalPosition().x() << " " <<
-                        info->getLocalPosition().y() << " " <<
-                        info->getLocalPosition().z() << " " <<
-                        std::endl;
-        
         if(info->getLocalPosition().z() < 1)
-        	return;
-        
+            return;
+
         OIS::Keyboard* keyboard = InputHandler::get()->keyboard();
-        
+
         if(!keyboard->isKeyDown(OIS::KC_DOWN))
-        	return;
-        
+            return;
+
         GraphicsManager* gm = GraphicsManager::get();
         Ogre::SceneManager* sm = gm->sceneManager();
-        
+
         m_spawnId++;
-        
-        Ogre::Entity* ent = sm->createEntity(
-                "SpawnBox2" + Ogre::StringConverter::toString(m_spawnId), 
-                "QuestionCube.mesh");
-        ent->setNormaliseNormals(true);
 
-        Ogre::SceneNode* node = sm->getRootSceneNode()->
-                createChildSceneNode("SpawnBoxNode" + 
-                    Ogre::StringConverter::toString(m_spawnId));
-    
-        OgreBulletDynamics::RigidBody* body = new OgreBulletDynamics::RigidBody(
-                "BoxSpawnBody" + Ogre::StringConverter::toString(m_spawnId), 
-                PhysicsManager::get()->world());
-    
-        body->setShape(
-            node, 
-            new OgreBulletCollisions::BoxCollisionShape(Ogre::Vector3(0.5,0.5,0.5)), 
-            2.0, /* ............................................. restitution */
-            2.0, /* ............................................. friction    */
-            3,   /* ............................................. mass        */
-            Ogre::Vector3(32, 10, 0));    
-
-
-        node->attachObject(ent);
+        DynamicObjectManager::get()->createBox("QuestionCube.mesh",3,Ogre::Vector3(32, 10, 0));
 
         m_lastSpawn = SDL_GetTicks();
     }
-    
-    float getTerrainHeight(const float x, const float z){
-    	if (x < 0 || z < 0 || x > 1500 || z > 1500) return 0;
 
-    	CoAJnR::GraphicsManager* gm = CoAJnR::GraphicsManager::get();
-    	
-    	gm->scenery()->updateRay.setOrigin(Ogre::Vector3(x, 0.0f, z));
-    	gm->scenery()->updateRay.setDirection(Ogre::Vector3::UNIT_Y);
-    	gm->scenery()->raySceneQuery->setRay(gm->scenery()->updateRay);
-    	gm->scenery()->raySceneQuery->execute(gm->scenery()->raySceneQueryListener);
-    	
-    	return gm->scenery()->raySceneQueryListener->resultDistance;
-    }
-    
 };
 
 

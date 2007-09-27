@@ -13,11 +13,6 @@ class DynamicObject : public OgreBulletDynamics::RigidBody
 
     std::string m_identifier;
 
-    void createObject(std::string& indentifier, std::string& meshFile,
-            OgreBulletCollisions::CollisionShape* shape,
-            double mass, double restitution, double friction,
-            Ogre::Vector3& position, Ogre::Quaternion& rotation);
-
 public:
     DynamicObject(
     		std::string identifier, 
@@ -40,6 +35,38 @@ public:
         return m_entity;
     }
 
+};
+    
+class DynamicObjectManager
+{
+	static DynamicObjectManager* m_instance;
+	
+	uint m_objectCount;
+	std::list<DynamicObject*> m_dynamicObjects;
+	
+	OgreBulletCollisions::CollisionShape* m_standardBoxShape;
+	OgreBulletCollisions::CollisionShape* m_standardTubeShape;
+	
+	Ogre::Quaternion m_rot;
+	
+public:
+	DynamicObjectManager();
+	virtual ~DynamicObjectManager();
+	
+	static DynamicObjectManager* get()
+	    {
+	        if(!m_instance)
+	            m_instance = new DynamicObjectManager;
+
+	        assert(m_instance);
+	        return m_instance;
+	    }
+	
+	DynamicObject* createBox(std::string meshFile, float mass, Ogre::Vector3 pos);
+	DynamicObject* createTube(std::string meshFile, float mass, Ogre::Vector3 pos);
+	DynamicObject* createConvexObject(std::string meshFile, float mass, Ogre::Vector3 pos);
+	
+	void deleteDynamicObject(DynamicObject* object);
 };
     
 }

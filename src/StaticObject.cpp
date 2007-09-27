@@ -9,21 +9,21 @@ namespace CoAJnR
 {
 
 StaticObject::StaticObject(
-		std::string p_idenitfier, 
+		std::string p_identifier, 
 		std::string p_meshFile, 
 		OgreBulletCollisions::CollisionShape* p_shape,
 		Ogre::Vector3 p_pos, 
 		Ogre::Quaternion p_rot)
-    	: OgreBulletDynamics::RigidBody(p_idenitfier, PhysicsManager::get()->world()) 
+    	: OgreBulletDynamics::RigidBody(p_identifier, PhysicsManager::get()->world()) 
 {
-    m_identifier = p_idenitfier;   
+    m_identifier = p_identifier;   
     
-    m_entity = GraphicsManager::get()->sceneManager()->createEntity(p_idenitfier, p_meshFile);
+    m_entity = GraphicsManager::get()->sceneManager()->createEntity(m_identifier, p_meshFile);
 
     m_entity->setNormaliseNormals(true);
     
     setStaticShape(
-            GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_idenitfier), 
+            GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(m_identifier), 
             p_shape, 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
@@ -42,6 +42,7 @@ StaticObject::~StaticObject()
 	GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(m_identifier);
 
 	mRootNode = 0;
+	std::cout << "   ~StatObj" << std::endl;
 }
 
 StaticObjectManager* StaticObjectManager::m_instance = 0;
@@ -58,16 +59,16 @@ StaticObjectManager::StaticObjectManager()
 
 StaticObjectManager::~StaticObjectManager()
 {
-	std::list<StaticObject*>::iterator it;
-	for(it = m_staticObjects.begin(); it != m_staticObjects.end(); it++)
-		delete *it;
+//	std::list<StaticObject*>::iterator it;
+//	for(it = m_staticObjects.begin(); it != m_staticObjects.end(); it++)
+//		delete *it;
 	
 	m_staticObjects.clear();
 	
 	delete m_standardBoxShape;
 	delete m_standardTubeShape;
-	
-	delete StaticObjectManager::get();
+
+	std::cout << "  ~Som" << std::endl;
 }
 
 StaticObject*
@@ -115,7 +116,7 @@ StaticObjectManager::createConvexObject(
 		)
 {
 	Ogre::Entity* tmpEnt = 
-		GraphicsManager::get()->sceneManager()->createEntity("tmpentity", p_meshFile);
+		GraphicsManager::get()->sceneManager()->createEntity("SomTmpEntity", p_meshFile);
 		OgreBulletCollisions::MeshToShapeConverter convexConv(tmpEnt);
 		OgreBulletCollisions::CollisionShape* tmpshape = convexConv.createConvex();
 
@@ -128,7 +129,11 @@ StaticObjectManager::createConvexObject(
 	        m_rot
 	        );
 	
+	
+	
 	m_staticObjects.push_back(tmpObject);
+	
+	GraphicsManager::get()->sceneManager()->destroyEntity("SomTmpEntity");
 	
 	return tmpObject;
 }

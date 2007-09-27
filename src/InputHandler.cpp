@@ -32,13 +32,14 @@ InputHandler::InputHandler()
 	catch(...) {
 		m_joystick = 0;
 	}
-
+	std::cout << m_inputControllers.size() << std::endl;
 }
 
 InputHandler::~InputHandler()
 {
     /// @todo TODO: cleanup
     // OIS::InputManager::destroyInputSystem();
+	std::cout << " ~ih" << std::endl;
 }
 
 bool
@@ -58,7 +59,7 @@ InputHandler::update()
     std::vector<InputController*>::iterator it = m_inputControllers.begin();
     while(it != m_inputControllers.end())
         (*it++)->handleInput();
-    
+
     return true;
 }
 
@@ -75,8 +76,13 @@ InputHandler::removeInputController(InputController* p_controller)
     assert(p_controller && "controller must not be null");
     std::vector<InputController*>::iterator it;
     for(it = m_inputControllers.begin(); it != m_inputControllers.end(); it++)
+    {
         if((*it) == p_controller)
+        {
             m_inputControllers.erase(it);
+            break;
+        }
+    }
 } 
 
 }

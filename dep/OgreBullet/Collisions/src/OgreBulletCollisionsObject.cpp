@@ -70,19 +70,26 @@ namespace OgreBulletCollisions
     {
         if (mRootNode)
         {
+        	std::cout << " ~bla0" << std::endl;
             showDebugShape(false);
+            std::cout << " ~bla0" << std::endl;
             mShapeNode->detachObject (this);
+            std::cout << " ~bla0" << std::endl;
             mRootNode->removeAndDestroyChild (mShapeNode->getName ());
+            std::cout << " ~bla01" << std::endl;
             //mRootNode->getParentSceneNode ()->removeAndDestroyChild (mRootNode->getName ());
         }
-
+        std::cout << " ~bla02" << std::endl;
         getBulletCollisionWorld()->removeCollisionObject( mObject );
+        std::cout << " ~bla03" << std::endl;
         getCollisionWorld()->removeObject(this); 
-        
+        std::cout << " ~bla1" << std::endl;
         delete mObject;        
         delete mShape;
         delete mState;
+        std::cout << " ~beforedebugshape" << std::endl;
         delete mDebugShape;
+        std::cout << " ~afterdebugshape" << std::endl;
         
         if(mCollisionHandler)
             delete mCollisionHandler;
