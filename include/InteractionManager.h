@@ -16,9 +16,6 @@ class InteractionManager
     
     InputHandler* m_inputHandler;
 
-    /// list of characters to make movement corrections on
-    std::vector<Character*> m_characters;
-
 public:
     /**
      * get access to the singleton instance.
@@ -43,21 +40,6 @@ public:
     }
 
     bool update();
-
-    /**
-     * adds a character to the list of objects which get movment corrections.
-     */
-    void addCharacter(Character* character);
-
-    /**
-     * removes a character from the graphics manager.
-     */
-    void removeCharacter(Character* character);
-
-    /**
-     * applies movement corrections for all registered characters.
-     */
-    void applyMovementCorrections();
 
 };
     

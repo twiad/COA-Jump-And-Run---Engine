@@ -41,7 +41,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 
     mRootNode->attachObject(m_entity);
     
-    InteractionManager::get()->addCharacter(this);
+    PhysicsManager::get()->addCharacter(this);
 
     m_grabConstraint = 0;    
     m_grabbedObject = 0;    
@@ -50,7 +50,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
 Character::~Character()
 {
     /// @todo TODO: cleanup
-    InteractionManager::get()->removeCharacter(this);
+    PhysicsManager::get()->removeCharacter(this);
     GraphicsManager::get()->sceneManager()->destroyEntity(m_entity);
     GraphicsManager::get()->sceneManager()->destroySceneNode(m_identifier);
 
@@ -113,6 +113,7 @@ Character::jump(double p_elapsed)
     {
         Ogre::Vector3 vel = getLinearVelocity();
         setLinearVelocity(vel.x, m_jumpForce, vel.z);
+        std::cout << "executed jump" << std::endl;
     }
 }
     
@@ -132,6 +133,8 @@ Character::moveRight(double p_elapsed)
 void
 Character::applyMovementCorrections()
 {
+    // ATTENTION this is called from phsics thread
+    
     Ogre::Vector3 vel = getLinearVelocity();
     if((vel != Ogre::Vector3::ZERO))
     {

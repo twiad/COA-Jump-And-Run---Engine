@@ -8,7 +8,6 @@
 
 namespace CoAJnR
 {
-//SceneryTest* s = new SceneryTest;
 
 SDL_mutex*  MainApplication::m_graphicsLock = 0;
 SDL_mutex*  MainApplication::m_physicsLock = 0;
@@ -146,8 +145,8 @@ MainApplication::interactionWorkerThread(void* data)
         if(!InteractionManager::get()->update())
         {
             m_graphicsKeepRunning = false;
-            MainApplication::unlockPhysics();
             MainApplication::unlockGraphics();            
+            MainApplication::unlockPhysics();
             break;
         }
         
@@ -184,8 +183,6 @@ MainApplication::graphicsWorkerThread(void* p_data)
     
     lockGraphics();
     GraphicsManager::get()->init(new COAJNR_INIT_SCENE);
-//    GraphicsManager* test = GraphicsManager::get();//->init(COAJNR_INIT_SCENE);
-//    test->init(COAJNR_INIT_SCENE);
     unlockGraphics();
 
     signalPhysicsCanStart();
@@ -213,8 +210,6 @@ MainApplication::graphicsWorkerThread(void* p_data)
         m_graphicsWaitTime += timeToWait / 1000.0f;
 
         SDL_Delay(timeToWait);
-        
-        // std::cout << elapsedMilliSeconds << std::endl;
         
         // if(!timeToWait)
         //     std::cout << "WARNING! graphics update too slow!" 
@@ -276,18 +271,11 @@ MainApplication::physicsWorkerThread(void* p_data)
         
         m_physicsWaitTime += std::max<int>(minFrameTime - 
                 (SDL_GetTicks() - startTime), 0) / 1000.0f;
-        
-        // lockGraphics();
-        // PhysicsManager::get()->synchronize();
-        // unlockGraphics();
-        
+                
         elapsedMilliSeconds = SDL_GetTicks() - startTime;
         updateTime = std::max<int>(minFrameTime, elapsedMilliSeconds) / 1000.0f;
         timeToWait = std::max<int>(minFrameTime - elapsedMilliSeconds, 0);
 
-        /// @todo TODO: measure real phy update time (done, see above)
-        // m_physicsWaitTime += timeToWait / 1000.0f;
-        
         SDL_Delay(timeToWait);
         
         // if(!timeToWait)

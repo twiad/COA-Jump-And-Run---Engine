@@ -6,10 +6,10 @@
 #define COAJNR_VERION_STRING "CoA JnR Version 0.0.69"
 
 /// target loops per second for the graphics thread
-#define COAJNR_GRAPHICS_FPS 60
+#define COAJNR_GRAPHICS_FPS 50
 
 /// target loops per second for the phyics thread
-#define COAJNR_PHYSICS_FPS 60
+#define COAJNR_PHYSICS_FPS 50
 
 /// target loops per second for the interaction thread
 /// changing this value may negate all behaviour tweaks

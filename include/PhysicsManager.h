@@ -7,6 +7,7 @@
 namespace CoAJnR
 {
 
+class Character;
 class PhysicsInteractionPacket;
 
 /**
@@ -20,6 +21,11 @@ class PhysicsManager // : public Ogre::FrameListener
     OgreBulletDynamics::DynamicsWorld* m_world;
 
     Ogre::SceneNode* m_debugNode;
+
+    bool m_doMovementCorrections;
+
+    /// list of characters to make movement corrections on
+    std::vector<Character*> m_characters;
 
 public:
     /**
@@ -68,6 +74,23 @@ public:
         return m_world;
     }
     
+    /**
+     * adds a character to the list of objects which get movment corrections.
+     */
+    void addCharacter(Character* character);
+
+    /**
+     * removes a character from the graphics manager.
+     */
+    void removeCharacter(Character* character);
+
+    /**
+     * applies movement corrections for all registered characters.
+     */
+    void applyMovementCorrections();
+
+
+    void scheduleMovementCorrections();
 };
 
 }
