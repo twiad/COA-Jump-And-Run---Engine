@@ -13,6 +13,7 @@ class StaticObject : public OgreBulletDynamics::RigidBody
 
     std::string m_identifier;
 
+    Ogre::StaticGeometry* m_staticGeometry;
 
 public:
     StaticObject(Ogre::Entity* statEntity, std::string meshFile, OgreBulletCollisions::CollisionShape* shape, Ogre::Vector3 pos, Ogre::Quaternion rot);

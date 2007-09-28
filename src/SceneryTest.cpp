@@ -7,7 +7,8 @@
 #include "InputHandler.h"
 #include "PhysicsManager.h"
 #include "StaticObject.h"
-#include "DynamicObject.h"//
+#include "DynamicObject.h"
+
 namespace CoAJnR
 {
 
@@ -82,10 +83,10 @@ void SceneryTest::setup()
     dom->createConvexObject("stone2.mesh", 11, Ogre::Vector3(40, 4, 0));
 
     // this is the box stack
-//    for (int j = 0; j < 3; j++)
-//        for (int i = 0; i < BOX_COUNT; i++)
-//            dom->createBox("QuestionCube.mesh", 5, Ogre::Vector3(
-//                    2 + i+ (i*0.3), 1 + j + (j*0.1), 0));
+   for (int j = 0; j < 3; j++)
+       for (int i = 0; i < BOX_COUNT; i++)
+           dom->createBox("QuestionCube.mesh", 5, Ogre::Vector3(
+                   2 + i+ (i*0.3), 1 + j + (j*0.1), 0));
 
     for (int i = 0; i < 4; i++)
         som->createBox("NormalCube.mesh", Ogre::Vector3(26 + i, 5, 0));
@@ -101,23 +102,15 @@ void SceneryTest::setup()
         som->createBox("BrownCube.mesh", Ogre::Vector3(70, 0.5+i, 0));
     }
 
-    /// @todo TODO: defaultParam?//
-    StaticObject* tube = som->createTube("Tube.mesh", Ogre::Vector3::UNIT_Z, Ogre::Vector3(31.5, 15, 0));
+    som->createTube("Tube.mesh", 
+            Ogre::Vector3::UNIT_Z, Ogre::Vector3(31.5, 15, 0))->
+                setCollisionHandler(new TubeCollisionHandler);
 
-    tube->setOrientation(Ogre::Quaternion(Ogre::Degree(-180),
-            (Ogre::Vector3::UNIT_Z))*m_rot);
-    tube->setCollisionHandler(new TubeCollisionHandler);
+    som->createBox("QuestionCube.mesh", Ogre::Vector3(30, 5, 0))->
+            setCollisionHandler(new CubeSpawnCollisionHandler);
 
-    /// @todo TODO: collisionHandler as Param?//
-    StaticObject* spawnBox1 = som->createBox("QuestionCube.mesh", Ogre::Vector3(30, 5,
-            0));
-
-    spawnBox1->setCollisionHandler(new CubeSpawnCollisionHandler);
-
-    StaticObject* spawnBox2 = som->createBox("QuestionCube.mesh", Ogre::Vector3(9, 16,
-            0));
-
-    spawnBox2->setCollisionHandler(new CubeSpawnCollisionHandler);
+    som->createBox("QuestionCube.mesh", Ogre::Vector3(9, 16, 0))->
+            setCollisionHandler(new CubeSpawnCollisionHandler);
 
     //Wippe eng:seesaw
     som->createConvexObject("seesaw.mesh", Ogre::Vector3(64, 0, 0));

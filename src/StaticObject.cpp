@@ -18,15 +18,15 @@ StaticObject::StaticObject(
 {
     p_statEntity->setNormaliseNormals(true);
     
-    Ogre::StaticGeometry* sg = new Ogre::StaticGeometry(
+    m_staticGeometry = new Ogre::StaticGeometry(
             GraphicsManager::get()->sceneManager(), 
             p_statEntity->getName());
-    sg->addEntity(p_statEntity, p_pos, p_rot);
+    m_staticGeometry->addEntity(p_statEntity, p_pos, p_rot);
 
-    sg->build();
+    m_staticGeometry->build();
     
     setStaticShape(
-            GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_statEntity->getName()), 
+            // GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_statEntity->getName()), 
             p_shape, 
             2.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
@@ -38,9 +38,11 @@ StaticObject::StaticObject(
 StaticObject::~StaticObject()
 {
 	GraphicsManager::get()->sceneManager()->destroyEntity(m_identifier);
-	GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(m_identifier);
+    delete m_staticGeometry;
+    
+    // GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(m_identifier);
 
-	mRootNode = 0;
+    // mRootNode = 0;
 }
 
 StaticObjectManager* StaticObjectManager::m_instance = 0;
@@ -129,8 +131,6 @@ StaticObjectManager::createConvexObject(
 	        m_rot
 	        );
 	
-	
-	
 	m_staticObjects.push_back(convexObject);
 	
 	return convexObject;
@@ -157,8 +157,6 @@ StaticObjectManager::createTrimeshObject(
             p_pos,
             m_rot
             );
-    
-    
     
     m_staticObjects.push_back(triObject);
     

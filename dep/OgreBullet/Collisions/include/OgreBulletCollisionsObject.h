@@ -71,11 +71,11 @@ namespace OgreBulletCollisions
         inline const Ogre::Vector3 &getWorldPosition() const {return mRootNode->getWorldPosition ();};
         inline const Ogre::Quaternion &getWorldOrientation() const {return mRootNode->getWorldOrientation ();};
 
-        inline void setPosition(const Ogre::Vector3 &p) {mRootNode->setPosition (p);};
-        inline void setOrientation(const Ogre::Quaternion &q)  {return mRootNode->setOrientation (q);};
+        inline void setPosition(const Ogre::Vector3 &p) { if(mRootNode) mRootNode->setPosition (p); };
+        inline void setOrientation(const Ogre::Quaternion &q)  { if(mRootNode) mRootNode->setOrientation (q); };
 
-        inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) {mRootNode->setPosition (x,y,z);};
-        inline void setOrientation(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real w)  {return mRootNode->setOrientation (x,y,z,w);};
+        inline void setPosition(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z) { if(mRootNode) mRootNode->setPosition (x,y,z); };
+        inline void setOrientation(const Ogre::Real x, const Ogre::Real y, const Ogre::Real z, const Ogre::Real w)  { if(mRootNode) mRootNode->setOrientation (x,y,z,w); };
 
         virtual void setPosition(const btVector3 &pos);
         virtual void setOrientation(const btQuaternion &quat);

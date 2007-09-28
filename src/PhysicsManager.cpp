@@ -29,7 +29,7 @@ PhysicsManager::PhysicsManager()
     // m_debugNode->attachObject(debugDrawer);
     
     // enabling debug shapes crashes ogre when creating ogre stuff in ia thread
-     m_world->setShowDebugShapes(true);
+     // m_world->setShowDebugShapes(true);
     // m_world->setShowDebugContactPoints(true); // does not seem to work
 }
 

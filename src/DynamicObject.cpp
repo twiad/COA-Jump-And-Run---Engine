@@ -21,7 +21,8 @@ DynamicObject::DynamicObject(
 	p_dynEntity->setNormaliseNormals(true);
 			    
 	setShape(
-			GraphicsManager::get()->sceneManager()->getRootSceneNode()->createChildSceneNode(p_dynEntity->getName()), 
+			GraphicsManager::get()->sceneManager()->getRootSceneNode()->
+			        createChildSceneNode(p_dynEntity->getName()), 
 			p_shape, 
 			2.0, /* ............................................. restitution */
 			2.0, /* ............................................. friction    */
@@ -38,7 +39,8 @@ DynamicObject::~DynamicObject()
     /// @todo TODO: cleanup
     GraphicsManager::get()->sceneManager()->destroyEntity(getName());
     //mRootNode->removeAndDestroyAllChildren();
-    GraphicsManager::get()->sceneManager()->getRootSceneNode()->removeAndDestroyChild(getName());
+    GraphicsManager::get()->sceneManager()->getRootSceneNode()->
+            removeAndDestroyChild(getName());
 
     mRootNode = 0;
 }

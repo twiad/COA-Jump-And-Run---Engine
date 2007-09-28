@@ -116,25 +116,33 @@ namespace OgreBulletCollisions
     }
     // -------------------------------------------------------------------------
     void Object::setTransform(const btVector3 &pos, const btQuaternion &quat)
-    { 
-        mRootNode->setPosition(pos[0], pos[1], pos[2]);
-        mRootNode->setOrientation(quat.getW(),quat.getX(), quat.getY(), quat.getZ());
+    {
+        if(mRootNode)
+        {
+            mRootNode->setPosition(pos[0], pos[1], pos[2]);
+            mRootNode->setOrientation(quat.getW(),quat.getX(), quat.getY(), quat.getZ());
+        }
     }
     // -------------------------------------------------------------------------
     void Object::setPosition(const btVector3 &pos)
     {
-        mRootNode->setPosition(pos[0], pos[1], pos[2]);
+        if(mRootNode)
+            mRootNode->setPosition(pos[0], pos[1], pos[2]);
     }
     // -------------------------------------------------------------------------
     void Object::setOrientation(const btQuaternion &quat)
     {   
-        mRootNode->setOrientation(quat.getW(),quat.getX(), quat.getY(), quat.getZ());
+        if(mRootNode)
+            mRootNode->setOrientation(quat.getW(),quat.getX(), quat.getY(), quat.getZ());
     }
     // -------------------------------------------------------------------------
     void Object::setTransform(const btTransform& worldTrans)
     { 
-        mRootNode->setPosition(worldTrans.getOrigin()[0], worldTrans.getOrigin()[1],worldTrans.getOrigin()[2]);
-        mRootNode->setOrientation(worldTrans.getRotation().getW(),worldTrans.getRotation().getX(), worldTrans.getRotation().getY(), worldTrans.getRotation().getZ());
+        if(mRootNode)
+        {
+            mRootNode->setPosition(worldTrans.getOrigin()[0], worldTrans.getOrigin()[1],worldTrans.getOrigin()[2]);
+            mRootNode->setOrientation(worldTrans.getRotation().getW(),worldTrans.getRotation().getX(), worldTrans.getRotation().getY(), worldTrans.getRotation().getZ());
+        }
     }
     //-----------------------------------------------------------------------
     void Object::setShape(CollisionShape *shape, 
