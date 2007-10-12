@@ -120,12 +120,16 @@ Character::jump(double p_elapsed)
 void
 Character::moveLeft(double p_elapsed)
 {
+//    Ogre::Vector3 origin = getWorldPosition();
+//    if (origin.x < 0) return;
     move(-p_elapsed);
 }
 
 void
 Character::moveRight(double p_elapsed)
 {
+    Ogre::Vector3 origin = getWorldPosition();
+    if (origin.x > 150) return;
     move(p_elapsed);
 }
 
@@ -146,6 +150,8 @@ Character::applyMovementCorrections()
     }
 
     Ogre::Vector3 pos = getWorldPosition();
+    if (pos.x < 0) pos.x = 0;
+    if (pos.x > 145) pos.x = 145;
     getBulletRigidBody()->getWorldTransform().setOrigin(
             btVector3(pos.x, pos.y, 0));
 

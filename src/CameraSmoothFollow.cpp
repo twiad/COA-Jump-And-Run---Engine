@@ -28,7 +28,7 @@ CameraSmoothFollow::frameStarted(const Ogre::FrameEvent& p_event)
     Ogre::Vector3 cameraPos = m_camera->getPosition();
     cameraPos.y -= m_verticalOffset;
     Ogre::Vector3 targetPos = m_target->getPosition();
-
+    
     m_camera->setPosition(
             cameraPos.x + ((targetPos.x - cameraPos.x) * 0.6 * 
             p_event.timeSinceLastFrame),
