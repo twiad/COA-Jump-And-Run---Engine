@@ -51,7 +51,8 @@ namespace OgreBulletDynamics
             *rbA->getBulletRigidBody (),
             *rbB->getBulletRigidBody (), 
             frameInA,
-            frameInB);
+            frameInB,
+            true);
     }
     // -------------------------------------------------------------------------
     SixDofConstraint::~SixDofConstraint()

@@ -192,7 +192,9 @@ void TreeLoader2D::loadPage(PageInfo &page)
 
 			//Calculate terrain height at pos.x / pos.z to get pos.y
 			if (heightFunction != NULL)
+			{
 				pos.y = heightFunction(pos.x, pos.z);
+			}
 			else
 				pos.y = 0.0f;
 			

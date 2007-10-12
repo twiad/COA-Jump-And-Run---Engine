@@ -83,7 +83,8 @@ namespace OgreBulletCollisions
 
 
          ~DebugContactText();
-
+         // Dummy declaration of abstract virtual
+         //void visitRenderables(Ogre::Renderable::Visitor* visitor, bool debugRenderables = false) { }
         // Set settings
         void    setPosition(const Ogre::Vector3 &pos);
 

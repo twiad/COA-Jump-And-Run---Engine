@@ -34,7 +34,7 @@ Character::Character(std::string p_idenitfier, std::string p_meshFile)
             GraphicsManager::get()->sceneManager()->
                     getRootSceneNode()->createChildSceneNode(m_identifier), 
             new OgreBulletCollisions::SphereCollisionShape(0.9), 
-            2.0, /* ............................................. restitution */
+            0.0, /* ............................................. restitution */
             2.0, /* ............................................. friction    */
             2,   /* ............................................. mass        */
             Ogre::Vector3(17, 5, 0));
@@ -113,7 +113,6 @@ Character::jump(double p_elapsed)
     {
         Ogre::Vector3 vel = getLinearVelocity();
         setLinearVelocity(vel.x, m_jumpForce, vel.z);
-        std::cout << "executed jump" << std::endl;
     }
 }
     

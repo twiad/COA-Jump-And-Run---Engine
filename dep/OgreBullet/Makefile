@@ -2,7 +2,7 @@
 include ../../Make.conf
 
 # global flags
-CXXFLAGS   += -pipe
+CXXFLAGS   += -pipe -g
 WARN_FLAGS	= -Wall
 INCLUDE	   += -I./include -I./Collisions/include -I./Dynamics/include
 LIBPATH		=
@@ -39,8 +39,8 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
+	INCLUDE		 += -I"O:\Personal\eclipse\Ogre145\OgreMain\include" -I"O:\Personal\eclipse\Ogre145\Dependencies\include\ois" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
+	LIBPATH		 += -L"O:\Personal\eclipse\Ogre145\Samples\Common\bin\Release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
 	LIBRARIES	 += -lOgreMain -lOIS -lbulletcollision -lbulletdynamics -lbulletmath -lOgreBullet -lSDLmain -lSDL
 #																			   #
 # ############################################################################ #

@@ -183,6 +183,7 @@ MainApplication::graphicsWorkerThread(void* p_data)
     
     lockGraphics();
     GraphicsManager::get()->init(new COAJNR_INIT_SCENE);
+    
     unlockGraphics();
 
     signalPhysicsCanStart();

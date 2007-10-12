@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "InputHandler.h"
 #include "Scenery.h"
+#include "SceneryTest.h"
 
 using namespace Ogre;
 
@@ -115,9 +116,9 @@ GraphicsManager::init(Scenery* p_scenery)
     if(!m_window)
         return false;
 
-    //m_sceneManager = m_root->createSceneManager(ST_GENERIC);
+    m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE);
         //createSceneManager("TerrainSceneManager");
-    m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
+    //m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
 
     m_camera = m_sceneManager->createCamera("camera");
     m_camera->setPosition(Vector3(0, 0, -50));
@@ -143,10 +144,13 @@ GraphicsManager::init(Scenery* p_scenery)
     m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
     // m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
     // m_sceneManager->setShadowTechnique(SHADOWTYPE_TEXTURE_ADDITIVE);
-
+    
+   
+    
     if(p_scenery)
         setScenery(p_scenery);
-
+    m_root->renderOneFrame();
+   
     return true;
 }
 
@@ -161,6 +165,8 @@ GraphicsManager::registerFrameListeners()
 bool
 GraphicsManager::update(double p_elapsed)
 {
+    GraphicsManager::get()->scenery()->trees->update();
+    GraphicsManager::get()->scenery()->grass->update();
     Ogre::WindowEventUtilities::messagePump();
     return renderOneFrame();
 }
@@ -187,6 +193,7 @@ GraphicsManager::setScenery(Scenery* p_scenery)
 
     m_scenery = p_scenery;
     m_scenery->setup();
+   
 }
 
 }

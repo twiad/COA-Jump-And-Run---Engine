@@ -28,6 +28,9 @@ public:
 	BatchedGeometry(Ogre::SceneManager *mgr);
 	~BatchedGeometry();
 
+	// Dummy declaration of abstract virtual
+	//void visitRenderables(Ogre::Renderable::Visitor* visitor, bool debugRenderables = false) { }
+	
 	void addEntity(Ogre::Entity *ent, const Ogre::Vector3 &position, const Ogre::Quaternion &orientation = Ogre::Quaternion::IDENTITY, const Ogre::Vector3 &scale = Ogre::Vector3::UNIT_SCALE);
 	void build();
 	void clear();

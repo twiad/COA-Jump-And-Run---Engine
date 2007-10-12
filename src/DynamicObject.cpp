@@ -24,7 +24,7 @@ DynamicObject::DynamicObject(
 			GraphicsManager::get()->sceneManager()->getRootSceneNode()->
 			        createChildSceneNode(p_dynEntity->getName()), 
 			p_shape, 
-			2.0, /* ............................................. restitution */
+			0.0, /* ............................................. restitution */
 			2.0, /* ............................................. friction    */
 			p_mass,
 			p_pos,

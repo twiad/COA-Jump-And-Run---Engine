@@ -47,7 +47,7 @@ namespace OgreBulletCollisions
         mDebugContactPoints(0),
         mScnMgr(scn)
     {
-        mDispatcher = new btCollisionDispatcher();
+        mDispatcher = new btCollisionDispatcher(&mDefaultCollisionConfiguration);
         mBroadphase = new btAxisSweep3(
             OgreBtConverter::to(bounds.getMinimum()), 
             OgreBtConverter::to(bounds.getMaximum()));

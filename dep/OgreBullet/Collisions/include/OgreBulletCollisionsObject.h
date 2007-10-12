@@ -68,8 +68,8 @@ namespace OgreBulletCollisions
         virtual void _updateRenderQueue(Ogre::RenderQueue* queue);
 
 
-        inline const Ogre::Vector3 &getWorldPosition() const {return mRootNode->getWorldPosition ();};
-        inline const Ogre::Quaternion &getWorldOrientation() const {return mRootNode->getWorldOrientation ();};
+        inline const Ogre::Vector3 &getWorldPosition() const {return mRootNode->_getDerivedPosition();};
+        inline const Ogre::Quaternion &getWorldOrientation() const {return mRootNode->_getDerivedOrientation();};
 
         inline void setPosition(const Ogre::Vector3 &p) { if(mRootNode) mRootNode->setPosition (p); };
         inline void setOrientation(const Ogre::Quaternion &q)  { if(mRootNode) mRootNode->setOrientation (q); };

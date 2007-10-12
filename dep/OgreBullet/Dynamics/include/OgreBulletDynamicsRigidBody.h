@@ -99,6 +99,9 @@ namespace OgreBulletDynamics
         Ogre::Vector3       getCenterOfMassPivot (const Ogre::Vector3 &pivotPosition) const;
         
         void setDamping( const Ogre::Real linearDamping, const Ogre::Real angularDamping );
+        
+        // Dummy declaration of abstract virtual
+        //void visitRenderables(Ogre::Renderable::Visitor* visitor, bool debugRenderables = false) { }
 
     };
     // -------------------------------------------------------------------------

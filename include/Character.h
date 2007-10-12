@@ -31,7 +31,7 @@ class Character : public OgreBulletDynamics::RigidBody
 public:
     Character(std::string identifier, std::string meshFile);
     virtual ~Character();
-    
+
     virtual void moveLeft(double elapsed);
     virtual void moveRight(double elapsed);
     virtual void jump(double elapsed);

@@ -13,12 +13,12 @@ public:
 	inline bool queryResult(Ogre::SceneQuery::WorldFragment *fragment, Ogre::Real distance)
     {
     	resultDistance = distance;
-    	return false;
+    	return true;
     }
     inline bool queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
     {
     	resultDistance = distance;
-    	return false;
+    	return true;
     }
 
     float resultDistance;

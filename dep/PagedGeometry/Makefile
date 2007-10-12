@@ -2,7 +2,7 @@
 include ../../Make.conf
 
 # global flags
-CXXFLAGS   += -pipe
+CXXFLAGS   += -pipe -g
 WARN_FLAGS	= -Wall
 INCLUDE	   += -I./include
 LIBPATH		=
@@ -39,8 +39,8 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release"
+	INCLUDE		 += -I"O:\Personal\eclipse\Ogre145\OgreMain\include"
+	LIBPATH		 += -L"O:\Personal\eclipse\Ogre145\Samples\Common\bin\Release"
 	LIBRARIES	 += -lOgreMain -lOIS
 #																			   #
 # ############################################################################ #

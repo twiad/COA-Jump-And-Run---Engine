@@ -37,12 +37,13 @@ class SceneryTest : public Scenery
     OgreBulletCollisions::CollisionShape* m_standardBoxShape;
     Ogre::Quaternion m_rot;
 
-    Character* m_character;
+
     InputController* m_movementInputController;
 
-
+    Character* m_character;
 
 public:
+
     SceneryTest();
 
     virtual ~SceneryTest();
@@ -53,7 +54,34 @@ public:
 
     static float getTerrainHeight(const float x, const float z);
 
-    void pagedBla();
+    void initPagedGeometry();
+
+    void getStaticGeometry(
+            Ogre::StaticGeometry* mesh,
+            size_t &vertex_count,
+            Ogre::Vector3* &vertices,
+            size_t &index_count,
+            unsigned long* &indices,
+            const Ogre::Vector3 &position,
+            const Ogre::Quaternion &orient,
+            const Ogre::Vector3 &scale);
+
+    void getMeshInformation(
+            const Ogre::MeshPtr mesh,
+            size_t &vertex_count,
+            Ogre::Vector3* &vertices,
+            size_t &index_count,
+            unsigned long* &indices,
+            const Ogre::Vector3 &position,
+            const Ogre::Quaternion &orient,
+            const Ogre::Vector3 &scale);
+
+    bool raycastFromPoint(
+            const Ogre::Vector3 &point,
+            const Ogre::Vector3 &normal,
+            Ogre::Vector3 &result);
+
+    Ogre::RaySceneQuery* m_raySceneQuery;
 
 };
 
@@ -84,6 +112,7 @@ class DestroyTouchingObjectsCollisionHandler :
 public OgreBulletCollisions::CollisionHandler
 {
     static uint m_psCount;
+    std::list<OgreBulletCollisions::Object*> m_deletedObjects;
 
 public:
     DestroyTouchingObjectsCollisionHandler()
@@ -95,31 +124,48 @@ public:
         if(info)
             if(info->getPartner())
             {
-                // causes crash for rob
-                /// @todo TODO: check whether it crashes for YOU :D
-                if(dynamic_cast<DynamicObject*>(info->getPartner()))
-                {
-                    DynamicObjectManager::get()->destroyDynamicObject(dynamic_cast<DynamicObject*>(info->getPartner()));
-                    return;
-                }
+                std::list<OgreBulletCollisions::Object*>::iterator it;
+                
+                for(it = m_deletedObjects.begin(); 
+                it != m_deletedObjects.end(); it++)
+                    if(*it == info->getPartner())
+                    {
+                        //TODO: list keeps growing and growing
+                        break;
+                    }
 
-//                Ogre::ParticleSystem* ps = 
-//                    GraphicsManager::get()->sceneManager()->
-//                    createParticleSystem("destroy ps " + 
-//                            Ogre::StringConverter::toString(m_psCount++),
-//                    "Examples/Smoke");
+                if(it == m_deletedObjects.end()) // not already deleted
+                {
+                    if(dynamic_cast<DynamicObject*>(info->getPartner()))
+                    {
+                        DynamicObjectManager::get()->destroyDynamicObject(dynamic_cast<DynamicObject*>(info->getPartner()));
+                        m_deletedObjects.push_back(info->getPartner());
+                        return;
+                    }
+                    if(dynamic_cast<Character*>(info->getPartner()))
+                    {
+                        //TODO: let character die
+                        return;
+                    }
+                    info->getPartner()->sceneNode()->detachAllObjects();
+                    delete info->getPartner();
+                    m_deletedObjects.push_back(info->getPartner());
+
+//                    Ogre::ParticleSystem* ps = 
+//                        GraphicsManager::get()->sceneManager()->
+//                        createParticleSystem("destroy ps " + 
+//                                Ogre::StringConverter::toString(m_psCount++),
+//                        "Examples/Smoke");                            
+//                    Ogre::SceneNode* psNode = GraphicsManager::get()->
+//                    sceneManager()->getRootSceneNode()->
+//                    createChildSceneNode("destroy ps " + 
+//                            Ogre::StringConverter::toString(m_psCount++));
 //
-//                info->getPartner()->sceneNode()->detachAllObjects();
-//
-//                Ogre::SceneNode* psNode = GraphicsManager::get()->
-//                sceneManager()->getRootSceneNode()->
-//                createChildSceneNode("destroy ps " + 
-//                        Ogre::StringConverter::toString(m_psCount++));
-//
-//                psNode->setPosition(info->getPartner()->
-//                        sceneNode()->getPosition());
-//                psNode->attachObject(ps);
-//                delete info->getPartner();
+//                    psNode->setPosition(info->getPartner()->
+//                            sceneNode()->getPosition());
+//                    psNode->attachObject(ps);
+
+                }
             }
     }
 };
@@ -172,9 +218,6 @@ public:
 
         if(!keyboard->isKeyDown(OIS::KC_DOWN))
             return;
-
-        GraphicsManager* gm = GraphicsManager::get();
-        Ogre::SceneManager* sm = gm->sceneManager();
 
         m_spawnId++;
 

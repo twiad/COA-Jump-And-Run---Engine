@@ -5,7 +5,7 @@ include ./Make.conf
 TARGET = CoAJnR
 
 # global flags
-CXXFLAGS        += -pipe
+CXXFLAGS        += -pipe -g
 EXTRA_CXXFLAGS   = -DDEBUG
 WARN_FLAGS	     = -Wall
 INCLUDE	        += -I./include -I./dep/OgreBullet/Collisions/include -I./dep/OgreBullet/Dynamics/include -I./dep/PagedGeometry/include
@@ -50,8 +50,8 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #																			   #
-	INCLUDE		 += -I"$(OGRE_HOME)/include"  -I"$(OGRE_HOME)/include/OIS" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
-	LIBPATH		 += -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
+	INCLUDE		 += -I"O:\Personal\eclipse\Ogre145\OgreMain\include"  -I"O:\Personal\eclipse\Ogre145\Dependencies\include\ois" -I"$(BULLET_HOME)/src" -I"c:/SDL/include/SDL"
+	LIBPATH		 += -L"O:\Personal\eclipse\coajnr\bin" -L"$(BULLET_HOME)/lib" -L"c:/SDL/lib"
 	LIBRARIES	 += -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lmingw32 -lSDLmain -lSDL -mwindows
 	BINPATH		  = ./bin
 	TESTBINPATH	  = ./bin

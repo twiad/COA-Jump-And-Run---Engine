@@ -71,7 +71,7 @@ namespace OgreBulletCollisions
         btCollisionDispatcher*     mDispatcher;
         btAxisSweep3*	           mBroadphase;
         Ogre::AxisAlignedBox       mBounds;
-
+        btDefaultCollisionConfiguration mDefaultCollisionConfiguration;
         std::deque<Object *>        mObjects;
 
         bool                        mShowDebugShapes;
