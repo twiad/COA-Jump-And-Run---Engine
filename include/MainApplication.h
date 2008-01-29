@@ -1,3 +1,24 @@
+/******************************************************************************
+ *                         CoAJnR - CoA Jump n Run                            *
+ *                     Copyright (C) 2007  Adrian Jäkel                       *
+ *                     Copyright (C) 2007  Franz Köhler                       *
+ *                     Copyright (C) 2007  Robert Timm                        *
+ ******************************************************************************
+ * This library is free software; you can redistribute it and/or              *
+ * modify it under the terms of the GNU Lesser General Public                 *
+ * License as published by the Free Software Foundation; either               *
+ * version 2.1 of the License, or (at your option) any later version.         *
+ *                                                                            *
+ * This library is distributed in the hope that it will be useful,            *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of             *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU          *
+ * Lesser General Public License for more details.                            *
+ *                                                                            *
+ * You should have received a copy of the GNU Lesser General Public           *
+ * License along with this library; if not, write to the Free Software        *
+ * Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA *
+\******************************************************************************/
+
 
 #ifndef COAJNR_MAINAPPLICATION_INCLUDED
 #define COAJNR_MAINAPPLICATION_INCLUDED
@@ -8,124 +29,44 @@ namespace CoAJnR
 {
 
 /**
- * the applications root.
- *
- * this class manages the threads main loops, initialization and cleanup
- * of the application. Thread synchroniztion is also handled by this class.
+ * central program entry point
  */
 class MainApplication
 {
-    /// lock for ogre in general and ogre thread data
-    static SDL_mutex* m_graphicsLock;
-    
-    /// lock for bullet in general and bullet thread data
-    static SDL_mutex* m_physicsLock;
-    
-    /// physics waits for this until it starts up (needs ogre scene manager)
-    static SDL_cond* m_physicsCanStartCondition;
-    
-    /// mutex for the physics start condition
-    static SDL_mutex* m_physicsCanStartMutex;
+    /// window message queue lock
+    static boost::mutex m_windowMessageQueueMutex;
 
-    /// thread object for ogre rendering
-    static SDL_Thread* m_graphicsThread;
-
-    /// thread object for bullet physics
-    static SDL_Thread* m_physicsThread;
-    
-    /// thread object for user interaction, collision handling, logic, etc.
-    static SDL_Thread* m_interactionThread;
-
-#ifdef _DEBUG
-    /// start time of the application
-    static uint m_startTime;
-    
-    /// number of physics loops
-    static uint m_physicsUpdates;
-
-    /// number of graphics loops
-    static uint m_graphicsUpdates;
-
-    /// number of interaction thread loops
-    static uint m_interactionUpdates;
-
-    static double m_physicsWaitTime;
-    static double m_graphicsWaitTime;
-    static double m_interactionWaitTime;
-    
-#endif
-    
-    /// when set to false, physics thread terminates after next update
-    static bool m_physicsKeepRunning;
-    
-    /// when set to false, graphics thread terminates after next update
-    static bool m_graphicsKeepRunning;
-
-    /// initialize the application
-    static void initialize();
-    
-    /// cleanup the applications resources
-    static void cleanup();
-
-    /// call waits for the physics can start condition signaled by graphics
-    static void waitPhysicsCanStart();
-    
-    /// signals the physics thread to start, called by graphics
-    static void signalPhysicsCanStart();
+    /**
+     * stuff done before running.
+     */
+    static void init();
 
 public:
     /**
-     * ctor.
-     */
-    MainApplication() {};
-
-    /**
-     * dtor.
-     */
-    virtual ~MainApplication() {};    
-    
-    /**
-     * runs the application.
+     * makes the application run.
      */
     static void go();
 
     /**
-     * graphics thread main loop methode.
+     * shutdown the application cleanly
      */
-    static int graphicsWorkerThread(void* data);
-
-    /**
-     * physics thread main loop methode.
-     */
-    static int physicsWorkerThread(void* data);
-
-    /**
-     * interaction thread main loop methode.
-     */
-    static int interactionWorkerThread(void* data);
-
-    /**
-     * lock the graphics context.
-     */
-    static int lockGraphics();
-
-    /**
-     * unlock the graphics context.
-     */
-    static int unlockGraphics();
+    static void shutdown();
     
     /**
-     * lock the physics context.
+     * returns a reference to the window message queue lock.
+     *
+     * this lock is needed to synchronize the access to the window managers
+     * message queue for the application window. 
+     * GraphicsManager and InputManager both access this queue.
      */
-    static int lockPhysics();
-
-    /**
-     * unlock the physics context.
-     */
-    static int unlockPhysics();
+    static boost::mutex& windowMessageQueueMutex()
+    {
+        return m_windowMessageQueueMutex;
+    }
 
 };
 
 }
 
 #endif
+

@@ -1,0 +1,13 @@
+material Material/SOLID/TEX/checkers.tga
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture checkers.tga
+			}
+		}
+	}
+}

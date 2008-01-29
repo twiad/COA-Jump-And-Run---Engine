@@ -1,10 +1,30 @@
+/******************************************************************************
+ *                         CoAJnR - CoA Jump n Run                            *
+ *                     Copyright (C) 2007  Adrian Jäkel                       *
+ *                     Copyright (C) 2007  Franz Köhler                       *
+ *                     Copyright (C) 2007  Robert Timm                        *
+ ******************************************************************************
+ * This library is free software; you can redistribute it and/or              *
+ * modify it under the terms of the GNU Lesser General Public                 *
+ * License as published by the Free Software Foundation; either               *
+ * version 2.1 of the License, or (at your option) any later version.         *
+ *                                                                            *
+ * This library is distributed in the hope that it will be useful,            *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of             *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU          *
+ * Lesser General Public License for more details.                            *
+ *                                                                            *
+ * You should have received a copy of the GNU Lesser General Public           *
+ * License along with this library; if not, write to the Free Software        *
+ * Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA *
+\******************************************************************************/
+
 
 #include "GraphicsManager.h"
 
-#include "Character.h"
-#include "InputHandler.h"
-#include "Scenery.h"
-#include "SceneryTest.h"
+#include "DebugOverlayFrameListener.h"
+#include "InputManager.h"
+#include "MainApplication.h"
 
 using namespace Ogre;
 
@@ -13,6 +33,12 @@ namespace CoAJnR
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 #include <CoreFoundation/CoreFoundation.h>
+/**
+ * returns the path of the .app bundle on MacOS X
+ *
+ * this is needed to handle resource locations and config file pathes
+ * propperly on Mac OS X.
+ */
 std::string macBundlePath()
 {
     char path[1024];
@@ -35,16 +61,13 @@ std::string macBundlePath()
 }
 #endif
 
-GraphicsManager* GraphicsManager::m_instance = 0;
-
 GraphicsManager::GraphicsManager()
 {
     m_initialized = false;
     m_root = 0;
-    m_camera = 0;
     m_sceneManager = 0;
-    m_scenery = 0;
     m_window = 0;
+    m_debugOverlayFrameListener = 0;
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
  m_resourcePath = macBundlePath() + "/Contents/Resources/";
@@ -52,19 +75,11 @@ GraphicsManager::GraphicsManager()
  m_resourcePath = "";
 #endif
 
+    setMaxFrameTime(COAJNR_GRAPHICS_FRAME_TIME);
 }
 
 GraphicsManager::~GraphicsManager()
 {
-    if(m_initialized)
-    {
-        if(m_scenery)
-            delete m_scenery;
-        if(m_root)
-            delete m_root;
-        
-        delete InputHandler::get();
-    }
 }
 
 void
@@ -96,79 +111,107 @@ GraphicsManager::setupResources()
     }
 }
 
-bool 
-GraphicsManager::init(Scenery* p_scenery)
+void
+GraphicsManager::init()
 {
-    assert(p_scenery && "scenery must not be null");
-    
+    IdManager::get().setThreadName("Graphics Thread");
+
     m_root = new Root(
             m_resourcePath + "plugins.cfg", 
             m_resourcePath + "ogre.cfg", 
-            m_resourcePath + "Ogre.log"
-    		);
+            m_resourcePath + "ogre.log"
+            );
 
     setupResources();
 
-    /// @todo TODO: else??
-    if(m_root->showConfigDialog())
-          m_window = m_root->initialise(true, "CoA JnR");
+    if(!m_root->restoreConfig())
+        m_root->showConfigDialog();
+    
+    m_window = m_root->initialise(true, "CoA JnR");
 
-    if(!m_window)
-        return false;
+    assert(m_window && "window not created propperly");
 
-    m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE);
-        //createSceneManager("TerrainSceneManager");
-    //m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE, "ExampleSMInstance");
+    m_sceneManager = m_root->createSceneManager(ST_GENERIC);
+    //m_sceneManager = m_root->createSceneManager(ST_EXTERIOR_CLOSE);
+    //m_sceneManager = m_root->createSceneManager("TerrainSceneManager");
 
-    m_camera = m_sceneManager->createCamera("camera");
-    m_camera->setPosition(Vector3(0, 0, -50));
-    m_camera->lookAt(Vector3(0, 0, 0));
-    m_camera->setNearClipDistance(1);
-    m_camera->setFarClipDistance(100);
-
-    m_viewport = m_window->addViewport(m_camera);
+    m_viewport = m_window->addViewport(0);
     m_viewport->setBackgroundColour(ColourValue( 0, 0, 0));
-
-    m_camera->setAspectRatio(
-            Real(m_viewport->getActualWidth()) /
-            Real(m_viewport->getActualHeight()));
 
     TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
-	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+    ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+    m_debugOverlayFrameListener = new DebugOverlayFrameListener(m_window);
 
     m_initialized = true;
 
-    registerFrameListeners();
     
     m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
     // m_sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_MODULATIVE);
     // m_sceneManager->setShadowTechnique(SHADOWTYPE_TEXTURE_ADDITIVE);
     
-   
-    
-    if(p_scenery)
-        setScenery(p_scenery);
-    m_root->renderOneFrame();
-   
-    return true;
+    m_sceneManager->setAmbientLight(ColourValue(0.1,0.1,0.1));
+
+    registerListeners();
+    initInputSystem();
 }
 
 void
-GraphicsManager::registerFrameListeners()
+GraphicsManager::initInputSystem()
 {
-    // m_root->addFrameListener(InputHandler::get());
-    // m_root->addFrameListener(new InputHandler(m_window));
-    // m_root->addFrameListener(PhysicsManager::get());
+    size_t windowHnd = 0;
+    m_window->getCustomAttribute("WINDOW", &windowHnd);
+    InputManager::get().init(
+            windowHnd, 
+            m_window->getWidth(), 
+            m_window->getHeight());
+}
+
+void
+GraphicsManager::releaseInputSystem()
+{
+    InputManager::get().release();
+}
+
+void
+GraphicsManager::registerListeners()
+{
+    m_root->addFrameListener(m_debugOverlayFrameListener);
+    Ogre::WindowEventUtilities::addWindowEventListener(
+            m_window, &m_windowEventListener);
+}
+
+void
+GraphicsManager::fastUpdate()
+{
+    boost::mutex::scoped_lock scopedAutoLock(
+            MainApplication::windowMessageQueueMutex());
+
+    Ogre::WindowEventUtilities::messagePump();
 }
 
 bool
 GraphicsManager::update(double p_elapsed)
 {
-    GraphicsManager::get()->scenery()->trees->update();
-    GraphicsManager::get()->scenery()->grass->update();
-    Ogre::WindowEventUtilities::messagePump();
     return renderOneFrame();
+}
+
+void
+GraphicsManager::release()
+{
+    if(m_initialized)
+    {
+        releaseInputSystem();
+        
+        m_root->removeFrameListener(m_debugOverlayFrameListener);
+        
+        delete m_debugOverlayFrameListener;
+        m_debugOverlayFrameListener = 0;
+            
+        if(m_root)
+            delete m_root;
+    }
 }
 
 bool 
@@ -181,19 +224,9 @@ GraphicsManager::renderOneFrame()
 }
 
 void
-GraphicsManager::setScenery(Scenery* p_scenery)
+GraphicsManager::WindowCloseListener::windowClosed(Ogre::RenderWindow*)
 {
-    assert(p_scenery && "scenery must not be null");
-
-    if(m_scenery)
-    {
-        m_scenery->cleanup();
-        delete m_scenery;
-    }
-
-    m_scenery = p_scenery;
-    m_scenery->setup();
-   
+    MainApplication::shutdown();
 }
 
 }

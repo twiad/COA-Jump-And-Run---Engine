@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "iostream_buffers", "iostream_buffers.vcproj", "{5EE581DB-9576-4C9B-987A-63E3E5A0F8DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EE581DB-9576-4C9B-987A-63E3E5A0F8DD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5EE581DB-9576-4C9B-987A-63E3E5A0F8DD}.Debug|Win32.Build.0 = Debug|Win32
+		{5EE581DB-9576-4C9B-987A-63E3E5A0F8DD}.Release|Win32.ActiveCfg = Release|Win32
+		{5EE581DB-9576-4C9B-987A-63E3E5A0F8DD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

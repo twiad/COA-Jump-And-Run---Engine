@@ -4,8 +4,8 @@
 Examples/Smoke
 {
     	material        	Examples/Smoke
-    	particle_width  	0.1
-    	particle_height 	0.1
+    	particle_width  	0.4
+    	particle_height 	0.4
     	cull_each       	true
     	quota           	100
     	billboard_type  	point
@@ -15,7 +15,7 @@ Examples/Smoke
     	emitter Point
     	{
 		    angle               		11
-        	emission_rate       		15
+        	emission_rate       		10
         	time_to_live        		4
         	direction           		0 1 0
         	velocity_min        		5

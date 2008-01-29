@@ -1,45 +1,88 @@
+/******************************************************************************
+ *                         CoAJnR - CoA Jump n Run                            *
+ *                     Copyright (C) 2007  Adrian Jäkel                       *
+ *                     Copyright (C) 2007  Franz Köhler                       *
+ *                     Copyright (C) 2007  Robert Timm                        *
+ ******************************************************************************
+ * This library is free software; you can redistribute it and/or              *
+ * modify it under the terms of the GNU Lesser General Public                 *
+ * License as published by the Free Software Foundation; either               *
+ * version 2.1 of the License, or (at your option) any later version.         *
+ *                                                                            *
+ * This library is distributed in the hope that it will be useful,            *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of             *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU          *
+ * Lesser General Public License for more details.                            *
+ *                                                                            *
+ * You should have received a copy of the GNU Lesser General Public           *
+ * License along with this library; if not, write to the Free Software        *
+ * Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA *
+\******************************************************************************/
+
 
 #ifndef COAJNR_PHYSICSMANAGER_INCLUDED
 #define COAJNR_PHYSICSMANAGER_INCLUDED
 
 #include "Dependencies.h"
 
+#include "CollisionHandlerComponent.h"
+#include "FreeRunner.h"
+
 namespace CoAJnR
 {
-
-class Character;
-class PhysicsInteractionPacket;
-
+    
 /**
- * this class is rensponsable for bullet configuration and runtime
+ * this class is responsable for bullet configuration and runtime
  */
-class PhysicsManager // : public Ogre::FrameListener
+class PhysicsManager : public FreeRunner, 
+                       public rtils::Singleton<PhysicsManager>
 {
-    /// singleton pattern
-    static PhysicsManager* m_instance;
+    mutable boost::mutex m_accelerationFactorMutex;
     
-    OgreBulletDynamics::DynamicsWorld* m_world;
+    /// the default configuration for the dispatcher
+    btDefaultCollisionConfiguration m_defaultCollisionConfiguration;
 
-    Ogre::SceneNode* m_debugNode;
+    /// collision dispatcher
+    btCollisionDispatcher* m_dispatcher;
 
-    bool m_doMovementCorrections;
+    /// constraint solver
+    btSequentialImpulseConstraintSolver* m_solver;
 
-    /// list of characters to make movement corrections on
-    std::vector<Character*> m_characters;
+    /// the dynamics world
+    btDiscreteDynamicsWorld* m_world;
 
-public:
+    /// broadphase
+    btAxisSweep3* m_broadphase;
+
+    double m_accelerationFactor;
+
+    /// sends collision events via thread pool to all 
+    // CollisionObject s with CollisionHandlerComponent objects attached
+    void publishCollisions();
+
     /**
-     * get access to the singleton instance.
+     * sends a frame time report to the graphics threads and writes it into the
+     * debug overlay.
      */
-    static PhysicsManager* get()
-    {
-        if(!m_instance)
-            m_instance = new PhysicsManager;
+    void reportFrameTime() const;
 
-        assert(m_instance);
-        return m_instance;
-    }
+protected:
+    /**
+     * brings up the bullet subsystem.
+     */
+    void init();
     
+    /**
+     * updates the physics manager (steps the world)
+     */
+    bool update(double elapsed);
+    
+    /**
+     *
+     */
+    void release();
+    
+public:
     /**
      * ctor.
      */
@@ -51,50 +94,20 @@ public:
     virtual ~PhysicsManager();
     
     /**
-     * updates the physics manager, steps the world for a certain time amount.
+     * returns the dynamic world
      */
-    void update(double elapesd);
-    
-    /**
-     * synchronizes bullet transformations to ogre
-     */
-    void synchronize();
-    
-    /**
-     * framelistener callback for physics update.
-     */
-    bool frameStarted(const Ogre::FrameEvent& event);
-
-    /**
-     * returns the ogre bullet dynamics world.
-     */
-    OgreBulletDynamics::DynamicsWorld* world()
+    btDiscreteDynamicsWorld* world()
     {
         assert(m_world);
         return m_world;
     }
     
-    /**
-     * adds a character to the list of objects which get movment corrections.
-     */
-    void addCharacter(Character* character);
+    void setAccelerationFactor(double factor);
 
-    /**
-     * removes a character from the graphics manager.
-     */
-    void removeCharacter(Character* character);
-
-    /**
-     * applies movement corrections for all registered characters.
-     */
-    void applyMovementCorrections();
-
-
-    void scheduleMovementCorrections();
+    double accelerationFactor();
 };
 
 }
 
-
-
 #endif
+
