@@ -553,8 +553,8 @@ PhysicsComponent::detachedCallback()
             }
             
             delete physicsComponent->m_collisionObject->getMotionState();
-            delete physicsComponent->m_collisionObject;
             delete physicsComponent->collisionObject()->getCollisionShape();
+            delete physicsComponent->m_collisionObject;
 
             physicsComponent->m_collisionObject = 0;
 
