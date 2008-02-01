@@ -187,6 +187,7 @@ ComponentContainer::componentDetachedCallback(ComponentPtr p_component)
 {
     assert(p_component && "component must not be null");
 
+	// @todo TODO this must be done much earlier, but leads to stuck calls
     p_component->setReady(false);
     p_component->setParent(ComponentContainerPtr());
     
