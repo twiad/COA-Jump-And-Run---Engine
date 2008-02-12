@@ -64,8 +64,7 @@ PositionComponent::attachedCallback()
 
         Ogre::SceneNode* sceneNode =
                 sm->getRootSceneNode()->createChildSceneNode(
-                        Ogre::StringConverter::toString(
-                                component->localId()),
+                        Ogre::StringConverter::toString(component->localId()),
                         position,
                         orientation);
 

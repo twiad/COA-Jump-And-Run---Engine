@@ -3,12 +3,12 @@ TARGET = CoAJnR
 
 # global flags
 CXXFLAGS		+= -pipe -ansi -D$(shell whoami)
-EXTRA_CXXFLAGS	 = -DDEBUG -g
+EXTRA_CXXFLAGS	 = -DDEBUG -g -DCOAJNR_UNITTEST
 #EXTRA_CXXFLAGS	 = -O3
 WARN_FLAGS		 = -Wall
-INCLUDE			+= -Iinclude -Idep/PagedGeometry/include -Idep/rtils/include -Idep/threadpool/include
-#LIBPATH			 = -L./dep/PagedGeometry
-#LIBRARIES		 = -lPagedGeometry
+INCLUDE			+= -Iinclude -Idep/tut-framework -Idep/rtils/include -Idep/threadpool/include
+LIBPATH			 = 
+LIBRARIES		 = 
 BINPATH			 =
 EXTENSION		 =
 
@@ -18,7 +18,7 @@ ifeq ($(shell uname -s),Darwin)
 # ############################################################################ #
 #	MAC OS X																   #
 #																			   #
-  PLATFORMDEF   = -DMAC -D__MAC__																			   #
+  PLATFORMDEF   = -DMAC -D__MAC__
   INCLUDE		 += -I/usr/local/include/bullet -I/opt/local/include -I/Developer/OgreSDK/Dependencies/include
   LIBPATH		 += -L/Developer/OgreSDK/Dependencies/lib/Release/ -L/opt/local/lib
   LIBRARIES		 += -framework Ogre -framework Cocoa -framework Carbon -lbulletcollision -lbulletdynamics -lbulletmath -lois -lboost_thread-mt
@@ -32,7 +32,7 @@ else
 # ############################################################################ #
 #	LINUX																	   #
 #																			   #
-    PLATFORMDEF   = -DLINUX -D__LINUX__																			   #
+    PLATFORMDEF   = -DLINUX -D__LINUX__
 	INCLUDE		 += -I/usr/include/OGRE -I/usr/local/include/bullet
 	LIBPATH		 += 
 	LIBRARIES	 += -lboost_thread -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath
@@ -45,7 +45,7 @@ else
 # ############################################################################ #
 #	WINDOWS																	   #
 #
-    PLATFORMDEF   = -DMINGW -D__MINGW__																			   #
+    PLATFORMDEF   = -DMINGW -D__MINGW__
 	INCLUDE		 += -I"$(BOOST_HOME)" -I"$(OGRE_HOME)/include" -I"$(OGRE_HOME)/include/OIS" -I"$(BULLET_HOME)/src"
 	LIBPATH		 += -L"$(BOOST_HOME)/stage/lib" -L"$(OGRE_HOME)/bin/release" -L"$(BULLET_HOME)/lib"
 	LIBRARIES	 += -lboost_thread -lOgreMain -lOIS -lbulletdynamics -lbulletcollision -lbulletmath -lWinmm
@@ -67,18 +67,10 @@ O_FILES	  = $(SRC_FILES:%.cpp=%.o)
 TEST_SRC_FILES = $(wildcard test/*.cpp)
 TEST_O_FILES = $(TEST_SRC_FILES:%.cpp=%.o)
 
-#all: libOgreBullet.a libPagedGeometry.a $(TARGET)
 all: $(TARGET)
 
-#$(TARGET): $(O_FILES) libOgreBullet.a libPagedGeometry.a
 $(TARGET): $(O_FILES)
 	$(CXX) $(O_FILES) -o $(BINPATH)/$@$(EXTENSION) $(LIB)
-
-#libOgreBullet.a:
-#	make -C dep/OgreBullet
-	
-#libPagedGeometry.a:
-#	make -C dep/PagedGeometry
 
 run: $(TARGET)
 	cd $(BINPATH)
@@ -95,8 +87,6 @@ clean:
 	rm -f *.o src/*.o .gdb_history
 	
 proper: clean clean-docs
-#	make proper -C dep/OgreBullet
-#	make proper -C dep/PagedGeometry
 	rm -f $(BINPATH)/$(TARGET)$(EXTENSION) $(TESTBINPATH)/Test$(EXTENSION)
 	rm -rf `find . -name "ogre.log"`
 	

@@ -73,5 +73,9 @@
 
 #include "Config.h"
 
+#ifdef COAJNR_UNITTEST
+#  include <tut/tut.hpp>
+#  include <tut/tut_reporter.hpp>
 #endif
 
+#endif

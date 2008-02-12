@@ -55,10 +55,11 @@ TimerComponent::attachedCallback()
         {
             TimeManager::get().registerTimerComponent(timerComponent);
             
-            ThreadPool::get().schedule(boost::bind(
-                    &ComponentContainer::componentAttachedCallback,
-                    timerComponent->parent(), 
-                    timerComponent));
+            if(typeid(timerComponent) == typeid(TimerComponent))
+                ThreadPool::get().schedule(boost::bind(
+                        &ComponentContainer::componentAttachedCallback,
+                        timerComponent->parent(), 
+                        timerComponent));
             
             return true;
         }

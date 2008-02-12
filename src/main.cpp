@@ -22,15 +22,31 @@
 
 #include "Dependencies.h"
 #include "MainApplication.h"
+#include "TimeManager.h"
 
 using namespace CoAJnR;
 
+#ifdef COAJNR_UNITTEST
+namespace tut
+{
+    test_runner_singleton runner;
+}
+#endif
 
 int main(int argc, char** argv)
 {
+#ifdef COAJNR_UNITTEST
+    tut::reporter reporter;
+    tut::runner.get().set_callback(&reporter);
+    tut::runner.get().run_tests();
+
+    if(reporter.warnings_count)
+        TimeManager::get().wait(5.0f);
+
+    if(!reporter.all_ok())
+        return !reporter.all_ok();
+#endif
+
     MainApplication::go();
-        
     return 0;
 }
-
-
