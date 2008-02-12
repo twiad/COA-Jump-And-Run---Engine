@@ -161,6 +161,8 @@ FreeRunner::run()
 {
     init();
 
+    TimeManager& tm = TimeManager::get();
+
     TimeStamp lastWorstTimeUpdate = 0;
     TimeStamp timeStamp = 0;
     TimeValue frameTime = 0;
@@ -171,7 +173,7 @@ FreeRunner::run()
 
     while(m_run)
     {
-        timeStamp = TimeManager::get().timeStamp();
+        timeStamp = tm.timeStamp();
 
         processCalls();
 
@@ -186,7 +188,7 @@ FreeRunner::run()
             if(!update(frameTime))
                 break;
 
-            updateTime = TimeManager::get().timeStamp() - timeStamp;
+            updateTime = tm.timeStamp() - timeStamp;
 
             if(m_worstFrameTime < frameTime ||
                 timeStamp - lastWorstTimeUpdate > 5)
@@ -195,7 +197,8 @@ FreeRunner::run()
                 m_worstFrameTime = frameTime;
             }
         }
-        else TimeManager::get().wait(0.0001);
+        else 
+            tm.wait(0.0001);
     }
 
     release();

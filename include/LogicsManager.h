@@ -30,12 +30,18 @@
 namespace CoAJnR
 {
 
+class InputManager;
+class TimeManager;
+
 /**
  * base of all logics
  */
 class LogicsManager : public FreeRunner,
                       public rtils::Singleton<LogicsManager>
 {
+
+    InputManager& m_inputManager;
+    TimeManager& m_timeManager;
 
 public:
     /**

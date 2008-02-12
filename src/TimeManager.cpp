@@ -85,11 +85,12 @@ TimeManager::wait(TimeValue p_duration) const
 void
 TimeManager::update()
 {
-    TimeStamp timeStamp = TimeManager::get().timeStamp();
+    TimeStamp timeStamp = this->timeStamp();
     
     std::vector<boost::shared_ptr<TimerComponent> >::iterator it;
     for(it = m_timerComponents.begin(); it != m_timerComponents.end(); it++)
-        if(!(*it)->updateInProgress() && ((*it)->lastUpdate() + (*it)->interval()) <= timeStamp)
+        if(!(*it)->updateInProgress() && 
+                ((*it)->lastUpdate() + (*it)->interval()) <= timeStamp)
         {
         	(*it)->setUpdateInProgress();
             ThreadPool::get().schedule(boost::bind(

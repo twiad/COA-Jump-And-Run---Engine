@@ -70,7 +70,7 @@ public:
      */
     static T* getPtr()
     {
-        if(!(bool)m_singleton)
+        if(!m_singleton)
             m_singleton = new T;
 
         assert(m_singleton);

@@ -30,7 +30,9 @@
 namespace CoAJnR
 {
 
-LogicsManager::LogicsManager()
+LogicsManager::LogicsManager() : 
+        m_inputManager(InputManager::get()), 
+        m_timeManager(TimeManager::get())
 {
     setMaxFrameTime(COAJNR_LOGICS_FRAME_TIME);
 }
@@ -52,13 +54,13 @@ LogicsManager::fastUpdate()
     /// @todo TODO: not needed, but should work :)
     // InputManager::get().update();
 
-    TimeManager::get().update();
+    m_timeManager.update();
 }
 
 bool
 LogicsManager::update(TimeValue p_elapsed)
 {
-    InputManager::get().update();
+    m_inputManager.update();
 
     return true;
 }
