@@ -44,8 +44,8 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories="&quot;$(OGRE_HOME_MSVC)/include&quot;;&quot;$(OGRE_HOME_MSVC)/include/OIS&quot;;&quot;$(BULLET_HOME_MSVC)/src&quot;;&quot;$(BOOST_HOME_MSVC)&quot;;../../dep/rtils/include;../../dep/threadpool/include;../../include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME_MSVC)/include&quot;;&quot;$(OGRE_HOME_MSVC)/include/OIS&quot;;&quot;$(BULLET_HOME_MSVC)/src&quot;;&quot;$(BOOST_HOME_MSVC)&quot;;../../dep/rtils/include;../../dep/threadpool/include;&quot;../../dep/tut-framework&quot;;../../include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;COAJNR_UNITTEST"
 				StringPooling="true"
 				MinimalRebuild="true"
 				RuntimeLibrary="2"
@@ -133,7 +133,7 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories="&quot;$(OGRE_HOME_MSVC)/include&quot;;&quot;$(OGRE_HOME_MSVC)/include/OIS&quot;;&quot;$(BULLET_HOME_MSVC)/src&quot;;&quot;$(BOOST_HOME_MSVC)&quot;;../../dep/rtils/include;../../dep/threadpool/include;../../include"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME_MSVC)/include&quot;;&quot;$(OGRE_HOME_MSVC)/include/OIS&quot;;&quot;$(BULLET_HOME_MSVC)/src&quot;;&quot;$(BOOST_HOME_MSVC)&quot;;../../dep/rtils/include;../../dep/threadpool/include;&quot;../../dep/tut-framework&quot;;../../include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__"
 				StringPooling="true"
 				MinimalRebuild="true"
@@ -308,6 +308,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\PositionComponent.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\test_SampleTest.cpp"
 				>
 			</File>
 			<File
