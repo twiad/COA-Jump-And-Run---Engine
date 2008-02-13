@@ -29,7 +29,7 @@ namespace CoAJnR
 {
 
 class TimerComponent;
-
+class ThreadPool;
 
 /// a value describing a point of time (seconds since application startup)
 typedef double TimeStamp;
@@ -44,6 +44,8 @@ class TimeManager : boost::noncopyable, public rtils::Singleton<TimeManager>
 {
     /// time stamp of TimeManager initialization.
     TimeStamp m_initialTimeStamp;
+
+    ThreadPool& m_threadPool;
 
     std::vector<boost::shared_ptr<TimerComponent> > m_timerComponents;
 

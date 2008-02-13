@@ -27,7 +27,7 @@
 namespace CoAJnR
 {
 
-TimeManager::TimeManager()
+TimeManager::TimeManager() : m_threadPool(ThreadPool::get())
 {
     m_initialTimeStamp = 0;
     m_initialTimeStamp = timeStamp();
@@ -93,7 +93,7 @@ TimeManager::update()
                 ((*it)->lastUpdate() + (*it)->interval()) <= timeStamp)
         {
         	(*it)->setUpdateInProgress();
-            ThreadPool::get().schedule(boost::bind(
+            m_threadPool.schedule(boost::bind(
                     &TimerComponent::updateInternal, *it));
         }
 }

@@ -131,7 +131,12 @@ UnbufferedInputHandlerComponentTest::update(
     if(keyboard->isKeyDown(OIS::KC_T))
         for(int i = 0; i < 10; i++)
             ContentManager::get().createDynamicObject(
-                    "Tube.mesh", Ogre::Vector3(-5 + i*1.9,10,0));
+                    "Tube.mesh", 
+                    Ogre::Vector3(
+                            -5 + i*1.9 + (rand()%1000)/100.0,
+                            10  + (rand()%1000)/100.0,
+                            0 + (rand()%1000)/100.0),
+                    Ogre::Quaternion(1,0,0,(rand()%100)/100.0));
 
     if(keyboard->isKeyDown(OIS::KC_P))
     {
