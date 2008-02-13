@@ -1,3 +1,5 @@
+#ifdef COAJNR_UNITTEST
+
 #include "Dependencies.h"
 
 namespace tut 
@@ -29,3 +31,5 @@ namespace tut
         
     }   
 }; 
+
+#endif
