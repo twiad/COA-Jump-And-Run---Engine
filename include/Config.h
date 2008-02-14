@@ -23,6 +23,10 @@
 #ifndef COAJNR_CONFIG_INCLUDED
 #define COAJNR_CONFIG_INCLUDED
 
+/// define this to allow more than 16384 physical objects
+/// disable it to get a speedup in physics calculation
+// #define COAJNR_LOADS_OF_OBJECTS
+
 /// the max amount of threads used in this application 
 /// if the actual amount of threads used in this application will exeed this 
 /// value, undefined behaviour will occure.

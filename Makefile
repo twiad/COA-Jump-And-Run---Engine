@@ -3,8 +3,8 @@ TARGET = CoAJnR
 
 # global flags
 CXXFLAGS		+= -pipe -ansi -D$(shell whoami)
-EXTRA_CXXFLAGS	 = -DDEBUG -g -DCOAJNR_UNITTEST
-#EXTRA_CXXFLAGS	 = -O3
+EXTRA_CXXFLAGS     = -DDEBUG -g -DCOAJNR_UNITTEST
+# EXTRA_CXXFLAGS   = -O3
 WARN_FLAGS		 = -Wall
 INCLUDE			+= -Iinclude -Idep/tut-framework -Idep/rtils/include -Idep/threadpool/include
 LIBPATH			 = 

@@ -49,9 +49,16 @@ PhysicsManager::init()
     IdManager::get().setThreadName("Physics Thread");
 
     m_dispatcher = new btCollisionDispatcher(&m_defaultCollisionConfiguration);
+
+#ifdef COAJNR_LOADS_OF_OBJECTS
+    m_broadphase = new bt32BitAxisSweep3(
+            btVector3(-1000, -1000, -1000), 
+            btVector3(1000, 1000, 1000));
+#else
     m_broadphase = new btAxisSweep3(
             btVector3(-1000, -1000, -1000), 
             btVector3(1000, 1000, 1000));
+#endif
 
     m_solver = new btSequentialImpulseConstraintSolver();
     m_solver->setSolverMode(
@@ -97,7 +104,10 @@ PhysicsManager::update(double p_elapsed)
 {
     {
         boost::mutex::scoped_lock lock(m_accelerationFactorMutex);
-        m_world->stepSimulation(p_elapsed * m_accelerationFactor, 10);
+
+        /// @todo TODO: find a good way to handle substepping nicely
+        /// find a way which does not slow down more and more on slow machines
+        m_world->stepSimulation(p_elapsed * m_accelerationFactor, 1);
     }
     
     publishCollisions();

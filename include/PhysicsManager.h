@@ -52,7 +52,11 @@ class PhysicsManager : public FreeRunner,
     btDiscreteDynamicsWorld* m_world;
 
     /// broadphase
+#ifdef COAJNR_LOADS_OF_OBJECTS
+    bt32BitAxisSweep3* m_broadphase;
+#else
     btAxisSweep3* m_broadphase;
+#endif
 
     double m_accelerationFactor;
 
