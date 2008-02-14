@@ -27,6 +27,8 @@
 
 #include "DeferredCall.h"
 #include "IdManager.h"
+#include "LockfreeDynamicQueue.h"
+#include "LockfreeQueue.h"
 #include "TimeManager.h"
 
 namespace CoAJnR

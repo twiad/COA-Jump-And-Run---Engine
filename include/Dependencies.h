@@ -56,10 +56,6 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 
-#include <rtils/LockfreeQueue.h>
-#include <rtils/LockfreeDynamicQueue.h>
-#include <rtils/Singleton.h>
-
 #ifdef __WIN32__
 #  define WIN32_LEAN_AND_MEAN
 #  define VC_EXTRALEAN

@@ -28,6 +28,7 @@
 #include "InputEvent.h"
 #include "BufferedInputHandlerComponent.h"
 #include "UnbufferedInputHandlerComponent.h"
+#include "Singleton.h"
 
 namespace CoAJnR
 {
