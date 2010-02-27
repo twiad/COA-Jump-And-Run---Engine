@@ -17,14 +17,15 @@
  * Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA *
 \******************************************************************************/
 
+#include "EdenBodypartComponent.h"
 
-#ifndef COAJNR_EDENORGANISMCOMPONENT_INCLUDED
-#define COAJNR_EDENORGANISMCOMPONENT_INCLUDED
-
-#include "Dependencies.h"
-
-#include "Component.h"
-#include "PositionComponent.h"
+#include "PhysicsComponent.h"
+#include "ComponentContainer.h"
+#include "DeferredCall.h"
+#include "GraphicsManager.h"
+#include "GraphicsMeshComponent.h"
+#include "LogicsManager.h"
+#include "ThreadPool.h"
 
 #include "organism.h"
 
@@ -33,30 +34,44 @@ namespace CoAJnR
 
 using namespace EDen;
 
-class EdenOrganismComponent :
-        public Component,
-        public boost::enable_shared_from_this<EdenOrganismComponent>
+EdenBodypartComponent::EdenBodypartComponent(Bodypart* pBodypart)
 {
+  bp = pBodypart;
+}
 
-protected:
-    virtual std::vector<std::string> dependencies();
-    virtual void attachedCallback();
-    virtual void detachedCallback();
+EdenBodypartComponent::~EdenBodypartComponent()
+{
+}
 
-    Organism* org;
+std::string 
+EdenBodypartComponent::defaultName() const
+{
+    return std::string("EdenBodypart");
+}
 
-public:
 
-    EdenOrganismComponent(Organism* org);
+std::vector<std::string> 
+EdenBodypartComponent::dependencies()
+{
+    std::vector<std::string> dependencies;
 
-    virtual ~EdenOrganismComponent();
+    //dependencies.push_back("GraphicsMeshMain");
+    //dependencies.push_back("PhysicsMain");
 
-    virtual std::string defaultName() const;
-};
+    return dependencies;
+}
 
-typedef boost::shared_ptr<EdenOrganismComponent> EdenOrganismComponentPtr;
+void
+EdenBodypartComponent::attachedCallback()
+{
+    assert(parent() && "parent must not be null");
+    assert(parent()->id() && "component container has invalid ObjectId");
+}
+
+void
+EdenBodypartComponent::detachedCallback()
+{
 
 }
 
-#endif
-
+} // namespace

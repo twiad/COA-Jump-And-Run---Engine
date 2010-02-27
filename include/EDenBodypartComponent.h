@@ -18,43 +18,45 @@
 \******************************************************************************/
 
 
-#ifndef COAJNR_EDENORGANISMCOMPONENT_INCLUDED
-#define COAJNR_EDENORGANISMCOMPONENT_INCLUDED
+#ifndef COAJNR_EDENBODYPARTCOMPONENT_INCLUDED
+#define COAJNR_EDENBODYPARTCOMPONENT_INCLUDED
 
 #include "Dependencies.h"
 
 #include "Component.h"
 #include "PositionComponent.h"
 
-#include "organism.h"
+#include "bodypart.h"
 
 namespace CoAJnR
 {
 
 using namespace EDen;
 
-class EdenOrganismComponent :
+class EdenBodypartComponent :
         public Component,
-        public boost::enable_shared_from_this<EdenOrganismComponent>
+        public boost::enable_shared_from_this<EdenBodypartComponent>
 {
 
 protected:
     virtual std::vector<std::string> dependencies();
     virtual void attachedCallback();
     virtual void detachedCallback();
-
-    Organism* org;
-
+    
+    Bodypart* bp;
+ 
 public:
 
-    EdenOrganismComponent(Organism* org);
+    EdenBodypartComponent(Bodypart* bp);
 
-    virtual ~EdenOrganismComponent();
+    virtual ~EdenBodypartComponent();
 
     virtual std::string defaultName() const;
+
+    Bodypart* getBodypart();
 };
 
-typedef boost::shared_ptr<EdenOrganismComponent> EdenOrganismComponentPtr;
+typedef boost::shared_ptr<EdenBodypartComponent> EdenBodypartComponentPtr;
 
 }
 

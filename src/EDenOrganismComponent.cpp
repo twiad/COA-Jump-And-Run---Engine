@@ -27,13 +27,16 @@
 #include "LogicsManager.h"
 #include "ThreadPool.h"
 
+#include "organism.h"
+
 namespace CoAJnR
 {
 
 using namespace EDen;
 
-EdenOrganismComponent::EdenOrganismComponent()
+EdenOrganismComponent::EdenOrganismComponent(Organism* pOrg)
 {
+  org = pOrg;
 }
 
 EdenOrganismComponent::~EdenOrganismComponent()
@@ -52,7 +55,7 @@ EdenOrganismComponent::dependencies()
 {
     std::vector<std::string> dependencies;
 
-    // dependencies.push_back("Position");
+    //dependencies.push_back("EDenBodypart");
 
     return dependencies;
 }
@@ -67,7 +70,7 @@ EdenOrganismComponent::attachedCallback()
 void
 EdenOrganismComponent::detachedCallback()
 {
-
+  
 }
 
 } // namespace
