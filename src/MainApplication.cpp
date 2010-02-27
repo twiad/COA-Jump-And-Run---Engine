@@ -54,6 +54,7 @@
 
 #include "TimerComponent.h"
 
+#include "runtimeManager.h"
 
 namespace CoAJnR
 {
@@ -101,6 +102,10 @@ public:
 
 void createTestScene()
 {
+    EDen::RuntimeManager* runtime;
+    runtime = new EDen::RuntimeManager();
+    delete runtime;
+
     // ComponentContainerPtr camera = 
     //         ContentManager::get().createDynamicObject(
     //                 "QuestionCube.mesh", Ogre::Vector3(0, 0, -20));
@@ -222,7 +227,7 @@ MainApplication::go()
     
     MainApplication::init();
 
-	boost::thread graphicsThread(GraphicsManager::get().starter());
+	  boost::thread graphicsThread(GraphicsManager::get().starter());
     boost::thread physicsThread(PhysicsManager::get().starter());
     boost::thread logicsThread(LogicsManager::get().starter());
 
