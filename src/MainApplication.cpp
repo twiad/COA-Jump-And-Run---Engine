@@ -155,8 +155,8 @@ void createTestScene()
     ComponentContainerPtr staticObject = 
             ContentManager::get().createStaticObject(
                     "bumpMapTest.mesh", Ogre::Vector3(0,-6,0));
-    staticObject->attach(GraphicsParticleComponentPtr(
-            new GraphicsParticleComponent("Examples/Smoke")));
+//    staticObject->attach(GraphicsParticleComponentPtr(
+//            new GraphicsParticleComponent("Examples/Smoke")));
     // staticObject->attach(ComponentPtr(
     //         new GraphicsLightComponent()));
 

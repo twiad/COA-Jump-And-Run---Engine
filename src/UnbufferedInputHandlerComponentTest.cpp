@@ -63,8 +63,8 @@ UnbufferedInputHandlerComponentTest::update(
                 PS_Sphere);
         PhysicsConstraintsComponent* constr = new PhysicsConstraintsComponent; 
         m_obj->attach(ComponentPtr(constr));
-        m_obj->attach(GraphicsParticleComponentPtr(
-                new GraphicsParticleComponent("Examples/Flare")), "p2");
+//        m_obj->attach(GraphicsParticleComponentPtr(
+//                new GraphicsParticleComponent("Examples/Flare")), "p2");
         m_obj->attach(ComponentPtr(
                 new CharacterControl3DComponent()));
         m_obj->attach(GraphicsLightComponentPtr(
