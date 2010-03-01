@@ -34,9 +34,9 @@ namespace CoAJnR
 
 using namespace EDen;
 
-EdenOrganismComponent::EdenOrganismComponent(Organism* pOrg)
+EdenOrganismComponent::EdenOrganismComponent(Organism* pOrganism)
 {
-  org = pOrg;
+  org = pOrganism;
 }
 
 EdenOrganismComponent::~EdenOrganismComponent()
@@ -55,7 +55,7 @@ EdenOrganismComponent::dependencies()
 {
     std::vector<std::string> dependencies;
 
-    //dependencies.push_back("EDenBodypart");
+    dependencies.push_back("Position");
 
     return dependencies;
 }
@@ -65,6 +65,9 @@ EdenOrganismComponent::attachedCallback()
 {
     assert(parent() && "parent must not be null");
     assert(parent()->id() && "component container has invalid ObjectId");
+
+    mPositionComponent = 
+    boost::dynamic_pointer_cast<PositionComponent>(parent()->component("Position"));
 }
 
 void

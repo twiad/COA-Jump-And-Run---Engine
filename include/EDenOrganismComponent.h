@@ -43,7 +43,9 @@ protected:
     virtual void attachedCallback();
     virtual void detachedCallback();
 
+
     Organism* org;
+    PositionComponentPtr mPositionComponent;
 
 public:
 
@@ -52,6 +54,9 @@ public:
     virtual ~EdenOrganismComponent();
 
     virtual std::string defaultName() const;
+
+    PositionComponentPtr positionComponent();
+    Organism* organism();
 };
 
 typedef boost::shared_ptr<EdenOrganismComponent> EdenOrganismComponentPtr;

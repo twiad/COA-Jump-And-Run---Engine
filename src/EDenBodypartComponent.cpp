@@ -55,7 +55,8 @@ EdenBodypartComponent::dependencies()
 {
     std::vector<std::string> dependencies;
 
-    //dependencies.push_back("GraphicsMeshMain");
+    dependencies.push_back("Position");
+    dependencies.push_back("GraphicsMeshMain");
     //dependencies.push_back("PhysicsMain");
 
     return dependencies;
@@ -66,6 +67,35 @@ EdenBodypartComponent::attachedCallback()
 {
     assert(parent() && "parent must not be null");
     assert(parent()->id() && "component container has invalid ObjectId");
+
+    mPositionComponent = 
+      boost::dynamic_pointer_cast<PositionComponent>(parent()->component("Position"));
+
+    mMeshComponent = 
+      boost::dynamic_pointer_cast<GraphicsMeshComponent>(parent()->component("GraphicsMeshMain"));
+
+    // attach graphicsMainComponent with appropriate mesh name
+    std::string meshName;
+
+    switch (bp->getBodypartType()) {		//check the event type
+		    case BPT_Branch:
+          meshName = "Tube.mesh";
+          break;
+        case BPT_Leaf:
+          meshName = "Tube.mesh";
+          break;
+        case BPT_Seed:
+          meshName = "Tube.mesh";
+          break;
+        case BPT_Stick:
+          meshName = "Tube.mesh";
+          break;
+        case BPT_UNKNOWN:
+          meshName = "QuestionCube.mesh";
+          break;
+    }
+
+
 }
 
 void

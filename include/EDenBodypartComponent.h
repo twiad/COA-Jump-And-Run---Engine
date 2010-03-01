@@ -17,6 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, 5th Floor, Boston, MA 02110-1301 USA *
 \******************************************************************************/
 
+#include "EdenOrganismComponent.h"
 
 #ifndef COAJNR_EDENBODYPARTCOMPONENT_INCLUDED
 #define COAJNR_EDENBODYPARTCOMPONENT_INCLUDED
@@ -26,7 +27,10 @@
 #include "Component.h"
 #include "PositionComponent.h"
 
+#include "GraphicsMeshComponent.h"
+
 #include "bodypart.h"
+
 
 namespace CoAJnR
 {
@@ -44,6 +48,10 @@ protected:
     virtual void detachedCallback();
     
     Bodypart* bp;
+
+    PositionComponentPtr mPositionComponent;
+    GraphicsMeshComponentPtr mMeshComponent;
+    EdenOrganismComponentPtr mOrgansimComponent;
  
 public:
 
@@ -53,7 +61,8 @@ public:
 
     virtual std::string defaultName() const;
 
-    Bodypart* getBodypart();
+    Bodypart* bodypart();
+    GraphicsMeshComponent* meshComponent();
 };
 
 typedef boost::shared_ptr<EdenBodypartComponent> EdenBodypartComponentPtr;
